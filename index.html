@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ирина Шушкова — вёрстка и сайты на HTML, CSS, JavaScript</title>
+<meta name="description" content="Портфолио веб-разработчика: лендинги, многостраничные сайты, адаптивная вёрстка без конструкторов. Казань.">
+<meta property="og:title" content="Ирина Шушкова — вёрстка и сайты">
+<meta property="og:description" content="Лендинги и многостраничные сайты на чистом HTML/CSS/JS. Адаптив, формы, анимации.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101720;
+    --ink-2:#18202B;
+    --line:#28323F;
+    --text:#EAEFF5;
+    --muted:#8FA0B3;
+    --accent:#3E9BFF;
+    --accent-2:#6FB8FF;
+    --r:20px;
+    --t:.3s cubic-bezier(.4,0,.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--ink);color:var(--text);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(100% - 40px,1080px);margin-inline:auto}
+
+  /* Шапка-интро */
+  .intro{position:relative;padding:96px 0 64px;overflow:hidden}
+  .intro::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(760px 420px at 80% 0%,rgba(62,155,255,.18),transparent 60%),
+      radial-gradient(560px 380px at 5% 100%,rgba(62,155,255,.08),transparent 60%);
+  }
+  .intro__inner{position:relative;display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+  .avatar{
+    width:104px;height:104px;flex:none;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent-2),var(--accent));
+    display:grid;place-items:center;font-size:2.4rem;font-weight:800;color:#08131F;
+    box-shadow:0 14px 34px rgba(62,155,255,.3);
+  }
+  h1{margin:0 0 6px;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .intro__role{color:var(--accent-2);font-weight:700;margin:0 0 10px}
+  .intro__text{color:var(--muted);max-width:56ch;margin:0}
+
+  .skills{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+  .skill{
+    padding:8px 17px;border-radius:100px;font-size:.87rem;font-weight:700;
+    background:rgba(62,155,255,.12);color:var(--accent-2);
+  }
+
+  /* Работы */
+  .section{padding:26px 0 80px}
+  .section__title{font-size:1.4rem;font-weight:800;margin:0 0 22px}
+  .works{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .work{
+    display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;
+    background:var(--ink-2);border:1px solid var(--line);
+    transition:transform var(--t),border-color var(--t),box-shadow var(--t);
+  }
+  .work:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 22px 50px rgba(0,0,0,.4)}
+  .work__shot{aspect-ratio:16/10;overflow:hidden;background:#0B1017;border-bottom:1px solid var(--line)}
+  .work__shot img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .5s ease}
+  .work:hover .work__shot img{transform:scale(1.04)}
+  .work__body{padding:24px;display:flex;flex-direction:column;flex:1}
+  .work__body h3{margin:0 0 8px;font-size:1.2rem;font-weight:800}
+  .work__body p{margin:0 0 18px;color:var(--muted);font-size:.95rem;flex:1}
+  .work__tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px}
+  .work__tags span{font-size:.78rem;padding:5px 12px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--muted)}
+  .work__link{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 22px;border-radius:100px;font-weight:800;font-size:.95rem;
+    background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#08131F;
+    transition:transform var(--t);
+  }
+  .work__link:hover{transform:translateY(-2px)}
+
+  /* Контакты */
+  .contact{
+    border-top:1px solid var(--line);padding:44px 0 60px;
+    display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;
+  }
+  .contact h2{margin:0 0 4px;font-size:1.3rem;font-weight:800}
+  .contact p{margin:0;color:var(--muted);font-size:.95rem}
+  .contact__links{display:flex;gap:11px;flex-wrap:wrap}
+  .contact__links a{
+    padding:12px 24px;border-radius:100px;font-weight:700;font-size:.94rem;
+    border:1.5px solid var(--line);transition:border-color var(--t),background var(--t);
+  }
+  .contact__links a:hover{border-color:var(--accent);background:rgba(62,155,255,.1)}
+
+  footer{padding:0 0 40px;color:var(--muted);font-size:.85rem}
+
+  @media (max-width:760px){
+    .intro{padding:64px 0 44px}
+    .works{grid-template-columns:1fr}
+    .contact{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header class="intro">
+  <div class="wrap intro__inner">
+    <div class="avatar">И</div>
+    <div>
+      <h1>Ирина Шушкова</h1>
+      <p class="intro__role">Вёрстка и создание сайтов · Казань</p>
+      <p class="intro__text">
+        Делаю лендинги и многостраничные сайты на чистом HTML, CSS и JavaScript —
+        без конструкторов и тяжёлых библиотек. Это значит быстрая загрузка,
+        аккуратный код и полная свобода в дизайне.
+      </p>
+      <div class="skills">
+        <span class="skill">HTML5</span>
+        <span class="skill">CSS3</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">Адаптивная вёрстка</span>
+        <span class="skill">Figma → код</span>
+        <span class="skill">Формы и валидация</span>
+        <span class="skill">SEO-структура</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap section">
+  <h2 class="section__title">Работы</h2>
+
+  <div class="works">
+    <article class="work">
+      <div class="work__shot">
+        <img src="preview-autotochka.jpg" alt="Лендинг автосервиса АвтоТочка" loading="lazy">
+      </div>
+      <div class="work__body">
+        <h3>Лендинг автосервиса</h3>
+        <p>
+          Одностраничник на 11 блоков: оффер с квиз-формой расчёта, услуги с ценами,
+          этапы работы, кейсы «было — стало», отзывы, FAQ. Маска телефона,
+          проверка полей, модальное окно записи, анимация появления блоков.
+        </p>
+        <div class="work__tags">
+          <span>лендинг</span><span>квиз-форма</span><span>анимации</span><span>адаптив</span>
+        </div>
+        <a class="work__link" href="autotochka/">Смотреть сайт →</a>
+      </div>
+    </article>
+
+    <article class="work">
+      <div class="work__shot">
+        <img src="preview-atomy.jpg" alt="Многостраничный премиум-сайт" loading="lazy">
+      </div>
+      <div class="work__body">
+        <h3>Многостраничный сайт</h3>
+        <p>
+          Сайт на 12 страниц в светлой премиальной эстетике: каталог, блог,
+          отзывы, формы заявок с отправкой в Telegram. Продуманная типографика,
+          плавные анимации, полный адаптив и SEO-структура.
+        </p>
+        <div class="work__tags">
+          <span>12 страниц</span><span>каталог</span><span>формы</span><span>SEO</span>
+        </div>
+        <a class="work__link" href="atomy/">Смотреть сайт →</a>
+      </div>
+    </article>
+  </div>
+</main>
+
+<section class="wrap contact">
+  <div>
+    <h2>Нужен сайт или вёрстка?</h2>
+    <p>Отвечаю быстро, работаю по договорённости о сроках и цене заранее.</p>
+  </div>
+  <div class="contact__links">
+    <a href="https://t.me/IREN_13" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://wa.me/79272478688" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.fl.ru/users/shushkova_i_a/" target="_blank" rel="noopener">Профиль на FL.ru</a>
+  </div>
+</section>
+
+<footer class="wrap">© 2026 Ирина Шушкова</footer>
+
+</body>
+</html>

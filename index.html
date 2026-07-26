@@ -47,7 +47,9 @@
     display:grid;place-items:center;font-size:2.4rem;font-weight:800;color:#08131F;
     box-shadow:0 14px 34px rgba(62,155,255,.3);
   }
-  h1{margin:0 0 6px;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  /* буквы «Шушкова» дают много одинаковых вертикалей — небольшой разрядки хватает,
+     чтобы имя читалось однозначно даже на мелком экране */
+  h1{margin:0 0 6px;font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;letter-spacing:.005em;line-height:1.15}
   .intro__role{color:var(--accent-2);font-weight:700;margin:0 0 10px}
   .intro__text{color:var(--muted);max-width:56ch;margin:0}
 
@@ -82,6 +84,11 @@
     transition:transform var(--t);
   }
   .work__link:hover{transform:translateY(-2px)}
+  /* широкая карточка — занимает всю строку, картинка слева */
+  .work--wide{grid-column:1 / -1;flex-direction:row}
+  .work--wide .work__shot{flex:0 0 52%;aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line)}
+  .work--wide .work__body{justify-content:center}
+  .work--wide .work__link{align-self:flex-start}
 
   /* Контакты */
   .contact{
@@ -102,6 +109,8 @@
   @media (max-width:760px){
     .intro{padding:64px 0 44px}
     .works{grid-template-columns:1fr}
+    .work--wide{flex-direction:column}
+    .work--wide .work__shot{flex:none;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
     .contact{flex-direction:column;align-items:flex-start}
   }
 </style>
@@ -169,6 +178,24 @@
           <span>12 страниц</span><span>каталог</span><span>формы</span><span>SEO</span>
         </div>
         <a class="work__link" href="atomy/">Смотреть сайт →</a>
+      </div>
+    </article>
+
+    <article class="work work--wide">
+      <div class="work__shot">
+        <img src="preview-arhiv.jpg" alt="Два сайта, восстановленных из веб-архива" loading="lazy">
+      </div>
+      <div class="work__body">
+        <h3>Восстановление из веб-архива</h3>
+        <p>
+          Два утраченных сайта собраны заново из снимков веб-архива: вёрстка,
+          стили, скрипты и изображения. Около двадцати файлов архив не сохранил —
+          логотип, фоны и иконки воссозданы вручную в стиле оригинала.
+        </p>
+        <div class="work__tags">
+          <span>2 сайта</span><span>276 файлов</span><span>восстановление</span><span>адаптив</span>
+        </div>
+        <a class="work__link" href="arhiv/">Смотреть кейс →</a>
       </div>
     </article>
   </div>

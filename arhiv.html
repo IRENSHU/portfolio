@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление сайтов из веб-архива — кейс | Ирина Шушкова</title>
+<meta name="description" content="Кейс: восстановление двух утраченных сайтов из веб-архива — вёрстка, стили, изображения, скрипты. Недостающие файлы воссозданы вручную.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101720;
+    --ink-2:#18202B;
+    --line:#28323F;
+    --text:#EAEFF5;
+    --muted:#8FA0B3;
+    --accent:#3E9BFF;
+    --accent-2:#6FB8FF;
+    --r:20px;
+    --t:.3s cubic-bezier(.4,0,.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--ink);color:var(--text);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:min(100% - 40px,1080px);margin-inline:auto}
+
+  /* Шапка */
+  .top{padding:28px 0;border-bottom:1px solid var(--line)}
+  .back{
+    display:inline-flex;align-items:center;gap:8px;
+    color:var(--muted);font-weight:700;font-size:.94rem;transition:color var(--t);
+  }
+  .back:hover{color:var(--accent-2)}
+
+  /* Интро кейса */
+  .intro{position:relative;padding:60px 0 44px;overflow:hidden}
+  .intro::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(700px 380px at 75% 0%,rgba(62,155,255,.16),transparent 62%);
+  }
+  .intro__in{position:relative}
+  .kicker{
+    display:inline-block;padding:7px 16px;border-radius:100px;margin-bottom:18px;
+    background:rgba(62,155,255,.13);color:var(--accent-2);
+    font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  }
+  h1{margin:0 0 14px;font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .lead{color:var(--muted);max-width:62ch;margin:0;font-size:1.06rem}
+
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .meta span{
+    padding:8px 17px;border-radius:100px;font-size:.86rem;font-weight:700;
+    background:rgba(255,255,255,.06);color:var(--muted);
+  }
+
+  /* Блоки текста */
+  .section{padding:16px 0 56px}
+  h2{font-size:1.35rem;font-weight:800;margin:0 0 16px}
+  .cols{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:8px}
+  .box{
+    background:var(--ink-2);border:1px solid var(--line);
+    border-radius:var(--r);padding:26px;
+  }
+  .box h3{margin:0 0 12px;font-size:1.06rem;font-weight:800;color:var(--accent-2)}
+  .box ul{margin:0;padding-left:20px;color:var(--muted);font-size:.96rem}
+  .box li{margin-bottom:8px}
+  .box li:last-child{margin-bottom:0}
+  .box p{margin:0;color:var(--muted);font-size:.96rem}
+
+  /* Работы */
+  .shot{margin-top:40px}
+  .shot__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .shot__head h3{margin:0;font-size:1.2rem;font-weight:800}
+  .shot__head span{color:var(--muted);font-size:.92rem}
+  .frame{
+    border-radius:var(--r);overflow:hidden;
+    border:1px solid var(--line);background:#0B1017;
+  }
+  .frame__bar{
+    display:flex;align-items:center;gap:7px;padding:12px 16px;
+    background:#1C222B;border-bottom:1px solid var(--line);
+  }
+  .frame__bar i{width:10px;height:10px;border-radius:50%;background:#3E4856;flex:none}
+  .frame__bar em{
+    margin-left:10px;font-style:normal;font-size:.82rem;color:var(--muted);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .scroller{max-height:560px;overflow-y:auto;overscroll-behavior:contain}
+  .scroller::-webkit-scrollbar{width:10px}
+  .scroller::-webkit-scrollbar-track{background:#0B1017}
+  .scroller::-webkit-scrollbar-thumb{background:#2E3947;border-radius:6px}
+  .hint{margin:10px 0 0;font-size:.86rem;color:var(--muted)}
+
+  /* Заметка */
+  .note{
+    margin-top:44px;padding:24px 26px;border-radius:var(--r);
+    background:rgba(62,155,255,.07);border:1px solid rgba(62,155,255,.28);
+  }
+  .note h3{margin:0 0 10px;font-size:1.04rem;font-weight:800}
+  .note p{margin:0;color:var(--muted);font-size:.96rem}
+
+  /* Подвал */
+  .foot{
+    border-top:1px solid var(--line);padding:38px 0 56px;
+    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  }
+  .foot p{margin:0;color:var(--muted);font-size:.95rem}
+  .foot__links{display:flex;gap:11px;flex-wrap:wrap}
+  .foot__links a{
+    padding:12px 24px;border-radius:100px;font-weight:700;font-size:.93rem;
+    border:1.5px solid var(--line);transition:border-color var(--t),background var(--t);
+  }
+  .foot__links a:hover{border-color:var(--accent);background:rgba(62,155,255,.1)}
+
+  @media (max-width:760px){
+    .cols{grid-template-columns:1fr}
+    .scroller{max-height:420px}
+    .foot{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap top">
+  <a class="back" href="index.html">← Все работы</a>
+</div>
+
+<header class="intro">
+  <div class="wrap intro__in">
+    <span class="kicker">Кейс · восстановление</span>
+    <h1>Восстановление двух сайтов из веб-архива</h1>
+    <p class="lead">
+      Оба сайта перестали существовать: домены не работают, исходных файлов не осталось.
+      Единственный след — снимки страниц в веб-архиве. Задача была собрать из них
+      полностью рабочие сайты.
+    </p>
+    <div class="meta">
+      <span>HTML · CSS · JavaScript</span>
+      <span>2 сайта</span>
+      <span>276 файлов</span>
+      <span>адаптив сохранён</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap section">
+
+  <div class="cols">
+    <div class="box">
+      <h3>Что было сделано</h3>
+      <ul>
+        <li>Извлечены страницы из веб-архива и собраны в самостоятельные сайты</li>
+        <li>Скачаны и связаны все ресурсы: стили, скрипты, шрифты, изображения</li>
+        <li>Переписаны пути к файлам — сайты работают локально и на любом хостинге</li>
+        <li>Удалены нерабочие внешние скрипты, оставшиеся от старых сервисов</li>
+        <li>Проверена вёрстка, адаптив и работа интерактивных элементов</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Главная сложность</h3>
+      <p>
+        Около двадцати файлов веб-архив не сохранил — их не существует уже нигде.
+        Среди них логотип, часть фотографий, фоны и иконки интерфейса. Я воссоздала
+        эти элементы вручную в стиле оригинала: подобрала цвета, размеры и форму так,
+        чтобы страницы выглядели целостно и разница не бросалась в глаза.
+      </p>
+    </div>
+  </div>
+
+  <section class="shot">
+    <div class="shot__head">
+      <h3>Сайт 1 — каталог корпусной мебели</h3>
+      <span>оффер, каталог, отзывы, калькулятор, карта</span>
+    </div>
+    <div class="frame">
+      <div class="frame__bar"><i></i><i></i><i></i><em>восстановленный сайт — каталог мебели</em></div>
+      <div class="scroller">
+        <img src="arhiv-mebel.jpg" alt="Восстановленный сайт каталога мебели, страница целиком" loading="lazy">
+      </div>
+    </div>
+    <p class="hint">↕ Страница целиком — прокручивается внутри рамки</p>
+  </section>
+
+  <section class="shot">
+    <div class="shot__head">
+      <h3>Сайт 2 — лендинг оптовой продажи бижутерии</h3>
+      <span>каталог товаров, формы заявок, схема работы</span>
+    </div>
+    <div class="frame">
+      <div class="frame__bar"><i></i><i></i><i></i><em>восстановленный сайт — оптовая бижутерия</em></div>
+      <div class="scroller">
+        <img src="arhiv-bijou.jpg" alt="Восстановленный лендинг оптовой продажи бижутерии, страница целиком" loading="lazy">
+      </div>
+    </div>
+    <p class="hint">↕ Страница целиком — прокручивается внутри рамки</p>
+  </section>
+
+  <div class="note">
+    <h3>Почему здесь скриншоты, а не живые ссылки</h3>
+    <p>
+      Оба сайта принадлежали конкретным компаниям и содержат их контактные данные.
+      Публиковать рабочие копии в открытом доступе было бы некорректно, поэтому
+      результат показан снимками. Сами файлы передаются заказчику.
+    </p>
+  </div>
+
+</main>
+
+<footer class="wrap foot">
+  <p>Нужно восстановить сайт или сделать новый? Напишите — обсудим.</p>
+  <div class="foot__links">
+    <a href="https://t.me/IREN_13" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://wa.me/79272478688" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="index.html">Все работы</a>
+  </div>
+</footer>
+
+</body>
+</html>

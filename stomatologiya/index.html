@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дентал Арт — стоматология в Казани</title>
+  <meta name="description" content="Стоматология «Дентал Арт» в Казани: лечение без боли, имплантация, отбеливание. Первичный осмотр и консультация — бесплатно.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="logo" href="#hero" aria-label="Дентал Арт, на главную">
+        <svg class="logo__mark" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <path d="M14 3c3 0 4 1.5 6.5 1.5S25 6 25 10c0 5-2.5 15-5 15-1.8 0-2.4-4-6-4s-4.2 4-6 4c-2.5 0-5-10-5-15 0-4 2-5.5 4.5-5.5S11 3 14 3z" fill="currentColor"/>
+        </svg>
+        <span class="logo__text">Дентал<b>Арт</b></span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#services">Услуги и цены</a></li>
+          <li><a href="#doctors">Врачи</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+        <a class="btn btn--ghost nav__phone" href="tel:+78435550142">+7 843 555-01-42</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="tagline">Стоматология в центре Казани</p>
+          <h1 class="hero__title">Лечим зубы так, что не страшно возвращаться</h1>
+          <p class="hero__text">
+            Работаем с 2009 года. Подбираем анестезию индивидуально, показываем план лечения
+            и стоимость до начала работы — итоговая сумма не меняется.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#booking">Записаться на приём</a>
+            <a class="btn btn--ghost" href="#services">Смотреть цены</a>
+          </div>
+          <p class="hero__note">Первичный осмотр и консультация — бесплатно</p>
+        </div>
+
+        <div class="hero__stats">
+          <div class="stat">
+            <span class="stat__num">17</span>
+            <span class="stat__label">лет на одном месте</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">12 400</span>
+            <span class="stat__label">пациентов пролечено</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">4,9</span>
+            <span class="stat__label">средняя оценка на картах</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features" aria-labelledby="features-title">
+      <div class="container">
+        <h2 class="section__title" id="features-title">Почему к нам приходят по рекомендации</h2>
+        <ul class="features__grid">
+          <li class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3zm-1 14-4-4 1.4-1.4L11 13.2l5.6-5.6L18 9l-7 7z"/></svg>
+            <h3>Лечение без боли</h3>
+            <p>Подбираем анестезию под ваш болевой порог. Есть седация для тех, кто боится с детства.</p>
+          </li>
+          <li class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 14H4V8h16v10zM6 10h6v2H6v-2zm0 4h9v2H6v-2z"/></svg>
+            <h3>Фиксированная смета</h3>
+            <p>План лечения с ценами подписываем до начала. В процессе сумма не растёт — это условие договора.</p>
+          </li>
+          <li class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4zm0 6a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 13c-2.2-.6-4.2-2.3-5.4-4.6.5-1.5 3-2.4 5.4-2.4s4.9.9 5.4 2.4C16.2 17.7 14.2 19.4 12 20z"/></svg>
+            <h3>Свой зуботехник</h3>
+            <p>Коронки и виниры делаем в собственной лаборатории. Примерка и правки — в тот же день.</p>
+          </li>
+          <li class="feature">
+            <svg class="feature__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            <h3>Гарантия 3 года</h3>
+            <p>На пломбы, коронки и импланты. Если что-то пошло не так — переделываем бесплатно.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title" id="services-title">Услуги и цены</h2>
+          <p class="section__lead">Цены действуют до 31 декабря. Точную стоимость назовём после осмотра — она не будет выше указанной.</p>
+        </div>
+
+        <ul class="services__grid">
+          <li class="service">
+            <h3 class="service__name">Лечение кариеса</h3>
+            <p class="service__desc">Световая пломба, полировка, шлифовка под прикус. Один визит.</p>
+            <p class="service__price">от 3 900 <span>₽</span></p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Лечение каналов</h3>
+            <p class="service__desc">Под микроскопом, с контрольным снимком после пломбировки.</p>
+            <p class="service__price">от 7 500 <span>₽</span></p>
+          </li>
+          <li class="service service--accent">
+            <p class="service__badge">Чаще всего выбирают</p>
+            <h3 class="service__name">Имплантация под ключ</h3>
+            <p class="service__desc">Имплант, абатмент и коронка из диоксида циркония. Рассрочка на 12 месяцев.</p>
+            <p class="service__price">от 39 000 <span>₽</span></p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Профгигиена</h3>
+            <p class="service__desc">Ультразвук, Air Flow, полировка и фторирование. Полтора часа.</p>
+            <p class="service__price">от 4 200 <span>₽</span></p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Отбеливание</h3>
+            <p class="service__desc">Аппаратное, за один приём. В среднем на 6–8 тонов светлее.</p>
+            <p class="service__price">от 14 900 <span>₽</span></p>
+          </li>
+          <li class="service">
+            <h3 class="service__name">Брекеты и элайнеры</h3>
+            <p class="service__desc">Диагностика, слепки, ведение до снятия системы.</p>
+            <p class="service__price">от 62 000 <span>₽</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section doctors" id="doctors" aria-labelledby="doctors-title">
+      <div class="container">
+        <h2 class="section__title" id="doctors-title">Кто вас лечит</h2>
+        <ul class="doctors__grid">
+          <li class="doctor">
+            <div class="doctor__photo" aria-hidden="true"><span>АМ</span></div>
+            <h3 class="doctor__name">Алина Мухаметшина</h3>
+            <p class="doctor__role">Терапевт, эндодонтист</p>
+            <p class="doctor__exp">14 лет опыта · лечение каналов под микроскопом</p>
+          </li>
+          <li class="doctor">
+            <div class="doctor__photo" aria-hidden="true"><span>РС</span></div>
+            <h3 class="doctor__name">Рустем Сафин</h3>
+            <p class="doctor__role">Хирург, имплантолог</p>
+            <p class="doctor__exp">19 лет опыта · более 2 000 установленных имплантов</p>
+          </li>
+          <li class="doctor">
+            <div class="doctor__photo" aria-hidden="true"><span>ЕВ</span></div>
+            <h3 class="doctor__name">Елена Волкова</h3>
+            <p class="doctor__role">Ортодонт</p>
+            <p class="doctor__exp">11 лет опыта · брекет-системы и элайнеры</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <h2 class="section__title" id="reviews-title">Что говорят пациенты</h2>
+        <ul class="reviews__grid">
+          <li class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Боялась стоматологов пятнадцать лет. Здесь впервые дали посмотреть план лечения на экране и объяснили, за что каждая цифра. Пролечила четыре зуба и ни разу не дёрнулась.</blockquote>
+            <p class="review__author">Гульнара И. <span>лечение кариеса</span></p>
+          </li>
+          <li class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Ставил два импланта. Понравилось, что смету зафиксировали сразу и потом не появилось никаких «дополнительных работ». По деньгам вышло ровно как договаривались.</blockquote>
+            <p class="review__author">Марат Х. <span>имплантация</span></p>
+          </li>
+          <li class="review">
+            <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+            <blockquote>Веду сюда обоих детей. Врач разговаривает с ними как со взрослыми, без сюсюканья, и они спокойно садятся в кресло. Для меня это решающий аргумент.</blockquote>
+            <p class="review__author">Ольга Д. <span>детский приём</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <h2 class="section__title" id="faq-title">Частые вопросы</h2>
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary>Правда ли, что осмотр бесплатный?</summary>
+            <p>Да. Первичный осмотр, консультация и составление плана лечения не оплачиваются, даже если вы решите лечиться в другом месте. Платным будет только снимок, если он понадобится, — 500 ₽.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Что делать, если зуб заболел вечером?</summary>
+            <p>Мы принимаем до 21:00 без выходных. Позвоните — при острой боли принимаем в день обращения, даже если в расписании нет окна.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Можно ли лечиться в рассрочку?</summary>
+            <p>Да, на суммы от 20 000 ₽ оформляем рассрочку до 12 месяцев без процентов и переплат. Нужен только паспорт.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Вы работаете с детьми?</summary>
+            <p>Принимаем с трёх лет. Первый визит — знакомство с кабинетом без лечения, чтобы ребёнок привык. Он бесплатный.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section booking" id="booking" aria-labelledby="booking-title">
+      <div class="container booking__inner">
+        <div class="booking__text">
+          <h2 class="section__title" id="booking-title">Записаться на приём</h2>
+          <p>Оставьте номер — администратор перезвонит в течение 15 минут и подберёт удобное время. Осмотр и план лечения бесплатно.</p>
+          <ul class="booking__contacts">
+            <li><a href="tel:+78435550142">+7 843 555-01-42</a></li>
+            <li>Казань, ул. Пушкина, 42</li>
+            <li>Ежедневно с 9:00 до 21:00</li>
+          </ul>
+        </div>
+
+        <form class="form" id="form" novalidate>
+          <div class="field">
+            <label for="name">Как вас зовут</label>
+            <input type="text" id="name" name="name" placeholder="Ирина" required autocomplete="name">
+            <span class="field__error" data-error-for="name"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 900 000-00-00" required autocomplete="tel">
+            <span class="field__error" data-error-for="phone"></span>
+          </div>
+          <div class="field">
+            <label for="comment">Что беспокоит <span class="field__opt">— необязательно</span></label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Ноет зуб слева снизу"></textarea>
+          </div>
+          <button class="btn btn--primary btn--wide" type="submit">Жду звонка</button>
+          <p class="form__policy">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
+          <p class="form__success" id="formSuccess" role="status" hidden>Заявка принята. Перезвоним в течение 15 минут.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <a class="logo logo--light" href="#hero">
+          <svg class="logo__mark" width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+            <path d="M14 3c3 0 4 1.5 6.5 1.5S25 6 25 10c0 5-2.5 15-5 15-1.8 0-2.4-4-6-4s-4.2 4-6 4c-2.5 0-5-10-5-15 0-4 2-5.5 4.5-5.5S11 3 14 3z" fill="currentColor"/>
+          </svg>
+          <span class="logo__text">Дентал<b>Арт</b></span>
+        </a>
+        <p class="footer__addr">Казань, ул. Пушкина, 42 · ежедневно 9:00–21:00</p>
+      </div>
+      <nav class="footer__nav" aria-label="Подвал">
+        <a href="#services">Услуги и цены</a>
+        <a href="#doctors">Врачи</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#booking">Запись</a>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <p>Демонстрационная работа для портфолио. Клиника и все данные вымышленные.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

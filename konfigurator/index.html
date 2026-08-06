@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Коробка на заказ — конфигуратор подарочной упаковки</title>
+  <meta name="description" content="Соберите подарочную упаковку под свой бренд: конструктив, размер, оформление, ваш логотип. Расчёт стоимости и заявка онлайн.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="logo" href="#top">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 3 6.5V17L12 22l9-5V6.5L12 2zm0 2.3 6.6 3.3L12 10.9 5.4 7.6 12 4.3zM5 9.3l6 3v7.2l-6-3.3V9.3zm8 10.2v-7.2l6-3v6.9l-6 3.3z" fill="currentColor"/>
+        </svg>
+        <span>Коробка<b>наЗаказ</b></span>
+      </a>
+      <p class="topbar__note">Производство подарочной упаковки · тираж от 50 шт.</p>
+    </div>
+  </header>
+
+  <main class="container" id="top">
+
+    <div class="intro">
+      <h1>Соберите свою упаковку</h1>
+      <p>Выберите конструктив, размер и оформление, загрузите логотип — увидите превью и стоимость сразу. Заявка уйдёт к нам в производство вместе с вашим файлом.</p>
+    </div>
+
+    <div class="layout">
+
+      <!-- ЛЕВАЯ КОЛОНКА: превью -->
+      <section class="preview" aria-label="Превью упаковки">
+        <div class="preview__sticky">
+          <div class="preview__stage">
+            <svg class="box" viewBox="0 0 320 300" role="img" aria-labelledby="boxTitle">
+              <title id="boxTitle">Схематичное превью выбранной упаковки</title>
+
+              <!-- тень -->
+              <ellipse cx="160" cy="272" rx="104" ry="14" fill="rgba(24,28,38,.13)"/>
+
+              <!-- крышка (только для конструктива «крышка-дно») -->
+              <g id="lidGroup">
+                <polygon id="lidTop"   points="160,18 268,58 160,98 52,58"/>
+                <polygon id="lidLeft"  points="52,58 160,98 160,120 52,80"/>
+                <polygon id="lidRight" points="268,58 160,98 160,120 268,80"/>
+              </g>
+
+              <!-- корпус -->
+              <g id="bodyGroup">
+                <polygon id="faceTop"   points="160,84 268,124 160,164 52,124"/>
+                <polygon id="faceLeft"  points="52,124 160,164 160,254 52,214"/>
+                <polygon id="faceRight" points="268,124 160,164 160,254 268,214"/>
+              </g>
+
+              <!-- логотип на передней грани -->
+              <g id="logoLayer" opacity="0">
+                <image id="logoImg" x="0" y="0" width="90" height="90" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+
+              <!-- лента (для оформления «с лентой») -->
+              <g id="ribbon" opacity="0">
+                <polygon points="160,84 176,90 176,180 160,174" fill="rgba(255,255,255,.55)"/>
+                <polygon points="160,84 144,90 144,180 160,174" fill="rgba(0,0,0,.10)"/>
+              </g>
+            </svg>
+          </div>
+
+          <p class="preview__hint">Превью схематичное — показывает пропорции, цвет и расположение логотипа.</p>
+
+          <div class="summary">
+            <div class="summary__row">
+              <span>Конструктив</span><b id="sumType">Крышка-дно</b>
+            </div>
+            <div class="summary__row">
+              <span>Размер</span><b id="sumSize">200 × 150 × 80 мм</b>
+            </div>
+            <div class="summary__row">
+              <span>Оформление</span><b id="sumFinish">Крафт, без печати</b>
+            </div>
+            <div class="summary__row">
+              <span>Логотип</span><b id="sumLogo">не загружен</b>
+            </div>
+            <div class="summary__row summary__row--total">
+              <span>Тираж <i id="sumQty">100</i> шт.</span>
+              <b><span id="sumPrice">32 900</span> ₽</b>
+            </div>
+            <p class="summary__unit">≈ <span id="sumUnit">329</span> ₽ за штуку</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ПРАВАЯ КОЛОНКА: шаги -->
+      <section class="steps" aria-label="Параметры упаковки">
+
+        <fieldset class="step">
+          <legend><i>1</i> Конструктив</legend>
+          <div class="options options--type" id="typeOptions"></div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><i>2</i> Размер, мм</legend>
+          <div class="sizefilter">
+            <button type="button" class="chip is-active" data-group="all">Все</button>
+            <button type="button" class="chip" data-group="small">Маленькие</button>
+            <button type="button" class="chip" data-group="medium">Средние</button>
+            <button type="button" class="chip" data-group="large">Большие</button>
+          </div>
+          <div class="options options--size" id="sizeOptions"></div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><i>3</i> Оформление</legend>
+          <div class="options options--finish" id="finishOptions"></div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><i>4</i> Логотип</legend>
+          <div class="upload">
+            <input type="file" id="logoInput" accept="image/png,image/jpeg,image/svg+xml" hidden>
+            <label class="upload__btn" for="logoInput">Выбрать файл</label>
+            <span class="upload__name" id="logoName">PNG, JPG или SVG, до 5 МБ</span>
+            <button type="button" class="upload__clear" id="logoClear" hidden>Убрать</button>
+          </div>
+          <p class="upload__error" id="logoError" hidden></p>
+
+          <div class="sliders" id="logoControls" hidden>
+            <label>Размер логотипа
+              <input type="range" id="logoScale" min="30" max="110" value="70">
+            </label>
+            <label>Сдвиг по высоте
+              <input type="range" id="logoShift" min="-30" max="30" value="0">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><i>5</i> Тираж</legend>
+          <div class="options options--qty" id="qtyOptions"></div>
+          <p class="step__note" id="qtyNote">При тираже от 300 штук — скидка 10%</p>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><i>6</i> Заявка</legend>
+          <form class="form" id="orderForm" novalidate>
+            <div class="field">
+              <label for="fname">Имя</label>
+              <input type="text" id="fname" name="fname" placeholder="Ирина" autocomplete="name">
+              <span class="field__error" data-error-for="fname"></span>
+            </div>
+            <div class="field">
+              <label for="fphone">Телефон</label>
+              <input type="tel" id="fphone" name="fphone" placeholder="+7 900 000-00-00" autocomplete="tel">
+              <span class="field__error" data-error-for="fphone"></span>
+            </div>
+            <div class="field">
+              <label for="fcomment">Комментарий <span class="opt">— необязательно</span></label>
+              <textarea id="fcomment" name="fcomment" rows="2" placeholder="Нужно к 20 сентября"></textarea>
+            </div>
+            <button class="btn" type="submit">Отправить заявку</button>
+            <p class="form__policy">Отправляя заявку, вы соглашаетесь на обработку персональных данных.</p>
+          </form>
+
+          <div class="sent" id="sent" hidden>
+            <h3>Заявка сформирована</h3>
+            <p>В рабочей версии этот состав уходит менеджеру вместе с файлом логотипа:</p>
+            <pre id="sentData"></pre>
+            <button type="button" class="btn btn--ghost" id="sentBack">Собрать ещё одну</button>
+          </div>
+        </fieldset>
+
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Демонстрационная работа для портфолио. Производство и цены вымышленные.</p>
+      <p>Вёрстка и логика — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

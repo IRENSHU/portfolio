@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ДверьПро — каталог дверей и фурнитуры</title>
+  <meta name="description" content="Каталог входных и межкомнатных дверей, раздвижных систем и фурнитуры. Разделы, фильтры, поиск по названию и артикулу.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="logo" href="./">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="16" cy="12" r="1.4" fill="currentColor"/>
+        </svg>
+        <span>Дверь<b>Про</b></span>
+      </a>
+
+      <div class="search">
+        <input type="search" id="search" placeholder="Поиск по названию или артикулу" aria-label="Поиск по каталогу">
+      </div>
+
+      <p class="topbar__phone">+7 843 555-77-10</p>
+    </div>
+  </header>
+
+  <div class="notice">
+    <div class="wrap">
+      <b>Как это работает:</b> весь каталог собирается из файла
+      <a href="tovary.csv" target="_blank" rel="noopener">tovary.csv</a> — обычной таблицы,
+      которая открывается в Excel. Заказчик меняет цены или добавляет товар, сохраняет файл,
+      заливает на сайт — каталог обновился. Программист не нужен.
+    </div>
+  </div>
+
+  <main class="wrap layout">
+
+    <button class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="sidebar">
+      Разделы и фильтры
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+      <nav class="block" aria-label="Разделы каталога">
+        <h2 class="block__title">Разделы</h2>
+        <ul class="sections" id="sections"></ul>
+      </nav>
+
+      <div class="block">
+        <h2 class="block__title">Материал</h2>
+        <ul class="checks" id="materials"></ul>
+      </div>
+
+      <div class="block">
+        <h2 class="block__title">Цена, ₽</h2>
+        <div class="price">
+          <label>от <input type="number" id="priceMin" min="0" step="500" placeholder="0"></label>
+          <label>до <input type="number" id="priceMax" min="0" step="500" placeholder="50 000"></label>
+        </div>
+      </div>
+
+      <button type="button" class="reset" id="reset">Сбросить фильтры</button>
+    </aside>
+
+    <section class="content">
+      <div class="toolbar">
+        <p class="found">Найдено: <b id="count">—</b></p>
+        <label class="sort">
+          Сортировка
+          <select id="sort">
+            <option value="default">по разделам</option>
+            <option value="cheap">сначала дешёвые</option>
+            <option value="expensive">сначала дорогие</option>
+            <option value="name">по названию</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="grid" id="grid" aria-live="polite"></div>
+
+      <p class="empty" id="empty" hidden>
+        По вашему запросу ничего не нашлось. Попробуйте сбросить фильтры или изменить поиск.
+      </p>
+    </section>
+  </main>
+
+  <!-- Карточка товара -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__body" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" data-close aria-label="Закрыть">×</button>
+      <div class="modal__grid">
+        <div class="modal__shot" id="modalShot"></div>
+        <div>
+          <p class="modal__section" id="modalSection"></p>
+          <h3 class="modal__title" id="modalTitle"></h3>
+          <dl class="specs" id="modalSpecs"></dl>
+          <p class="modal__price" id="modalPrice"></p>
+
+          <form class="ask" id="askForm" novalidate>
+            <p class="ask__label">Запросить наличие и срок доставки</p>
+            <div class="ask__row">
+              <input type="tel" id="askPhone" placeholder="+7 900 000-00-00" aria-label="Телефон">
+              <button class="btn" type="submit">Отправить</button>
+            </div>
+            <span class="ask__error" id="askError" hidden>Проверьте номер — не хватает цифр</span>
+            <span class="ask__ok" id="askOk" hidden>Заявка принята, перезвоним в течение часа.</span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Демонстрационная работа для портфолио. Компания, товары и цены вымышленные.</p>
+      <p>Вёрстка и логика — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

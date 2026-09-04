@@ -97,6 +97,9 @@
   .cards__lead{color:var(--muted);max-width:70ch;margin:0 0 24px;font-size:.95rem}
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   .card{
+    /* у figure браузерные отступы по 40px с боков — без обнуления
+       карточка теряет половину ширины */
+    margin:0;
     border-radius:16px;overflow:hidden;background:var(--ink-2);
     border:1px solid var(--line);transition:transform var(--t),border-color var(--t);
   }

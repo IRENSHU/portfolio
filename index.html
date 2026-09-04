@@ -90,6 +90,17 @@
   .work--wide .work__body{justify-content:center}
   .work--wide .work__link{align-self:flex-start}
 
+  /* Карточки для маркетплейсов */
+  .cards__lead{color:var(--muted);max-width:70ch;margin:0 0 24px;font-size:.95rem}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{
+    border-radius:16px;overflow:hidden;background:var(--ink-2);
+    border:1px solid var(--line);transition:transform var(--t),border-color var(--t);
+  }
+  .card:hover{transform:translateY(-5px);border-color:var(--accent)}
+  .card img{width:100%;aspect-ratio:3/4;object-fit:cover}
+  .card figcaption{padding:12px 14px;font-size:.83rem;color:var(--muted)}
+
   /* Контакты */
   .contact{
     border-top:1px solid var(--line);padding:44px 0 60px;
@@ -109,6 +120,7 @@
   @media (max-width:760px){
     .intro{padding:64px 0 44px}
     .works{grid-template-columns:1fr}
+    .cards{grid-template-columns:repeat(2,1fr);gap:14px}
     .work--wide{flex-direction:column}
     .work--wide .work__shot{flex:none;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
     .contact{flex-direction:column;align-items:flex-start}
@@ -285,6 +297,34 @@
         <a class="work__link" href="arhiv.html">Смотреть кейс →</a>
       </div>
     </article>
+  </div>
+
+  <h2 class="section__title" style="margin-top:64px">Карточки для маркетплейсов</h2>
+  <p class="cards__lead">
+    Оформление карточек товара для Wildberries и Ozon: главное фото и
+    инфографика с преимуществами, в формате 900×1200. Иллюстрации нарисованы
+    кодом в SVG, а не собраны из стоковых фото — поэтому стиль карточек внутри
+    линейки одинаковый, а вопросов к авторским правам на изображения не
+    возникает. Ниже — примеры на вымышленных товарах.
+  </p>
+
+  <div class="cards">
+    <figure class="card">
+      <img src="card-mug-main.jpg" alt="Главное фото карточки: термокружка BuzzThermo" loading="lazy">
+      <figcaption>Термокружка · главное фото</figcaption>
+    </figure>
+    <figure class="card">
+      <img src="card-mug-info.jpg" alt="Инфографика карточки термокружки с четырьмя преимуществами" loading="lazy">
+      <figcaption>Термокружка · инфографика</figcaption>
+    </figure>
+    <figure class="card">
+      <img src="card-serum-main.jpg" alt="Главное фото карточки: сыворотка для лица BUZZ SERUM" loading="lazy">
+      <figcaption>Косметика · главное фото</figcaption>
+    </figure>
+    <figure class="card">
+      <img src="card-serum-info.jpg" alt="Инфографика карточки сыворотки с четырьмя преимуществами" loading="lazy">
+      <figcaption>Косметика · инфографика</figcaption>
+    </figure>
   </div>
 </main>
 

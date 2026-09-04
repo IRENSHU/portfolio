@@ -27,6 +27,9 @@
     margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;
     background:var(--ink);color:var(--text);line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    /* иначе мобильный Chrome сам раздувает шрифт в узких блоках
+       и подписи под карточками перестают помещаться */
+    -webkit-text-size-adjust:100%;text-size-adjust:100%;
   }
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
@@ -99,7 +102,7 @@
   }
   .card:hover{transform:translateY(-5px);border-color:var(--accent)}
   .card img{width:100%;aspect-ratio:3/4;object-fit:cover}
-  .card figcaption{padding:12px 14px;font-size:.83rem;color:var(--muted)}
+  .card figcaption{padding:12px 14px;font-size:.83rem;color:var(--muted);overflow-wrap:break-word;hyphens:auto}
 
   /* Контакты */
   .contact{

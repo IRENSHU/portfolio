@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика обработки персональных данных | Лингва — демо 152-ФЗ</title>
+<meta name="description" content="Демонстрационная страница политики обработки персональных данных: структура, оглавление, читаемая вёрстка длинного документа.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12202e;--muted:#5c7086;--line:#dfe7f0;--bg:#f7f9fc;--accent:#1f6fd4;--r:14px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+  a{color:var(--accent)}
+  .wrap{width:min(100% - 32px,1080px);margin-inline:auto}
+
+  .demo-note{background:#fdf6e3;border-bottom:1px solid #ecdcb4;padding:14px 0;font-size:.92rem;color:#6b5424}
+  .demo-note b{color:#4a390f}
+
+  header{border-bottom:1px solid var(--line);padding:18px 0}
+  .head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--ink)}
+  .logo i{width:34px;height:34px;border-radius:9px;flex:none;background:linear-gradient(135deg,#4f9bff,var(--accent));display:grid;place-items:center;color:#fff;font-style:normal;font-size:1rem}
+  .back{font-size:.94rem;font-weight:700;text-decoration:none}
+
+  .title{padding:44px 0 8px}
+  h1{font-size:clamp(1.6rem,3.6vw,2.3rem);font-weight:800;margin:0 0 10px;letter-spacing:-.4px}
+  .meta{color:var(--muted);font-size:.92rem;margin:0}
+
+  .layout{display:grid;grid-template-columns:250px 1fr;gap:44px;align-items:start;padding:32px 0 72px}
+
+  .toc{position:sticky;top:24px;border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--bg)}
+  .toc b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:12px}
+  .toc ol{margin:0;padding-left:20px;font-size:.9rem}
+  .toc li{margin-bottom:8px}
+  .toc a{text-decoration:none;color:var(--ink)}
+  .toc a:hover{color:var(--accent)}
+
+  article h2{font-size:1.2rem;font-weight:800;margin:34px 0 10px;scroll-margin-top:24px}
+  article h2:first-child{margin-top:0}
+  article p{margin:0 0 12px;color:#2b3d51}
+  article ul{margin:0 0 14px;padding-left:22px;color:#2b3d51}
+  article li{margin-bottom:6px}
+
+  .callout{border-left:4px solid var(--accent);background:var(--bg);border-radius:0 12px 12px 0;padding:16px 18px;margin:0 0 24px;font-size:.94rem;color:#33465c}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:.9rem}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;gap:24px}
+    .toc{position:static}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap">
+    <b>Демонстрационная страница.</b> Показывает вёрстку документа: оглавление с переходами,
+    читаемая ширина строки, работа на телефоне. Текст сокращён и приведён как образец структуры —
+    настоящую политику для сайта готовит юрист.
+  </div>
+</div>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="index.html"><i>Л</i> Лингва</a>
+    <a class="back" href="index.html">← На главную</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="title">
+    <h1>Политика обработки персональных данных</h1>
+    <p class="meta">Редакция от 1 сентября 2026 года</p>
+  </div>
+
+  <div class="layout">
+    <nav class="toc">
+      <b>Содержание</b>
+      <ol>
+        <li><a href="#p1">Общие положения</a></li>
+        <li><a href="#p2">Какие данные мы собираем</a></li>
+        <li><a href="#p3">Зачем нужны эти данные</a></li>
+        <li><a href="#p4">Правовые основания</a></li>
+        <li><a href="#p5">Сроки хранения</a></li>
+        <li><a href="#p6">Кому передаются данные</a></li>
+        <li><a href="#p7">Файлы cookie</a></li>
+        <li><a href="#p8">Права посетителя</a></li>
+        <li><a href="#p9">Как с нами связаться</a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <div class="callout">
+        Ниже приведён образец структуры документа. Разделы соответствуют тому, что обычно
+        включают в политику, но конкретные формулировки, сроки и перечни должен утвердить юрист
+        под вашу деятельность.
+      </div>
+
+      <h2 id="p1">1. Общие положения</h2>
+      <p>Политика описывает, какие данные посетителей собирает сайт языковой школы «Лингва», для чего они используются и как долго хранятся. Политика распространяется на все страницы сайта и все формы на них.</p>
+      <p>Отправляя форму на сайте и отмечая согласие, посетитель подтверждает, что ознакомился с этим документом.</p>
+
+      <h2 id="p2">2. Какие данные мы собираем</h2>
+      <p>Через формы на сайте посетитель сообщает:</p>
+      <ul>
+        <li>имя или то, как к нему обращаться;</li>
+        <li>номер телефона;</li>
+        <li>адрес электронной почты, если он его указал.</li>
+      </ul>
+      <p>Автоматически, без участия посетителя, сохраняются технические сведения: адрес страницы, с которой отправлена форма, дата и время, тип устройства и браузера.</p>
+
+      <h2 id="p3">3. Зачем нужны эти данные</h2>
+      <ul>
+        <li>связаться с посетителем и записать его на пробное занятие;</li>
+        <li>подобрать группу и удобное время;</li>
+        <li>сообщить об изменениях в расписании;</li>
+        <li>понимать, какие страницы сайта читают чаще, — в обезличенном виде.</li>
+      </ul>
+      <p>Мы не используем эти данные для целей, о которых не сказано в этом разделе.</p>
+
+      <h2 id="p4">4. Правовые основания</h2>
+      <p>Обработка ведётся на основании согласия, которое посетитель даёт при отправке формы, а также в объёме, необходимом для исполнения договора об оказании образовательных услуг, если такой договор заключён.</p>
+
+      <h2 id="p5">5. Сроки хранения</h2>
+      <p>Данные из заявок хранятся столько, сколько нужно для их обработки, и удаляются, когда цель достигнута или когда посетитель отозвал согласие. Данные учеников, с которыми заключён договор, хранятся в сроки, установленные для документов такого рода.</p>
+
+      <h2 id="p6">6. Кому передаются данные</h2>
+      <p>Данные не продаются и не передаются третьим лицам для рекламы. Доступ к ним имеют только сотрудники школы, которым он нужен по работе, и подрядчики, обеспечивающие работу сайта и рассылок, — в объёме, необходимом для оказания услуги.</p>
+
+      <h2 id="p7">7. Файлы cookie</h2>
+      <p>Cookie — небольшие файлы, которые сайт сохраняет в браузере. Мы делим их на три группы:</p>
+      <ul>
+        <li><b>Необходимые.</b> Обеспечивают работу форм, безопасность и запоминают ваш выбор в баннере. Без них сайт работать не будет, поэтому отключить их нельзя.</li>
+        <li><b>Аналитические.</b> Помогают понять, какие страницы читают и где посетители уходят.</li>
+        <li><b>Рекламные.</b> Используются для показа объявлений школы на других площадках.</li>
+      </ul>
+      <p>Выбор посетителя сохраняется в его браузере. Чтобы изменить решение, достаточно очистить данные сайта в браузере — баннер появится снова.</p>
+
+      <h2 id="p8">8. Права посетителя</h2>
+      <p>Посетитель вправе получить сведения о том, какие его данные обрабатываются, потребовать их уточнения, блокирования или удаления, а также в любой момент отозвать согласие. Для этого нужно направить обращение по контактам из раздела 9.</p>
+
+      <h2 id="p9">9. Как с нами связаться</h2>
+      <p>По вопросам обработки персональных данных: <a href="mailto:info@example.com">info@example.com</a>.</p>
+      <p>Обращение рассматривается в срок, установленный законом. Ответ направляется тем же способом, которым поступило обращение, если посетитель не указал другой.</p>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Языковая школа «Лингва» — демонстрационный сайт</div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

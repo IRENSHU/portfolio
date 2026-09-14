@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Экстранет BuzzTravel — демо</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <b>Buzz<span>Travel</span></b>
+      <span class="demo-badge">Экстранет · демо</span>
+    </div>
+    <div class="switch" role="tablist" aria-label="Режим просмотра">
+      <button type="button" data-view="extranet" class="active">Кабинет отеля</button>
+      <button type="button" data-view="guest">Страница для гостя</button>
+    </div>
+    <button type="button" class="link-btn" id="resetBtn">Сбросить демо</button>
+  </div>
+</header>
+
+<!-- Кабинет отеля -->
+<main id="extranet" class="wrap">
+  <div class="page-head">
+    <div>
+      <div class="label">Кабинет отеля</div>
+      <h1 class="display" id="hotelTitle">Демо-отель</h1>
+      <div class="muted" id="hotelAddress"></div>
+    </div>
+    <button type="button" class="btn btn-ghost" data-go-guest>Как видит гость →</button>
+  </div>
+
+  <nav class="tabs" aria-label="Разделы кабинета">
+    <button type="button" data-tab="rooms" class="active">Номера</button>
+    <button type="button" data-tab="calendar">Цены и наличие</button>
+    <button type="button" data-tab="bookings">Бронирования <span class="count" id="newCount" hidden>0</span></button>
+    <button type="button" data-tab="notify">Уведомления</button>
+  </nav>
+
+  <section data-panel="rooms"></section>
+  <section data-panel="calendar" hidden></section>
+  <section data-panel="bookings" hidden></section>
+  <section data-panel="notify" hidden></section>
+</main>
+
+<!-- Страница для гостя -->
+<main id="guest" class="wrap" hidden></main>
+
+<div id="modalRoot"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="core.js"></script>
+<script src="extranet.js"></script>
+<script src="guest.js"></script>
+</body>
+</html>

@@ -427,7 +427,7 @@
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   }
 </style>
-<script>document.documentElement.classList.add('js')</script>
+<script>document.documentElement.classList.add('js');setTimeout(function(){document.documentElement.classList.add('loaded')},1500)</script>
 </head>
 <body>
 
@@ -792,7 +792,9 @@
   $('#year').textContent = new Date().getFullYear();
 
   /* появление первого экрана */
-  requestAnimationFrame(() => document.documentElement.classList.add('loaded'));
+  const showHero = () => document.documentElement.classList.add('loaded');
+  requestAnimationFrame(showHero);
+  setTimeout(showHero, 300); // запасной путь: rAF не срабатывает во вкладках в фоне и в превью
 
   /* шапка при прокрутке */
   const header = $('header');

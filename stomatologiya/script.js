@@ -30,6 +30,20 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+// ===== Карта: грузим Яндекс только по нажатию =====
+// Пока посетитель сам не открыл карту, его данные не уходят стороннему сервису
+document.querySelectorAll('.js-map').forEach((button) => {
+  button.addEventListener('click', () => {
+    const box = button.closest('.map');
+    const frame = document.createElement('iframe');
+    frame.src = box.dataset.src;
+    frame.title = 'Карта: Казань, ул. Пушкина, 42';
+    frame.setAttribute('allowfullscreen', '');
+    box.appendChild(frame);
+    box.classList.add('is-loaded');
+  });
+});
+
 // ===== Проверка формы =====
 const form = document.getElementById('form');
 const success = document.getElementById('formSuccess');
@@ -49,10 +63,10 @@ form.addEventListener('submit', (event) => {
 
   const name = form.elements.name;
   const phone = form.elements.phone;
+  const agree = form.elements.agree;
   let valid = true;
 
-  clearError(name);
-  clearError(phone);
+  [name, phone, agree].forEach(clearError);
 
   if (name.value.trim().length < 2) {
     showError(name, 'Напишите, как к вам обращаться');
@@ -61,20 +75,30 @@ form.addEventListener('submit', (event) => {
 
   // Считаем только цифры: телефон могут ввести как угодно — со скобками, дефисами, пробелами
   const digits = phone.value.replace(/\D/g, '');
-  if (digits.length < 10) {
-    showError(phone, 'Проверьте номер — не хватает цифр');
+  if (digits.length < 10 || digits.length > 11) {
+    showError(phone, 'Проверьте номер — нужно 10–11 цифр');
     valid = false;
   }
 
-  if (!valid) return;
+  // Согласие — только отмеченной галочкой, по умолчанию она пустая
+  if (!agree.checked) {
+    showError(agree, 'Без согласия мы не сможем перезвонить');
+    valid = false;
+  }
+
+  if (!valid) {
+    form.querySelector('.has-error input')?.focus();
+    return;
+  }
 
   // Здесь на боевом сайте заявка уходит на сервер или в Telegram
   form.reset();
   success.hidden = false;
-  setTimeout(() => { success.hidden = true; }, 6000);
+  setTimeout(() => { success.hidden = true; }, 8000);
 });
 
 // Ошибка исчезает, как только человек начал исправлять поле
 ['name', 'phone'].forEach((id) => {
   form.elements[id].addEventListener('input', (event) => clearError(event.target));
 });
+form.elements.agree.addEventListener('change', (event) => clearError(event.target));

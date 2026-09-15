@@ -21,16 +21,18 @@
   var burger = document.getElementById('burger');
   var nav = document.getElementById('nav');
 
+  function setMenu(open) {
+    nav.classList.toggle('is-open', open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', open);
+  }
+
   if (burger && nav) {
     burger.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      burger.classList.toggle('is-open', open);
+      setMenu(!nav.classList.contains('is-open'));
     });
     nav.addEventListener('click', function (e) {
-      if (e.target.classList.contains('nav__link')) {
-        nav.classList.remove('is-open');
-        burger.classList.remove('is-open');
-      }
+      if (e.target.classList.contains('nav__link')) setMenu(false);
     });
   }
 
@@ -85,6 +87,79 @@
     counters.forEach(function (el) { el.textContent = el.dataset.count; });
   }
 
+  /* ---------- Цены: пересчёт по типу автомобиля ---------- */
+  function rub(n) { return n.toLocaleString('ru-RU') + ' ₽'; }
+  // цена за кроссовер и внедорожник — с коэффициентом, округляем до 100 ₽
+  function priceFor(base, k) { return Math.round(base * k / 100) * 100; }
+
+  function pressOne(buttons, active) {
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === active); });
+  }
+
+  var pButtons = document.querySelectorAll('.js-pclass');
+  pButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      pressOne(pButtons, btn);
+      var k = parseFloat(btn.dataset.k);
+      document.querySelectorAll('.ptable [data-base]').forEach(function (cell) {
+        cell.textContent = rub(priceFor(+cell.dataset.base, k));
+      });
+    });
+  });
+
+  /* ---------- Калькулятор на первом экране ---------- */
+  var estService = document.getElementById('estService');
+  var est = document.getElementById('est');
+  var cButtons = document.querySelectorAll('.js-class');
+  var classK = 1;
+
+  function updateEstimate() {
+    var opt = estService.options[estService.selectedIndex];
+    var sum = est.querySelector('.est__sum');
+    var time = est.querySelector('.est__time');
+
+    if (!estService.value) {
+      sum.textContent = '—';
+      time.textContent = 'Выберите работу';
+      est.classList.remove('is-ready');
+      return;
+    }
+    var base = +opt.dataset.base;
+    if (base === 0) {
+      sum.textContent = 'от ' + rub(priceFor(900, classK));
+      time.textContent = 'Диагностика 30 минут — бесплатно, если ремонт у нас';
+    } else {
+      sum.textContent = 'от ' + rub(priceFor(base, classK));
+      time.textContent = 'Работа без запчастей · срок ' + opt.dataset.time;
+    }
+    est.classList.add('is-ready');
+  }
+
+  if (estService && est) {
+    estService.addEventListener('change', updateEstimate);
+    cButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        pressOne(cButtons, btn);
+        classK = parseFloat(btn.dataset.k);
+        updateEstimate();
+      });
+    });
+  }
+
+  /* ---------- Карта: грузим Яндекс только по нажатию ---------- */
+  // так посетитель не передаёт данные стороннему сервису, пока сам не захочет увидеть карту
+  document.querySelectorAll('.js-map').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.map');
+      var frame = document.createElement('iframe');
+      frame.src = box.dataset.src;
+      frame.title = 'Карта: Казань, ул. Тэцевская, 12';
+      frame.setAttribute('allowfullscreen', '');
+      box.appendChild(frame);
+      box.classList.add('is-loaded');
+    });
+  });
+
   /* ---------- Маска телефона ---------- */
   function maskPhone(e) {
     var input = e.target;
@@ -117,15 +192,18 @@
     var ok = true;
 
     form.querySelectorAll('[required]').forEach(function (field) {
-      var value = field.value.trim();
-      var bad = !value;
-
-      // для телефона проверяем, что введены все 11 цифр
-      if (!bad && field.type === 'tel') {
-        bad = value.replace(/\D/g, '').length !== 11;
+      var bad;
+      if (field.type === 'checkbox') {
+        // согласие на обработку данных — только отмеченной галочкой
+        bad = !field.checked;
+        field.closest('.agree').classList.toggle('is-error', bad);
+      } else {
+        var value = field.value.trim();
+        bad = !value;
+        // для телефона проверяем, что введены все 11 цифр
+        if (!bad && field.type === 'tel') bad = value.replace(/\D/g, '').length !== 11;
+        field.classList.toggle('is-error', bad);
       }
-
-      field.classList.toggle('is-error', bad);
       if (bad) ok = false;
     });
 
@@ -138,20 +216,25 @@
 
       if (!validate(form)) {
         var firstBad = form.querySelector('.is-error');
-        if (firstBad) firstBad.focus();
+        if (firstBad) (firstBad.querySelector('input') || firstBad).focus();
         return;
       }
 
       // Демонстрационный лендинг: показываем подтверждение вместо отправки.
-      // На боевом сайте здесь будет fetch на сервер или CRM.
+      // На боевом сайте здесь будет fetch на сервер, в Telegram или CRM.
       var done = document.createElement('div');
       done.className = 'form__done';
-      done.textContent = 'Заявка принята. Перезвоним в течение 15 минут.';
+      done.setAttribute('role', 'status');
+      done.innerHTML = 'Заявка принята. На настоящем сайте мастер перезвонил бы в течение 15 минут.' +
+        '<small>Это демо — данные никуда не отправлены.</small>';
       form.replaceWith(done);
     });
 
     form.addEventListener('input', function (e) {
       e.target.classList.remove('is-error');
+    });
+    form.addEventListener('change', function (e) {
+      if (e.target.type === 'checkbox') e.target.closest('.agree').classList.remove('is-error');
     });
   });
 

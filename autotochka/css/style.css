@@ -430,3 +430,98 @@ select.field__input{appearance:none;background-image:url("data:image/svg+xml,%3C
   .logo__text{font-size:.96rem}
   .header__phone{display:none}
 }
+
+/* ==========================================================================
+   Автосервис полного цикла — новые блоки (сентябрь 2026)
+   ========================================================================== */
+
+/* оранжевый текст на светлом фоне: #E37800 давал контраст 3:1, этот — выше 4,5:1 */
+.tag--dark,.work__meta span:last-child{color:#9A4A00}
+
+/* ---------- Пометка демо ---------- */
+.demo-flag{
+  display:inline-block;margin:0 0 14px;padding:6px 14px;border-radius:100px;
+  font-size:.8rem;font-weight:600;color:#FFE2B8;
+  background:rgba(255,178,69,.08);border:1px dashed rgba(255,178,69,.45);
+}
+.demo-note{
+  margin-top:14px !important;padding:12px 16px;border-radius:var(--r);
+  background:#FFF6E8;border:1px dashed #F0C98C;color:#6B4A12 !important;font-size:.93rem !important;
+}
+
+/* ---------- Переключатель типа машины ---------- */
+.seg{display:flex;gap:4px;padding:4px;border-radius:100px;background:var(--soft)}
+.seg__btn{
+  flex:1;padding:9px 12px;border-radius:100px;font-weight:700;font-size:.86rem;color:var(--dark-muted);
+  transition:background var(--t),color var(--t),box-shadow var(--t);
+}
+.seg__btn:hover{color:var(--dark-text)}
+.seg__btn[aria-pressed="true"]{background:var(--white);color:var(--dark-text);box-shadow:0 2px 8px rgba(8,12,18,.12)}
+.seg--light{background:var(--white);border:1.5px solid var(--soft-line);display:inline-flex;margin-bottom:22px;max-width:100%}
+.seg--light .seg__btn{flex:none;padding:10px 20px}
+.seg--light .seg__btn[aria-pressed="true"]{background:var(--dark-text);color:var(--white);box-shadow:none}
+
+/* ---------- Оценка стоимости ---------- */
+.est{
+  display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:2px 12px;
+  padding:14px 16px;border-radius:var(--r);background:var(--soft);border:1.5px dashed var(--soft-line);
+  transition:background var(--t),border-color var(--t);
+}
+.est.is-ready{background:#FFF4E5;border:1.5px solid rgba(255,138,0,.4)}
+.est__label{font-size:.8rem;font-weight:700;color:var(--dark-muted);text-transform:uppercase;letter-spacing:.04em}
+.est__sum{font-size:1.5rem;font-weight:800;text-align:right;white-space:nowrap}
+.est__time{grid-column:1 / -1;font-size:.84rem;color:var(--dark-muted)}
+
+/* ---------- Согласие ---------- */
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:.84rem;line-height:1.45;color:var(--dark-muted);cursor:pointer}
+.agree input{flex:none;width:19px;height:19px;margin:1px 0 0;accent-color:var(--accent-dk)}
+.agree.is-error{color:#C8373C}
+.agree--dark{color:var(--muted)}
+.agree--dark.is-error{color:#FF8C8F}
+.form__done small{display:block;margin-top:6px;font-weight:500;font-size:.84rem;opacity:.85}
+
+/* ---------- Карточки услуг: срок ---------- */
+.card__time{display:block;font-size:.82rem;color:var(--dark-muted);margin-top:2px}
+
+/* ---------- Прайс ---------- */
+.ptable{background:var(--white);border:1.5px solid var(--soft-line);border-radius:var(--r-lg);overflow:hidden}
+.ptable__row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:16px 24px;border-bottom:1px solid var(--soft-line)}
+.ptable__row:last-child{border-bottom:0}
+.ptable__row:nth-child(even){background:#FAFBFC}
+.ptable__row b{white-space:nowrap;font-weight:800}
+.ptable__row b::before{content:"от ";font-weight:500;color:var(--dark-muted)}
+.prices__note{margin:16px 0 0;font-size:.9rem;color:var(--dark-muted)}
+
+/* ---------- Типовые работы ---------- */
+.work__head{
+  display:flex;align-items:center;gap:10px;margin:-20px -20px 18px;padding:14px 20px;
+  border-radius:var(--r-lg) var(--r-lg) 0 0;background:var(--ink);color:var(--text);font-size:.88rem;font-weight:700;
+}
+.work__head .ic{color:var(--accent)}
+
+/* ---------- Контакты и карта ---------- */
+.cinfo--row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.map{height:260px;margin-top:4px}
+.map__btn{
+  position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:70px;
+  padding:11px 20px;border-radius:100px;background:var(--white);color:var(--dark-text);font-weight:700;font-size:.92rem;
+  box-shadow:var(--shadow);transition:transform var(--t);
+}
+.map__btn:hover{transform:translateY(-2px)}
+.map__btn .ic{color:var(--accent-dk)}
+.map__pin{position:absolute;top:calc(50% - 40px);left:calc(50% - 10px)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2;background:var(--ink-3)}
+.map.is-loaded .map__btn,.map.is-loaded .map__note,.map.is-loaded .map__pin{display:none}
+.routes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+
+/* колонки первого экрана могут сжиматься — иначе кнопки калькулятора растягивают сетку шире экрана */
+.hero__inner > *{min-width:0}
+
+@media (max-width:680px){
+  .seg .seg__btn{padding:9px 4px;font-size:.8rem}
+  .seg--light{display:flex}
+  .seg--light .seg__btn{flex:1;padding:10px 8px;font-size:.8rem}
+  .ptable__row{padding:14px 16px;font-size:.94rem}
+  .cinfo--row{grid-template-columns:1fr}
+  .est__sum{font-size:1.3rem}
+}

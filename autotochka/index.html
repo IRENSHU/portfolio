@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>АвтоТочка — ремонт рулевых реек в Казани | Диагностика бесплатно</title>
-<meta name="description" content="Ремонт рулевых реек любых типов: механика, ГУР, ЭУР. Собственный стенд, гарантия 12 месяцев, ремонт от 1 дня. Бесплатная диагностика в Казани.">
-<meta property="og:title" content="АвтоТочка — ремонт рулевых реек">
-<meta property="og:description" content="Собственный стенд, гарантия 12 месяцев, ремонт от 1 дня.">
+<title>АвтоТочка — автосервис полного цикла в Казани | Цена до начала ремонта</title>
+<meta name="description" content="ТО, диагностика, ходовая, двигатель, рулевое, электрика, шиномонтаж и кузов в одном сервисе. Цена фиксируется в заказ-наряде до начала работ, гарантия до 12 месяцев. Казань, ул. Тэцевская, 12.">
+<meta property="og:title" content="АвтоТочка — автосервис полного цикла в Казани">
+<meta property="og:description" content="Ремонт без сюрпризов в чеке: сначала цена, потом работа. Гарантия до 12 месяцев.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,14 +20,14 @@
   <div class="container header__inner">
     <a href="#" class="logo">
       <span class="logo__mark">А</span>
-      <span class="logo__text">АвтоТочка<small>ремонт рулевых реек</small></span>
+      <span class="logo__text">АвтоТочка<small>автосервис полного цикла</small></span>
     </a>
 
     <nav class="nav" id="nav">
       <a href="#services" class="nav__link">Услуги</a>
-      <a href="#why" class="nav__link">Почему мы</a>
+      <a href="#prices" class="nav__link">Цены</a>
+      <a href="#why" class="nav__link">Гарантии</a>
       <a href="#process" class="nav__link">Как работаем</a>
-      <a href="#works" class="nav__link">Работы</a>
       <a href="#faq" class="nav__link">Вопросы</a>
       <a href="#contacts" class="nav__link">Контакты</a>
     </nav>
@@ -37,7 +37,7 @@
       <button class="btn btn--sm js-open-modal">Записаться</button>
     </div>
 
-    <button class="burger" id="burger" aria-label="Меню">
+    <button class="burger" id="burger" aria-label="Меню" aria-controls="nav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -48,52 +48,68 @@
   <div class="hero__bg"></div>
   <div class="container hero__inner">
     <div class="hero__content reveal">
-      <span class="tag">Казань · Собственный стенд</span>
-      <h1>Ремонт рулевых реек <span class="accent">точно и с гарантией</span></h1>
+      <p class="demo-flag">Демо-сайт: сервис вымышленный, цены условные</p>
+      <span class="tag">Казань · автосервис полного цикла</span>
+      <h1>Ремонт без сюрпризов <span class="accent">в итоговом чеке</span></h1>
       <p class="hero__lead">
-        Восстанавливаем рейки на любых автомобилях. Диагностика бесплатно,
-        стоимость согласуем до начала работ — итоговая сумма не изменится.
+        ТО, диагностика, ходовая, двигатель, электрика, шиномонтаж и кузов — в одном сервисе.
+        Цену называем до начала работ. Нашли что-то ещё — сначала звоним вам.
       </p>
 
       <ul class="hero__points">
-        <li><svg class="ic"><use href="#i-shield"></use></svg> Гарантия до 12 месяцев</li>
-        <li><svg class="ic"><use href="#i-gear"></use></svg> Собственный стенд проверки</li>
-        <li><svg class="ic"><use href="#i-clock"></use></svg> Ремонт от 1 рабочего дня</li>
+        <li><svg class="ic"><use href="#i-tag"></use></svg> Цена фиксируется в заказ-наряде</li>
+        <li><svg class="ic"><use href="#i-shield"></use></svg> Гарантия на работы до 12 месяцев</li>
+        <li><svg class="ic"><use href="#i-box"></use></svg> Запчасти наши или ваши — на выбор</li>
       </ul>
 
       <div class="hero__actions">
-        <button class="btn btn--lg js-open-modal">Записаться на диагностику</button>
-        <a href="#services" class="btn btn--ghost btn--lg">Смотреть цены</a>
+        <button class="btn btn--lg js-open-modal">Записаться на ремонт</button>
+        <a href="#prices" class="btn btn--ghost btn--lg">Смотреть цены</a>
       </div>
     </div>
 
     <div class="hero__card reveal">
       <div class="quiz">
         <div class="quiz__head">
-          <h3>Рассчитать стоимость</h3>
-          <p>Ответьте на 2 вопроса — назовём цену и срок</p>
+          <h3>Сколько будет стоить</h3>
+          <p>Выберите работу и тип машины — покажем цену сразу</p>
         </div>
         <form class="form" id="heroForm" novalidate>
           <label class="field">
-            <span class="field__label">Тип рейки</span>
-            <select name="type" class="field__input" required>
-              <option value="">Выберите тип</option>
-              <option>Механическая</option>
-              <option>Гидравлическая (ГУР)</option>
-              <option>Электрическая (ЭУР)</option>
-              <option>Не знаю — подскажите</option>
+            <span class="field__label">Что нужно сделать</span>
+            <select name="service" class="field__input js-est" id="estService" required>
+              <option value="">Выберите работу</option>
+              <option data-base="1500" data-time="от 1 часа">ТО и замена масла</option>
+              <option data-base="900" data-time="30 минут">Компьютерная диагностика</option>
+              <option data-base="1200" data-time="от 2 часов">Ходовая и тормоза</option>
+              <option data-base="6500" data-time="от 1 дня">Двигатель и ГРМ</option>
+              <option data-base="2500" data-time="от 3 часов">Рулевое управление</option>
+              <option data-base="900" data-time="от 1 часа">Электрика и кондиционер</option>
+              <option data-base="1600" data-time="40 минут">Шиномонтаж</option>
+              <option data-base="4500" data-time="от 2 дней">Кузов и покраска</option>
+              <option data-base="0" data-time="">Не знаю — нужна диагностика</option>
             </select>
           </label>
-          <label class="field">
-            <span class="field__label">Ваше имя</span>
-            <input type="text" name="name" class="field__input" placeholder="Как к вам обращаться" required>
-          </label>
+          <div class="seg" role="group" aria-label="Тип автомобиля">
+            <button type="button" class="seg__btn js-class" data-k="1" aria-pressed="true">Легковой</button>
+            <button type="button" class="seg__btn js-class" data-k="1.2" aria-pressed="false">Кроссовер</button>
+            <button type="button" class="seg__btn js-class" data-k="1.4" aria-pressed="false">Внедорожник</button>
+          </div>
+          <div class="est" id="est" aria-live="polite">
+            <span class="est__label">Ориентировочно</span>
+            <b class="est__sum">—</b>
+            <span class="est__time">Выберите работу</span>
+          </div>
           <label class="field">
             <span class="field__label">Телефон</span>
-            <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required>
+            <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
           </label>
-          <button type="submit" class="btn btn--block">Узнать стоимость</button>
-          <p class="form__note">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</p>
+          <label class="agree">
+            <input type="checkbox" name="agree" required>
+            <span>Согласен(-на) на обработку персональных данных для записи</span>
+          </label>
+          <button type="submit" class="btn btn--block">Записаться по этой цене</button>
+          <p class="form__note">Точную цену закрепим в заказ-наряде после осмотра</p>
         </form>
       </div>
     </div>
@@ -103,10 +119,10 @@
 <!-- ЦИФРЫ -->
 <section class="stats">
   <div class="container stats__grid">
-    <div class="stat reveal"><b data-count="15">0</b><span>лет опыта</span></div>
-    <div class="stat reveal"><b data-count="4200">0</b><span>реек отремонтировано</span></div>
-    <div class="stat reveal"><b data-count="12">0</b><span>месяцев гарантии</span></div>
-    <div class="stat reveal"><b data-count="1">0</b><span>день средний срок</span></div>
+    <div class="stat reveal"><b data-count="8">0</b><span>направлений работ</span></div>
+    <div class="stat reveal"><b data-count="12">0</b><span>месяцев гарантии на работы</span></div>
+    <div class="stat reveal"><b data-count="30">0</b><span>минут — компьютерная диагностика</span></div>
+    <div class="stat reveal"><b data-count="7">0</b><span>дней в неделю, с 9 до 20</span></div>
   </div>
 </section>
 
@@ -114,94 +130,159 @@
 <section class="section" id="services">
   <div class="container">
     <div class="section__head reveal">
-      <span class="tag tag--dark">Что ремонтируем</span>
-      <h2>Работаем со всеми типами рулевых реек</h2>
-      <p>Цены указаны за базовый ремонт. Точную стоимость назовём после бесплатной диагностики.</p>
+      <span class="tag tag--dark">Что делаем</span>
+      <h2>Вся машина — в одном сервисе</h2>
+      <p>Не нужно ездить по трём мастерским: масло, подвеска, электрика и кузов — в одном месте и с одной гарантией.</p>
     </div>
 
     <div class="cards">
-      <article class="card reveal">
-        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-wheel"></use></svg></div>
-        <h3>Механические рейки</h3>
-        <p>Замена втулок, шлифовка вала, регулировка люфта, восстановление геометрии.</p>
-        <div class="card__price">от <b>6 500 ₽</b></div>
-        <button class="card__btn js-open-modal">Записаться</button>
-      </article>
-
       <article class="card card--accent reveal">
         <div class="card__badge">Чаще всего</div>
         <div class="card__icon"><svg class="ic ic--lg"><use href="#i-drop"></use></svg></div>
-        <h3>Гидравлические (ГУР)</h3>
-        <p>Устранение течи, замена сальников и уплотнений, ремонт распределителя.</p>
-        <div class="card__price">от <b>9 800 ₽</b></div>
+        <h3>ТО и замена масла</h3>
+        <p>По регламенту производителя, с отметкой в сервисной книжке.</p>
+        <div class="card__price">от <b>1 500 ₽</b><span class="card__time">от 1 часа</span></div>
+        <button class="card__btn js-open-modal">Записаться</button>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-scan"></use></svg></div>
+        <h3>Диагностика</h3>
+        <p>Горит «чек», стучит, тянет в сторону — найдём причину за 30 минут.</p>
+        <div class="card__price">от <b>900 ₽</b><span class="card__time">бесплатно при ремонте у нас</span></div>
+        <button class="card__btn js-open-modal">Записаться</button>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-wheel"></use></svg></div>
+        <h3>Ходовая и тормоза</h3>
+        <p>Стойки, сайлентблоки, шаровые, колодки и диски. Покажем изношенные детали.</p>
+        <div class="card__price">от <b>1 200 ₽</b><span class="card__time">от 2 часов</span></div>
+        <button class="card__btn js-open-modal">Записаться</button>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-gear"></use></svg></div>
+        <h3>Двигатель и ГРМ</h3>
+        <p>Ремень или цепь ГРМ, помпа, прокладки, течи масла и антифриза.</p>
+        <div class="card__price">от <b>6 500 ₽</b><span class="card__time">от 1 дня</span></div>
+        <button class="card__btn js-open-modal">Записаться</button>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-steer"></use></svg></div>
+        <h3>Рулевое управление</h3>
+        <p>Рейки механические, ГУР и ЭУР, наконечники и тяги. Проверка на своём стенде.</p>
+        <div class="card__price">от <b>2 500 ₽</b><span class="card__time">от 3 часов</span></div>
         <button class="card__btn js-open-modal">Записаться</button>
       </article>
 
       <article class="card reveal">
         <div class="card__icon"><svg class="ic ic--lg"><use href="#i-bolt"></use></svg></div>
-        <h3>Электрические (ЭУР)</h3>
-        <p>Диагностика блока управления, ремонт электромотора, замена датчиков.</p>
-        <div class="card__price">от <b>12 400 ₽</b></div>
+        <h3>Электрика и кондиционер</h3>
+        <p>Стартер, генератор, проводка, фары. Заправка и поиск утечки кондиционера.</p>
+        <div class="card__price">от <b>900 ₽</b><span class="card__time">от 1 часа</span></div>
         <button class="card__btn js-open-modal">Записаться</button>
       </article>
 
       <article class="card reveal">
-        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-pump"></use></svg></div>
-        <h3>Насосы ГУР и ЭГУР</h3>
-        <p>Ремонт или замена насоса, проверка давления на стенде, промывка системы.</p>
-        <div class="card__price">от <b>5 200 ₽</b></div>
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-tyre"></use></svg></div>
+        <h3>Шиномонтаж</h3>
+        <p>Сезонная смена колёс, балансировка, ремонт проколов. Хранение шин.</p>
+        <div class="card__price">от <b>1 600 ₽</b><span class="card__time">40 минут за комплект</span></div>
+        <button class="card__btn js-open-modal">Записаться</button>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon"><svg class="ic ic--lg"><use href="#i-car"></use></svg></div>
+        <h3>Кузов и покраска</h3>
+        <p>Вмятины без покраски, локальный ремонт, покраска элемента в камере.</p>
+        <div class="card__price">от <b>4 500 ₽</b><span class="card__time">от 2 дней</span></div>
         <button class="card__btn js-open-modal">Записаться</button>
       </article>
     </div>
 
     <div class="banner reveal">
       <div>
-        <h3>Не знаете, какая рейка на вашей машине?</h3>
-        <p>Назовите марку и год — определим за минуту и сразу скажем стоимость.</p>
+        <h3>Стучит, скрипит или горит лампочка?</h3>
+        <p>Опишите, что происходит, — подскажем, с чего начать, и запишем на удобное время.</p>
       </div>
-      <button class="btn js-open-modal">Узнать бесплатно</button>
+      <button class="btn js-open-modal">Описать проблему</button>
     </div>
   </div>
 </section>
 
-<!-- ПОЧЕМУ МЫ -->
+<!-- ЦЕНЫ -->
+<section class="section section--soft" id="prices">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="tag tag--dark">Цены</span>
+      <h2>Цены на частые работы</h2>
+      <p>Стоимость работы без запчастей. Выберите тип машины — цены пересчитаются.</p>
+    </div>
+
+    <div class="prices reveal">
+      <div class="seg seg--light" role="group" aria-label="Тип автомобиля для цен">
+        <button type="button" class="seg__btn js-pclass" data-k="1" aria-pressed="true">Легковой</button>
+        <button type="button" class="seg__btn js-pclass" data-k="1.2" aria-pressed="false">Кроссовер</button>
+        <button type="button" class="seg__btn js-pclass" data-k="1.4" aria-pressed="false">Внедорожник, минивэн</button>
+      </div>
+
+      <div class="ptable" role="table" aria-label="Цены на работы">
+        <div class="ptable__row" role="row"><span role="cell">Замена масла и масляного фильтра</span><b role="cell" data-base="1500">1 500 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">ТО по регламенту (работа)</span><b role="cell" data-base="3900">3 900 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Компьютерная диагностика</span><b role="cell" data-base="900">900 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Замена передних тормозных колодок</span><b role="cell" data-base="1200">1 200 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Замена стоек стабилизатора, пара</span><b role="cell" data-base="1400">1 400 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Замена ремня ГРМ с роликами</span><b role="cell" data-base="6500">6 500 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Ремонт рулевой рейки</span><b role="cell" data-base="6500">6 500 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Заправка кондиционера</span><b role="cell" data-base="1800">1 800 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Шиномонтаж комплекта с балансировкой</span><b role="cell" data-base="1600">1 600 ₽</b></div>
+        <div class="ptable__row" role="row"><span role="cell">Покраска одного элемента кузова</span><b role="cell" data-base="9500">9 500 ₽</b></div>
+      </div>
+      <p class="prices__note">Цены — от. Точную стоимость назовём после осмотра и закрепим в заказ-наряде до начала работ.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ГАРАНТИИ -->
 <section class="section section--dark" id="why">
   <div class="container">
     <div class="section__head reveal">
-      <span class="tag">Почему выбирают нас</span>
-      <h2>Ремонтируем так, чтобы вы вернулись только через годы</h2>
+      <span class="tag">Наши правила</span>
+      <h2>Шесть правил, из-за которых к нам возвращаются</h2>
     </div>
 
     <div class="feats">
       <div class="feat reveal">
-        <svg class="ic ic--lg"><use href="#i-gear"></use></svg>
-        <h3>Собственный стенд</h3>
-        <p>Проверяем рейку под давлением до и после ремонта. Не «на глаз», а по приборам.</p>
+        <svg class="ic ic--lg"><use href="#i-tag"></use></svg>
+        <h3>Цена в заказ-наряде</h3>
+        <p>Согласовали сумму — записали её в документ. В чеке будет она же.</p>
+      </div>
+      <div class="feat reveal">
+        <svg class="ic ic--lg"><use href="#i-phone"></use></svg>
+        <h3>Сначала звонок, потом работа</h3>
+        <p>Нашли по ходу ещё одну проблему — звоним, называем цену и ждём вашего решения.</p>
       </div>
       <div class="feat reveal">
         <svg class="ic ic--lg"><use href="#i-box"></use></svg>
-        <h3>Запчасти в наличии</h3>
-        <p>Оригинальные комплектующие на складе — не ждём поставку неделями.</p>
-      </div>
-      <div class="feat reveal">
-        <svg class="ic ic--lg"><use href="#i-tag"></use></svg>
-        <h3>Фиксированная цена</h3>
-        <p>Согласовали сумму — она не изменится. Никаких «в процессе выяснилось».</p>
-      </div>
-      <div class="feat reveal">
-        <svg class="ic ic--lg"><use href="#i-truck"></use></svg>
-        <h3>Заберём и привезём</h3>
-        <p>Снимем рейку, отремонтируем и установим обратно. Или заберём агрегат сами.</p>
+        <h3>Старые детали — вам</h3>
+        <p>Отдаём снятые запчасти, чтобы вы видели, что заменили и почему.</p>
       </div>
       <div class="feat reveal">
         <svg class="ic ic--lg"><use href="#i-percent"></use></svg>
-        <h3>Скидка за старый агрегат</h3>
-        <p>Оставляете неисправную рейку — уменьшаем стоимость ремонта.</p>
+        <h3>Свои запчасти — можно</h3>
+        <p>Привезли детали сами — поставим. Гарантия на работу сохраняется.</p>
+      </div>
+      <div class="feat reveal">
+        <svg class="ic ic--lg"><use href="#i-clock"></use></svg>
+        <h3>Срок — тоже в документе</h3>
+        <p>Говорим, когда заберёте машину. Если не успеваем, предупреждаем заранее.</p>
       </div>
       <div class="feat reveal">
         <svg class="ic ic--lg"><use href="#i-shield"></use></svg>
-        <h3>Гарантия в договоре</h3>
-        <p>До 12 месяцев письменно. Что-то пошло не так — исправим бесплатно.</p>
+        <h3>Гарантия до 12 месяцев</h3>
+        <p>Письменно, на работы и наши запчасти. Повторилась поломка — исправим бесплатно.</p>
       </div>
     </div>
   </div>
@@ -212,30 +293,30 @@
   <div class="container">
     <div class="section__head reveal">
       <span class="tag tag--dark">Как мы работаем</span>
-      <h2>Пять шагов от заявки до готовой рейки</h2>
-      <p>Каждый этап фиксируем — вы всегда знаете, что происходит с вашим агрегатом.</p>
+      <h2>Пять шагов от записи до ключей</h2>
+      <p>Вы знаете цену и срок до того, как мастер возьмёт ключ.</p>
     </div>
 
     <ol class="steps">
       <li class="step reveal"><span class="step__num">01</span>
-        <h3>Приём и осмотр</h3>
-        <p>Принимаем агрегат, фиксируем состояние, проверяем на видимые повреждения.</p>
+        <h3>Запись</h3>
+        <p>По телефону или на сайте. Подберём время, чтобы не ждать в очереди.</p>
       </li>
       <li class="step reveal"><span class="step__num">02</span>
-        <h3>Диагностика на стенде</h3>
-        <p>Проверяем под рабочим давлением. Находим течи, люфты и износ.</p>
+        <h3>Осмотр</h3>
+        <p>Мастер при вас проверяет машину и объясняет, что нашёл.</p>
       </li>
       <li class="step reveal"><span class="step__num">03</span>
-        <h3>Расчёт и согласование</h3>
-        <p>Называем точную стоимость и срок. Работы начинаем только после вашего «да».</p>
+        <h3>Заказ-наряд</h3>
+        <p>Список работ, цена и срок — в документе. Начинаем после вашего «да».</p>
       </li>
       <li class="step reveal"><span class="step__num">04</span>
         <h3>Ремонт</h3>
-        <p>Замена комплектующих, шлифовка вала, сборка и регулировка.</p>
+        <p>Если появится что-то новое — звоним и ждём решения.</p>
       </li>
       <li class="step reveal"><span class="step__num">05</span>
-        <h3>Финальная проверка</h3>
-        <p>Повторный тест на стенде, выдача акта и гарантийного талона.</p>
+        <h3>Выдача</h3>
+        <p>Показываем старые детали, отдаём гарантийный талон и чек.</p>
       </li>
     </ol>
   </div>
@@ -245,39 +326,31 @@
 <section class="section section--soft" id="works">
   <div class="container">
     <div class="section__head reveal">
-      <span class="tag tag--dark">Примеры работ</span>
-      <h2>Было — стало</h2>
+      <span class="tag tag--dark">Типовые работы</span>
+      <h2>С чем приезжают чаще всего</h2>
+      <p>Примеры, чтобы понимать порядок цен и сроков. Стоимость — работа и запчасти вместе.</p>
     </div>
 
     <div class="works">
       <article class="work reveal">
-        <div class="work__imgs">
-          <div class="work__img work__img--before"><span>до</span></div>
-          <div class="work__img work__img--after"><span>после</span></div>
-        </div>
-        <h3>Toyota Camry, рейка ГУР</h3>
-        <p>Течь по всей длине корпуса, износ сальников. Заменили уплотнения, отшлифовали вал — течь устранена.</p>
-        <div class="work__meta"><span>Срок: 1 день</span><span>9 800 ₽</span></div>
+        <div class="work__head"><svg class="ic"><use href="#i-drop"></use></svg><span>Hyundai Solaris · 60 000 км</span></div>
+        <h3>Плановое ТО</h3>
+        <p>Масло, масляный, воздушный и салонный фильтры, свечи. Проверили подвеску и тормоза, отметили в сервисной книжке.</p>
+        <div class="work__meta"><span>2 часа</span><span>6 900 ₽</span></div>
       </article>
 
       <article class="work reveal">
-        <div class="work__imgs">
-          <div class="work__img work__img--before"><span>до</span></div>
-          <div class="work__img work__img--after"><span>после</span></div>
-        </div>
-        <h3>Ford Focus, механическая</h3>
-        <p>Стук при проезде неровностей, критический люфт. Заменили втулки, отрегулировали зазор.</p>
-        <div class="work__meta"><span>Срок: 1 день</span><span>7 100 ₽</span></div>
+        <div class="work__head"><svg class="ic"><use href="#i-wheel"></use></svg><span>Kia Sportage · стук спереди</span></div>
+        <h3>Стойки и сайлентблоки</h3>
+        <p>На диагностике нашли изношенные стойки стабилизатора и сайлентблоки рычагов. Заменили, сделали развал-схождение.</p>
+        <div class="work__meta"><span>5 часов</span><span>11 400 ₽</span></div>
       </article>
 
       <article class="work reveal">
-        <div class="work__imgs">
-          <div class="work__img work__img--before"><span>до</span></div>
-          <div class="work__img work__img--after"><span>после</span></div>
-        </div>
-        <h3>Kia Sportage, ЭУР</h3>
-        <p>Пропадал усилитель на ходу. Диагностика выявила отказ датчика — заменили, проверили на стенде.</p>
-        <div class="work__meta"><span>Срок: 2 дня</span><span>13 500 ₽</span></div>
+        <div class="work__head"><svg class="ic"><use href="#i-steer"></use></svg><span>Toyota Camry · течь ГУР</span></div>
+        <h3>Ремонт рулевой рейки</h3>
+        <p>Вместо замены рейки целиком — новые сальники и уплотнения, шлифовка вала, проверка на стенде.</p>
+        <div class="work__meta"><span>1 день</span><span>9 800 ₽</span></div>
       </article>
     </div>
   </div>
@@ -289,25 +362,26 @@
     <div class="section__head reveal">
       <span class="tag tag--dark">Отзывы</span>
       <h2>Что говорят клиенты</h2>
+      <p class="demo-note">В демо-версии отзывы вымышленные и показывают оформление блока. На сайте клиента здесь будут настоящие отзывы — например, со ссылкой на Яндекс Карты.</p>
     </div>
 
     <div class="reviews">
       <blockquote class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p>Обратился с течью на Камри, до этого в двух местах предлагали менять рейку целиком за 60 тысяч. Здесь отремонтировали за день и почти втрое дешевле. Полгода прошло — всё сухо.</p>
-        <footer><b>Андрей М.</b><span>Toyota Camry</span></footer>
+        <div class="review__stars" aria-label="5 из 5">★★★★★</div>
+        <p>Приехал на замену масла. Мастер сказал, что колодки на пределе, показал и назвал цену. Решил поменять сразу — в чеке ровно та сумма, что озвучили.</p>
+        <footer><b>Руслан, пример отзыва</b><span>Hyundai Solaris</span></footer>
       </blockquote>
 
       <blockquote class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p>Понравилось, что сразу назвали цену и она не поменялась. Показали стенд, объяснили, что именно вышло из строя. Стук пропал полностью.</p>
-        <footer><b>Ильдар Г.</b><span>Ford Focus</span></footer>
+        <div class="review__stars" aria-label="5 из 5">★★★★★</div>
+        <p>Стук в подвеске искали в двух местах. Здесь нашли за полчаса, заменили за день. Старые стойки отдали — видно, что люфт был.</p>
+        <footer><b>Ильдар, пример отзыва</b><span>Kia Sportage</span></footer>
       </blockquote>
 
       <blockquote class="review reveal">
-        <div class="review__stars">★★★★★</div>
-        <p>Сами забрали агрегат, через два дня привезли и поставили. Гарантию дали письменно. Общение спокойное, без навязывания лишнего — это дорогого стоит.</p>
-        <footer><b>Марина С.</b><span>Kia Sportage</span></footer>
+        <div class="review__stars" aria-label="5 из 5">★★★★★</div>
+        <p>Привезла свои запчасти — поставили без уговоров купить у них. Гарантию на работу дали письменно.</p>
+        <footer><b>Марина, пример отзыва</b><span>Renault Duster</span></footer>
       </blockquote>
     </div>
   </div>
@@ -318,29 +392,33 @@
   <div class="container container--narrow">
     <div class="section__head reveal">
       <span class="tag tag--dark">Частые вопросы</span>
-      <h2>Отвечаем заранее</h2>
+      <h2>Отвечаем до того, как вы спросите</h2>
     </div>
 
     <div class="faq">
       <details class="faq__item reveal">
-        <summary>Сколько занимает диагностика и правда ли она бесплатная?</summary>
-        <p>Диагностика на стенде занимает 30–40 минут и действительно бесплатна — даже если вы откажетесь от ремонта. Мы считаем, что человек должен понимать, что с его машиной, без обязательств.</p>
+        <summary>Может ли итоговая цена оказаться выше согласованной?</summary>
+        <p>Без вашего согласия — нет. Цена записана в заказ-наряде. Если во время ремонта найдём что-то ещё, позвоним, назовём стоимость и продолжим только после вашего ответа.</p>
       </details>
       <details class="faq__item reveal">
-        <summary>Может ли итоговая цена оказаться выше согласованной?</summary>
-        <p>Нет. Стоимость фиксируем после диагностики и до начала работ. Если в процессе обнаружится что-то дополнительное, мы сначала свяжемся с вами — решение всегда за вами.</p>
+        <summary>Можно привезти свои запчасти?</summary>
+        <p>Да. Поставим их и дадим гарантию на работу. Гарантию на сами детали в этом случае даёт магазин, где вы их купили.</p>
+      </details>
+      <details class="faq__item reveal">
+        <summary>Если машина на гарантии у дилера, ТО у вас не помешает?</summary>
+        <p>Делаем ТО по регламенту производителя, ставим отметку в сервисной книжке и отдаём заказ-наряд и чеки на запчасти — это подтверждение обслуживания. Условия гарантии конкретной марки лучше заранее сверить с документами на автомобиль.</p>
       </details>
       <details class="faq__item reveal">
         <summary>Что покрывает гарантия?</summary>
-        <p>Гарантия до 12 месяцев распространяется на выполненные работы и установленные комплектующие. Оформляется письменно вместе с актом. Если проблема повторится — устраним бесплатно.</p>
+        <p>Выполненные работы и запчасти, которые поставили мы, — до 12 месяцев, срок зависит от вида работ и указан в гарантийном талоне. Если неисправность повторится, устраним бесплатно.</p>
       </details>
       <details class="faq__item reveal">
-        <summary>Нужно ли снимать рейку самому?</summary>
-        <p>Не обязательно. Можно пригнать автомобиль — снимем и установим сами. Либо привезите снятый агрегат, так ремонт выйдет дешевле.</p>
+        <summary>Можно оставить машину утром и забрать вечером?</summary>
+        <p>Да. Примем с 9:00, позвоним или напишем, когда будет готово. Если ремонт мелкий, можно подождать в зоне ожидания.</p>
       </details>
       <details class="faq__item reveal">
-        <summary>Работаете с редкими и премиальными марками?</summary>
-        <p>Да. Если нужной детали нет на складе, сообщим срок поставки до начала работ — чтобы вы могли спланировать.</p>
+        <summary>Как можно оплатить?</summary>
+        <p>Картой, наличными или по QR-коду. Для компаний — по счёту, с закрывающими документами.</p>
       </details>
     </div>
   </div>
@@ -361,21 +439,28 @@
           <b>г. Казань, ул. Тэцевская, 12, бокс 4</b>
           <p>Заезд со стороны проходной, парковка перед воротами</p>
         </div>
-        <div class="cinfo">
-          <span class="cinfo__label">Телефон</span>
-          <a href="tel:+78435550123" class="cinfo__phone">+7 (843) 555-01-23</a>
-          <p>Ежедневно с 9:00 до 20:00, без выходных</p>
-        </div>
-        <div class="cinfo">
-          <span class="cinfo__label">Мессенджеры</span>
-          <div class="chips">
-            <a href="#" class="chip">WhatsApp</a>
-            <a href="#" class="chip">Telegram</a>
+        <div class="cinfo cinfo--row">
+          <div>
+            <span class="cinfo__label">Телефон</span>
+            <a href="tel:+78435550123" class="cinfo__phone">+7 (843) 555-01-23</a>
+          </div>
+          <div>
+            <span class="cinfo__label">Часы работы</span>
+            <b>Ежедневно 9:00–20:00</b>
+            <p>Последнюю машину принимаем в 19:00</p>
           </div>
         </div>
-        <div class="map" aria-label="Схема проезда">
-          <div class="map__pin"></div>
-          <span class="map__note">Схема проезда</span>
+
+        <div class="map" id="map" data-src="https://yandex.ru/map-widget/v1/?ll=49.010615%2C55.861941&amp;z=16&amp;pt=49.010615%2C55.861941%2Cpm2orgm">
+          <div class="map__pin" aria-hidden="true"></div>
+          <button type="button" class="map__btn js-map">
+            <svg class="ic"><use href="#i-pin"></use></svg> Показать на карте
+          </button>
+          <span class="map__note">Карта загрузится с Яндекса после нажатия</span>
+        </div>
+        <div class="routes">
+          <a class="chip" href="https://yandex.ru/maps/?rtext=~55.861941%2C49.010615&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
+          <a class="chip" href="https://yandex.ru/maps/?pt=49.010615,55.861941&amp;z=16&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
         </div>
       </div>
 
@@ -385,18 +470,21 @@
         <form class="form" id="contactForm" novalidate>
           <label class="field">
             <span class="field__label">Имя</span>
-            <input type="text" name="name" class="field__input" placeholder="Как к вам обращаться" required>
+            <input type="text" name="name" class="field__input" placeholder="Как к вам обращаться" required autocomplete="given-name">
           </label>
           <label class="field">
             <span class="field__label">Телефон</span>
-            <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required>
+            <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
           </label>
           <label class="field">
-            <span class="field__label">Комментарий <i>(необязательно)</i></span>
-            <textarea name="comment" class="field__input" rows="3" placeholder="Марка авто, что беспокоит"></textarea>
+            <span class="field__label">Что с машиной <i>(необязательно)</i></span>
+            <textarea name="comment" class="field__input" rows="3" placeholder="Марка, год и что беспокоит"></textarea>
+          </label>
+          <label class="agree agree--dark">
+            <input type="checkbox" name="agree" required>
+            <span>Согласен(-на) на обработку персональных данных для обратного звонка</span>
           </label>
           <button type="submit" class="btn btn--block">Жду звонка</button>
-          <p class="form__note">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</p>
         </form>
       </div>
     </div>
@@ -408,17 +496,17 @@
   <div class="container footer__inner">
     <a href="#" class="logo logo--footer">
       <span class="logo__mark">А</span>
-      <span class="logo__text">АвтоТочка<small>ремонт рулевых реек</small></span>
+      <span class="logo__text">АвтоТочка<small>автосервис полного цикла</small></span>
     </a>
     <nav class="footer__nav">
       <a href="#services">Услуги</a>
-      <a href="#why">Почему мы</a>
-      <a href="#process">Как работаем</a>
+      <a href="#prices">Цены</a>
+      <a href="#why">Гарантии</a>
       <a href="#contacts">Контакты</a>
     </nav>
     <div class="footer__side">
       <a href="tel:+78435550123" class="footer__phone">+7 (843) 555-01-23</a>
-      <small>© 2026 АвтоТочка. Демонстрационный проект</small>
+      <small>© 2026 АвтоТочка. Демонстрационный сайт: компания, цены и отзывы вымышленные</small>
     </div>
   </div>
 </footer>
@@ -426,21 +514,24 @@
 <!-- МОДАЛКА -->
 <div class="modal" id="modal" hidden>
   <div class="modal__overlay js-close-modal"></div>
-  <div class="modal__box" role="dialog" aria-modal="true" aria-label="Записаться на диагностику">
+  <div class="modal__box" role="dialog" aria-modal="true" aria-label="Записаться в сервис">
     <button class="modal__close js-close-modal" aria-label="Закрыть">×</button>
-    <h3>Записаться на диагностику</h3>
-    <p class="muted">Диагностика бесплатная. Перезвоним и подберём удобное время.</p>
+    <h3>Записаться в сервис</h3>
+    <p class="muted">Перезвоним, уточним, что с машиной, и подберём время. Цену назовём до начала работ.</p>
     <form class="form" id="modalForm" novalidate>
       <label class="field">
         <span class="field__label">Имя</span>
-        <input type="text" name="name" class="field__input" placeholder="Как к вам обращаться" required>
+        <input type="text" name="name" class="field__input" placeholder="Как к вам обращаться" required autocomplete="given-name">
       </label>
       <label class="field">
         <span class="field__label">Телефон</span>
-        <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required>
+        <input type="tel" name="phone" class="field__input js-phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+      </label>
+      <label class="agree">
+        <input type="checkbox" name="agree" required>
+        <span>Согласен(-на) на обработку персональных данных для записи</span>
       </label>
       <button type="submit" class="btn btn--block">Записаться</button>
-      <p class="form__note">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</p>
     </form>
   </div>
 </div>
@@ -457,12 +548,15 @@
   <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4a9 9 0 00-.2-1.8l2-1.5-2-3.4-2.3 1a9 9 0 00-3-1.8L15 2H9l-.5 2.5a9 9 0 00-3 1.8l-2.3-1-2 3.4 2 1.5a9.2 9.2 0 000 3.6l-2 1.5 2 3.4 2.3-1a9 9 0 003 1.8L9 22h6l.5-2.5a9 9 0 003-1.8l2.3 1 2-3.4-2-1.5c.13-.6.2-1.19.2-1.8z"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6.5V12l4 2.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
   <symbol id="i-wheel" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 016.9 5.8H14a2 2 0 00-4 0H5.1A7 7 0 0112 5zm-1.9 8.7a2 2 0 001.9 1.4c.86 0 1.6-.55 1.88-1.3l3.4 3.4A7 7 0 016.7 17l3.4-3.3z"/></symbol>
+  <symbol id="i-steer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="2.4"/><path d="M3.5 11h6.1M14.4 11h6.1M12 14.4V21" stroke="currentColor" stroke-width="2.2" fill="none"/></symbol>
+  <symbol id="i-scan" viewBox="0 0 24 24"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M7 13h2.5l1.5-4 2.5 7 1.5-3H17" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tyre" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="12" cy="12" r="3.5"/><path d="M12 5.5v3M12 15.5v3M5.5 12h3M15.5 12h3" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M5 11l1.6-4.3A2 2 0 018.5 5.4h7a2 2 0 011.9 1.3L19 11h.5A1.5 1.5 0 0121 12.5V17a1 1 0 01-1 1h-1a2 2 0 01-4 0H9a2 2 0 01-4 0H4a1 1 0 01-1-1v-4.5A1.5 1.5 0 014.5 11H5zm2.2 0h9.6l-1.2-3.4a.8.8 0 00-.75-.6h-5.7a.8.8 0 00-.75.6L7.2 11z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></symbol>
   <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2s6 7 6 11a6 6 0 11-12 0c0-4 6-11 6-11z"/></symbol>
   <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
-  <symbol id="i-pump" viewBox="0 0 24 24"><path d="M4 8h10v10H4z"/><path d="M14 11h3l3 3v4h-6z"/><circle cx="8" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5zm0 2.3L5.5 8 12 11.7 18.5 8 12 4.3z"/></symbol>
   <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12 2H2v10l10 10 10-10L12 2zM6.5 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"/></symbol>
-  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v9H2z"/><path d="M14 9h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
   <symbol id="i-percent" viewBox="0 0 24 24"><path d="M6.5 4a2.5 2.5 0 100 5 2.5 2.5 0 000-5zm11 11a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM19 4L5 20h1.8L20.8 4H19z"/></symbol>
   <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></symbol>
 </svg>

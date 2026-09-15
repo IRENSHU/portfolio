@@ -119,6 +119,14 @@
   .extra__example span{color:var(--muted)}
   .extra__example b{font-size:1.3rem;color:var(--text)}
   .extra__example small{color:var(--muted);font-size:.86rem;line-height:1.5}
+  .extra--wide{grid-column:1 / -1}
+  .ctext{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:6px}
+  .ctext__col{background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;font-size:.9rem}
+  .ctext__col h4{margin:0;font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .ctext__col b{font-size:1rem;color:var(--text);line-height:1.35}
+  .ctext__col ul{margin:0;padding-left:18px;color:var(--muted)}
+  .ctext__col p{margin:0;color:var(--text);font-size:.9rem;line-height:1.55}
+  .ctext__col small{color:var(--muted);font-size:.8rem}
   .card{
     /* у figure браузерные отступы по 40px с боков — без обнуления
        карточка теряет половину ширины */
@@ -153,6 +161,7 @@
     .works{grid-template-columns:1fr}
     .cards{grid-template-columns:repeat(2,1fr);gap:14px}
     .extras{grid-template-columns:1fr}
+    .ctext{grid-template-columns:1fr}
     .work--wide{flex-direction:column}
     .work--wide .work__shot{flex:none;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
     .contact{flex-direction:column;align-items:flex-start}
@@ -421,6 +430,39 @@
   </div>
 
   <div class="extras">
+    <article class="extra extra--wide">
+      <div class="extra__label">Текстовая часть карточки</div>
+      <h3>Термокружка: название, характеристики и описание — отдельно для WB и Ozon</h3>
+      <p>У площадок разные поля и поиск, поэтому тексты не копируются один в другой. Каждое преимущество отвечает на
+        сомнение покупателя: не протечёт ли в сумке, встанет ли в подстаканник, не будет ли пахнуть вчерашним чаем.
+        Без «лучшая» и «№1» — площадки просят такие слова подтверждать.</p>
+      <div class="ctext">
+        <div class="ctext__col">
+          <h4>Wildberries</h4>
+          <b>Термокружка 500 мл с крышкой для кофе и чая</b>
+          <small>Заголовок — 43 символа из 60</small>
+          <ul>
+            <li>Объём: 500 мл · сохранение тепла: до 12 часов</li>
+            <li>Колба: нержавеющая сталь 18/8</li>
+            <li>Высота 21 см · диаметр дна 7,5 см · 380 г</li>
+            <li>Уход: ручная мойка</li>
+          </ul>
+          <p>Термокружка BuzzThermo на 500 мл сохраняет напиток горячим до 12 часов: между двойными стенками — вакуум,
+            и тепло не уходит наружу. Налили кофе утром — он ещё тёплый к обеду.</p>
+        </div>
+        <div class="ctext__col">
+          <h4>Ozon</h4>
+          <b>Термокружка BuzzThermo 500 мл, автомобильная, с ручкой и крышкой-фиксатором, белая</b>
+          <small>В названии — ключи «автомобильная» и «с ручкой»: на Ozon название важнее для поиска</small>
+          <ul>
+            <li>Крышка с фиксатором не даёт напитку пролиться в сумке</li>
+            <li>Дно 7,5 см подходит к большинству подстаканников</li>
+            <li>Можно мыть в посудомоечной машине: нет</li>
+          </ul>
+          <p>Кофе остаётся горячим, пока вы едете на работу, сидите на совещании и возвращаетесь домой.</p>
+        </div>
+      </div>
+    </article>
     <article class="extra">
       <div class="extra__label">Дополнительно к карточкам</div>
       <h3>Расчёт юнит-экономики товара</h3>

@@ -110,6 +110,15 @@
   /* Карточки для маркетплейсов */
   .cards__lead{color:var(--muted);max-width:70ch;margin:0 0 24px;font-size:.95rem}
   .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .extras{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
+  .extra{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:10px}
+  .extra__label{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .extra h3{margin:0;font-size:1.1rem}
+  .extra p{margin:0;color:var(--muted);font-size:.95rem}
+  .extra__example{margin-top:auto;background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;font-size:.9rem}
+  .extra__example span{color:var(--muted)}
+  .extra__example b{font-size:1.3rem;color:var(--text)}
+  .extra__example small{color:var(--muted);font-size:.86rem;line-height:1.5}
   .card{
     /* у figure браузерные отступы по 40px с боков — без обнуления
        карточка теряет половину ширины */
@@ -143,6 +152,7 @@
     .intro{padding:64px 0 44px}
     .works{grid-template-columns:1fr}
     .cards{grid-template-columns:repeat(2,1fr);gap:14px}
+    .extras{grid-template-columns:1fr}
     .work--wide{flex-direction:column}
     .work--wide .work__shot{flex:none;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
     .contact{flex-direction:column;align-items:flex-start}
@@ -387,6 +397,32 @@
       <img src="card-serum-info.jpg" alt="Инфографика карточки сыворотки с четырьмя преимуществами" loading="lazy">
       <figcaption><b>Косметика</b>инфографика</figcaption>
     </figure>
+  </div>
+
+  <div class="extras">
+    <article class="extra">
+      <div class="extra__label">Дополнительно к карточкам</div>
+      <h3>Расчёт юнит-экономики товара</h3>
+      <p>Считаю, сколько товар реально приносит с одной продажи: комиссия, логистика с учётом
+        выкупа и возвратов, налог, маржа. Отдаю таблицу Excel и вывод — при какой цене и каком
+        выкупе товар остаётся в плюсе.</p>
+      <div class="extra__example">
+        <span>Пример на условных цифрах: цена 2 490 ₽, себестоимость 700 ₽, комиссия 23 %, логистика и возврат по 90 ₽, выкуп 35 %, налог 6 %</span>
+        <b>≈ 644 ₽ с продажи</b>
+        <small>Без учёта выкупа вышло бы 978 ₽ — на треть больше настоящей прибыли.</small>
+      </div>
+    </article>
+    <article class="extra">
+      <div class="extra__label">Дополнительно к карточкам</div>
+      <h3>Ответы на отзывы и вопросы покупателей</h3>
+      <p>Благодарность за хорошие отзывы, спокойная отработка жалоб, точные ответы о товаре.
+        Без контактов и ссылок — по правилам площадок, и без обещаний, которые продавец не подтвердил.</p>
+      <div class="extra__example">
+        <span>Отзыв: «Пришло с браком, шов разошёлся»</span>
+        <small>«Извините — так быть не должно. Спасибо, что написали: разберёмся, в чём причина.
+          Если товар пришёл с дефектом, его можно вернуть через личный кабинет по правилам площадки.»</small>
+      </div>
+    </article>
   </div>
 </main>
 

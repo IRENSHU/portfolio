@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Согласие на обработку персональных данных | Сосновый Бор — демо</title>
+<meta name="description" content="Демонстрационная страница: согласие на обработку персональных данных для бронирования оформлено отдельным документом.">
+<style>
+  @font-face{font-family:'Manrope';font-weight:400 800;font-display:swap;src:url(fonts/manrope-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+  @font-face{font-family:'Manrope';font-weight:400 800;font-display:swap;src:url(fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+2000-206F,U+20AC,U+2122}
+  :root{--ink:#1b2a16;--muted:#566a4d;--line:#dfe9d2;--soft:#f3f8ec;--green:#2f6b2a}
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+  a{color:var(--green)}
+  .wrap{width:min(100% - 32px,860px);margin-inline:auto}
+  .demo-note{background:#fdf6e3;border-bottom:1px solid #ecdcb4;padding:12px 0;font-size:.9rem;color:#634b1f}
+  .demo-note b{color:#43310e}
+  header{border-bottom:1px solid var(--line);padding:14px 0}
+  .head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--ink)}
+  .logo i{width:34px;height:34px;border-radius:10px;background:#8fce4c;display:grid;place-items:center;font-style:normal}
+  h1{font-size:clamp(1.5rem,3.4vw,2.1rem);margin:40px 0 6px;line-height:1.2}
+  .meta{color:var(--muted);margin:0 0 26px;font-size:.93rem}
+  .callout{border-left:4px solid var(--green);background:var(--soft);border-radius:0 12px 12px 0;padding:14px 18px;margin-bottom:26px;font-size:.94rem;color:#3c4f35}
+  h2{font-size:1.15rem;margin:28px 0 8px}
+  p,ul{margin:0 0 12px;color:#2f4028}
+  ul{padding-left:22px}
+  .stub{background:#fff3c4;border-radius:4px;padding:0 4px;color:#5b4506;font-weight:600}
+  footer{border-top:1px solid var(--line);margin-top:48px;padding:26px 0;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap"><b>Демонстрационная страница.</b> Согласие оформлено отдельным документом, как требует ч. 1 ст. 9 152-ФЗ с 1 сентября 2025 года. Реквизиты — заглушки, текст согласия готовит юрист.</div>
+</div>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="index.html"><i>🌲</i> Сосновый Бор</a>
+    <a href="index.html#nomera" style="font-weight:700;text-decoration:none">← К номерам</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Согласие на обработку персональных данных</h1>
+  <p class="meta">Для бронирования номера · редакция от 16 сентября 2026 года</p>
+
+  <div class="callout">Отмечая галочку в форме брони, гость даёт согласие на условиях ниже. Это согласие не включено в правила проживания или договор и оформлено отдельно.</div>
+
+  <h2>1. Кому даётся согласие</h2>
+  <p>Оператору — <span class="stub">наименование, ИНН и адрес оператора</span>.</p>
+
+  <h2>2. Какие данные</h2>
+  <ul><li>имя или то, как к вам обращаться;</li><li>номер телефона;</li><li>даты проживания, выбранный номер и услуги.</li></ul>
+
+  <h2>3. Для чего</h2>
+  <p>Чтобы связаться с вами, подтвердить бронь, принять предоплату и подготовить номер к заезду. Для других целей данные по этому согласию не используются.</p>
+
+  <h2>4. Что с ними делают</h2>
+  <p>Сбор, запись, систематизация, хранение, уточнение, использование, удаление и уничтожение — с использованием и без использования средств автоматизации. Данные хранятся на серверах в России.</p>
+
+  <h2>5. Срок и отзыв</h2>
+  <p>Согласие действует до окончания проживания и расчётов по брони, но не дольше <span class="stub">___</span>. Отозвать его можно в любой момент, написав на <span class="stub">адрес для обращений</span>.</p>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Загородный отель «Сосновый Бор» — демонстрационный сайт</div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

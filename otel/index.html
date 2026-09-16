@@ -3,172 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Сосновый Бор — загородный отель | демо-сайт с бронированием</title>
-<meta name="description" content="Демонстрационный сайт загородного отеля: подбор номера по датам и гостям, расчёт стоимости с учётом выходных, завтраков и дополнительного места, галерея, форма брони.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Сосновый Бор — загородный отель под Казанью | демо-сайт с бронированием</title>
+<meta name="description" content="Демонстрационный сайт загородного отеля: подбор номера по датам и гостям, расчёт стоимости с выходными и услугами, предоплата за первые сутки, условия отмены по правилам 2026 года, согласие на обработку данных, вопросы-ответы и карта.">
 <style>
+  @font-face{font-family:'Manrope';font-weight:400 800;font-display:swap;src:url(fonts/manrope-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+  @font-face{font-family:'Manrope';font-weight:400 800;font-display:swap;src:url(fonts/manrope-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   :root{
     --ink:#1b2a16;
-    --muted:#5f7355;
+    --muted:#566a4d;
     --line:#dfe9d2;
-    --soft:#f3f9ec;
-    --soft2:#e9f3dc;
+    --soft:#f3f8ec;
+    --soft2:#e7f1da;
     --green:#2f6b2a;
     --green-dark:#24521f;
     --salad:#8fce4c;
     --salad-dark:#79b53a;
+    --warn:#8a4b12;
     --r:16px;
     --t:.25s cubic-bezier(.4,0,.2,1);
     --shadow:0 18px 44px rgba(31,61,26,.13);
   }
   *,*::before,*::after{box-sizing:border-box}
-  body{
-    margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;
-    color:var(--ink);background:#fff;line-height:1.6;-webkit-text-size-adjust:100%;
-  }
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-text-size-adjust:100%}
   img{max-width:100%;display:block}
   a{color:var(--green)}
+  :focus-visible{outline:3px solid var(--salad-dark);outline-offset:3px;border-radius:6px}
   .wrap{width:min(100% - 32px,1140px);margin-inline:auto}
   h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;margin:0 0 8px;letter-spacing:-.4px}
   .lead{color:var(--muted);margin:0 0 28px;max-width:62ch}
 
-  .demo-note{background:#fdf6e3;border-bottom:1px solid #ecdcb4;padding:13px 0;font-size:.9rem;color:#6b5424}
-  .demo-note b{color:#4a390f}
+  .demo-note{background:#fdf6e3;border-bottom:1px solid #ecdcb4;padding:12px 0;font-size:.9rem;color:#634b1f}
+  .demo-note b{color:#43310e}
 
   /* ---------- шапка ---------- */
-  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0}
   .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:1.12rem;text-decoration:none;color:var(--ink)}
   .logo i{width:36px;height:36px;border-radius:11px;flex:none;background:var(--salad);display:grid;place-items:center;font-style:normal}
-  nav{display:flex;gap:24px;font-size:.94rem;font-weight:600}
+  nav{display:flex;gap:22px;font-size:.94rem;font-weight:600}
   nav a{color:var(--muted);text-decoration:none;transition:color var(--t)}
   nav a:hover{color:var(--green)}
   .tel{font-weight:800;text-decoration:none;color:var(--ink);white-space:nowrap}
 
   /* ---------- первый экран ---------- */
-  .hero{position:relative;min-height:min(78vh,620px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero{position:relative;min-height:min(80vh,640px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
   .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,16,.16) 0%,rgba(20,36,16,.72) 100%)}
-  .hero .wrap{position:relative;z-index:2;padding:64px 0 34px}
-  .hero h1{margin:0 0 12px;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-1px;text-shadow:0 2px 22px rgba(0,0,0,.3)}
-  .hero p{margin:0 0 26px;font-size:1.1rem;max-width:44ch;color:#e8f2df}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,16,.2) 0%,rgba(20,36,16,.78) 100%)}
+  .hero .wrap{position:relative;z-index:2;padding:72px 0 34px}
+  .hero h1{margin:0 0 12px;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-1px;text-shadow:0 2px 22px rgba(0,0,0,.3);max-width:17ch}
+  .hero p{margin:0 0 26px;font-size:1.1rem;max-width:50ch;color:#eaf3e2}
 
-  /* ---------- панель подбора ---------- */
-  .search{background:#fff;color:var(--ink);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);
-          display:grid;grid-template-columns:1fr 1fr .8fr auto;gap:12px;align-items:end}
+  .search{background:#fff;color:var(--ink);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr .8fr auto;gap:12px;align-items:end}
   .search label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px}
-  .search input,.search select{
-    width:100%;height:46px;border:1.5px solid var(--line);border-radius:10px;padding:0 12px;
-    font:inherit;font-size:.96rem;background:#fff;color:var(--ink);transition:border-color var(--t)
-  }
+  .search input,.search select{width:100%;height:46px;border:1.5px solid var(--line);border-radius:10px;padding:0 12px;font:inherit;font-size:.96rem;background:#fff;color:var(--ink);transition:border-color var(--t)}
   .search input:focus,.search select:focus{outline:none;border-color:var(--salad-dark)}
-
-  .btn{
-    border:0;border-radius:10px;height:46px;padding:0 24px;font:inherit;font-size:.98rem;font-weight:800;
-    background:var(--salad);color:#16290f;cursor:pointer;transition:background var(--t),transform var(--t),opacity var(--t);
-    white-space:nowrap
-  }
+  .btn{border:0;border-radius:10px;height:46px;padding:0 24px;font:inherit;font-size:.98rem;font-weight:800;background:var(--salad);color:#16290f;cursor:pointer;transition:background var(--t),transform var(--t),opacity var(--t);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
   .btn:hover{background:var(--salad-dark)}
   .btn:active{transform:translateY(1px)}
   .btn:disabled{opacity:.45;cursor:not-allowed}
-  .btn--ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+  .btn--ghost{background:#fff;border:1.5px solid var(--line);color:var(--ink)}
   .btn--ghost:hover{background:var(--soft)}
   .btn--dark{background:var(--green);color:#fff}
   .btn--dark:hover{background:var(--green-dark)}
-
-  .search-msg{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#b4451b;min-height:0}
+  .search-msg{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#a33e14}
   .search-msg:empty{display:none}
+
+  /* ---------- полоса условий ---------- */
+  .perks{background:var(--green);color:#eaf5e0}
+  .perks ul{list-style:none;margin:0 auto;padding:16px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px 22px;font-size:.93rem}
+  .perks li{display:flex;gap:10px;align-items:flex-start}
+  .perks li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;font-weight:800;font-size:.8rem;margin-top:1px}
+  .perks b{color:#fff}
 
   /* ---------- секции ---------- */
   section{padding:64px 0}
   .band{background:var(--soft)}
-
-  .rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   .room{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:transform var(--t),box-shadow var(--t)}
   .room:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
   .room__shot{aspect-ratio:4/3;overflow:hidden;background:var(--soft2)}
   .room__shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
   .room:hover .room__shot img{transform:scale(1.05)}
-  .room__body{padding:20px;display:flex;flex-direction:column;flex:1}
-  .room__body h3{margin:0 0 4px;font-size:1.15rem;font-weight:800}
-  .room__meta{font-size:.86rem;color:var(--muted);margin-bottom:10px}
-  .room__body p{margin:0 0 16px;font-size:.93rem;color:var(--muted);flex:1}
-  .room__feats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-  .room__feats span{font-size:.78rem;background:var(--soft);border:1px solid var(--line);border-radius:100px;padding:4px 11px;color:var(--muted)}
-  .room__foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .price{font-size:1.25rem;font-weight:800}
-  .price small{font-size:.8rem;font-weight:600;color:var(--muted)}
-
-  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px;align-items:center}
-  .chip{
-    border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:8px 17px;
-    font:inherit;font-size:.9rem;font-weight:700;color:var(--muted);cursor:pointer;transition:all var(--t)
-  }
+  .room__body{padding:18px;display:flex;flex-direction:column;flex:1}
+  .room__body h3{margin:0 0 2px;font-size:1.12rem;font-weight:800}
+  .room__meta{font-size:.84rem;color:var(--muted);margin-bottom:8px}
+  .room__body p{margin:0 0 14px;font-size:.92rem;color:var(--muted);flex:1}
+  .room__feats{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .room__feats span{font-size:.76rem;background:var(--soft);border:1px solid var(--line);border-radius:100px;padding:3px 10px;color:var(--muted)}
+  .room__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .price{font-size:1.2rem;font-weight:800}
+  .price small{font-size:.78rem;font-weight:600;color:var(--muted)}
+  .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:100px;padding:8px 17px;font:inherit;font-size:.9rem;font-weight:700;color:var(--muted);cursor:pointer;transition:all var(--t)}
   .chip:hover{border-color:var(--salad-dark);color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--salad);border-color:var(--salad);color:#16290f}
   .empty{padding:34px;text-align:center;color:var(--muted);border:1.5px dashed var(--line);border-radius:var(--r)}
 
-  /* ---------- услуги ---------- */
   .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   .svc article{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px}
   .svc h3{margin:0 0 6px;font-size:1.03rem;font-weight:800}
   .svc p{margin:0;font-size:.92rem;color:var(--muted)}
   .svc b{display:block;margin-top:12px;color:var(--green);font-size:.94rem}
 
+  /* ---------- бронирование и отмена ---------- */
+  .terms{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .term{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px}
+  .term__ic{width:40px;height:40px;border-radius:12px;background:var(--soft2);color:var(--green);display:grid;place-items:center;font-weight:800}
+  .term b{display:block;margin-bottom:4px}
+  .term p{margin:0;color:var(--muted);font-size:.94rem}
+  .law{margin-top:16px;font-size:.86rem;color:var(--muted)}
+
   /* ---------- галерея ---------- */
   .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  .gal button{border:0;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;aspect-ratio:1;transition:transform var(--t)}
+  .gal button{border:0;padding:0;background:none;cursor:pointer;border-radius:12px;overflow:hidden;aspect-ratio:4/3;transition:transform var(--t)}
   .gal button:hover{transform:scale(1.03)}
   .gal img{width:100%;height:100%;object-fit:cover}
 
-  /* ---------- контакты ---------- */
+  /* ---------- вопросы ---------- */
+  .faq{max-width:820px}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq details:first-child{border-top:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;font-weight:700;font-size:1.03rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--green);display:grid;place-items:center;font-size:1.2rem;transition:transform var(--t)}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{margin:0 0 18px;color:var(--muted);max-width:68ch}
+
+  /* ---------- контакты и карта ---------- */
   .contacts{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
   .contacts dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:.98rem}
   .contacts dt{font-weight:800;color:var(--muted)}
   .contacts dd{margin:0}
+  .how-get{margin-top:20px;font-size:.95rem;color:var(--muted)}
+  .how-get b{color:var(--ink)}
+  .map{position:relative;min-height:320px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);display:grid;place-items:center;
+    background:linear-gradient(rgba(47,107,42,.08) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(47,107,42,.08) 1px,transparent 1px) 0 0/32px 32px,var(--soft2)}
+  .map__pin{position:absolute;top:calc(50% - 48px);left:calc(50% - 10px);width:20px;height:20px;border-radius:50%;background:var(--green);box-shadow:0 0 0 9px rgba(47,107,42,.2)}
+  .map__btn{position:relative;z-index:1;margin-top:40px}
+  .map__note{position:absolute;left:14px;right:14px;bottom:12px;font-size:.8rem;color:var(--muted);text-align:center}
+  .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
+  .map.is-loaded .map__btn,.map.is-loaded .map__note,.map.is-loaded .map__pin{display:none}
+  .routes{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+  .routes a{font-size:.9rem;font-weight:700;padding:8px 14px;border:1.5px solid var(--line);border-radius:100px;text-decoration:none;color:var(--ink)}
+  .routes a:hover{background:var(--soft)}
 
   footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.9rem}
-  .foot{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+  .foot{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+  .foot a{color:var(--muted)}
 
   /* ---------- модальные окна ---------- */
   .modal{position:fixed;inset:0;z-index:80;background:rgba(16,28,12,.6);display:grid;place-items:center;padding:16px}
-  .modal-box{background:#fff;border-radius:20px;width:100%;max-width:540px;max-height:90vh;overflow:auto;padding:26px}
-  .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px}
+  .modal-box{background:#fff;border-radius:20px;width:100%;max-width:560px;max-height:92vh;overflow:auto;padding:24px}
+  .modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:16px}
   .modal-head h3{margin:0 0 3px;font-size:1.35rem;font-weight:800}
   .modal-head p{margin:0;color:var(--muted);font-size:.92rem}
   .x{border:0;background:var(--soft);width:36px;height:36px;border-radius:50%;flex:none;cursor:pointer;font-size:1.1rem;line-height:1;color:var(--muted)}
   .x:hover{background:var(--soft2)}
-
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .fld{margin-bottom:12px}
   .fld label{display:block;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:5px}
   .fld input,.fld select{width:100%;height:46px;border:1.5px solid var(--line);border-radius:10px;padding:0 12px;font:inherit;font-size:.96rem}
   .fld input:focus,.fld select:focus{outline:none;border-color:var(--salad-dark)}
-
-  .opts{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:6px 0 14px}
-  .opt{display:flex;align-items:flex-start;gap:11px;padding:7px 0}
+  .opts{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:4px 0 14px}
+  .opt{display:flex;align-items:flex-start;gap:11px;padding:6px 0}
   .opt input{width:19px;height:19px;flex:none;margin-top:2px;accent-color:var(--green)}
   .opt label{font-size:.93rem;cursor:pointer}
   .opt label b{font-weight:800}
   .opt label span{display:block;font-size:.83rem;color:var(--muted)}
-
-  .calc{background:var(--soft);border-radius:14px;padding:16px 18px;margin-bottom:14px;font-size:.94rem}
+  .calc{background:var(--soft);border-radius:14px;padding:14px 18px;margin-bottom:12px;font-size:.94rem}
   .calc .row{display:flex;justify-content:space-between;gap:14px;padding:4px 0;color:var(--muted)}
   .calc .row b{color:var(--ink);font-weight:700;white-space:nowrap}
-  .calc .total{border-top:1.5px solid var(--line);margin-top:10px;padding-top:11px;font-size:1.18rem;font-weight:800;color:var(--ink)}
-  .calc .total span{color:var(--ink)}
-
-  .consent{display:flex;gap:11px;align-items:flex-start;margin-bottom:12px}
+  .calc .total{border-top:1.5px solid var(--line);margin-top:8px;padding-top:10px;font-size:1.16rem;font-weight:800;color:var(--ink)}
+  .calc .pre{color:var(--green);font-weight:800}
+  .cancel{font-size:.86rem;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin-bottom:12px}
+  .cancel b{color:var(--ink)}
+  .consent{display:flex;gap:11px;align-items:flex-start;margin-bottom:10px}
   .consent input{width:19px;height:19px;flex:none;margin-top:3px;accent-color:var(--green);cursor:pointer}
-  .consent label{font-size:.87rem;color:var(--muted);cursor:pointer;line-height:1.45}
-
+  .consent label{font-size:.88rem;color:var(--muted);cursor:pointer;line-height:1.45}
   .msg{font-size:.87rem;font-weight:700;min-height:20px;margin-bottom:10px}
-  .msg.err{color:#b4451b}
+  .msg.err{color:#a33e14}
   .msg.ok{color:var(--green)}
 
-  /* ---------- просмотр фото ---------- */
   .light{position:fixed;inset:0;z-index:90;background:rgba(12,20,9,.92);display:grid;place-items:center;padding:20px}
   .light img{max-width:min(100%,1100px);max-height:86vh;object-fit:contain;border-radius:12px}
   .light .x{position:absolute;top:18px;right:18px;background:rgba(255,255,255,.16);color:#fff;width:44px;height:44px;font-size:1.3rem}
@@ -176,19 +193,18 @@
   .light .prev{left:18px} .light .next{right:18px}
   .light .cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#dbe8d0;font-size:.92rem;font-weight:600}
 
-  @media (max-width:980px){
+  @media (max-width:1060px){
     .rooms{grid-template-columns:repeat(2,1fr)}
     .svc{grid-template-columns:repeat(2,1fr)}
+    .perks ul{grid-template-columns:repeat(2,1fr)}
     .search{grid-template-columns:1fr 1fr}
     .search .btn{grid-column:1/-1;width:100%}
   }
   @media (max-width:720px){
     nav,.tel{display:none}
-    .rooms{grid-template-columns:1fr}
-    .svc{grid-template-columns:1fr}
+    .rooms,.svc,.terms,.contacts,.grid2{grid-template-columns:1fr}
+    .perks ul{grid-template-columns:1fr}
     .gal{grid-template-columns:repeat(2,1fr)}
-    .contacts{grid-template-columns:1fr}
-    .grid2{grid-template-columns:1fr}
     .light .nav{width:44px;height:44px}
   }
 </style>
@@ -197,9 +213,8 @@
 
 <div class="demo-note">
   <div class="wrap">
-    <b>Демонстрационная страница.</b> Отель «Сосновый Бор» вымышленный, бронирования никуда
-    не отправляются. Работают подбор по датам и гостям, расчёт стоимости с наценкой за выходные,
-    галерея и форма брони. Фотографии — Unsplash, свободная лицензия.
+    <b>Демонстрационная страница.</b> Отель «Сосновый Бор» вымышленный, бронирования никуда не отправляются.
+    Работают подбор по датам и гостям, расчёт стоимости с предоплатой, галерея, карта и форма брони с согласием на обработку данных.
   </div>
 </div>
 
@@ -209,8 +224,9 @@
     <nav>
       <a href="#nomera">Номера</a>
       <a href="#otdyh">Отдых</a>
-      <a href="#galereya">Галерея</a>
-      <a href="#kontakty">Контакты</a>
+      <a href="#otmena">Отмена брони</a>
+      <a href="#voprosy">Вопросы</a>
+      <a href="#kontakty">Как добраться</a>
     </nav>
     <a class="tel" href="tel:+78432000000">+7 843 200-00-00</a>
   </div>
@@ -221,18 +237,12 @@
   <div class="hero">
     <img src="img/hero.jpg" alt="Деревянный корпус отеля среди сосен">
     <div class="wrap">
-      <h1>Загородный отель<br>в сосновом лесу</h1>
-      <p>Сорок минут от Казани. Тишина, свой лес, баня на дровах и завтраки из деревенских продуктов.</p>
+      <h1>Выходные в сосновом лесу — в 40 минутах от Казани</h1>
+      <p>Номера и отдельный дом с баней. Цену за ваши даты видно сразу — с выходными, завтраками и баней, без доплат на ресепшене.</p>
 
       <form class="search" id="search" novalidate>
-        <div>
-          <label for="in">Заезд</label>
-          <input type="date" id="in">
-        </div>
-        <div>
-          <label for="out">Выезд</label>
-          <input type="date" id="out">
-        </div>
+        <div><label for="in">Заезд</label><input type="date" id="in"></div>
+        <div><label for="out">Выезд</label><input type="date" id="out"></div>
         <div>
           <label for="guests">Гостей</label>
           <select id="guests">
@@ -249,57 +259,77 @@
     </div>
   </div>
 
+  <div class="perks">
+    <ul class="wrap">
+      <li><span><b>Предоплата — только первые сутки</b>, остальное при заезде</span></li>
+      <li><span><b>Отмена до дня заезда</b> — вернём всю предоплату</span></li>
+      <li><span><b>Заезд с 14:00</b>, выезд до 12:00</span></li>
+      <li><span><b>С собакой можно</b> — в доме у леса</span></li>
+    </ul>
+  </div>
+
   <section id="nomera">
     <div class="wrap">
-      <h2>Номера и дома</h2>
-      <p class="lead">Цены за сутки в будни. В пятницу и субботу действует наценка 15% — она сразу учитывается в расчёте при бронировании.</p>
-
+      <h2>Номера и дом у леса</h2>
+      <p class="lead">Цены за сутки в будни. В пятницу и субботу +15% — при бронировании расчёт покажет итог по каждой ночи.</p>
       <div class="filters" id="filters">
         <button class="chip" type="button" data-cap="0" aria-pressed="true">Все</button>
         <button class="chip" type="button" data-cap="2" aria-pressed="false">До 2 гостей</button>
         <button class="chip" type="button" data-cap="4" aria-pressed="false">До 4 гостей</button>
         <button class="chip" type="button" data-cap="6" aria-pressed="false">До 6 гостей</button>
       </div>
-
       <div class="rooms" id="rooms"></div>
-      <div class="empty" id="rooms-empty" hidden>На выбранное число гостей свободных категорий нет. Попробуйте разделить компанию на два номера или позвоните нам — подскажем.</div>
+      <div class="empty" id="rooms-empty" hidden>На это число гостей подходящей категории нет. Можно взять два номера рядом — позвоните, подберём.</div>
     </div>
   </section>
 
   <section class="band" id="otdyh">
     <div class="wrap">
-      <h2>Чем заняться</h2>
-      <p class="lead">Всё на территории, никуда ехать не нужно.</p>
+      <h2>Что есть на территории</h2>
+      <p class="lead">Ехать никуда не нужно: баня, завтраки и лес — в двух минутах от номера.</p>
       <div class="svc">
-        <article>
-          <h3>Баня на дровах</h3>
-          <p>Сруб на берегу пруда, купель, чан под открытым небом. Топим за два часа до вашего времени.</p>
-          <b>3 500 ₽ за 2 часа</b>
-        </article>
-        <article>
-          <h3>Завтраки</h3>
-          <p>Каша, сырники, яйца от местных хозяйств, свой хлеб. Подаём с 8:00 до 11:00.</p>
-          <b>650 ₽ с человека в сутки</b>
-        </article>
-        <article>
-          <h3>Мангальная зона</h3>
-          <p>Беседка на шесть человек с мангалом и дровами. Бронируется на месте у администратора.</p>
-          <b>1 000 ₽ за вечер</b>
-        </article>
-        <article>
-          <h3>Прогулки по лесу</h3>
-          <p>Размеченная тропа три километра, зимой — лыжня. Инвентарь выдаём бесплатно.</p>
-          <b>Бесплатно для гостей</b>
-        </article>
+        <article><h3>Баня на дровах</h3><p>Сруб у пруда, купель и чан под открытым небом. Протапливаем за два часа до вашего времени.</p><b>3 500 ₽ за 2 часа</b></article>
+        <article><h3>Завтраки</h3><p>Каша, сырники, яйца от местных хозяйств, свой хлеб. С 8:00 до 11:00, можно взять с собой.</p><b>650 ₽ с человека в сутки</b></article>
+        <article><h3>Мангальная беседка</h3><p>На шесть человек, с мангалом и дровами. Бронируется у администратора в день приезда.</p><b>1 000 ₽ за вечер</b></article>
+        <article><h3>Тропа через бор</h3><p>Размеченный маршрут на три километра, зимой — лыжня. Лыжи и тюбинги выдаём.</p><b>Бесплатно для гостей</b></article>
       </div>
     </div>
   </section>
 
-  <section id="galereya">
+  <section id="otmena">
+    <div class="wrap">
+      <h2>Бронирование и отмена</h2>
+      <p class="lead">Условия простые и одинаковые для всех номеров. Никаких «невозвратных» тарифов.</p>
+      <div class="terms">
+        <div class="term"><span class="term__ic">1</span><div><b>Предоплата — стоимость первых суток</b><p>Остальное — при заезде, картой или по СБП. Расчёт в окне брони сразу показывает сумму предоплаты.</p></div></div>
+        <div class="term"><span class="term__ic">2</span><div><b>Отмена до дня заезда — бесплатно</b><p>Предоплату возвращаем полностью, тем же способом, которым вы платили.</p></div></div>
+        <div class="term"><span class="term__ic">3</span><div><b>Отмена в день заезда, опоздание или незаезд</b><p>Удерживаем не больше стоимости одних суток. Остальное возвращаем.</p></div></div>
+        <div class="term"><span class="term__ic">4</span><div><b>Задерживаетесь — номер ждёт</b><p>Держим номер до 12:00 следующего дня. Предупредите администратора, если приедете поздно.</p></div></div>
+      </div>
+      <p class="law">Условия соответствуют Правилам предоставления гостиничных услуг, утверждённым постановлением Правительства РФ от 27.11.2025 № 1912 и действующим с 1 марта 2026 года.</p>
+    </div>
+  </section>
+
+  <section class="band" id="galereya">
     <div class="wrap">
       <h2>Галерея</h2>
       <p class="lead">Нажмите на снимок, чтобы открыть его целиком. Листать можно стрелками на клавиатуре.</p>
       <div class="gal" id="gal"></div>
+    </div>
+  </section>
+
+  <section id="voprosy">
+    <div class="wrap">
+      <h2>Вопросы перед поездкой</h2>
+      <p class="lead">Ответы на то, что спрашивают по телефону чаще всего.</p>
+      <div class="faq">
+        <details><summary>Во сколько заезд и выезд?</summary><p>Заезд с 14:00, выезд до 12:00. Ранний заезд или поздний выезд — если номер свободен, 1 000 ₽. Спросите администратора накануне.</p></details>
+        <details><summary>Можно с детьми?</summary><p>Да. Дети до 5 лет без отдельного места живут бесплатно, детская кроватка — тоже бесплатно, по запросу. Для заселения нужны паспорта взрослых и свидетельства о рождении детей.</p></details>
+        <details><summary>Можно с собакой?</summary><p>В «Доме у леса» — да, с собаками мелких и средних пород, 700 ₽ за поездку. В номерах главного корпуса животных не размещаем.</p></details>
+        <details><summary>Как добраться без машины?</summary><p>Электричкой до Зеленодольска, оттуда — наш трансфер от вокзала: 1 500 ₽ в одну сторону за машину. Закажите его при бронировании или за сутки до приезда.</p></details>
+        <details><summary>Что если погода испортится?</summary><p>В корпусе есть гостиная с камином и настольными играми, баня работает в любую погоду. Перенести даты можно бесплатно, если есть свободные номера.</p></details>
+        <details><summary>Нужно ли брать полотенца в баню?</summary><p>Нет: полотенца, простыни и тапочки выдаём. Возьмите только купальник, если хотите в чан.</p></details>
+      </div>
     </div>
   </section>
 
@@ -308,14 +338,26 @@
       <h2>Как добраться</h2>
       <p class="lead">Сорок минут от центра Казани по трассе М7, поворот на Зеленодольск.</p>
       <div class="contacts">
-        <dl>
-          <dt>Адрес</dt><dd>Республика Татарстан, Зеленодольский район, посёлок Сосновка, ул. Лесная, 1</dd>
-          <dt>Телефон</dt><dd><a href="tel:+78432000000">+7 843 200-00-00</a></dd>
-          <dt>Почта</dt><dd><a href="mailto:info@example.com">info@example.com</a></dd>
-          <dt>Заезд</dt><dd>с 14:00</dd>
-          <dt>Выезд</dt><dd>до 12:00</dd>
-        </dl>
-        <img src="img/les.jpg" alt="Лес вокруг отеля" style="border-radius:var(--r)">
+        <div>
+          <dl>
+            <dt>Адрес</dt><dd>Республика Татарстан, Зеленодольский район, посёлок Сосновка, ул. Лесная, 1</dd>
+            <dt>Телефон</dt><dd><a href="tel:+78432000000">+7 843 200-00-00</a></dd>
+            <dt>Заезд</dt><dd>с 14:00</dd>
+            <dt>Выезд</dt><dd>до 12:00</dd>
+          </dl>
+          <p class="how-get"><b>На машине:</b> парковка у корпуса бесплатная. <b>Без машины:</b> электричка до Зеленодольска и наш трансфер от вокзала.</p>
+        </div>
+        <div>
+          <div class="map" id="map" data-src="https://yandex.ru/map-widget/v1/?ll=48.541327%2C55.781628&amp;z=10&amp;pt=48.541327%2C55.781628%2Cpm2grm">
+            <span class="map__pin" aria-hidden="true"></span>
+            <button type="button" class="btn btn--dark map__btn js-map">Показать на карте</button>
+            <span class="map__note">Карта загрузится с Яндекса после нажатия. Отель вымышленный — метка стоит условно, в Зеленодольском районе.</span>
+          </div>
+          <p class="routes">
+            <a href="https://yandex.ru/maps/?rtext=~55.781628%2C48.541327&amp;rtt=auto" target="_blank" rel="noopener">Построить маршрут</a>
+            <a href="https://yandex.ru/maps/?pt=48.541327,55.781628&amp;z=10&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -325,31 +367,28 @@
 <footer>
   <div class="wrap foot">
     <div>© <span id="year"></span> Загородный отель «Сосновый Бор» — демонстрационный сайт</div>
-    <div>Фотографии — Unsplash, свободная лицензия</div>
+    <div><a href="soglasie.html">Согласие на обработку данных</a> · Фотографии — Unsplash, свободная лицензия</div>
   </div>
 </footer>
 
 <script>
 /* ==================================================================
    ДАННЫЕ О НОМЕРАХ
-   На боевом сайте этот массив пришёл бы с сервера или из файла,
-   который заказчик правит сам. Здесь он лежит прямо в скрипте.
+   На боевом сайте массив пришёл бы с сервера или из файла,
+   который заказчик правит сам.
    ================================================================== */
 const ROOMS = [
-  { id:'standart', name:'Стандарт',    cap:2, price:4900,  img:'img/nomer-standart.jpg',
-    desc:'Комната под скатом крыши с большим окном в лес. Двуспальная кровать, душ, чайная станция.',
+  { id:'standart', name:'Стандарт', cap:2, price:4900, img:'img/nomer-standart.jpg',
+    desc:'Мансарда с окном в сосны — просыпаетесь от тишины, а не от трассы. Двуспальная кровать, душ, чайная станция.',
     feats:['22 м²','Двуспальная кровать','Душ','Wi-Fi'] },
-
-  { id:'komfort', name:'Комфорт',      cap:3, price:6800,  img:'img/nomer-komfort.jpg',
-    desc:'Просторная светлая комната с зоной отдыха. Можно добавить третье место для ребёнка или взрослого.',
-    feats:['32 м²','Кровать + диван','Ванна','Балкон'] },
-
-  { id:'semya', name:'Семейный',       cap:4, price:8400,  img:'img/nomer-semya.jpg',
-    desc:'Две смежные комнаты: спальня родителей и детская. Отдельный вход с террасы.',
-    feats:['46 м²','2 комнаты','Детская кроватка','Терраса'] },
-
-  { id:'dom', name:'Дом у леса',       cap:6, price:14500, img:'img/dom-u-lesa.jpg',
-    desc:'Отдельный сруб на опушке: три спальни, кухня, камин и своя баня в пристройке.',
+  { id:'komfort', name:'Комфорт', cap:3, price:6800, img:'img/nomer-komfort.jpg',
+    desc:'Спальня в сосновой обшивке и кресло у окна: утренний кофе — с видом на лес. Можно поставить третье место.',
+    feats:['30 м²','Кровать + доп. место','Ванна','Вид на лес'] },
+  { id:'semya', name:'Семейный', cap:4, price:8400, img:'img/nomer-semya.jpg',
+    desc:'Две кровати для детей и отдельная спальня для родителей — высыпаются все. Свой вход с террасы.',
+    feats:['46 м²','2 комнаты','Кроватка по запросу','Терраса'] },
+  { id:'dom', name:'Дом у леса', cap:6, price:14500, img:'img/dom-u-lesa.jpg',
+    desc:'Отдельный сруб среди сосен: гостиная с камином, три спальни, кухня и своя баня. Можно с собакой.',
     feats:['96 м²','3 спальни','Камин','Своя баня'] }
 ];
 
@@ -358,16 +397,13 @@ const WEEKEND_SURCHARGE = 0.15;   // пятница и суббота
 
 const money = n => n.toLocaleString('ru-RU') + ' ₽';
 
-/* ==================================================================
-   ДАТЫ
-   ================================================================== */
+/* ---------- даты ---------- */
 const inEl  = document.getElementById('in');
 const outEl = document.getElementById('out');
-
 function iso(d){ return d.toISOString().slice(0,10); }
 function addDays(d, n){ const x = new Date(d); x.setDate(x.getDate()+n); return x; }
 
-// по умолчанию — ближайшие выходные через неделю, чтобы демо сразу считало
+// по умолчанию — через неделю на две ночи, чтобы демо сразу считало
 (function initDates(){
   const today = new Date();
   const start = addDays(today, 7);
@@ -376,7 +412,6 @@ function addDays(d, n){ const x = new Date(d); x.setDate(x.getDate()+n); return 
   inEl.min = outEl.min = iso(today);
 })();
 
-// выезд не может быть раньше заезда — двигаем его следом
 inEl.addEventListener('change', () => {
   if (outEl.value <= inEl.value) outEl.value = iso(addDays(new Date(inEl.value), 1));
   outEl.min = iso(addDays(new Date(inEl.value), 1));
@@ -387,30 +422,28 @@ function nightsBetween(a, b){
   return ms > 0 ? Math.round(ms / 86400000) : 0;
 }
 
-/* Считаем каждую ночь отдельно: пятница и суббота дороже.
-   Возвращаем итог и сколько ночей попало на выходные. */
+/* Каждую ночь считаем отдельно: пятница и суббота дороже.
+   Возвращаем итог, число ночей в выходные и цену первой ночи — это предоплата. */
 function stayCost(pricePerNight, from, nights){
-  let total = 0, weekend = 0;
+  let total = 0, weekend = 0, first = 0;
   for (let i = 0; i < nights; i++){
     const day = addDays(new Date(from), i).getDay();   // 5 — пятница, 6 — суббота
     const isWeekend = (day === 5 || day === 6);
     if (isWeekend) weekend++;
-    total += Math.round(pricePerNight * (isWeekend ? 1 + WEEKEND_SURCHARGE : 1));
+    const night = Math.round(pricePerNight * (isWeekend ? 1 + WEEKEND_SURCHARGE : 1));
+    if (i === 0) first = night;
+    total += night;
   }
-  return { total, weekend };
+  return { total, weekend, first };
 }
 
-/* ==================================================================
-   СПИСОК НОМЕРОВ И ФИЛЬТР ПО ГОСТЯМ
-   ================================================================== */
+/* ---------- список номеров и фильтр ---------- */
 const roomsEl = document.getElementById('rooms');
 const emptyEl = document.getElementById('rooms-empty');
 let capFilter = 0;
 
 function renderRooms(){
-  // фильтр показывает категории, куда компания поместится целиком
   const shown = capFilter === 0 ? ROOMS : ROOMS.filter(r => r.cap >= capFilter);
-
   roomsEl.innerHTML = shown.map(r => `
     <article class="room">
       <div class="room__shot"><img src="${r.img}" alt="${r.name}" loading="lazy"></div>
@@ -425,7 +458,6 @@ function renderRooms(){
         </div>
       </div>
     </article>`).join('');
-
   emptyEl.hidden = shown.length > 0;
 }
 
@@ -436,38 +468,27 @@ document.getElementById('filters').addEventListener('click', (e) => {
   capFilter = Number(chip.dataset.cap);
   renderRooms();
 });
-
 roomsEl.addEventListener('click', (e) => {
   const btn = e.target.closest('[data-book]');
   if (btn) openBooking(btn.dataset.book);
 });
-
 renderRooms();
 
-/* ==================================================================
-   ПОДБОР ПО ДАТАМ И ГОСТЯМ
-   ================================================================== */
+/* ---------- подбор по датам и гостям ---------- */
 const searchMsg = document.getElementById('search-msg');
-
 document.getElementById('search').addEventListener('submit', (e) => {
   e.preventDefault();
   const nights = nightsBetween(inEl.value, outEl.value);
-
   if (!inEl.value || !outEl.value){ searchMsg.textContent = 'Укажите даты заезда и выезда'; return; }
   if (nights < 1){ searchMsg.textContent = 'Дата выезда должна быть позже даты заезда'; return; }
   searchMsg.textContent = '';
-
   const guests = Number(document.getElementById('guests').value);
-  const chip = [...document.querySelectorAll('.chip')]
-    .find(c => Number(c.dataset.cap) === (guests <= 2 ? 2 : guests <= 4 ? 4 : 6));
+  const chip = [...document.querySelectorAll('.chip')].find(c => Number(c.dataset.cap) === (guests <= 2 ? 2 : guests <= 4 ? 4 : 6));
   if (chip) chip.click();
-
   document.getElementById('nomera').scrollIntoView({ behavior:'smooth' });
 });
 
-/* ==================================================================
-   ОКНО БРОНИРОВАНИЯ С РАСЧЁТОМ
-   ================================================================== */
+/* ---------- окно бронирования с расчётом ---------- */
 let modal = null;
 
 function openBooking(roomId){
@@ -479,121 +500,72 @@ function openBooking(roomId){
   modal.innerHTML = `
     <div class="modal-box" role="dialog" aria-modal="true" aria-label="Бронирование">
       <div class="modal-head">
-        <div>
-          <h3>${room.name}</h3>
-          <p>до ${room.cap} гостей · ${money(room.price)} за сутки в будни</p>
-        </div>
+        <div><h3>${room.name}</h3><p>до ${room.cap} гостей · ${money(room.price)} за сутки в будни</p></div>
         <button class="x" type="button" data-close aria-label="Закрыть">✕</button>
       </div>
-
       <div class="grid2">
-        <div class="fld">
-          <label for="m-in">Заезд</label>
-          <input type="date" id="m-in" value="${inEl.value}" min="${inEl.min}">
-        </div>
-        <div class="fld">
-          <label for="m-out">Выезд</label>
-          <input type="date" id="m-out" value="${outEl.value}" min="${inEl.min}">
-        </div>
+        <div class="fld"><label for="m-in">Заезд</label><input type="date" id="m-in" value="${inEl.value}" min="${inEl.min}"></div>
+        <div class="fld"><label for="m-out">Выезд</label><input type="date" id="m-out" value="${outEl.value}" min="${inEl.min}"></div>
       </div>
-
       <div class="fld">
         <label for="m-guests">Гостей</label>
-        <select id="m-guests">
-          ${Array.from({length:room.cap}, (_,i) => i+1)
-            .map(n => `<option value="${n}" ${n === Math.min(guests, room.cap) ? 'selected' : ''}>${n}</option>`).join('')}
-        </select>
+        <select id="m-guests">${Array.from({length:room.cap}, (_,i) => i+1).map(n => `<option value="${n}" ${n === Math.min(guests, room.cap) ? 'selected' : ''}>${n}</option>`).join('')}</select>
       </div>
-
       <div class="opts">
-        <div class="opt">
-          <input type="checkbox" id="o-breakfast" checked>
-          <label for="o-breakfast"><b>Завтраки</b><span>${money(OPTIONS.breakfast)} с человека в сутки</span></label>
-        </div>
-        <div class="opt">
-          <input type="checkbox" id="o-banya">
-          <label for="o-banya"><b>Баня на дровах</b><span>${money(OPTIONS.banya)} за два часа, один раз за поездку</span></label>
-        </div>
-        <div class="opt">
-          <input type="checkbox" id="o-bed">
-          <label for="o-bed"><b>Дополнительное место</b><span>${money(OPTIONS.extraBed)} за сутки</span></label>
-        </div>
+        <div class="opt"><input type="checkbox" id="o-breakfast" checked><label for="o-breakfast"><b>Завтраки</b><span>${money(OPTIONS.breakfast)} с человека в сутки</span></label></div>
+        <div class="opt"><input type="checkbox" id="o-banya"><label for="o-banya"><b>Баня на дровах</b><span>${money(OPTIONS.banya)} за два часа, один раз за поездку</span></label></div>
+        <div class="opt"><input type="checkbox" id="o-bed"><label for="o-bed"><b>Дополнительное место</b><span>${money(OPTIONS.extraBed)} за сутки</span></label></div>
       </div>
-
       <div class="calc" id="calc"></div>
-
+      <p class="cancel"><b>Отмена до дня заезда — бесплатно.</b> В день заезда или при незаезде удерживаем не больше стоимости одних суток. <a href="#otmena" data-close>Условия</a></p>
       <div class="grid2">
-        <div class="fld">
-          <label for="m-name">Имя</label>
-          <input type="text" id="m-name" placeholder="Как к вам обращаться" autocomplete="name">
-        </div>
-        <div class="fld">
-          <label for="m-phone">Телефон</label>
-          <input type="tel" id="m-phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
-        </div>
+        <div class="fld"><label for="m-name">Имя</label><input type="text" id="m-name" placeholder="Как к вам обращаться" autocomplete="given-name"></div>
+        <div class="fld"><label for="m-phone">Телефон</label><input type="tel" id="m-phone" placeholder="+7 (___) ___-__-__" autocomplete="tel"></div>
       </div>
-
+      <!-- Согласие — отдельный документ, галочка не предустановлена -->
       <div class="consent">
         <input type="checkbox" id="m-consent">
-        <label for="m-consent">Согласен на обработку персональных данных и принимаю политику обработки данных</label>
+        <label for="m-consent">Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени и телефона — для бронирования</label>
       </div>
-
       <div class="msg" id="m-msg" role="status" aria-live="polite"></div>
-      <button class="btn btn--dark" type="button" id="m-send" style="width:100%" disabled>Отправить заявку</button>
+      <button class="btn btn--dark" type="button" id="m-send" style="width:100%" disabled>Отправить заявку на бронь</button>
     </div>`;
 
   document.body.appendChild(modal);
   document.body.style.overflow = 'hidden';
 
-  const mIn   = modal.querySelector('#m-in');
-  const mOut  = modal.querySelector('#m-out');
-  const mG    = modal.querySelector('#m-guests');
-  const mCons = modal.querySelector('#m-consent');
-  const mSend = modal.querySelector('#m-send');
-  const mMsg  = modal.querySelector('#m-msg');
+  const mIn = modal.querySelector('#m-in'), mOut = modal.querySelector('#m-out'), mG = modal.querySelector('#m-guests');
+  const mCons = modal.querySelector('#m-consent'), mSend = modal.querySelector('#m-send'), mMsg = modal.querySelector('#m-msg');
 
   function recalc(){
     if (mOut.value <= mIn.value) mOut.value = iso(addDays(new Date(mIn.value), 1));
     mOut.min = iso(addDays(new Date(mIn.value), 1));
-
-    const nights  = nightsBetween(mIn.value, mOut.value);
-    const guests  = Number(mG.value);
-    const stay    = stayCost(room.price, mIn.value, nights);
-
-    const rows = [
-      { label:`Проживание, ${nights} ${plural(nights,'ночь','ночи','ночей')}`, sum: stay.total }
-    ];
-    if (stay.weekend > 0){
-      rows.push({ label:`в том числе ${stay.weekend} ${plural(stay.weekend,'ночь','ночи','ночей')} в выходные, +15%`, sum:null });
-    }
+    const nights = nightsBetween(mIn.value, mOut.value);
+    const g = Number(mG.value);
+    const stay = stayCost(room.price, mIn.value, nights);
+    const rows = [{ label:`Проживание, ${nights} ${plural(nights,'ночь','ночи','ночей')}`, sum:stay.total }];
+    if (stay.weekend > 0) rows.push({ label:`в том числе ${stay.weekend} ${plural(stay.weekend,'ночь','ночи','ночей')} в выходные, +15%`, sum:null });
     let total = stay.total;
-
-    if (modal.querySelector('#o-breakfast').checked){
-      const s = OPTIONS.breakfast * guests * nights;
-      rows.push({ label:`Завтраки, ${guests} × ${nights}`, sum:s }); total += s;
-    }
-    if (modal.querySelector('#o-banya').checked){
-      rows.push({ label:'Баня на дровах', sum:OPTIONS.banya }); total += OPTIONS.banya;
-    }
-    if (modal.querySelector('#o-bed').checked){
-      const s = OPTIONS.extraBed * nights;
-      rows.push({ label:`Дополнительное место, ${nights} ${plural(nights,'сутки','суток','суток')}`, sum:s }); total += s;
-    }
-
+    if (modal.querySelector('#o-breakfast').checked){ const s = OPTIONS.breakfast * g * nights; rows.push({ label:`Завтраки, ${g} × ${nights}`, sum:s }); total += s; }
+    if (modal.querySelector('#o-banya').checked){ rows.push({ label:'Баня на дровах', sum:OPTIONS.banya }); total += OPTIONS.banya; }
+    if (modal.querySelector('#o-bed').checked){ const s = OPTIONS.extraBed * nights; rows.push({ label:`Дополнительное место, ${nights} ${plural(nights,'сутки','суток','суток')}`, sum:s }); total += s; }
     modal.querySelector('#calc').innerHTML =
       rows.map(r => `<div class="row"><span>${r.label}</span>${r.sum === null ? '' : `<b>${money(r.sum)}</b>`}</div>`).join('') +
-      `<div class="row total"><span>Итого</span><span>${money(total)}</span></div>`;
+      `<div class="row total"><span>Итого</span><span>${money(total)}</span></div>` +
+      `<div class="row"><span>Предоплата — первые сутки</span><b class="pre">${money(stay.first)}</b></div>` +
+      `<div class="row"><span>При заезде</span><b>${money(total - stay.first)}</b></div>`;
   }
 
   modal.addEventListener('input', recalc);
-  mCons.addEventListener('change', () => { mSend.disabled = !mCons.checked; });
+  mCons.addEventListener('change', () => { mSend.disabled = !mCons.checked; if (mCons.checked) setMsg(mMsg, '', ''); });
 
   mSend.addEventListener('click', () => {
-    const name  = modal.querySelector('#m-name').value.trim();
+    const name = modal.querySelector('#m-name').value.trim();
     const phone = modal.querySelector('#m-phone').value.replace(/\D/g,'');
+    if (!mCons.checked){ setMsg(mMsg,'Отметьте согласие на обработку данных','err'); return; }
     if (name.length < 2){ setMsg(mMsg,'Укажите, как к вам обращаться','err'); return; }
-    if (phone.length < 10){ setMsg(mMsg,'Проверьте номер телефона','err'); return; }
-    setMsg(mMsg,'Заявка принята. На боевом сайте она ушла бы администратору в почту или Telegram','ok');
+    if (phone.length < 10 || phone.length > 11){ setMsg(mMsg,'Проверьте номер телефона','err'); return; }
+    setMsg(mMsg,'Заявка принята. На настоящем сайте администратор перезвонил бы и прислал ссылку на предоплату. Это демо — данные никуда не отправлены.','ok');
     mSend.disabled = true;
   });
 
@@ -610,13 +582,7 @@ function closeModal(){
   modal.remove(); modal = null;
   document.body.style.overflow = '';
 }
-
-function setMsg(el, text, type){
-  el.textContent = text;
-  el.className = 'msg' + (type ? ' ' + type : '');
-}
-
-/* Правильное окончание: 1 ночь, 2 ночи, 5 ночей */
+function setMsg(el, text, type){ el.textContent = text; el.className = 'msg' + (type ? ' ' + type : ''); }
 function plural(n, one, few, many){
   const n10 = n % 10, n100 = n % 100;
   if (n10 === 1 && n100 !== 11) return one;
@@ -624,31 +590,21 @@ function plural(n, one, few, many){
   return many;
 }
 
-/* ==================================================================
-   ГАЛЕРЕЯ
-   ================================================================== */
+/* ---------- галерея ---------- */
 const PHOTOS = [
   { src:'img/hero.jpg',           cap:'Главный корпус среди сосен' },
-  { src:'img/terrasa.jpg',        cap:'Терраса с видом на лес' },
-  { src:'img/dom-u-lesa.jpg',     cap:'Дом у леса' },
-  { src:'img/nomer-standart.jpg', cap:'Номер «Стандарт»' },
+  { src:'img/nomer-standart.jpg', cap:'Номер «Стандарт» — мансарда' },
   { src:'img/nomer-komfort.jpg',  cap:'Номер «Комфорт»' },
+  { src:'img/nomer-semya.jpg',    cap:'Номер «Семейный»' },
+  { src:'img/dom-u-lesa.jpg',     cap:'Дом у леса' },
+  { src:'img/gostinaya.jpg',      cap:'Гостиная с камином в доме у леса' },
   { src:'img/banya.jpg',          cap:'Баня на дровах' },
-  { src:'img/restoran.jpg',       cap:'Завтраки' },
-  { src:'img/zima.jpg',           cap:'Зимой' }
+  { src:'img/restoran.jpg',       cap:'Завтраки' }
 ];
-
 const galEl = document.getElementById('gal');
-galEl.innerHTML = PHOTOS.map((p,i) =>
-  `<button type="button" data-i="${i}" aria-label="${p.cap}"><img src="${p.src}" alt="${p.cap}" loading="lazy"></button>`
-).join('');
-
+galEl.innerHTML = PHOTOS.map((p,i) => `<button type="button" data-i="${i}" aria-label="${p.cap}"><img src="${p.src}" alt="${p.cap}" loading="lazy"></button>`).join('');
 let light = null, lightIdx = 0;
-
-galEl.addEventListener('click', (e) => {
-  const b = e.target.closest('button');
-  if (b) openLight(Number(b.dataset.i));
-});
+galEl.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) openLight(Number(b.dataset.i)); });
 
 function openLight(i){
   lightIdx = i;
@@ -662,33 +618,39 @@ function openLight(i){
     <div class="cap">${PHOTOS[i].cap}</div>`;
   document.body.appendChild(light);
   document.body.style.overflow = 'hidden';
-
   light.addEventListener('click', (e) => {
     const step = e.target.closest('[data-step]');
     if (step){ move(Number(step.dataset.step)); return; }
     if (e.target === light || e.target.closest('[data-close]')) closeLight();
   });
 }
-
 function move(step){
   lightIdx = (lightIdx + step + PHOTOS.length) % PHOTOS.length;
   light.querySelector('img').src = PHOTOS[lightIdx].src;
   light.querySelector('img').alt = PHOTOS[lightIdx].cap;
   light.querySelector('.cap').textContent = PHOTOS[lightIdx].cap;
 }
-
 function closeLight(){
   if (!light) return;
   light.remove(); light = null;
   document.body.style.overflow = '';
 }
-
-/* Клавиатура: Esc закрывает то, что открыто; стрелки листают фото */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape'){ if (light) closeLight(); else closeModal(); }
   if (light && e.key === 'ArrowLeft')  move(-1);
   if (light && e.key === 'ArrowRight') move(1);
 });
+
+/* ---------- карта: грузим Яндекс только по нажатию ---------- */
+document.querySelectorAll('.js-map').forEach(btn => btn.addEventListener('click', () => {
+  const box = btn.closest('.map');
+  const frame = document.createElement('iframe');
+  frame.src = box.dataset.src;
+  frame.title = 'Карта: Зеленодольский район';
+  frame.setAttribute('allowfullscreen', '');
+  box.appendChild(frame);
+  box.classList.add('is-loaded');
+}));
 
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>

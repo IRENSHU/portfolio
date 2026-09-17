@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кофейня «Зерно» — демо перенесённого лендинга</title>
+  <meta name="description" content="Демонстрационный лендинг кофейни: так выглядит страница после переноса с конструктора на свой хостинг — форма брони работает и присылает заявки владельцу.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="demo-note">
+    <div class="wrap">
+      <b>Демонстрационная страница.</b> Кофейня «Зерно» вымышленная, заявки никуда не отправляются.
+      Это пример лендинга после переноса — <a href="index.html">как проходит перенос</a>.
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="logo" href="zerno.html">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 9h11v6a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5V9Z"/>
+          <path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2"/>
+        </svg>
+        Зерно
+      </a>
+      <nav class="topbar__nav">
+        <a href="#menu">Меню</a>
+        <a href="#bron">Забронировать столик</a>
+        <a href="index.html">Как переносили</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div>
+        <p class="tag">Кофейня на Баумана, Казань</p>
+        <h1>Кофе, который обжарили в этом городе на прошлой неделе</h1>
+        <p class="hero__lead">Зерно обжариваем по пятницам в своей мастерской и увозим в зал в тот же день. Дата обжарки написана на каждом пакете.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#bron">Забронировать столик</a>
+          <a class="btn btn--ghost" href="#menu">Посмотреть меню</a>
+        </div>
+      </div>
+      <div class="cup">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Чашка кофе">
+          <circle cx="100" cy="100" r="92" fill="#f0dcc8"/>
+          <path d="M48 78h86v46a34 34 0 0 1-34 34H82a34 34 0 0 1-34-34V78Z" fill="#7d3f16"/>
+          <path d="M48 78h86v14a34 34 0 0 1-34 14H82a34 34 0 0 1-34-14V78Z" fill="#a4541f"/>
+          <path d="M134 88h12a19 19 0 0 1 0 38h-12" fill="none" stroke="#7d3f16" stroke-width="11"/>
+          <rect x="40" y="162" width="102" height="11" rx="5.5" fill="#5b2f10"/>
+          <path d="M84 56c0-9 8-11 8-19M104 56c0-9 8-11 8-19" stroke="#c99b74" stroke-width="6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <ul class="facts">
+      <li class="fact"><b>Обжарка по пятницам</b><span>Дата обжарки — на пакете и в меню</span></li>
+      <li class="fact"><b>Завтраки до 12:00</b><span>Сырники, каша и круассаны своей выпечки</span></li>
+      <li class="fact"><b>Тихий зал с розетками</b><span>Можно работать: Wi-Fi и розетка у каждого стола</span></li>
+    </ul>
+  </div>
+
+  <section class="section section--alt" id="menu">
+    <div class="wrap">
+      <p class="tag">Меню</p>
+      <h2>Что налить и чем закусить</h2>
+      <p class="section__lead">Цены за порцию. С собой — в стакане 400 мл, те же деньги.</p>
+      <ul class="menu">
+        <li><span class="name">Эспрессо<small>Бразилия, шоколад и орех</small></span><span class="dots"></span><span class="price">150 ₽</span></li>
+        <li><span class="name">Капучино<small>На фермерском молоке</small></span><span class="dots"></span><span class="price">220 ₽</span></li>
+        <li><span class="name">Фильтр дня<small>Меняем сорт каждую неделю</small></span><span class="dots"></span><span class="price">190 ₽</span></li>
+        <li><span class="name">Раф на кокосовом<small>Без коровьего молока</small></span><span class="dots"></span><span class="price">260 ₽</span></li>
+        <li><span class="name">Круассан<small>Печём с шести утра</small></span><span class="dots"></span><span class="price">140 ₽</span></li>
+        <li><span class="name">Сырники со сметаной<small>Три штуки, подаём до 12:00</small></span><span class="dots"></span><span class="price">320 ₽</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="bron">
+    <div class="wrap">
+      <p class="tag">Бронь столика</p>
+      <h2>Оставим место у окна</h2>
+      <p class="section__lead">Напишите имя и телефон — перезвоним в течение получаса и подтвердим время. Столик держим 20 минут.</p>
+
+      <div class="split">
+      <form class="form" id="bronForm" novalidate>
+        <div class="form__row">
+          <input type="text" id="bName" placeholder="Как вас зовут" autocomplete="given-name" aria-label="Имя">
+          <input type="tel" id="bPhone" placeholder="+7 900 000-00-00" autocomplete="tel" aria-label="Телефон">
+        </div>
+        <label class="consent">
+          <input type="checkbox" id="bConsent">
+          <span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени и телефона — для подтверждения брони</span>
+        </label>
+        <button class="btn btn--wide" type="submit" id="bSend" disabled>Забронировать столик</button>
+        <span class="msg msg--err" id="bErr" hidden></span>
+        <span class="msg msg--ok" id="bOk" hidden></span>
+      </form>
+
+      <aside class="info">
+        <h3>Где и когда</h3>
+        <dl>
+          <dt>Адрес</dt><dd>Казань, ул. Баумана, 42<br><span>вход со двора, вывеска с зерном</span></dd>
+          <dt>Часы</dt><dd>Пн–Пт 08:00–22:00<br>Сб–Вс 09:00–23:00</dd>
+          <dt>Телефон</dt><dd>+7 843 555-24-08</dd>
+        </dl>
+        <p class="info__note">Адрес и телефон вымышленные — это демо.</p>
+      </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Демонстрационная работа для портфолио. Кофейня, цены и адрес вымышленные. <a href="soglasie.html">Согласие на обработку данных</a></p>
+      <p>Вёрстка — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const consent = document.getElementById('bConsent');
+    const send = document.getElementById('bSend');
+    consent.addEventListener('change', () => { send.disabled = !consent.checked; });
+
+    document.getElementById('bronForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = document.getElementById('bErr');
+      const ok = document.getElementById('bOk');
+      const name = document.getElementById('bName').value.trim();
+      const digits = document.getElementById('bPhone').value.replace(/\D/g, '');
+
+      let problem = '';
+      if (!consent.checked) problem = 'Отметьте согласие на обработку данных';
+      else if (name.length < 2) problem = 'Напишите, как вас зовут';
+      else if (digits.length < 10 || digits.length > 11) problem = 'Проверьте номер — нужно 10–11 цифр';
+
+      if (problem) { err.textContent = problem; err.hidden = false; ok.hidden = true; return; }
+
+      err.hidden = true;
+      ok.textContent = `${name}, бронь принята. На настоящем сайте заявка пришла бы владельцу кофейни на почту или в Telegram. Это демо — данные никуда не отправлены.`;
+      ok.hidden = false;
+      send.disabled = true;
+    });
+  </script>
+</body>
+</html>

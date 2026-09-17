@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Перенос лендинга с конструктора на свой хостинг — демо на примере кофейни «Зерно»</title>
+  <meta name="description" content="Демонстрационный разбор: как лендинг переезжает с конструктора на хостинг владельца. Что становится с файлами, ссылками и формой заявки, что проверяется после переноса и что перенести нельзя.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="demo-note">
+    <div class="wrap">
+      <b>Демонстрационная страница.</b> Кофейня «Зерно» вымышленная: настоящие сайты заказчиков не публикую, они принадлежат компаниям и содержат их контакты.
+      Здесь показано, что происходит с сайтом при переносе.
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <a class="logo" href="index.html">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 5h16v11H4z"/><path d="M9 20h6M12 16v4"/>
+        </svg>
+        Перенос сайта
+      </a>
+      <nav class="topbar__nav">
+        <a href="#kak">Как проходит</a>
+        <a href="#proverka">Что проверяю</a>
+        <a href="zerno.html">Смотреть лендинг</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div>
+        <p class="tag">Разбор на вымышленном примере</p>
+        <h1>Лендинг переезжает с конструктора на ваш хостинг</h1>
+        <p class="hero__lead">Кофейня «Зерно» платила за конструктор каждый месяц, а файлов сайта у владельца не было. Вот что меняется после переноса — и что перенести нельзя.</p>
+        <div class="hero__actions">
+          <a class="btn" href="zerno.html">Смотреть перенесённый лендинг</a>
+          <a class="btn btn--ghost" href="#kak">Как проходит перенос</a>
+        </div>
+      </div>
+      <div class="cup">
+        <svg viewBox="0 0 200 200" role="img" aria-label="Сайт переезжает с конструктора на свой хостинг">
+          <circle cx="100" cy="100" r="92" fill="#f0dcc8"/>
+          <!-- было: конструктор -->
+          <rect x="18" y="70" width="64" height="48" rx="6" fill="#fff" stroke="#c3b3a3" stroke-width="2"/>
+          <rect x="18" y="70" width="64" height="11" rx="5.5" fill="#c3b3a3"/>
+          <rect x="26" y="88" width="34" height="5" rx="2.5" fill="#d9cdc1"/>
+          <rect x="26" y="98" width="46" height="5" rx="2.5" fill="#d9cdc1"/>
+          <rect x="26" y="108" width="24" height="5" rx="2.5" fill="#d9cdc1"/>
+          <text x="50" y="136" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="800" fill="#5f5045">₽ / мес</text>
+          <!-- стрелка -->
+          <path d="M92 94h14" stroke="#a4541f" stroke-width="6" stroke-linecap="round"/>
+          <path d="M118 94l-14-8v16l14-8Z" fill="#a4541f"/>
+          <!-- стало: свой хостинг -->
+          <rect x="124" y="64" width="64" height="60" rx="6" fill="#fff" stroke="#a4541f" stroke-width="2"/>
+          <rect x="124" y="64" width="64" height="11" rx="5.5" fill="#a4541f"/>
+          <rect x="132" y="82" width="34" height="5" rx="2.5" fill="#e3cdb8"/>
+          <rect x="132" y="92" width="46" height="5" rx="2.5" fill="#e3cdb8"/>
+          <rect x="132" y="102" width="28" height="9" rx="4.5" fill="#a4541f"/>
+          <text x="156" y="142" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" font-weight="800" fill="#7d3f16">ваш домен</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="tag">Было и стало</p>
+      <h2>Что меняется для владельца</h2>
+      <div class="cols">
+        <div class="col col--was">
+          <h3>Было: сайт на конструкторе</h3>
+          <ul>
+            <li>Ежемесячная оплата: перестал платить — сайт закрылся</li>
+            <li>Файлов у владельца нет, забрать нечего</li>
+            <li>Аккаунт оформлен на подрядчика, который пропал</li>
+            <li>Заявки уходили на почту прежнего подрядчика</li>
+            <li>Сменить разработчика нельзя: сайт живёт внутри конструктора</li>
+          </ul>
+        </div>
+        <div class="col col--now">
+          <h3>Стало: сайт на своём хостинге</h3>
+          <ul>
+            <li>Хостинг оплачивается напрямую, от нескольких сотен рублей в год</li>
+            <li>Все файлы сайта у владельца — в архиве</li>
+            <li>Хостинг и домен оформлены на владельца</li>
+            <li>Заявки приходят на его почту или в Telegram</li>
+            <li>Любой разработчик может подхватить: обычные HTML, CSS и JavaScript</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="kak">
+    <div class="wrap">
+      <p class="tag">Как проходит перенос</p>
+      <h2>Четыре шага, 3 дня</h2>
+      <ol class="steps">
+        <li class="step">
+          <h3>Снимаю копию страницы</h3>
+          <p>Скачиваются разметка, стили, скрипты, шрифты и изображения — всё, из чего собрана страница.</p>
+        </li>
+        <li class="step">
+          <h3>Переписываю пути и ссылки</h3>
+          <p>Чтобы сайт брал файлы с вашего хостинга, а не подтягивал их со старого адреса. Иначе страница сломается, когда прежний аккаунт закроют.</p>
+        </li>
+        <li class="step">
+          <h3>Убираю чужое</h3>
+          <p>Счётчики и скрипты прежнего владельца, разметку конструктора и форму, которая отправляла заявки не вам.</p>
+        </li>
+        <li class="step">
+          <h3>Размещаю и подключаю домен</h3>
+          <p>Файлы на ваш хостинг, привязка домена, SSL-сертификат — сайт открывается по https.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="proverka">
+    <div class="wrap">
+      <p class="tag">Проверка после переноса</p>
+      <h2>Что проверяю перед сдачей</h2>
+      <p class="section__lead">Проверку показываю на этом же лендинге: всё перечисленное на нём работает.</p>
+      <ul class="checklist">
+        <li>Каждая ссылка и кнопка: меню, якоря, переходы между страницами</li>
+        <li>Форма заявки: тестовая отправка и проверка обязательных полей</li>
+        <li>Галочка согласия на обработку данных и отдельная страница согласия — требование 152-ФЗ</li>
+        <li>Страница открывается без ошибок в консоли браузера</li>
+        <li>Chrome, Яндекс Браузер, Firefox и Edge на компьютере и на Android-телефоне</li>
+        <li>Телефонная вёрстка: ничего не уезжает за край экрана</li>
+        <li>Шрифты и картинки лежат на вашем хостинге — страница не зависит от чужих серверов</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap">
+      <p class="tag">Честно</p>
+      <h2>Что перенести нельзя</h2>
+      <div class="limits">
+        <ul>
+          <li>Корзину и онлайн-оплату: они работают на сервере конструктора</li>
+          <li>Личный кабинет и базу клиентов</li>
+          <li>CRM конструктора и историю заявок — заявки начнут копиться заново, уже у вас</li>
+          <li>Записи блога из встроенной админки: они переносятся отдельными страницами</li>
+        </ul>
+        <p style="margin:12px 0 0">Если на сайте есть что-то из этого списка, об этом видно сразу — до начала работы. Статичный лендинг переносится целиком.</p>
+      </div>
+      <p style="margin-top:18px"><a class="btn" href="zerno.html">Смотреть перенесённый лендинг</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Демонстрационная работа для портфолио. Кофейня, цены и адрес вымышленные. <a href="soglasie.html">Согласие на обработку данных</a></p>
+      <p>Вёрстка — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

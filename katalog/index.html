@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ДверьПро — каталог дверей и фурнитуры</title>
-  <meta name="description" content="Каталог входных и межкомнатных дверей, раздвижных систем и фурнитуры. Разделы, фильтры, поиск по названию и артикулу.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>ДверьПро — двери и фурнитура с актуальными ценами | демо: каталог из таблицы Excel</title>
+  <meta name="description" content="Демонстрационный каталог дверей, который магазин обновляет сам: товары и цены берутся из таблицы, сохранённой из Excel в CSV. Разделы, фильтры, поиск, карточка товара, запрос наличия с согласием на обработку данных, инструкция по обновлению.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <div class="demo-note">
+    <div class="wrap">
+      <b>Демонстрационная страница.</b> Магазин «ДверьПро», товары и цены вымышленные, заявки никуда не отправляются.
+      Весь каталог собирается из таблицы <a href="tovary.csv" download>tovary.csv</a> — как её обновлять, показано в блоке
+      <a href="#obnovit">«Как обновить каталог»</a>.
+    </div>
+  </div>
 
   <header class="topbar">
     <div class="wrap topbar__inner">
@@ -26,20 +31,29 @@
         <input type="search" id="search" placeholder="Поиск по названию или артикулу" aria-label="Поиск по каталогу">
       </div>
 
-      <p class="topbar__phone">+7 843 555-77-10</p>
+      <nav class="topbar__nav">
+        <a href="#katalog">Каталог</a>
+        <a href="#obnovit">Как обновить каталог</a>
+      </nav>
     </div>
   </header>
 
-  <div class="notice">
-    <div class="wrap">
-      <b>Как это работает:</b> весь каталог собирается из файла
-      <a href="tovary.csv" target="_blank" rel="noopener">tovary.csv</a> — обычной таблицы,
-      которая открывается в Excel. Заказчик меняет цены или добавляет товар, сохраняет файл,
-      заливает на сайт — каталог обновился. Программист не нужен.
+  <section class="hero">
+    <div class="wrap hero__inner">
+      <div>
+        <p class="hero__tag">Двери и фурнитура в Казани</p>
+        <h1>Цены на сайте — те же, что скажут в магазине</h1>
+        <p class="hero__lead">Каталог обновляется из той же таблицы, по которой работают продавцы. Нашли дверь — запросите наличие и срок доставки прямо из карточки товара.</p>
+      </div>
+      <ul class="hero__facts">
+        <li><b>28 моделей</b> входных и межкомнатных дверей, раздвижных систем и фурнитуры</li>
+        <li><b>Замер бесплатно</b> по Казани</li>
+        <li><b>Наличие и срок</b> — ответим в течение часа</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <main class="wrap layout">
+  <main class="wrap layout" id="katalog">
 
     <button class="filters-toggle" id="filtersToggle" aria-expanded="false" aria-controls="sidebar">
       Разделы и фильтры
@@ -54,6 +68,11 @@
       <div class="block">
         <h2 class="block__title">Материал</h2>
         <ul class="checks" id="materials"></ul>
+      </div>
+
+      <div class="block">
+        <h2 class="block__title">Цвет</h2>
+        <ul class="checks checks--two" id="colors"></ul>
       </div>
 
       <div class="block">
@@ -81,6 +100,8 @@
         </label>
       </div>
 
+      <p class="source" id="source" role="status" aria-live="polite">Загружаем таблицу…</p>
+
       <div class="grid" id="grid" aria-live="polite"></div>
 
       <p class="empty" id="empty" hidden>
@@ -88,6 +109,52 @@
       </p>
     </section>
   </main>
+
+  <section class="howto" id="obnovit">
+    <div class="wrap">
+      <p class="howto__tag">Для владельца магазина</p>
+      <h2>Как обновить каталог — без программиста</h2>
+      <p class="howto__lead">Товары хранятся в обычной таблице. Открываете её в Excel, меняете, сохраняете и загружаете на хостинг — сайт показывает новые цены.</p>
+
+      <ol class="steps">
+        <li class="step">
+          <h3>Откройте таблицу в Excel</h3>
+          <p>Одна строка — один товар. Обязательные колонки: <b>Раздел, Название, Артикул, Цена</b>. Необязательные: Материал, Цвет, Размеры, Описание, Фото, Хит.</p>
+        </li>
+        <li class="step">
+          <h3>Поменяйте цену или добавьте товар</h3>
+          <p>Новый раздел или материал появится в меню и фильтрах сам. Цену можно писать с пробелами — «28&nbsp;900».</p>
+        </li>
+        <li class="step">
+          <h3>Сохраните в формате CSV</h3>
+          <p>«Файл → Сохранить как» → тип <b>«CSV UTF-8»</b>. Старый вариант «CSV (разделители — запятые)» сайт тоже прочитает.</p>
+        </li>
+        <li class="step">
+          <h3>Загрузите файл на хостинг</h3>
+          <p>Замените старый файл <code>tovary.csv</code> через панель хостинга — и обновите страницу сайта.</p>
+        </li>
+      </ol>
+
+      <div class="honest">
+        <b>Честно про Excel.</b> Сайт читает таблицу в формате CSV — это формат, в который Excel сохраняет таблицу за два клика.
+        Файл <code>.xlsx</code> напрямую сайт не читает: перед загрузкой таблицу нужно сохранить в CSV, как в шаге 3.
+        Фото товара: положите картинку в папку <code>img</code> и впишите имя файла в колонку «Фото». Если колонка пустая, показывается рисунок двери.
+      </div>
+
+      <div class="try">
+        <div>
+          <h3>Попробуйте сами</h3>
+          <p>Скачайте таблицу, поменяйте в Excel цену или добавьте строку, сохраните в CSV и загрузите сюда. Каталог выше обновится в вашем браузере — файл никуда не отправляется.</p>
+        </div>
+        <div class="try__actions">
+          <a class="btn btn--ghost" href="tovary.csv" download>Скачать таблицу</a>
+          <label class="btn" for="upload">Загрузить свою таблицу</label>
+          <input type="file" id="upload" accept=".csv,text/csv" hidden>
+          <button type="button" class="link" id="restore" hidden>Вернуть исходную таблицу</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Карточка товара -->
   <div class="modal" id="modal" hidden>
@@ -99,17 +166,23 @@
         <div>
           <p class="modal__section" id="modalSection"></p>
           <h3 class="modal__title" id="modalTitle"></h3>
+          <p class="modal__desc" id="modalDesc"></p>
           <dl class="specs" id="modalSpecs"></dl>
           <p class="modal__price" id="modalPrice"></p>
 
           <form class="ask" id="askForm" novalidate>
             <p class="ask__label">Запросить наличие и срок доставки</p>
             <div class="ask__row">
-              <input type="tel" id="askPhone" placeholder="+7 900 000-00-00" aria-label="Телефон">
-              <button class="btn" type="submit">Отправить</button>
+              <input type="text" id="askName" placeholder="Как к вам обращаться" autocomplete="given-name" aria-label="Имя">
+              <input type="tel" id="askPhone" placeholder="+7 900 000-00-00" autocomplete="tel" aria-label="Телефон">
             </div>
-            <span class="ask__error" id="askError" hidden>Проверьте номер — не хватает цифр</span>
-            <span class="ask__ok" id="askOk" hidden>Заявка принята, перезвоним в течение часа.</span>
+            <label class="consent">
+              <input type="checkbox" id="askConsent">
+              <span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени и телефона — для ответа по товару</span>
+            </label>
+            <button class="btn btn--wide" type="submit" id="askSend" disabled>Запросить наличие</button>
+            <span class="ask__error" id="askError" hidden></span>
+            <span class="ask__ok" id="askOk" hidden></span>
           </form>
         </div>
       </div>
@@ -118,7 +191,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p>Демонстрационная работа для портфолио. Компания, товары и цены вымышленные.</p>
+      <p>Демонстрационная работа для портфолио. Компания, товары и цены вымышленные. <a href="soglasie.html">Согласие на обработку данных</a></p>
       <p>Вёрстка и логика — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a></p>
     </div>
   </footer>

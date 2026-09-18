@@ -474,11 +474,11 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 .deco {
   position: absolute; pointer-events: none; z-index: 0;
   fill: none; stroke: var(--primary); stroke-width: 2.4;
-  stroke-linecap: round; stroke-linejoin: round; opacity: .09;
+  stroke-linecap: round; stroke-linejoin: round; opacity: .16;
 }
-.deco--leaf  { width: clamp(180px, 22vw, 320px); }
+.deco--leaf  { width: clamp(200px, 26vw, 380px); }
 .deco--drops { width: clamp(200px, 26vw, 360px); stroke-width: 2; }
-.deco--wave  { width: clamp(260px, 34vw, 520px); stroke-width: 3; opacity: .07; }
+.deco--wave  { width: clamp(260px, 34vw, 520px); stroke-width: 3; opacity: .13; }
 .section, .hero, .page-hero { position: relative; overflow: hidden; }
 .section > .container, .hero > .container, .page-hero > .container { position: relative; z-index: 1; }
 
@@ -487,5 +487,9 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 .deco--bl { bottom: -70px; left: -60px; transform: rotate(-12deg); }
 .deco--br { bottom: -50px; right: -50px; transform: rotate(8deg); }
 
-@media (max-width: 720px) { .deco { opacity: .06; } .deco--drops { display: none; } }
+@media (max-width: 720px) { .deco { opacity: .12; } .deco--drops { display: none; } }
 @media (prefers-reduced-motion: reduce) { .deco { opacity: .07; } }
+
+/* мотивы на первом экране */
+.hero .deco--leaf  { top: 6px; left: -130px; transform: rotate(-16deg); opacity: .17; }
+.hero .deco--drops { bottom: -60px; right: 4%; opacity: .14; }

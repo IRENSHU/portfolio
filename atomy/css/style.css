@@ -399,7 +399,7 @@ h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); }
 /* --- 17. Адаптив ---------------------------------------------------- */
 @media (max-width: 940px) {
   .hero__grid { grid-template-columns: 1fr; }
-  .hero__visual { order: -1; max-width: 460px; margin-inline: auto; }
+  .hero__visual { order: 0; max-width: 460px; margin-inline: auto; }
   .hero__badge { display: none; }
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; }
@@ -496,3 +496,20 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 
 .hero .hero-leaf-2 { top: -70px; right: -60px; left: auto; transform: rotate(150deg); width: clamp(160px, 20vw, 300px); opacity: .15; }
 @media (max-width: 900px) { .hero .hero-leaf-2 { display: none; } }
+
+/* --- Телефон: сначала текст и кнопки, декор ниже и компактнее --- */
+@media (max-width: 760px) {
+  .hero { padding-block: 26px 34px; }
+  .hero__grid { gap: 24px; }
+  .hero h1 { margin-bottom: 16px; }
+  .hero .lead { margin-bottom: 22px; }
+  .hero__actions { margin-bottom: 22px; }
+  .hero__topcta { display: none; }            /* дубль кнопки: в тексте уже есть две */
+  .hero__visual { max-width: 340px; }
+  .hero__card-img svg { max-width: 200px; }
+  .hero__trust { gap: 18px; }
+  .blob--1 { width: 210px; height: 210px; top: -50px; right: -70px; }
+  .blob--2 { width: 180px; height: 180px; bottom: -70px; left: -70px; }
+  .hero .deco--leaf { width: 150px; top: auto; bottom: 10px; left: -60px; }
+  .hero .hero-leaf-2, .hero .deco--drops { display: none; }
+}

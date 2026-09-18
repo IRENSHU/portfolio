@@ -493,3 +493,6 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 /* мотивы на первом экране */
 .hero .deco--leaf  { top: 6px; left: -130px; transform: rotate(-16deg); opacity: .17; }
 .hero .deco--drops { bottom: -60px; right: 4%; opacity: .14; }
+
+.hero .hero-leaf-2 { top: -70px; right: -60px; left: auto; transform: rotate(150deg); width: clamp(160px, 20vw, 300px); opacity: .15; }
+@media (max-width: 900px) { .hero .hero-leaf-2 { display: none; } }

@@ -461,3 +461,11 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 .card__icon { color: var(--primary-tx); }
 .card__icon--sage { color: #1B7AB3; }
 .eyebrow { color: var(--primary-tx); }
+
+/* Иконки мессенджеров всегда белые поверх цветных кружков */
+.float a, .footer__social a { color: #fff; }
+.float a svg { width: 27px; height: 27px; }
+.footer__social a svg { width: 21px; height: 21px; }
+.float .mx svg, .footer__social .mx svg { stroke: #fff; }
+
+.float a svg, .footer__social a svg { display: block; }

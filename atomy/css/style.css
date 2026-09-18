@@ -469,3 +469,23 @@ a:not(.btn), .post__more, .price-legend b, .cat-price--partner b, .product__pric
 .float .mx svg, .footer__social .mx svg { stroke: #fff; }
 
 .float a svg, .footer__social a svg { display: block; }
+
+/* --- Второй план: фоновые мотивы --------------------------------- */
+.deco {
+  position: absolute; pointer-events: none; z-index: 0;
+  fill: none; stroke: var(--primary); stroke-width: 2.4;
+  stroke-linecap: round; stroke-linejoin: round; opacity: .09;
+}
+.deco--leaf  { width: clamp(180px, 22vw, 320px); }
+.deco--drops { width: clamp(200px, 26vw, 360px); stroke-width: 2; }
+.deco--wave  { width: clamp(260px, 34vw, 520px); stroke-width: 3; opacity: .07; }
+.section, .hero, .page-hero { position: relative; overflow: hidden; }
+.section > .container, .hero > .container, .page-hero > .container { position: relative; z-index: 1; }
+
+.deco--tl { top: -40px; left: -50px; }
+.deco--tr { top: -60px; right: -40px; transform: rotate(18deg); }
+.deco--bl { bottom: -70px; left: -60px; transform: rotate(-12deg); }
+.deco--br { bottom: -50px; right: -50px; transform: rotate(8deg); }
+
+@media (max-width: 720px) { .deco { opacity: .06; } .deco--drops { display: none; } }
+@media (prefers-reduced-motion: reduce) { .deco { opacity: .07; } }

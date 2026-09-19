@@ -1,0 +1,93 @@
+<svg class="maket-svg" viewBox="0 0 1280 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Условный макет первого экрана: сетка 12 колонок, направляющие и размеры">
+<defs><style>.t{font-family:Manrope,sans-serif;font-size:13px;fill:#7A8798}.tb{font-family:Manrope,sans-serif;font-size:13px;font-weight:700;fill:#2F6DF6}.ti{font-family:Manrope,sans-serif;font-size:12px;fill:#2F6DF6}.blk{fill:#D8DEE6}.blk2{fill:#E7EBF0}</style><marker id="a" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M1 4h6M4.5 1.5 7 4l-2.5 2.5" stroke="#2F6DF6" stroke-width="1.2" fill="none"/></marker></defs>
+<rect x="0" y="0" width="1280" height="900" fill="#FFFFFF"/>
+<rect x="80.0" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="175.3" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="270.7" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="366.0" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="461.3" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="556.7" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="652.0" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="747.3" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="842.7" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="938.0" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="1033.3" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<rect x="1128.7" y="0" width="71.3" height="900" fill="rgba(47,109,246,.10)"/>
+<line x1="80" y1="0" x2="80" y2="900" stroke="#2F6DF6" stroke-width="1" stroke-dasharray="6 5"/>
+<line x1="1200" y1="0" x2="1200" y2="900" stroke="#2F6DF6" stroke-width="1" stroke-dasharray="6 5"/>
+<line x1="0" y1="72" x2="1280" y2="72" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="80" y="26" width="120" height="20" rx="6" class="blk"/>
+<rect x="800" y="30" width="64" height="12" rx="6" class="blk2"/>
+<rect x="890" y="30" width="52" height="12" rx="6" class="blk2"/>
+<rect x="980" y="30" width="60" height="12" rx="6" class="blk2"/>
+<rect x="1030" y="20" width="170" height="32" rx="16" fill="none" stroke="#DCE3DE" stroke-width="2"/>
+<text class="ti" x="80" y="18">шапка 72</text>
+<rect x="80.0" y="152" width="190" height="18" rx="9" fill="#17694C" opacity=".25"/>
+<text class="ti" x="280.0" y="166">надзаголовок 13/16 · 800</text>
+<rect x="80.0" y="190" width="643.3" height="40" rx="8" class="blk"/>
+<rect x="80.0" y="246" width="591.9" height="40" rx="8" class="blk"/>
+<rect x="80.0" y="302" width="353.8" height="40" rx="8" class="blk"/>
+<text class="ti" x="80.0" y="182">H1 · Manrope 800 · 48/56</text>
+<rect x="80.0" y="376" width="617.6" height="12" rx="6" class="blk2"/>
+<rect x="80.0" y="401" width="579.0" height="12" rx="6" class="blk2"/>
+<rect x="80.0" y="426" width="398.9" height="12" rx="6" class="blk2"/>
+<text class="ti" x="80.0" y="467">текст 18/28 · вторичный цвет</text>
+<rect x="80.0" y="483" width="212" height="52" rx="26" fill="#17694C"/>
+<rect x="308.0" y="483" width="196" height="52" rx="26" fill="none" stroke="#DCE3DE" stroke-width="2"/>
+<text class="ti" x="80.0" y="557">кнопки h52 · радиус 26 · промежуток 16</text>
+<rect x="747.3" y="152" width="452.7" height="408" rx="24" fill="#F6F3EC" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="779.3" y="192" width="180" height="34" rx="8" class="blk"/>
+<rect x="779.3" y="252" width="388.7" height="12" rx="6" class="blk2"/>
+<rect x="779.3" y="278" width="358.7" height="12" rx="6" class="blk2"/>
+<rect x="779.3" y="304" width="328.7" height="12" rx="6" class="blk2"/>
+<rect x="779.3" y="402" width="388.7" height="52" rx="26" fill="#17694C"/>
+<text class="ti" x="747.3" y="142">карточка · 5 колонок · радиус 24</text>
+<line x1="0" y1="580" x2="1280" y2="580" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="80.0" y="620" width="357.3" height="150" rx="16" fill="#FFFFFF" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="104.0" y="644" width="44" height="44" rx="12" fill="#17694C" opacity=".18"/>
+<rect x="104.0" y="704" width="178.7" height="16" rx="8" class="blk"/>
+<rect x="104.0" y="730" width="309.3" height="10" rx="5" class="blk2"/>
+<rect x="461.3" y="620" width="357.3" height="150" rx="16" fill="#FFFFFF" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="485.3" y="644" width="44" height="44" rx="12" fill="#17694C" opacity=".18"/>
+<rect x="485.3" y="704" width="178.7" height="16" rx="8" class="blk"/>
+<rect x="485.3" y="730" width="309.3" height="10" rx="5" class="blk2"/>
+<rect x="842.7" y="620" width="357.3" height="150" rx="16" fill="#FFFFFF" stroke="#DCE3DE" stroke-width="2"/>
+<rect x="866.7" y="644" width="44" height="44" rx="12" fill="#17694C" opacity=".18"/>
+<rect x="866.7" y="704" width="178.7" height="16" rx="8" class="blk"/>
+<rect x="866.7" y="730" width="309.3" height="10" rx="5" class="blk2"/>
+<text class="ti" x="80" y="606">блоки по 4 колонки · промежуток 24 · радиус 16</text>
+<line x1="0.0" y1="600" x2="80.0" y2="600" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<line x1="80.0" y1="600" x2="0.0" y2="600" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<text class="tb" x="40.0" y="593" text-anchor="middle">80</text>
+<line x1="151.3" y1="600" x2="175.3" y2="600" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<line x1="175.3" y1="600" x2="151.3" y2="600" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<text class="tb" x="163.3" y="593" text-anchor="middle">24</text>
+<line x1="40" y1="72" x2="40" y2="152" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<line x1="40" y1="152" x2="40" y2="72" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<text class="tb" x="48" y="116.0">80</text>
+<line x1="1240" y1="358" x2="1240" y2="376" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<line x1="1240" y1="376" x2="1240" y2="358" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<text class="tb" x="1248" y="371.0">18</text>
+<line x1="1240" y1="451" x2="1240" y2="483" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<line x1="1240" y1="483" x2="1240" y2="451" stroke="#2F6DF6" stroke-width="1.2" marker-end="url(#a)"/>
+<text class="tb" x="1248" y="471.0">32</text>
+<line x1="0" y1="804" x2="1280" y2="804" stroke="#DCE3DE" stroke-width="1" stroke-dasharray="4 4"/>
+<text class="t" x="80" y="832">сетка 12 колонок · поля 80 · промежуток 24 · колонка 71</text>
+<text class="t" x="80" y="856">шаг отступов 8: 8 · 16 · 24 · 32 · 40 · 56 · 80</text>
+<text class="t" x="80" y="880">артборд 1280 · контрольные ширины 320 / 768 / 1280</text>
+<rect x="720" y="812" width="28" height="28" rx="8" fill="#12211C" stroke="rgba(16,24,38,.12)"/>
+<text class="t" x="754" y="824">ink</text>
+<text class="t" x="754" y="840" font-size="11">#12211C</text>
+<rect x="824" y="812" width="28" height="28" rx="8" fill="#4C5A54" stroke="rgba(16,24,38,.12)"/>
+<text class="t" x="858" y="824">ink-soft</text>
+<text class="t" x="858" y="840" font-size="11">#4C5A54</text>
+<rect x="928" y="812" width="28" height="28" rx="8" fill="#17694C" stroke="rgba(16,24,38,.12)"/>
+<text class="t" x="962" y="824">brand</text>
+<text class="t" x="962" y="840" font-size="11">#17694C</text>
+<rect x="1032" y="812" width="28" height="28" rx="8" fill="#E4F0EA" stroke="rgba(16,24,38,.12)"/>
+<text class="t" x="1066" y="824">brand-lt</text>
+<text class="t" x="1066" y="840" font-size="11">#E4F0EA</text>
+<rect x="1136" y="812" width="28" height="28" rx="8" fill="#F6F3EC" stroke="rgba(16,24,38,.12)"/>
+<text class="t" x="1170" y="824">sand</text>
+<text class="t" x="1170" y="840" font-size="11">#F6F3EC</text>
+</svg>

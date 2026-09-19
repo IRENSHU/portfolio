@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Макет → готовый сайт: как я верстаю и что сверяю | демо</title>
+<meta name="description" content="Демонстрация вёрстки по макету: слева условный макет с сеткой и размерами, справа собранный по нему сайт. Что сверяю: сетка и отступы, шрифты и кегли, состояния кнопок и полей, адаптив 320/768/1280, вес страницы, форма с согласием по 152-ФЗ.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap">
+    <b>Демонстрационная страница.</b> Макет нарисован специально для этого примера — чужие файлы Figma я не публикую.
+    Справа тот же экран, собранный кодом: <a href="site.html" target="_blank" rel="noopener">открыть сайт отдельно</a>.
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="logo" href="index.html"><i>М</i>Макет → сайт</a>
+    <nav>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#sveryayu">Что сверяю</a>
+      <a href="#specifikaciya">Спецификация</a>
+      <a href="#chestno">Честно</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="tag">Вёрстка по макету</p>
+    <h1>Слева макет, справа собранный по нему сайт</h1>
+    <p class="hero__lead">Так выглядит моя работа с чужим макетом: беру сетку, отступы, шрифты и цвета из макета и повторяю их в коде — без «примерно так же». Ниже можно наложить сетку на готовый сайт и переключить ширину экрана.</p>
+    <div class="stats">
+      <div><b>12 колонок</b><span>поля 80, промежуток 24</span></div>
+      <div><b>320 / 768 / 1280</b><span>проверяю на трёх ширинах</span></div>
+      <div><b id="weight">—</b><span>вес страницы с картинками</span></div>
+      <div><b>0</b><span>внешних запросов</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="compare" id="sravnenie">
+  <div class="wrap panes">
+
+    <div class="pane">
+      <div class="pane__head">
+        <b>Макет</b><span>артборд 1280</span>
+        <div class="right"><a class="switch" href="maket.svg" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none">Открыть крупно</a></div>
+      </div>
+      <div class="pane__body">
+        <img class="maket-svg" src="maket.svg" alt="Условный макет: сетка 12 колонок, направляющие, размеры отступов, шрифты и палитра" loading="lazy">
+      </div>
+    </div>
+
+    <div class="pane">
+      <div class="pane__head">
+        <b>Готовый сайт</b>
+        <span id="widthLabel">1280 px</span>
+        <div class="right">
+          <div class="switches" role="group" aria-label="Ширина экрана">
+            <button class="switch" type="button" data-w="320" aria-pressed="false">320</button>
+            <button class="switch" type="button" data-w="768" aria-pressed="false">768</button>
+            <button class="switch" type="button" data-w="1280" aria-pressed="true">1280</button>
+          </div>
+          <button class="switch" type="button" id="gridBtn" aria-pressed="false">Сетка поверх</button>
+        </div>
+      </div>
+      <div class="pane__body pane__body--tight">
+        <div class="preview">
+          <div class="preview__frame" id="frameBox">
+            <iframe id="siteFrame" src="site.html" title="Собранный по макету сайт" loading="lazy"></iframe>
+            <div class="preview__grid" id="gridOverlay" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--paper" id="sveryayu">
+  <div class="wrap">
+    <h2>Что сверяю перед сдачей</h2>
+    <p class="section__lead">Не «на глаз»: по каждому пункту есть, что показать заказчику. Если в макете чего-то нет — спрашиваю до вёрстки, а не додумываю.</p>
+    <div class="checks">
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          <h3>Сетка и отступы</h3>
+        </div>
+        <p>Колонки, поля и промежутки те же, что в макете. Отступы кратны шагу 8 — их видно в коде: <code>gap: 24px</code>, <code>padding: 0 80px</code>.</p>
+      </article>
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg>
+          <h3>Шрифты и кегли</h3>
+        </div>
+        <p>Семейство, начертания и размеры из макета: H1 48/56, текст 18/28. Шрифт кладу на сайт, чтобы страница не зависела от чужих серверов.</p>
+      </article>
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="8" width="18" height="8" rx="4"/><circle cx="9" cy="12" r="2.2"/></svg>
+          <h3>Состояния кнопок и полей</h3>
+        </div>
+        <p>Обычное, наведение, нажатие, фокус с рамкой, выключенная кнопка. У полей — наведение, фокус и ошибка. В макетах это часто не нарисовано, поэтому делаю и показываю.</p>
+      </article>
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="10" rx="2"/><rect x="17" y="8" width="5" height="11" rx="2"/><path d="M6 19h6"/></svg>
+          <h3>Адаптив 320 / 768 / 1280</h3>
+        </div>
+        <p>Проверяю на трёх ширинах: ничего не уезжает за край, кнопки не слипаются, текст переносится. Переключатели рядом — можно посмотреть самому.</p>
+      </article>
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M8.5 9.5 12 13l3.5-3.5"/><path d="M4 17h16v4H4z"/></svg>
+          <h3>Вес и скорость</h3>
+        </div>
+        <p>Картинки сжимаю, лишних библиотек не подключаю. Эта страница вместе с макетом весит <b id="weight2">—</b> и не делает ни одного внешнего запроса.</p>
+      </article>
+      <article class="check">
+        <div class="check__top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Форма и 152-ФЗ</h3>
+        </div>
+        <p>Галочка согласия не предустановлена, кнопка не работает без неё, текст согласия — отдельной страницей. Проверка полей с понятными ошибками.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="specifikaciya">
+  <div class="wrap">
+    <h2>Спецификация, по которой собран сайт</h2>
+    <p class="section__lead">Обычно такие значения я выписываю из макета перед началом работы и согласовываю, если чего-то не хватает.</p>
+    <div class="spec">
+      <div class="spec__row"><span>Сетка</span><b>12 колонок · поля 80 · промежуток 24 · контейнер 1280</b></div>
+      <div class="spec__row"><span>Шаг отступов</span><b>8 · 16 · 24 · 32 · 40 · 56 · 80</b></div>
+      <div class="spec__row"><span>Шрифт</span><b>Manrope 400–800, лежит на сайте</b></div>
+      <div class="spec__row"><span>Кегли</span><b>H1 48/56 · H2 32/37 · H3 20/23 · текст 16/25 · лид 18/28</b></div>
+      <div class="spec__row"><span>Радиусы</span><b>10 · 16 · 24 · кнопки 100</b></div>
+      <div class="spec__row"><span>Кнопка</span><b>высота 52 · поля 28 · состояния: обычное, наведение, нажатие, фокус, выключенная</b></div>
+      <div class="spec__row"><span>Точки перелома</span><b>1024 — поля 40, две колонки · 640 — поля 16, одна колонка</b></div>
+      <div class="spec__row">
+        <span>Палитра</span>
+        <div class="swatches">
+          <span class="sw"><i style="background:#12211C"></i>#12211C</span>
+          <span class="sw"><i style="background:#4C5A54"></i>#4C5A54</span>
+          <span class="sw"><i style="background:#17694C"></i>#17694C</span>
+          <span class="sw"><i style="background:#E4F0EA"></i>#E4F0EA</span>
+          <span class="sw"><i style="background:#F6F3EC"></i>#F6F3EC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper" id="chestno">
+  <div class="wrap">
+    <h2>Честно про работу с макетом</h2>
+    <div class="note" style="margin-bottom:16px">
+      <b>Что делаю бесплатно:</b> задаю вопросы по макету до вёрстки — какие состояния у кнопок, что происходит на 320, какие тексты в пустых блоках. Это дешевле, чем переделывать потом.
+    </div>
+    <p class="section__lead" style="margin-bottom:12px">Что считаю отдельной работой, чтобы не было недопонимания:</p>
+    <ul class="checks" style="display:grid;gap:10px">
+      <li class="check"><p><b>Правки макета после сдачи.</b> Если дизайн меняется, когда вёрстка уже готова, это отдельная задача с новой оценкой.</p></li>
+      <li class="check"><p><b>Дорисовка недостающих экранов.</b> Могу собрать мобильную версию по логике десктопа, но это решение согласовываю и оцениваю отдельно.</p></li>
+      <li class="check"><p><b>Тексты и фотографии.</b> Верстаю то, что есть в макете; писать тексты и искать картинки — не входит.</p></li>
+      <li class="check"><p><b>Подключение к CMS и серверная часть.</b> Отдаю чистый HTML, CSS и JavaScript; интеграция — отдельно.</p></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Демонстрационная работа для портфолио. Компания «Чисто», цены и условия вымышленные, заявка на сайте никуда не отправляется.</p>
+    <p>Макет и вёрстка — Ирина Шушкова, <a href="https://irenshu.github.io/portfolio/">портфолио</a>. <a href="soglasie.html">Согласие на обработку данных</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

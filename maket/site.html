@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Клининг «Чисто» — уборка квартир и офисов | демо-вёрстка по макету</title>
+<meta name="description" content="Демонстрационный лендинг, собранный по макету: сетка 12 колонок, шрифт Manrope, состояния кнопок и полей, форма с согласием на обработку данных.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="#"><i>Ч</i>Чисто</a>
+    <nav>
+      <a href="#uslugi">Услуги</a>
+      <a href="#tarify">Цены</a>
+      <a href="#zayavka">Заявка</a>
+    </nav>
+    <a class="btn btn--ghost" href="#zayavka" style="height:44px;padding:0 20px">Вызвать бригаду</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap cols hero__grid">
+      <div class="hero__text">
+        <span class="eyebrow">Уборка квартир и офисов</span>
+        <h1>Приедем сегодня и уберём так, что не придётся переделывать</h1>
+        <p class="lead">Бригада из двух человек, свой инвентарь и средства без запаха. Если после уборки что-то не понравится — вернёмся и переделаем бесплатно в течение суток.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#zayavka">Рассчитать уборку</a>
+          <a class="btn btn--ghost" href="#tarify">Посмотреть цены</a>
+        </div>
+        <p class="hero__note">Работаем с 8:00 до 22:00, выезд по городу — бесплатно</p>
+      </div>
+      <div class="hero__card">
+        <div class="card">
+          <div class="price"><b>от 2 400 ₽</b><span>за квартиру до 40 м²</span></div>
+          <ul style="display:grid;gap:8px;font-size:15px;color:var(--ink-soft)">
+            <li>Санузел и кухня — всегда в базовой уборке</li>
+            <li>Пылесос, мойка полов, пыль со всех поверхностей</li>
+            <li>Окна и балкон — отдельной услугой</li>
+          </ul>
+          <a class="btn btn--wide" href="#zayavka" style="margin-top:24px">Вызвать бригаду</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand" id="uslugi">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Что входит в уборку</h2>
+        <p>Одинаковый порядок действий у каждой бригады: так результат не зависит от того, кто именно приехал.</p>
+      </div>
+      <div class="cols">
+        <article class="feat">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 20V9l5-5 5 5v11"/><path d="M10 20v-5h4v5"/></svg></i>
+          <h3>Квартира после гостей</h3>
+          <p>Кухня, санузел, полы и поверхности. Уносим мусор, застилаем постель, проветриваем.</p>
+        </article>
+        <article class="feat">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 19v2M17 19v2M7 9h6"/></svg></i>
+          <h3>Офис вечером</h3>
+          <p>Приезжаем после 19:00, работаем тихо. Отдельный пакет для переговорных и кухни.</p>
+        </article>
+        <article class="feat">
+          <i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v7M8.5 6.5 12 3l3.5 3.5"/><path d="M5 13h14l-1.4 7.2a1 1 0 0 1-1 .8H7.4a1 1 0 0 1-1-.8L5 13Z"/></svg></i>
+          <h3>После ремонта</h3>
+          <p>Убираем строительную пыль в два прохода, моем окна и выносим упаковку.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tarify">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Цены без сюрпризов в конце</h2>
+        <p>Стоимость считаем до выезда: по площади и типу уборки. На месте сумма не меняется, если площадь совпала с заявкой.</p>
+      </div>
+      <div class="cols">
+        <article class="tariff">
+          <span class="tariff__tag">Поддерживающая</span>
+          <div class="price"><b>2 400 ₽</b><span>до 40 м²</span></div>
+          <ul>
+            <li>Пыль, полы, санузел, кухня</li>
+            <li>Два человека, 2–3 часа</li>
+            <li>Свои средства и инвентарь</li>
+          </ul>
+          <a class="btn btn--ghost" href="#zayavka">Выбрать</a>
+        </article>
+        <article class="tariff tariff--best">
+          <span class="tariff__tag">Генеральная · берут чаще</span>
+          <div class="price"><b>5 900 ₽</b><span>до 40 м²</span></div>
+          <ul>
+            <li>Всё из поддерживающей</li>
+            <li>Внутри шкафов и техники</li>
+            <li>Окна с двух сторон</li>
+          </ul>
+          <a class="btn" href="#zayavka">Выбрать</a>
+        </article>
+        <article class="tariff">
+          <span class="tariff__tag">После ремонта</span>
+          <div class="price"><b>от 7 500 ₽</b><span>по осмотру</span></div>
+          <ul>
+            <li>Два прохода по пыли</li>
+            <li>Следы краски и клея</li>
+            <li>Вынос упаковки</li>
+          </ul>
+          <a class="btn btn--ghost" href="#zayavka">Выбрать</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand" id="zayavka">
+    <div class="wrap cols">
+      <form class="form" id="orderForm" novalidate>
+        <h2>Оставьте заявку</h2>
+        <p style="color:var(--ink-soft);margin-bottom:24px">Перезвоним в течение 15 минут, посчитаем стоимость и назовём ближайшее время.</p>
+        <div class="field">
+          <label for="name">Имя</label>
+          <input type="text" id="name" placeholder="Как к вам обращаться" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" placeholder="+7 900 000-00-00" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="comment">Что убрать</label>
+          <textarea id="comment" rows="3" placeholder="Двухкомнатная квартира 54 м², генеральная уборка"></textarea>
+        </div>
+        <label class="consent">
+          <input type="checkbox" id="consent">
+          <span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени и телефона — для ответа по заявке</span>
+        </label>
+        <button class="btn btn--wide" type="submit" id="send" disabled>Отправить заявку</button>
+        <span class="msg msg--err" id="err" hidden></span>
+        <span class="msg msg--ok" id="ok" hidden></span>
+      </form>
+
+      <aside class="form__aside">
+        <div class="card">
+          <h3>Почему нам доверяют</h3>
+          <ul style="display:grid;gap:16px;font-size:15px;color:var(--ink-soft);margin-top:16px">
+            <li><b style="color:var(--ink)">Фиксированная цена.</b> Считаем до выезда, на месте не пересчитываем.</li>
+            <li><b style="color:var(--ink)">Переделаем бесплатно.</b> Если что-то не устроило — вернёмся в течение суток.</li>
+            <li><b style="color:var(--ink)">Средства без запаха.</b> Подходят для детей и аллергиков.</li>
+            <li><b style="color:var(--ink)">Документы для отчётности.</b> Для компаний — договор и закрывающие.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Демонстрационный лендинг для портфолио. Компания, цены и условия вымышленные, заявка никуда не отправляется.</p>
+    <p>Собран по макету вручную: HTML, CSS и JavaScript. <a href="index.html">Как проверялось соответствие макету</a></p>
+  </div>
+</footer>
+
+<script>
+  const consent = document.getElementById('consent');
+  const send = document.getElementById('send');
+  consent.addEventListener('change', () => { send.disabled = !consent.checked; });
+
+  document.getElementById('orderForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const err = document.getElementById('err');
+    const ok = document.getElementById('ok');
+    const nameEl = document.getElementById('name');
+    const phoneEl = document.getElementById('phone');
+    const name = nameEl.value.trim();
+    const digits = phoneEl.value.replace(/\D/g, '');
+    [nameEl, phoneEl].forEach((el) => el.setAttribute('aria-invalid', 'false'));
+
+    let problem = '', bad = null;
+    if (!consent.checked) problem = 'Отметьте согласие на обработку данных';
+    else if (name.length < 2) { problem = 'Напишите, как к вам обращаться'; bad = nameEl; }
+    else if (digits.length < 10 || digits.length > 11) { problem = 'Проверьте номер — нужно 10–11 цифр'; bad = phoneEl; }
+
+    if (problem) {
+      if (bad) { bad.setAttribute('aria-invalid', 'true'); bad.focus(); }
+      err.textContent = problem; err.hidden = false; ok.hidden = true; return;
+    }
+
+    err.hidden = true;
+    ok.textContent = `${name}, заявка принята. На рабочем сайте она ушла бы на почту или в Telegram. Это демо — данные никуда не отправлены.`;
+    ok.hidden = false;
+    send.disabled = true;
+  });
+</script>
+</body>
+</html>

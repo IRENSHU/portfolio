@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Доставка воды «Родник» — артезианская вода в Казани</title>
+<meta name="description" content="Доставка питьевой артезианской воды в бутылях 19 литров по Казани: цены, кулеры и помпы, доставка в день заказа при заявке до 14:00.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="stalo-style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top__in">
+    <span class="logo">РОДНИК</span>
+    <nav class="menu" aria-label="Главное меню">
+      <a href="#ceny">Цены</a>
+      <a href="#dostavka">Доставка</a>
+      <a href="#zakaz">Заявка</a>
+    </nav>
+    <a class="phone" href="tel:+78435551234">8 843 555-12-34</a>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="img/hero.jpg" alt="Бутыли с питьевой водой на складе службы доставки" width="1200" height="800">
+  <div class="hero__txt">
+    <div class="wrap">
+      <h1>Доставка питьевой воды по Казани</h1>
+      <p>Артезианская вода в бутылях 19 литров. Привезём в день заказа, если заявка поступила до 14:00.</p>
+      <a href="#zakaz" class="btn">Заказать воду</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="dostavka">
+  <div class="wrap cols">
+    <article class="col">
+      <h3>Доставка в день заказа</h3>
+      <p>Если заявка поступила до 14:00 — привезём сегодня. По городу бесплатно от двух бутылей.</p>
+    </article>
+    <article class="col">
+      <h3>Своя скважина</h3>
+      <p>Вода из артезианской скважины глубиной 180 метров, проходит многоступенчатую очистку.</p>
+    </article>
+    <article class="col">
+      <h3>Кулеры и помпы</h3>
+      <p>В аренду или на покупку. Санитарная обработка оборудования по графику.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section section--bg" id="ceny">
+  <div class="wrap">
+    <h2>Цены</h2>
+    <div class="table-scroll">
+      <table>
+        <caption>Цены действуют при доставке по Казани</caption>
+        <thead>
+          <tr><th scope="col">Наименование</th><th scope="col">Объём</th><th scope="col">Цена за штуку</th><th scope="col">От 5 штук</th><th scope="col">Залог за тару</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Вода питьевая «Родник»</td><td>19 л</td><td>270 ₽</td><td>250 ₽</td><td>250 ₽</td></tr>
+          <tr><td>Вода питьевая «Родник»</td><td>5 л</td><td>90 ₽</td><td>85 ₽</td><td>—</td></tr>
+          <tr><td>Помпа механическая</td><td>—</td><td>590 ₽</td><td>—</td><td>—</td></tr>
+          <tr><td>Кулер напольный</td><td>—</td><td>от 6 900 ₽</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="zakaz">
+  <div class="wrap">
+    <h2>Оставить заявку</h2>
+    <p style="color:var(--ink-soft);max-width:52ch">Перезвоним в течение 15 минут и уточним адрес и время доставки.</p>
+    <form id="orderForm" novalidate>
+      <div class="field">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" placeholder="Как к вам обращаться" autocomplete="given-name">
+      </div>
+      <div class="field">
+        <label for="phone">Телефон</label>
+        <input type="tel" id="phone" name="phone" placeholder="+7 900 000-00-00" autocomplete="tel" inputmode="tel">
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent">
+        <span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени и телефона — для ответа по заявке</span>
+      </label>
+      <button class="btn" type="submit" id="send" disabled>Отправить заявку</button>
+      <span class="msg msg--err" id="err" hidden></span>
+      <span class="msg msg--ok" id="ok" hidden></span>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>ООО «Родник», доставка воды в Казани. Телефон: <a href="tel:+78435551234">8 843 555-12-34</a></p>
+    <p style="margin:0;font-size:13px;color:#9FB3C4">Демонстрационная страница для портфолио. Компания, цены и телефон вымышленные, заявка никуда не отправляется.</p>
+  </div>
+</footer>
+
+<script>
+  const consent = document.getElementById('consent');
+  const send = document.getElementById('send');
+  consent.addEventListener('change', () => { send.disabled = !consent.checked; });
+
+  document.getElementById('orderForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const err = document.getElementById('err'), ok = document.getElementById('ok');
+    const nameEl = document.getElementById('name'), phoneEl = document.getElementById('phone');
+    [nameEl, phoneEl].forEach((el) => el.setAttribute('aria-invalid', 'false'));
+    const name = nameEl.value.trim(), digits = phoneEl.value.replace(/\D/g, '');
+
+    let problem = '', bad = null;
+    if (!consent.checked) problem = 'Отметьте согласие на обработку данных';
+    else if (name.length < 2) { problem = 'Напишите, как к вам обращаться'; bad = nameEl; }
+    else if (digits.length < 10 || digits.length > 11) { problem = 'Проверьте номер — нужно 10–11 цифр'; bad = phoneEl; }
+
+    if (problem) { if (bad) { bad.setAttribute('aria-invalid', 'true'); bad.focus(); } err.textContent = problem; err.hidden = false; ok.hidden = true; return; }
+
+    err.hidden = true;
+    ok.textContent = `${name}, заявка принята. На рабочем сайте она ушла бы на почту или в Telegram. Это демо — данные никуда не отправлены.`;
+    ok.hidden = false;
+    send.disabled = true;
+  });
+</script>
+</body>
+</html>

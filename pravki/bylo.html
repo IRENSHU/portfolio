@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Доставка воды Родник</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- ВНИМАНИЕ: это демонстрация типичных ошибок. Так делать не надо — см. stalo.html -->
+<!-- нет viewport: страница не подстраивается под телефон -->
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'PT Sans', Arial, sans-serif; margin: 0; color: #333; font-size: 13px; }
+  .wrap { width: 1100px; margin: 0 auto; }           /* жёсткая ширина — на телефоне уезжает */
+  .top { background: #1b5faa; color: #fff; padding: 14px 0; }
+  .top .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-size: 22px; font-weight: 700; }
+  .menu a { color: #cfe0f5; margin-left: 18px; text-decoration: none; font-size: 13px; }
+  .phone { font-size: 15px; }
+  .hero { position: relative; }
+  .hero img { width: 1100px; display: block; }        /* картинка 2400px масштабируется браузером */
+  .hero .txt { position: absolute; left: 40px; top: 60px; width: 520px; }
+  .hero h1 { color: #fff; font-size: 30px; margin: 0 0 10px; text-shadow: 0 1px 2px #000; }
+  .hero p { color: #e8eef5; font-size: 14px; }
+  .btn { display: inline-block; background: #f0a500; color: #fff; padding: 9px 18px; border-radius: 3px; text-decoration: none; font-size: 13px; }
+  .cols { display: flex; gap: 20px; margin: 30px 0; }
+  .col { width: 350px; }
+  .col h3 { font-size: 15px; margin: 0 0 6px; }
+  .col p { color: #999; font-size: 12px; line-height: 1.4; }   /* серый на белом: читать тяжело */
+  table { border-collapse: collapse; width: 1100px; margin: 20px 0; font-size: 12px; }
+  td, th { border: 1px solid #ccc; padding: 6px 10px; }
+  th { background: #eee; }
+  form { margin: 20px 0 40px; }
+  form input { border: 1px solid #bbb; padding: 6px; font-size: 13px; width: 220px; }
+  form input[type=submit] { background: #f0a500; color: #fff; border: 0; padding: 7px 16px; cursor: pointer; width: auto; }
+  .foot { background: #eee; padding: 18px 0; color: #999; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <div class="logo">РОДНИК</div>
+    <div class="menu">
+      <a href="#">О компании</a><a href="#">Вода</a><a href="#">Оборудование</a><a href="#">Доставка</a><a href="#">Контакты</a>
+    </div>
+    <div class="phone">8 (843) 555-12-34</div>
+  </div>
+</div>
+
+<div class="hero">
+  <img src="img/hero-big.jpg">
+  <div class="txt">
+    <h1>Доставка питьевой воды по Казани</h1>
+    <p>Артезианская вода в бутылях 19 литров. Доставка на дом и в офис. Работаем с 2008 года.</p>
+    <a href="#zakaz" class="btn">Заказать воду</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cols">
+    <div class="col">
+      <h3>Быстрая доставка</h3>
+      <p>Доставляем в день заказа, если заявка поступила до 14:00. По городу бесплатно от двух бутылей.</p>
+    </div>
+    <div class="col">
+      <h3>Своя скважина</h3>
+      <p>Вода добывается из артезианской скважины глубиной 180 метров и проходит многоступенчатую очистку.</p>
+    </div>
+    <div class="col">
+      <h3>Оборудование</h3>
+      <p>Кулеры и помпы в аренду или на покупку. Обслуживание и санитарная обработка по графику.</p>
+    </div>
+  </div>
+
+  <h3>Цены</h3>
+  <table>
+    <tr><th>Наименование</th><th>Объём</th><th>Цена за штуку</th><th>От 5 штук</th><th>Залог за тару</th></tr>
+    <tr><td>Вода питьевая «Родник»</td><td>19 л</td><td>270 р.</td><td>250 р.</td><td>250 р.</td></tr>
+    <tr><td>Вода питьевая «Родник»</td><td>5 л</td><td>90 р.</td><td>85 р.</td><td>нет</td></tr>
+    <tr><td>Помпа механическая</td><td>—</td><td>590 р.</td><td>—</td><td>нет</td></tr>
+    <tr><td>Кулер напольный</td><td>—</td><td>от 6 900 р.</td><td>—</td><td>нет</td></tr>
+  </table>
+
+  <h3 id="zakaz">Оставить заявку</h3>
+  <form action="#" method="post">
+    <input type="text" name="name" placeholder="Ваше имя">
+    <input type="text" name="phone" placeholder="Телефон">
+    <input type="submit" value="Отправить">
+    <br><br>
+    <span style="color:#999;font-size:11px">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</span>
+  </form>
+</div>
+
+<div class="foot">
+  <div class="wrap">ООО «Родник» &copy; 2026. Доставка воды в Казани. Телефон: 8 (843) 555-12-34</div>
+</div>
+
+</body>
+</html>

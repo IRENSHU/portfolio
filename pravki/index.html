@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Правки на сайте: было → стало | демо</title>
+<meta name="description" content="Демонстрация правок на чужом сайте: та же страница до и после. Вес 932 КБ → 139 КБ, ноль внешних запросов, читаемый текст на телефоне, состояния кнопок, форма с проверкой и согласием по 152-ФЗ.">
+<link rel="stylesheet" href="styles.css">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://irenshu.github.io/portfolio/pravki/">
+<meta property="og:site_name" content="Портфолио Ирины Шушковой">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Правки на сайте: было → стало">
+<meta property="og:description" content="Одна и та же страница до и после правок: вес 932 КБ → 139 КБ, читаемый текст на телефоне, рабочая форма с согласием. Переключатель прямо на странице.">
+<meta property="og:image" content="https://irenshu.github.io/portfolio/og/pravki.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Правки на сайте: было → стало">
+<meta name="twitter:description" content="Одна и та же страница до и после правок: вес 932 КБ → 139 КБ, читаемый текст на телефоне, рабочая форма с согласием.">
+<meta name="twitter:image" content="https://irenshu.github.io/portfolio/og/pravki.jpg">
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap">
+    <b>Демонстрационная страница.</b> Служба доставки воды «Родник» вымышленная. Страницу «было» я написала специально — с типичными ошибками, которые встречаю в реальных заказах на правки.
+  </div>
+</div>
+
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="logo" href="index.html"><i>П</i>Было → стало</a>
+    <nav>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#chto">Что исправила</a>
+      <a href="#skolko">Сроки и цена</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Правки на сайте: одна страница до и после</h1>
+    <p class="hero__lead">Чаще всего заказчик приходит не за новым сайтом, а с готовым: «на телефоне всё разъезжается», «страница грузится вечность», «заявки не приходят». Ниже одна и та же страница — сначала как была, потом после правок. Переключатель работает, можно посмотреть обе.</p>
+    <div class="stats">
+      <div class="stat"><b><s>932 КБ</s><em>139 КБ</em></b><span>вес страницы</span></div>
+      <div class="stat"><b><s>2,85</s><em>7,11</em></b><span>контраст основного текста</span></div>
+      <div class="stat"><b><s>1</s><em>0</em></b><span>внешних запросов</span></div>
+      <div class="stat"><b><s>нет</s><em>есть</em></b><span>проверка формы и согласие</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="viewer" id="sravnenie">
+  <div class="wrap">
+    <div class="viewer__head">
+      <div class="switches" role="group" aria-label="Версия страницы">
+        <button class="switch switch--bad" type="button" id="btnBylo" aria-pressed="false">Было</button>
+        <button class="switch" type="button" id="btnStalo" aria-pressed="true">Стало</button>
+      </div>
+      <div class="sizes" role="group" aria-label="Ширина экрана">
+        <button class="size" type="button" data-w="375" aria-pressed="false">Телефон 375</button>
+        <button class="size" type="button" data-w="768" aria-pressed="false">Планшет 768</button>
+        <button class="size" type="button" data-w="1200" aria-pressed="true">Компьютер 1200</button>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame__box" id="frameBox">
+        <iframe id="site" src="stalo.html" title="Страница службы доставки воды"></iframe>
+      </div>
+      <p class="frame__note" id="frameNote">Открыть в отдельной вкладке: <a href="bylo.html" target="_blank" rel="noopener">было</a> · <a href="stalo.html" target="_blank" rel="noopener">стало</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--paper" id="chto">
+  <div class="wrap">
+    <h2>Что нашла и что исправила</h2>
+    <p class="section__lead">Обычно такой список я присылаю до начала работы: заказчик видит, за что платит, и может часть пунктов отложить.</p>
+
+    <div class="fixes">
+      <article class="fix">
+        <h3>Телефон показывал страницу как на компьютере</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Нет метатега <code>viewport</code>, ширина жёстко задана в 1100 px. Телефон ужимает страницу целиком — буквы размером с пиксель, всё надо растягивать пальцами.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Добавлен <code>viewport</code>, жёсткая ширина заменена на максимальную: страница перестраивается под экран, таблица цен прокручивается отдельно.</span></div>
+        </div>
+      </article>
+
+      <article class="fix">
+        <h3>Картинка весом почти мегабайт</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Фотография 2400×1600 отдаётся как есть и сжимается браузером до 1100 px: 926 КБ трафика впустую, на мобильном интернете первый экран ждёшь несколько секунд.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Та же фотография 1200×800 с разумным сжатием — 88 КБ. Указаны <code>width</code> и <code>height</code>, чтобы страница не прыгала при загрузке.</span></div>
+        </div>
+      </article>
+
+      <article class="fix">
+        <h3>Серый текст на белом фоне</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Описания набраны цветом #999 кеглем 12 px — контраст 2,85 при норме 4,5. На солнце и на дешёвом экране текст не читается.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Основной текст 16 px, вторичный цвет с контрастом 7,11. Надпись на жёлтой кнопке была белой (2,08) — стала тёмной (8,76).</span></div>
+        </div>
+      </article>
+
+      <article class="fix">
+        <h3>Форма без проверки и без согласия</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Два поля без подписей, отправка без проверки, вместо согласия — мелкая серая строчка «нажимая кнопку, вы соглашаетесь». По 152-ФЗ с 1 сентября 2025 года согласие должно быть отдельным документом, а галочку ставит сам посетитель.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Подписи у полей, проверка имени и телефона с понятной ошибкой, галочка согласия не предустановлена, кнопка без неё не работает, текст согласия — отдельной страницей.</span></div>
+        </div>
+      </article>
+
+      <article class="fix">
+        <h3>Кнопки и ссылки без состояний</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Кнопка не реагирует на наведение и нажатие, у полей нет видимого фокуса — с клавиатуры непонятно, где находишься. Высота кнопки 31 px: пальцем попасть тяжело.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Наведение, нажатие, видимый фокус и неактивное состояние. Кнопки и поля высотой 48 px — попадать пальцем удобно.</span></div>
+        </div>
+      </article>
+
+      <article class="fix">
+        <h3>Мелочи, которые стоят продаж</h3>
+        <div class="fix__rows">
+          <div class="fix__row"><span class="tagb">было</span><span>Телефон в шапке — просто текст, с мобильного не позвонить. У фотографии нет описания, заголовки идут вразнобой, шрифт тянется со стороннего сервера.</span></div>
+          <div class="fix__row"><span class="tagg">стало</span><span>Телефон стал ссылкой <code>tel:</code>, у картинки есть описание, заголовки выстроены по уровням, шрифт лежит на сайте — внешних запросов ноль.</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="note" style="margin-top:20px">
+      <b>Чего я не делала.</b> Не меняла структуру страницы, тексты и фотографии, не трогала дизайн ради дизайна. Задача правок — чтобы работало и читалось, а не «нарисовать заново».
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skolko">
+  <div class="wrap">
+    <h2>Сколько это стоит и сколько занимает</h2>
+    <p class="section__lead">Правки считаю по списку: сначала смотрю сайт и присылаю перечень с оценкой, потом работаю. Так заказчик не платит за «непонятно что».</p>
+    <div class="price">
+      <div><b>Точечная правка — от 2 000 ₽</b>Поменять текст или цену, поправить блок, который разъехался, добавить кнопку. Обычно в тот же день.</div>
+      <div><b>Набор правок — от 6 000 ₽</b>Как на этой странице: адаптив, вес, контраст, форма, состояния. Один–два дня.</div>
+      <div><b>Разбор сайта со списком — от 2 000 ₽</b>Что мешает: скорость, телефон, формы, требования 152-ФЗ. Список с оценкой, дальше решаете сами.</div>
+    </div>
+    <div class="note" style="margin-top:18px">
+      Работаю с сайтами на чистом HTML, CSS и JavaScript. Если сайт на WordPress, Битриксе или Тильде — вёрстку поправлю, но в настройки движка и серверную часть не полезу.
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Демонстрационная работа для портфолио. Компания, цены и телефон вымышленные, заявка никуда не отправляется.</p>
+    <p>Обе страницы написаны вручную: HTML, CSS, JavaScript. <a href="https://irenshu.github.io/portfolio/">Все работы</a> · <a href="soglasie.html">Согласие на обработку данных</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

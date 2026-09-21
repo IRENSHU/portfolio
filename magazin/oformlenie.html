@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оформление заказа — Лучина | демо интернет-магазина</title>
+<meta name="description" content="Оформление заказа в демо интернет-магазина: проверка полей, способ получения и оплаты, согласие на обработку данных.">
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="styles.css">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://irenshu.github.io/portfolio/magazin/oformlenie.html">
+<meta property="og:site_name" content="Портфолио Ирины Шушковой">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Оформление заказа — Лучина | демо интернет-магазина">
+<meta property="og:description" content="Оформление заказа в демо интернет-магазина: проверка полей, способ получения и оплаты, согласие на обработку данных.">
+<meta property="og:image" content="https://irenshu.github.io/portfolio/og/magazin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Оформление заказа — Лучина | демо интернет-магазина">
+<meta name="twitter:description" content="Оформление заказа в демо интернет-магазина: проверка полей, способ получения и оплаты, согласие на обработку данных.">
+<meta name="twitter:image" content="https://irenshu.github.io/portfolio/og/magazin.jpg">
+</head>
+<body data-page="checkout">
+<div class="demo-note"><div class="wrap">Демо интернет-магазина<span class="demo-long">: товары из таблицы Excel, корзина, оформление заказа</span>. Магазин вымышленный, заказы никуда не уходят. <a href="kak-ustroeno.html">Как это устроено</a></div></div>
+<header class="top">
+  <div class="wrap top__in">
+    <a class="logo" href="index.html"><svg viewBox="0 0 22 28" aria-hidden="true"><path d="M11 1.5c.8 4.2 6.5 7 6.5 13.2A6.5 6.5 0 0 1 4.5 14.7c0-2.9 1.6-4.9 3.1-6.3-.1 2.6.8 4 2.1 4.5-.4-4 .3-7.7 1.3-11.4Z" fill="#E0A63A"/><path d="M11 15.5c.4 1.6 2.4 2.6 2.4 4.6a2.4 2.4 0 0 1-4.8 0c0-1.7 1.6-2.8 2.4-4.6Z" fill="#9A4A24"/></svg>Лучина</a>
+    <nav class="menu" aria-label="Разделы">
+      <a href="index.html#katalog">Каталог</a>
+      <a href="index.html#o-nas">О мастерской</a>
+      <a href="dostavka.html">Доставка и возврат</a>
+    </nav>
+    <button class="cart-btn" type="button" aria-label="Корзина"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-btn__label">Корзина</span><span class="cart-btn__n" data-zero>0</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="crumbs" aria-label="Навигация"><a href="index.html">Главная</a> → Оформление заказа</nav>
+
+  <div id="emptyCart" class="done" hidden>
+    <h1>Корзина пуста</h1>
+    <p class="section__lead">Чтобы оформить заказ, добавьте в корзину хотя бы один товар.</p>
+    <p><a class="btn" href="index.html#katalog">Перейти в каталог</a></p>
+  </div>
+
+  <div id="done" class="done" hidden></div>
+
+  <div id="checkoutWrap">
+    <h1 style="font-size:clamp(30px,4vw,42px);margin-top:14px">Оформление заказа</h1>
+    <div class="checkout">
+      <form id="order" novalidate>
+        <div class="box">
+          <h2>Контакты</h2>
+          <div class="field"><label for="name">Имя</label><input id="name" name="name" autocomplete="name" aria-invalid="false"></div>
+          <div class="two">
+            <div class="field"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00" aria-invalid="false"></div>
+            <div class="field"><label for="email">Почта</label><input id="email" name="email" type="email" autocomplete="email" aria-invalid="false"><small>Необязательно — пришлём на неё чек</small></div>
+          </div>
+        </div>
+
+        <div class="box">
+          <h2>Получение</h2>
+          <div class="radios" role="radiogroup" aria-label="Способ получения">
+            <label class="radio"><input type="radio" name="ship" value="pickup" checked><div><b>Самовывоз из мастерской</b><span>Казань, Вахитовский район. Точный адрес пришлём после подтверждения</span></div><em>бесплатно</em></label>
+            <label class="radio"><input type="radio" name="ship" value="courier"><div><b>Курьер по Казани</b><span>На следующий день, интервал 3 часа. Бесплатно от 3&nbsp;000&nbsp;₽</span></div><em id="courierPrice">350 ₽</em></label>
+            <label class="radio"><input type="radio" name="ship" value="pvz"><div><b>Пункт выдачи по России</b><span>СДЭК или Почта России, 2–7 дней. Стоимость по тарифу — напишем при подтверждении</span></div><em>от 290 ₽</em></label>
+          </div>
+          <div class="field" id="addrCourier" hidden><label for="address">Адрес доставки</label><input id="address" name="address" autocomplete="street-address" placeholder="Улица, дом, квартира, подъезд" aria-invalid="false"></div>
+          <div class="field" id="addrPvz" hidden><label for="pvz">Город и адрес пункта выдачи</label><input id="pvz" name="pvz" placeholder="Например: Самара, ул. Ленинградская, 60, СДЭК" aria-invalid="false"></div>
+        </div>
+
+        <div class="box">
+          <h2>Оплата</h2>
+          <div class="radios" role="radiogroup" aria-label="Способ оплаты">
+            <label class="radio"><input type="radio" name="pay" value="link" checked><div><b>Картой или по СБП по ссылке</b><span>Пришлём ссылку на оплату после подтверждения заказа</span></div></label>
+            <label class="radio"><input type="radio" name="pay" value="cash"><div><b>При получении</b><span id="cashNote">Наличными или картой курьеру либо в мастерской</span></div></label>
+          </div>
+          <div class="field"><label for="comment">Комментарий к заказу</label><textarea id="comment" name="comment" maxlength="500"></textarea><small>Например, текст для открытки или удобное время звонка</small></div>
+
+          <label class="check"><input type="checkbox" id="consent"><span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> — имени, телефона, почты и адреса — для оформления и доставки заказа</span></label>
+          <label class="check"><input type="checkbox" id="terms"><span>Ознакомлен(а) с <a href="dostavka.html" target="_blank" rel="noopener">условиями доставки и возврата</a></span></label>
+
+          <button class="btn btn--wide" type="submit" id="send" disabled style="margin-top:8px">Подтвердить заказ</button>
+          <p class="form-err" id="formErr" role="alert" hidden></p>
+        </div>
+      </form>
+
+      <aside>
+        <div class="box summary">
+          <h2>Ваш заказ</h2>
+          <div id="summary"></div>
+          <p style="margin:12px 0 0"><button class="line__del" type="button" data-open-cart>Изменить состав заказа</button></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <h4>Лучина</h4>
+        <p>Мастерская свечей и мыла ручной работы. Казань.</p>
+        <p>Телефон: <a href="tel:+78435550123">8 843 555-01-23</a> · ежедневно 10:00–20:00</p>
+      </div>
+      <div>
+        <h4>Покупателям</h4>
+        <p><a href="dostavka.html">Доставка, оплата и возврат</a></p>
+        <p><a href="dostavka.html#prodavets">Сведения о продавце</a></p>
+        <p><a href="soglasie.html">Согласие на обработку данных</a></p>
+      </div>
+      <div>
+        <h4>Для заказчика</h4>
+        <p><a href="kak-ustroeno.html">Как устроен этот магазин</a></p>
+        <p><a href="tovary.csv" download>Таблица товаров, CSV</a></p>
+        <p><a href="https://irenshu.github.io/portfolio/">Все работы в портфолио</a></p>
+      </div>
+    </div>
+    <p class="footer__note">Демонстрационный магазин для портфолио. Мастерская, товары, цены, телефон и реквизиты вымышленные, заказы никуда не отправляются. Фотографии — Unsplash.</p>
+  </div>
+</footer>
+<script src="shop.js"></script>
+</body>
+</html>

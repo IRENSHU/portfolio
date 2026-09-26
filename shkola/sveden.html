@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сведения об образовательной организации — Школа № 27 (демо)</title>
+<meta name="description" content="Демонстрация раздела «Сведения об образовательной организации»: подразделы по установленной структуре, разметка данных для надзорных систем, документы, руководство, педагогический состав, питание, доступная среда.">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .sv-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 8px}
+  .sv-nav a{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+    text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
+  .sv-nav a:hover{border-color:var(--blue)}
+  .sv{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:16px}
+  .sv h2{font-size:1.3rem;margin-bottom:4px}
+  .sv .code{font-size:.8rem;color:var(--muted);font-family:"Cascadia Mono",Consolas,monospace}
+  .sv table{margin-top:14px}
+  .docs{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+  .docs li{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .docs .ext{font-size:.75rem;font-weight:800;color:#fff;background:var(--blue);border-radius:6px;padding:4px 7px}
+  .docs span{display:block;font-size:.85rem;color:var(--muted)}
+  .hint{background:var(--blue-l);border-left:4px solid var(--blue);border-radius:0 12px 12px 0;padding:14px 18px;margin:18px 0}
+  @media (max-width:900px){ .sv-nav{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .sv-nav{grid-template-columns:1fr} .sv{padding:18px} }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Перейти к содержанию</a>
+
+<div class="demo-note"><div class="wrap"><b>Демонстрационная страница.</b> Школа и данные вымышленные. Показана структура раздела и разметка, по которой надзорные системы собирают сведения автоматически.</div></div>
+
+<div class="a11y-bar">
+  <div class="wrap">
+    <button type="button" data-a11y-toggle aria-pressed="false" aria-controls="a11y-panel">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      Версия для слабовидящих
+    </button>
+    <span class="grow">Настройки сохраняются в вашем браузере</span>
+  </div>
+</div>
+
+<div id="a11y-panel" hidden tabindex="-1" aria-label="Настройки версии для слабовидящих">
+  <div class="wrap">
+    <div class="group"><span class="label">Размер текста</span>
+      <button type="button" data-a11y-set="size:m" aria-pressed="true">А</button>
+      <button type="button" data-a11y-set="size:l" aria-pressed="false" style="font-size:1.15em">А</button>
+      <button type="button" data-a11y-set="size:xl" aria-pressed="false" style="font-size:1.35em">А</button>
+    </div>
+    <div class="group"><span class="label">Цвета</span>
+      <button type="button" data-a11y-set="scheme:bw" aria-pressed="true">Чёрным по белому</button>
+      <button type="button" data-a11y-set="scheme:wb" aria-pressed="false">Белым по чёрному</button>
+      <button type="button" data-a11y-set="scheme:bb" aria-pressed="false">Синим по голубому</button>
+    </div>
+    <div class="group"><span class="label">Интервал</span>
+      <button type="button" data-a11y-set="spacing:normal" aria-pressed="true">Обычный</button>
+      <button type="button" data-a11y-set="spacing:wide" aria-pressed="false">Увеличенный</button>
+    </div>
+    <div class="group">
+      <button type="button" data-a11y-toggle aria-pressed="true">Обычная версия</button>
+    </div>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <span class="crest" aria-hidden="true">27</span>
+      <span><b>Школа № 27</b><span>МБОУ «Средняя общеобразовательная школа № 27» г. Казани</span></span>
+    </a>
+    <nav class="main" aria-label="Основные разделы">
+      <a href="index.html">Главная</a>
+      <a href="sveden.html" aria-current="page">Сведения об образовательной организации</a>
+      <a href="index.html#priem">Приём</a>
+      <a href="index.html#obrashchenie">Обращение</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap" style="padding:32px 0 56px">
+
+  <h1>Сведения об образовательной организации</h1>
+  <p class="lead">Раздел заполняется по установленной структуре: у каждого подраздела свой адрес и своя разметка. В демо показаны все подразделы; данные вымышленные.</p>
+
+  <div class="hint">
+    <b>Как это проверяют.</b> Надзорная система заходит на сайт и ищет не текст, а размеченные данные: полное наименование, дату создания, адрес, учредителя, лицензию. Если разметки нет, сведения считаются неразмещёнными, даже когда они написаны на странице. Поэтому в готовой работе я сверяю перечень подразделов и состав разметки с действующей редакцией приказа и прогоняю страницу через сервис проверки, а не полагаюсь на чужой сайт как образец.
+  </div>
+
+  <nav class="sv-nav" aria-label="Подразделы">
+    <a href="#common">Основные сведения</a>
+    <a href="#struct">Структура и органы управления</a>
+    <a href="#document">Документы</a>
+    <a href="#education">Образование</a>
+    <a href="#eduStandarts">Образовательные стандарты</a>
+    <a href="#managers">Руководство</a>
+    <a href="#employees">Педагогический состав</a>
+    <a href="#objects">Материально-техническое обеспечение</a>
+    <a href="#paid_edu">Платные образовательные услуги</a>
+    <a href="#budget">Финансово-хозяйственная деятельность</a>
+    <a href="#vacant">Вакантные места для приёма</a>
+    <a href="#grants">Стипендии и меры поддержки</a>
+    <a href="#inter">Международное сотрудничество</a>
+    <a href="#food">Организация питания</a>
+    <a href="#ovz">Доступная среда</a>
+  </nav>
+
+  <section class="sv" id="common">
+    <h2>Основные сведения</h2>
+    <p class="code">подраздел «Основные сведения» · данные размечены для автоматического сбора</p>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/common">
+      <tr><th style="width:38%">Полное наименование</th><td itemprop="fullName">Муниципальное бюджетное общеобразовательное учреждение «Средняя общеобразовательная школа № 27» города Казани</td></tr>
+      <tr><th>Сокращённое наименование</th><td itemprop="shortName">МБОУ «СОШ № 27» г. Казани</td></tr>
+      <tr><th>Дата создания</th><td itemprop="regDate">1 сентября 1972 года</td></tr>
+      <tr><th>Учредитель</th><td itemprop="uchreditel">Исполнительный комитет муниципального образования города Казани</td></tr>
+      <tr><th>Адрес</th><td itemprop="address">420000, Республика Татарстан, город Казань, улица Полевая, дом 12</td></tr>
+      <tr><th>Режим и график работы</th><td itemprop="workTime">Понедельник — пятница с 7:30 до 19:00, суббота с 8:00 до 15:00, воскресенье — выходной</td></tr>
+      <tr><th>Телефон</th><td itemprop="telephone">+7 843 000-00-00</td></tr>
+      <tr><th>Электронная почта</th><td itemprop="email">school27@example.ru</td></tr>
+      <tr><th>Места осуществления образовательной деятельности</th><td itemprop="address">Казань, улица Полевая, дом 12 — основное здание; улица Полевая, дом 12а — спортивный корпус</td></tr>
+    </table>
+  </section>
+
+  <section class="sv" id="struct">
+    <h2>Структура и органы управления образовательной организацией</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/structOrgUprav">
+      <tr><th style="width:26%">Орган управления</th><th>Руководитель</th><th>Контакты</th></tr>
+      <tr><td itemprop="name">Педагогический совет</td><td itemprop="fio">Сергеева Ольга Николаевна</td><td itemprop="email">pedsovet27@example.ru</td></tr>
+      <tr><td itemprop="name">Управляющий совет</td><td itemprop="fio">Гайнуллин Ринат Ильдусович</td><td itemprop="email">sovet27@example.ru</td></tr>
+      <tr><td itemprop="name">Совет обучающихся</td><td itemprop="fio">Петрова Алиса, 10 «А»</td><td itemprop="email">sovet-uch27@example.ru</td></tr>
+    </table>
+    <p style="margin-top:12px">Положения об органах управления размещены в подразделе «Документы».</p>
+  </section>
+
+  <section class="sv" id="document">
+    <h2>Документы</h2>
+    <p>Каждый документ — отдельным файлом, с датой и понятным названием. Сканы подписанных документов дублируются текстовой версией, чтобы их могли прочитать программы экранного доступа.</p>
+    <ul class="docs">
+      <li><span class="ext">PDF</span><div><b>Устав школы</b><span>Утверждён 14 марта 2024 года · 480 КБ</span></div></li>
+      <li><span class="ext">PDF</span><div><b>Лицензия на осуществление образовательной деятельности</b><span>с приложениями · 1,2 МБ</span></div></li>
+      <li><span class="ext">PDF</span><div><b>Свидетельство о государственной аккредитации</b><span>с приложениями · 900 КБ</span></div></li>
+      <li><span class="ext">PDF</span><div><b>Правила внутреннего распорядка обучающихся</b><span>редакция от 30 августа 2026 года · 220 КБ</span></div></li>
+      <li><span class="ext">PDF</span><div><b>Отчёт о результатах самообследования за 2025 год</b><span>опубликован 18 апреля 2026 года · 1,5 МБ</span></div></li>
+      <li><span class="ext">PDF</span><div><b>Предписания надзорных органов и отчёты об исполнении</b><span>за 2024–2026 годы · 310 КБ</span></div></li>
+    </ul>
+  </section>
+
+  <section class="sv" id="education">
+    <h2>Образование</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/education">
+      <tr><th>Уровень образования</th><th>Форма обучения</th><th>Срок</th><th>Язык обучения</th><th>Численность</th></tr>
+      <tr><td itemprop="eduLevel">Начальное общее</td><td itemprop="eduForm">очная</td><td itemprop="learningTerm">4 года</td><td itemprop="eduLang">русский</td><td itemprop="numberBFtotal">512</td></tr>
+      <tr><td itemprop="eduLevel">Основное общее</td><td itemprop="eduForm">очная</td><td itemprop="learningTerm">5 лет</td><td itemprop="eduLang">русский</td><td itemprop="numberBFtotal">620</td></tr>
+      <tr><td itemprop="eduLevel">Среднее общее</td><td itemprop="eduForm">очная</td><td itemprop="learningTerm">2 года</td><td itemprop="eduLang">русский</td><td itemprop="numberBFtotal">208</td></tr>
+    </table>
+    <p style="margin-top:12px">Образовательные программы, учебные планы, календарный учебный график и рабочие программы дисциплин публикуются отдельными файлами с датами утверждения.</p>
+  </section>
+
+  <section class="sv" id="eduStandarts">
+    <h2>Образовательные стандарты и требования</h2>
+    <p>Школа работает по федеральным государственным образовательным стандартам начального, основного и среднего общего образования. Ссылки на действующие редакции стандартов ведут на официальный источник, а не на копии на сторонних сайтах.</p>
+  </section>
+
+  <section class="sv" id="managers">
+    <h2>Руководство</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/managers">
+      <tr><th>ФИО</th><th>Должность</th><th>Контакты</th></tr>
+      <tr><td itemprop="fio">Сергеева Ольга Николаевна</td><td itemprop="post">Директор</td><td><span itemprop="telephone">+7 843 000-00-01</span>, <span itemprop="email">director27@example.ru</span></td></tr>
+      <tr><td itemprop="fio">Ахметова Лилия Рафаэлевна</td><td itemprop="post">Заместитель директора по учебной работе</td><td itemprop="email">uch27@example.ru</td></tr>
+      <tr><td itemprop="fio">Кузьмин Павел Андреевич</td><td itemprop="post">Заместитель директора по воспитательной работе</td><td itemprop="email">vosp27@example.ru</td></tr>
+    </table>
+  </section>
+
+  <section class="sv" id="employees">
+    <h2>Педагогический состав</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/employees">
+      <tr><th>ФИО</th><th>Должность</th><th>Преподаваемые предметы</th><th>Образование, стаж</th></tr>
+      <tr><td itemprop="fio">Валиева Гульнара Маратовна</td><td itemprop="post">Учитель</td><td itemprop="teachingDiscipline">Математика, алгебра, геометрия</td><td>Высшее, КФУ · стаж 21 год</td></tr>
+      <tr><td itemprop="fio">Никитин Сергей Львович</td><td itemprop="post">Учитель</td><td itemprop="teachingDiscipline">Физика, астрономия</td><td>Высшее, КГПУ · стаж 14 лет</td></tr>
+      <tr><td itemprop="fio">Дементьева Анна Игоревна</td><td itemprop="post">Учитель</td><td itemprop="teachingDiscipline">Русский язык, литература</td><td>Высшее, КФУ · стаж 9 лет</td></tr>
+    </table>
+    <p style="margin-top:12px">Сведения о повышении квалификации указываются по каждому педагогу. Фотографии размещаются только с письменного согласия сотрудника.</p>
+  </section>
+
+  <section class="sv" id="objects">
+    <h2>Материально-техническое обеспечение и оснащённость образовательного процесса</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/objects">
+      <tr><th>Объект</th><th>Количество</th><th>Доступ для инвалидов</th></tr>
+      <tr><td itemprop="name">Учебные кабинеты</td><td>42</td><td itemprop="objectOvz">частично приспособлены</td></tr>
+      <tr><td itemprop="name">Спортивный зал</td><td>2</td><td itemprop="objectOvz">приспособлен</td></tr>
+      <tr><td itemprop="name">Библиотека</td><td>1</td><td itemprop="objectOvz">приспособлена</td></tr>
+      <tr><td itemprop="name">Столовая на 200 мест</td><td>1</td><td itemprop="objectOvz">приспособлена</td></tr>
+    </table>
+  </section>
+
+  <section class="sv" id="paid_edu">
+    <h2>Платные образовательные услуги</h2>
+    <p>Школа оказывает платные услуги: подготовка к школе, углублённые занятия по математике и английскому языку. Публикуются образец договора, документ об утверждении стоимости и порядок оказания услуг.</p>
+  </section>
+
+  <section class="sv" id="budget">
+    <h2>Финансово-хозяйственная деятельность</h2>
+    <p>Объём финансового обеспечения, поступление и расходование средств, план финансово-хозяйственной деятельности — отдельными файлами по годам.</p>
+  </section>
+
+  <section class="sv" id="vacant">
+    <h2>Вакантные места для приёма (перевода) обучающихся</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/vacant">
+      <tr><th>Класс</th><th>Свободных мест за счёт бюджета</th><th>По договорам об оказании платных услуг</th></tr>
+      <tr><td itemprop="eduCode">1 классы</td><td itemprop="numberBF">0</td><td itemprop="numberP">0</td></tr>
+      <tr><td itemprop="eduCode">5 классы</td><td itemprop="numberBF">4</td><td itemprop="numberP">0</td></tr>
+      <tr><td itemprop="eduCode">10 классы</td><td itemprop="numberBF">7</td><td itemprop="numberP">0</td></tr>
+    </table>
+  </section>
+
+  <section class="sv" id="grants">
+    <h2>Стипендии и меры поддержки обучающихся</h2>
+    <p>Бесплатное горячее питание для 1–4 классов, компенсация питания для льготных категорий, бесплатные учебники из фонда библиотеки, поддержка при поездках на олимпиады.</p>
+  </section>
+
+  <section class="sv" id="inter">
+    <h2>Международное сотрудничество</h2>
+    <p>Международных договоров и программ школа не заключала. Подраздел обязателен даже при отсутствии сведений: пустой раздел — нарушение, поэтому размещается прямое указание об отсутствии.</p>
+  </section>
+
+  <section class="sv" id="food">
+    <h2>Организация питания в образовательной организации</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/food">
+      <tr><th style="width:38%">Условия питания</th><td>Столовая на 200 мест, горячее питание в две смены, буфет</td></tr>
+      <tr><th>Меню ежедневного горячего питания</th><td itemprop="menu">Публикуется ежедневно отдельным файлом</td></tr>
+      <tr><th>Диетическое меню</th><td>Предоставляется по заявлению родителей и заключению врача</td></tr>
+      <tr><th>Ответственный за питание</th><td itemprop="fio">Гарипова Резеда Наилевна, +7 843 000-00-02</td></tr>
+      <tr><th>Форма обратной связи по питанию</th><td><a href="index.html#obrashchenie">Обращение по вопросам питания</a></td></tr>
+    </table>
+  </section>
+
+  <section class="sv" id="ovz">
+    <h2>Доступная среда</h2>
+    <table itemscope itemtype="http://obrnadzor.gov.ru/microformats/ovz">
+      <tr><th style="width:38%">Пандусы и расширенные проёмы</th><td itemprop="ovzObjects">оборудованы на первом этаже основного здания</td></tr>
+      <tr><th>Специальные учебные кабинеты</th><td itemprop="ovzClasses">кабинет логопеда, кабинет психолога</td></tr>
+      <tr><th>Библиотека</th><td itemprop="ovzLibrary">приспособлена, есть книги с крупным шрифтом</td></tr>
+      <tr><th>Электронные образовательные ресурсы</th><td itemprop="ovzEios">доступны, материалы адаптированы для экранного доступа</td></tr>
+      <tr><th>Общежитие, интернат</th><td itemprop="ovzHostel">не предоставляются</td></tr>
+    </table>
+    <p style="margin-top:12px">Версия сайта для слабовидящих включается кнопкой в верхней части любой страницы.</p>
+  </section>
+
+  <div class="hint">
+    <b>Что я проверяю перед сдачей такого сайта:</b> все подразделы на месте и открываются по своим адресам; разметка считывается сервисом проверки; страницы работают с клавиатуры без мыши; версия для слабовидящих переключает размеры, цвета и интервалы и запоминает выбор; документы открываются и подписаны датами; сайт открывается на медленном интернете за пару секунд.
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p><b>МБОУ «Средняя общеобразовательная школа № 27» г. Казани</b><br>
+      420000, Казань, ул. Полевая, 12 · +7 843 000-00-00 · school27@example.ru</p>
+      <p style="margin:0">© <span id="year"></span> Демонстрационный сайт. Данные вымышленные.</p>
+    </div>
+    <div>
+      <p><a href="index.html">Главная</a><br>
+      <a href="soglasie.html">Согласие на обработку персональных данных</a><br>
+      <a href="index.html#trebovaniya">Требования к сайту школы</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="a11y.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

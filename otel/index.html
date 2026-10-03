@@ -49,8 +49,8 @@
 
   /* ---------- первый экран ---------- */
   .hero{position:relative;min-height:min(80vh,640px);display:flex;align-items:flex-end;color:#fff;overflow:hidden}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,16,.2) 0%,rgba(20,36,16,.78) 100%)}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,36,16,.05) 0%,rgba(20,36,16,.2) 45%,rgba(20,36,16,.72) 100%)}
   .hero .wrap{position:relative;z-index:2;padding:72px 0 34px}
   .hero h1{margin:0 0 12px;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-1px;text-shadow:0 2px 22px rgba(0,0,0,.3);max-width:17ch}
   .hero p{margin:0 0 26px;font-size:1.1rem;max-width:50ch;color:#eaf3e2}
@@ -248,7 +248,7 @@
 <main id="top">
 
   <div class="hero">
-    <img src="img/hero.jpg" alt="Деревянный корпус отеля среди сосен">
+    <img src="img/hero.jpg" alt="Современный дом-шалаш со стеклянным фасадом и террасой среди сосен и берёз">
     <div class="wrap">
       <h1>Выходные в сосновом лесу — в 40 минутах от Казани</h1>
       <p>Номера и отдельный дом с баней. Цену за ваши даты видно сразу — с выходными, завтраками и баней, без доплат на ресепшене.</p>
@@ -605,7 +605,7 @@ function plural(n, one, few, many){
 
 /* ---------- галерея ---------- */
 const PHOTOS = [
-  { src:'img/hero.jpg',           cap:'Главный корпус среди сосен' },
+  { src:'img/hero.jpg',           cap:'Дом-шалаш с террасой среди сосен' },
   { src:'img/nomer-standart.jpg', cap:'Номер «Стандарт» — мансарда' },
   { src:'img/nomer-komfort.jpg',  cap:'Номер «Комфорт»' },
   { src:'img/nomer-semya.jpg',    cap:'Номер «Семейный»' },

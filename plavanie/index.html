@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренер по плаванию Алексей Волков, Казань | Дети с 5 лет и взрослые с нуля</title>
+<meta name="description" content="Демонстрационный сайт-визитка тренера по плаванию: расписание по бассейнам со свободными окнами, цены с расчётом абонемента, отзывы с модерацией, запись с отдельным согласием на обработку данных.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сайт-визитка тренера по плаванию: расписание, цены, отзывы">
+<meta property="og:description" content="Свободные окна в расписании, расчёт абонемента, отзывы через модерацию, запись в один клик.">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root{
+    --bg:#F3F8FA;
+    --bg2:#E6F1F5;
+    --card:#FFFFFF;
+    --ink:#0E2A3B;
+    --muted:#4F6675;
+    --line:#D7E6EC;
+    --sea:#0B7A93;
+    --sea-dark:#08627A;
+    --sea-soft:#DDF1F5;
+    --sun:#F2994A;
+    --sun-dark:#C9711F;
+    --sun-soft:#FDEBDA;
+    --ok:#2F7D4F;
+    --font:'Manrope',-apple-system,"Segoe UI",Roboto,sans-serif;
+    --display:'Unbounded','Manrope',sans-serif;
+    --r:18px;
+    --r-lg:28px;
+    --t:.25s cubic-bezier(.4,0,.2,1);
+    --shadow:0 1px 2px rgba(14,42,59,.05),0 18px 40px -16px rgba(11,90,115,.28);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:
+      radial-gradient(800px 500px at 100% 0%,rgba(11,122,147,.10),transparent 70%),
+      radial-gradient(700px 500px at 0% 40%,rgba(242,153,74,.08),transparent 70%),
+      var(--bg);
+    font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-text-size-adjust:100%}
+  h1,h2,h3{margin:0;line-height:1.12;font-weight:800;letter-spacing:-.02em}
+  h1,h2{font-family:var(--display);letter-spacing:-.035em;line-height:1.05}
+  h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+  /* лёгкое «зерно» поверх фона, чтобы он не был плоским */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  main,header,footer,.demo-note{position:relative;z-index:1}
+  p{margin:0}
+  a{color:inherit}
+  img,svg{display:block;max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  section{padding:84px 0 0}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sea)}
+  .kicker::before{content:"";width:22px;height:3px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--sea) 0 6px,var(--sun) 6px 12px)}
+  .lead{color:var(--muted);font-size:1.08rem;max-width:620px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font:700 1rem var(--font);cursor:pointer;text-decoration:none;transition:transform var(--t),box-shadow var(--t),background var(--t)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+  .btn--main{background:var(--sea);color:#fff;box-shadow:0 12px 24px -12px rgba(11,122,147,.8)}
+  .btn--main:hover{background:var(--sea-dark)}
+  .btn--sun{background:var(--sun);color:#2b1606}
+  .btn--sun:hover{background:#f5a964}
+  .btn--ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+
+  .demo-note{background:var(--ink);color:#d8e7ee;font-size:.88rem;padding:9px 0}
+  .demo-note b{color:#fff}
+
+  header{position:sticky;top:0;z-index:20;background:rgba(243,248,250,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:70px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .logo__mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(140deg,#13a3bf,var(--sea-dark));display:grid;place-items:center}
+  .logo__text{font-weight:800;line-height:1.1}
+  .logo__text small{display:block;font-weight:600;font-size:.78rem;color:var(--muted)}
+  .nav__links{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:600;font-size:.95rem;color:var(--muted)}
+  .nav__links a{text-decoration:none}
+  .nav__links a:hover{color:var(--ink)}
+
+  /* первый экран */
+  .hero{padding:56px 0 0;position:relative}
+  .hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.6rem);margin:18px 0 20px}
+  /* первый экран появляется по очереди: подпись, заголовок, текст, кнопки */
+  .hero__grid>div:first-child>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero__grid>div:first-child>*:nth-child(2){animation-delay:.08s}.hero__grid>div:first-child>*:nth-child(3){animation-delay:.16s}.hero__grid>div:first-child>*:nth-child(4){animation-delay:.24s}.hero__grid>div:first-child>*:nth-child(5){animation-delay:.32s}
+  .pool{animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .hero h1 em{font-style:normal;color:var(--sea)}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px;padding:0;list-style:none}
+  .facts li{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.92rem;font-weight:600}
+  .facts b{color:var(--sea)}
+  .hero__btns{display:flex;flex-wrap:wrap;gap:12px}
+  .pool{position:relative;border-radius:var(--r-lg);overflow:hidden;background:linear-gradient(180deg,#5cc9dc,#1d93b0 60%,#0d6f8a);aspect-ratio:4/5;box-shadow:var(--shadow)}
+  .pool__lanes{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr)}
+  .pool__lanes span{border-right:6px dotted rgba(255,255,255,.55)}
+  .pool__lanes span:last-child{border-right:0}
+  .pool__wave{position:absolute;left:-10%;width:120%;opacity:.35;animation:wave 7s ease-in-out infinite alternate}
+  .pool__wave--2{animation-duration:9s;opacity:.25;top:42%}
+  @keyframes wave{to{transform:translateX(-6%)}}
+  .pool__card{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-radius:20px;padding:18px 20px}
+  .pool__card h3{font-size:1rem;margin-bottom:10px}
+  .slots{display:flex;flex-direction:column;gap:8px}
+  .slot-mini{display:flex;justify-content:space-between;align-items:center;font-size:.92rem;border:0;background:var(--sea-soft);border-radius:12px;padding:9px 12px;font-family:var(--font);color:var(--ink);cursor:pointer;text-align:left;width:100%}
+  .slot-mini b{font-weight:800}
+  .slot-mini span{color:var(--sea-dark);font-weight:700;font-size:.85rem}
+  .swimmer{position:absolute;top:22%;left:12%;width:58%;animation:swim 6s ease-in-out infinite alternate}
+  @keyframes swim{to{transform:translateX(18%)}}
+
+  /* для кого */
+  .who{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:34px}
+  .who article{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .who .w1{grid-column:span 5;grid-row:span 2;background:linear-gradient(160deg,#13a3bf,var(--sea-dark));color:#fff;border:0;display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
+  .who .w1::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;background:repeating-linear-gradient(90deg,transparent 0 22%,rgba(255,255,255,.35) 22% calc(22% + 5px));opacity:.6;mask:linear-gradient(transparent,#000)}
+  .who .w1 p{color:#dff4f8}
+  .who .w1 .big{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,5vw,3.8rem);letter-spacing:-.04em;line-height:1;position:relative;z-index:1}
+  .who .w1 .big small{display:block;font-family:var(--font);font-size:1rem;font-weight:700;letter-spacing:0;margin-top:8px;color:#dff4f8}
+  .who .w2{grid-column:span 7}.who .w3{grid-column:span 4}.who .w4{grid-column:span 3;background:var(--sun-soft);border-color:#f6d7b8}
+  .who .w1 .age{background:rgba(255,255,255,.2);color:#fff}
+  .who .age{display:inline-block;font-weight:800;font-size:.8rem;color:var(--sun-dark);background:var(--sun-soft);border-radius:999px;padding:5px 11px}
+  .who h3{font-size:1.2rem;margin:16px 0 8px}
+  .who p{color:var(--muted);font-size:.96rem}
+
+  /* расписание */
+  .sched-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+  .tabs{display:flex;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px;flex-wrap:wrap}
+  .tabs button{border:0;background:none;border-radius:999px;padding:9px 16px;font:700 .92rem var(--font);color:var(--muted);cursor:pointer}
+  .tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .legend{display:flex;gap:18px;margin:18px 0 0;font-size:.9rem;color:var(--muted)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+  .week{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+  .day h3{font-size:.95rem;margin-bottom:10px}
+  .day h3 small{display:block;color:var(--muted);font-weight:600;font-size:.8rem}
+  .slot{display:block;width:100%;text-align:left;border:1.5px solid transparent;border-radius:12px;padding:9px 10px;margin-bottom:8px;font:600 .86rem var(--font);cursor:pointer;transition:var(--t)}
+  .slot b{display:block;font-size:.95rem}
+  .slot--free{background:var(--sea-soft);color:var(--ink)}
+  .slot--free:hover{border-color:var(--sea)}
+  .slot--busy{background:#f1f4f6;color:#8b9aa4;cursor:not-allowed;text-decoration:line-through}
+  .slot--picked{background:var(--sea);color:#fff}
+  .day__empty{color:#8b9aa4;font-size:.85rem}
+
+  /* цены */
+  .prices{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:34px;align-items:start}
+  .ptable{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .ptable .row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:18px 24px;border-top:1px solid var(--line)}
+  .ptable .row:first-child{border-top:0}
+  .ptable small{display:block;color:var(--muted);font-size:.88rem}
+  .ptable .pr{font-weight:800;font-size:1.15rem;white-space:nowrap}
+  .calc{background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:28px;position:relative;overflow:hidden}
+  .calc::before{content:"";position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(19,163,191,.55),transparent 65%)}
+  .calc h3{font-size:1.35rem;position:relative}
+  .calc label{display:block;font-size:.85rem;font-weight:700;color:#a9c3cf;margin:18px 0 8px;position:relative}
+  .seg{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+  .seg button{flex:1;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:#fff;border-radius:12px;padding:10px 8px;font:700 .9rem var(--font);cursor:pointer}
+  .seg button[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+  .calc__sum{margin-top:24px;position:relative;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .calc__sum b{font-family:var(--display);font-size:2.3rem;letter-spacing:-.04em}
+  .calc__sum s{color:#8fb0bf}
+  .calc__per{color:#a9c3cf;font-size:.95rem;position:relative;margin-top:4px}
+  .calc .btn{margin-top:20px;width:100%;position:relative}
+
+  /* отзывы */
+  .rev-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+  .rating{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px 18px}
+  .rating b{font-family:var(--display);font-size:2rem;letter-spacing:-.04em}
+  .stars{color:var(--sun);letter-spacing:2px}
+  .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .review{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px}
+  .review__top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .review__who{font-weight:800}
+  .review__who small{display:block;font-weight:600;color:var(--muted);font-size:.82rem}
+  .review p{color:#2c4352;font-size:.96rem}
+  .review--pending{border-style:dashed;border-color:var(--sun);background:#fffaf4}
+  .badge{font-size:.75rem;font-weight:800;border-radius:999px;padding:4px 10px;background:var(--sun-soft);color:var(--sun-dark)}
+  .rev-form{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .rev-form .full{grid-column:1/-1}
+  .rev-note{background:var(--sea-soft);border-radius:var(--r);padding:16px 18px;font-size:.93rem;color:#1f4a5c}
+
+  /* формы */
+  label.f{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}
+  input[type=text],input[type=tel],select,textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:500 1rem var(--font);color:var(--ink);background:#fff}
+  textarea{min-height:110px;resize:vertical}
+  input:focus,select:focus,textarea:focus{border-color:var(--sea)}
+  .pick-stars{display:flex;gap:4px}
+  .pick-stars button{border:0;background:none;font-size:1.7rem;color:#cfdbe1;cursor:pointer;padding:0 2px;line-height:1}
+  .pick-stars button.on{color:var(--sun)}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted)}
+  .consent input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--sea)}
+  .err{color:#b3261e;font-size:.85rem;font-weight:600}
+
+  /* FAQ */
+  .faq{margin-top:28px;display:grid;gap:10px}
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 22px}
+  .faq summary{font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px}
+  .faq summary::after{content:"+";color:var(--sea);font-size:1.3rem;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{margin-top:10px;color:var(--muted)}
+
+  /* запись */
+  .book{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;margin-top:30px;align-items:start}
+  .pools{display:grid;gap:12px}
+  .pools article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px}
+  .pools h3{font-size:1.05rem}
+  .pools p{color:var(--muted);font-size:.93rem;margin-top:4px}
+  .contacts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .bform{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow);display:grid;gap:16px}
+  .bform .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .picked{background:var(--sea-soft);border-radius:12px;padding:12px 14px;font-size:.93rem}
+  .done{background:#e8f5ec;border:1px solid #bfe2cb;color:#1f5a36;border-radius:var(--r);padding:16px 18px}
+
+  footer{margin-top:90px;border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer button{border:0;background:none;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+  dialog{border:0;border-radius:var(--r-lg);max-width:640px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+  dialog::backdrop{background:rgba(14,42,59,.5)}
+  dialog h3{margin-bottom:12px}
+  dialog p,dialog li{color:var(--muted);font-size:.95rem;margin-bottom:8px}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+  @media (max-width:980px){
+    .hero__grid,.prices,.book{grid-template-columns:1fr}
+    .who{grid-template-columns:1fr 1fr}
+    .who .w1,.who .w2,.who .w3,.who .w4{grid-column:span 1;grid-row:auto}
+    .who .w1{grid-column:1/-1;min-height:280px}
+    .week{grid-template-columns:repeat(3,1fr)}
+    .reviews{grid-template-columns:1fr 1fr}
+    .nav__links{display:none}
+    .pool{aspect-ratio:16/11}
+  }
+  @media (max-width:600px){
+    body{font-size:16px}
+    section{padding-top:64px}
+    .who,.reviews,.rev-form,.bform .two{grid-template-columns:1fr}
+    .who .w1{grid-column:auto}
+    .week{grid-template-columns:1fr 1fr}
+    .pool{aspect-ratio:4/5}
+    .nav .btn{padding:10px 16px;font-size:.9rem}
+    /* на телефоне окно — в две строки: время и бассейн сверху, группа снизу */
+    .slot-mini{display:grid;grid-template-columns:1fr auto;gap:2px 10px}
+    .slot-mini .g{grid-column:1/-1;order:3;color:var(--muted);font-size:.85rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap"><b>Демонстрационная страница.</b> Тренер, бассейны, цены и отзывы вымышленные, заявки и отзывы никуда не отправляются. Работают расписание, расчёт абонемента, отзывы и форма записи.</div>
+</div>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Алексей Волков, тренер по плаванию — наверх">
+      <span class="logo__mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M2 16c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><path d="M2 20c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/><circle cx="16" cy="6" r="2.2"/><path d="M5 12l5-4 3 3"/></svg>
+      </span>
+      <span class="logo__text">Алексей Волков<small>тренер по плаванию · Казань</small></span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#komu">Для кого</a></li>
+      <li><a href="#raspisanie">Расписание</a></li>
+      <li><a href="#tseny">Цены</a></li>
+      <li><a href="#otzyvy">Отзывы</a></li>
+      <li><a href="#zapis">Бассейны</a></li>
+    </ul>
+    <a class="btn btn--main" href="#zapis">Записаться</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="kicker">Пробное занятие — 900 ₽</span>
+      <h1>Научу плавать <em>без страха воды</em> — детей с 5 лет и взрослых с нуля</h1>
+      <p class="lead">Индивидуальные и групповые тренировки в двух бассейнах Казани. Ставлю технику кроля и брасса, готовлю к сдаче нормативов и первым стартам.</p>
+      <ul class="facts">
+        <li><b>КМС</b> по плаванию</li>
+        <li><b>12 лет</b> тренерского стажа</li>
+        <li>группы до <b>6 человек</b></li>
+        <li><b>2 бассейна</b>: Вахитовский и Ново-Савиновский районы</li>
+      </ul>
+      <div class="hero__btns">
+        <a class="btn btn--main" href="#raspisanie">Выбрать время</a>
+        <a class="btn btn--ghost" href="#tseny">Цены и абонементы</a>
+      </div>
+    </div>
+    <div class="pool" aria-hidden="false">
+      <div class="pool__lanes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <svg class="pool__wave" style="top:12%" viewBox="0 0 600 60" aria-hidden="true"><path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30" fill="none" stroke="#fff" stroke-width="4"/></svg>
+      <svg class="pool__wave pool__wave--2" viewBox="0 0 600 60" aria-hidden="true"><path d="M0 30 Q50 0 100 30 T200 30 T300 30 T400 30 T500 30 T600 30" fill="none" stroke="#fff" stroke-width="4"/></svg>
+      <!-- пловец кролем: голова, рука над водой, брызги -->
+      <svg class="swimmer" viewBox="0 0 220 90" aria-hidden="true">
+        <path d="M20 58 Q60 46 110 54 T200 52" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="150" cy="44" r="13" fill="#F2994A"/>
+        <path d="M150 34 a13 13 0 0 1 13 10 h-26 a13 13 0 0 1 13 -10z" fill="#0E2A3B"/>
+        <path d="M138 50 Q110 6 74 22" fill="none" stroke="#F7C9A2" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="62" cy="40" r="4" fill="#fff"/><circle cx="54" cy="30" r="3" fill="#fff"/><circle cx="70" cy="30" r="2.5" fill="#fff"/>
+      </svg>
+      <div class="pool__card">
+        <h3>Ближайшие свободные окна</h3>
+        <div class="slots" id="nextSlots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="komu">
+  <div class="wrap">
+    <span class="kicker">Для кого</span>
+    <h2 style="margin-top:14px">Четыре программы — под возраст и цель</h2>
+    <div class="who">
+      <article class="reveal w1"><div><span class="age">5–9 лет · самая частая просьба</span><h3 style="font-size:1.5rem">Дети: первое знакомство с водой</h3><p>Играем, учимся лежать на воде и дышать — без слёз и без погружения с головой, пока ребёнок сам не захочет.</p></div><div class="big">25 м<small>проплывает сам после 8 занятий</small></div></article>
+      <article class="reveal w2"><span class="age">10–16 лет</span><h3>Подростки: техника и нормативы</h3><p>Кроль, брасс, на спине, повороты. Подготовка к соревнованиям и сдаче ГТО.</p></article>
+      <article class="reveal w3"><span class="age">18+</span><h3>Взрослые с нуля</h3><p>Без стыда и спешки, индивидуально или в мини-группе. Начинаем с мелкой части бассейна.</p></article>
+      <article class="reveal w4"><span class="age">18+</span><h3>Триатлон и открытая вода</h3><p>Экономичный кроль на длинные дистанции, ориентирование, старт из толпы.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="raspisanie">
+  <div class="wrap">
+    <div class="sched-head">
+      <div>
+        <span class="kicker">Расписание</span>
+        <h2 style="margin-top:14px">Выберите свободное время</h2>
+        <p class="lead" style="margin-top:10px">Нажмите на свободное окно — оно подставится в форму записи.</p>
+      </div>
+      <div class="tabs" role="group" aria-label="Бассейн">
+        <button type="button" data-pool="all" aria-pressed="true">Все бассейны</button>
+        <button type="button" data-pool="volna" aria-pressed="false">«Волна»</button>
+        <button type="button" data-pool="burevestnik" aria-pressed="false">«Буревестник»</button>
+      </div>
+    </div>
+    <div class="legend"><span><i style="background:var(--sea-soft)"></i>свободно</span><span><i style="background:#e3e8eb"></i>занято</span></div>
+    <div class="week" id="week"></div>
+  </div>
+</section>
+
+<section id="tseny">
+  <div class="wrap">
+    <span class="kicker">Цены</span>
+    <h2 style="margin-top:14px">Цены без звёздочек</h2>
+    <div class="prices">
+      <div class="ptable reveal">
+        <div class="row"><div>Пробное занятие<small>45 минут, знакомство и оценка уровня</small></div><div class="pr">900 ₽</div></div>
+        <div class="row"><div>Групповое занятие<small>до 6 человек, 45 минут</small></div><div class="pr">750 ₽</div></div>
+        <div class="row"><div>Индивидуальное занятие<small>тренер в воде или на бортике, 45 минут</small></div><div class="pr">2 200 ₽</div></div>
+        <div class="row"><div>Сплит: двое с тренером<small>брат с сестрой, пара, друзья</small></div><div class="pr">1 500 ₽ / чел.</div></div>
+        <div class="row"><div>Вход в бассейн<small>оплачивается на кассе бассейна</small></div><div class="pr">от 350 ₽</div></div>
+      </div>
+      <div class="calc reveal" aria-live="polite">
+        <h3>Посчитайте абонемент</h3>
+        <label id="lFmt">Формат</label>
+        <div class="seg" role="group" aria-labelledby="lFmt" id="fmt">
+          <button type="button" data-v="group" aria-pressed="true">Группа</button>
+          <button type="button" data-v="split" aria-pressed="false">Сплит</button>
+          <button type="button" data-v="solo" aria-pressed="false">Индивидуально</button>
+        </div>
+        <label id="lCnt">Количество занятий</label>
+        <div class="seg" role="group" aria-labelledby="lCnt" id="cnt">
+          <button type="button" data-v="4" aria-pressed="false">4</button>
+          <button type="button" data-v="8" aria-pressed="true">8</button>
+          <button type="button" data-v="12" aria-pressed="false">12</button>
+        </div>
+        <div class="calc__sum"><b id="sum">5 400 ₽</b><s id="old">6 000 ₽</s></div>
+        <p class="calc__per" id="per">675 ₽ за занятие · скидка 10 % · действует 5 недель</p>
+        <a class="btn btn--sun" href="#zapis" id="calcBtn">Записаться с этим абонементом</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="otzyvy">
+  <div class="wrap">
+    <div class="rev-head">
+      <div>
+        <span class="kicker">Отзывы</span>
+        <h2 style="margin-top:14px">Что говорят ученики и родители</h2>
+      </div>
+      <div class="rating"><b id="avg">4,9</b><div><div class="stars" id="avgStars">★★★★★</div><small id="cntRev">по 6 отзывам</small></div></div>
+    </div>
+    <div class="reviews" id="reviews"></div>
+
+    <form class="rev-form" id="revForm" novalidate>
+      <div class="full"><h3 style="font-size:1.3rem">Оставить отзыв</h3></div>
+      <div>
+        <label class="f" for="rName">Имя</label>
+        <input type="text" id="rName" autocomplete="given-name" placeholder="Например, Марина">
+      </div>
+      <div>
+        <label class="f" for="rWho">Кто занимается</label>
+        <select id="rWho"><option>Ребёнок</option><option>Я сам(а)</option><option>Подросток</option></select>
+      </div>
+      <div class="full">
+        <span class="f" id="lStars" style="display:block;font-weight:700;font-size:.9rem;margin-bottom:6px">Оценка</span>
+        <div class="pick-stars" role="radiogroup" aria-labelledby="lStars" id="pickStars"></div>
+      </div>
+      <div class="full">
+        <label class="f" for="rText">Отзыв</label>
+        <textarea id="rText" placeholder="Что получилось за время занятий?"></textarea>
+      </div>
+      <label class="consent full"><input type="checkbox" id="rOk"> <span>Согласен(на) на публикацию имени и текста отзыва на сайте</span></label>
+      <p class="err full" id="rErr" hidden></p>
+      <div class="full" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn--main" type="submit">Отправить на проверку</button>
+        <p class="rev-note" style="flex:1;min-width:240px">Отзыв появится после проверки тренером. На настоящем сайте он приходит в Telegram с кнопками «Опубликовать» и «Отклонить» — без админки и без спама.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">Вопросы</span>
+    <h2 style="margin-top:14px">О чём спрашивают перед первым занятием</h2>
+    <div class="faq">
+      <details><summary>Что взять с собой?</summary><p>Купальник или плавки, шапочку, очки, тапочки, полотенце и мыльные принадлежности. Детям до 7 лет — нарукавники не нужны, всё есть у тренера.</p></details>
+      <details><summary>Нужна ли медицинская справка?</summary><p>Да, оба бассейна просят справку от терапевта или педиатра. Её делают в поликлинике за один визит, действует 3 месяца.</p></details>
+      <details><summary>Ребёнок боится воды. Получится?</summary><p>Получится. Первые занятия проходят на мелкой части, в игре и без погружения с головой, пока ребёнок сам не захочет.</p></details>
+      <details><summary>Можно перенести занятие?</summary><p>Да, если предупредить за 12 часов — занятие переносится без списания с абонемента.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="zapis">
+  <div class="wrap">
+    <span class="kicker">Запись</span>
+    <h2 style="margin-top:14px">Где проходят тренировки</h2>
+    <div class="book">
+      <div>
+        <div class="pools">
+          <article><h3>Бассейн «Волна»</h3><p>Вахитовский район · 25 м, 6 дорожек, есть малая чаша для детей</p></article>
+          <article><h3>Бассейн «Буревестник»</h3><p>Ново-Савиновский район · 25 м, 8 дорожек, парковка у входа</p></article>
+        </div>
+        <div class="contacts">
+          <a class="btn btn--main" href="#zapis" onclick="return false">Написать в Telegram</a>
+          <a class="btn btn--ghost" href="#zapis" onclick="return false">WhatsApp</a>
+          <a class="btn btn--ghost" href="#zapis" onclick="return false">+7 900 000-00-00</a>
+        </div>
+      </div>
+      <form class="bform" id="bForm" novalidate>
+        <h3 style="font-size:1.35rem">Записаться на пробное занятие</h3>
+        <div class="picked" id="pickedSlot">Время не выбрано — <a href="#raspisanie">выберите в расписании</a> или оставьте пустым, тренер предложит сам.</div>
+        <div class="two">
+          <div><label class="f" for="bName">Ваше имя</label><input type="text" id="bName" autocomplete="name"></div>
+          <div><label class="f" for="bPhone">Телефон</label><input type="tel" id="bPhone" autocomplete="tel" placeholder="+7"></div>
+        </div>
+        <div class="two">
+          <div><label class="f" for="bWho">Кто будет заниматься</label><select id="bWho"><option>Ребёнок 5–9 лет</option><option>Подросток 10–16 лет</option><option>Взрослый</option></select></div>
+          <div><label class="f" for="bPlan">Формат</label><select id="bPlan"><option>Пробное занятие</option><option>Абонемент: группа, 8 занятий</option><option>Индивидуально</option></select></div>
+        </div>
+        <label class="consent"><input type="checkbox" id="bOk"> <span>Даю <button type="button" class="linkish" id="openConsent" style="border:0;background:none;padding:0;color:var(--sea-dark);font:inherit;text-decoration:underline;cursor:pointer">согласие на обработку персональных данных</button> для связи по записи</span></label>
+        <p class="err" id="bErr" hidden></p>
+        <button class="btn btn--main" type="submit">Отправить заявку</button>
+        <div class="done" id="bDone" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Алексей Волков, тренер по плаванию. Демо-сайт.</span>
+    <span><button type="button" id="openPolicy">Политика обработки данных</button> · <a href="https://irenshu.github.io/portfolio/">Сделано Ириной Шушковой</a></span>
+  </div>
+</footer>
+
+<dialog id="dlg">
+  <h3 id="dlgTitle"></h3>
+  <div id="dlgBody"></div>
+  <form method="dialog"><button class="btn btn--main" style="margin-top:12px">Понятно</button></form>
+</dialog>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const fmtRub = n => n.toLocaleString('ru-RU') + ' ₽';
+
+  // расписание: у тренера два бассейна; busy — окно уже занято
+  const POOLS = { volna:'«Волна»', burevestnik:'«Буревестник»' };
+  const DAYS = ['Пн','Вт','Ср','Чт','Пт','Сб'];
+  const DATES = ['19 окт','20 окт','21 окт','22 окт','23 окт','24 окт'];
+  const SLOTS = [
+    [0,'07:30','volna','Взрослые, индивидуально',true],[0,'17:00','volna','Дети 5–9, группа',false],[0,'18:00','volna','Подростки, группа',true],
+    [1,'08:00','burevestnik','Триатлон',false],[1,'19:30','burevestnik','Взрослые, группа',false],
+    [2,'17:00','volna','Дети 5–9, группа',true],[2,'18:00','volna','Подростки, группа',false],[2,'20:00','volna','Взрослые, индивидуально',false],
+    [3,'08:00','burevestnik','Триатлон',true],[3,'19:30','burevestnik','Взрослые, группа',true],
+    [4,'17:00','volna','Дети 5–9, группа',false],[4,'18:00','volna','Подростки, группа',true],
+    [5,'10:00','burevestnik','Дети 5–9, группа',false],[5,'11:00','burevestnik','Взрослые с нуля',false],[5,'12:30','burevestnik','Индивидуально',true]
+  ];
+  let poolFilter = 'all', picked = null;
+
+  function renderWeek(){
+    const week = $('#week'); week.innerHTML = '';
+    DAYS.forEach((d,i) => {
+      const box = document.createElement('div'); box.className = 'day';
+      box.innerHTML = `<h3>${d}<small>${DATES[i]}</small></h3>`;
+      const list = SLOTS.filter(s => s[0]===i && (poolFilter==='all' || s[2]===poolFilter));
+      if (!list.length) box.insertAdjacentHTML('beforeend','<p class="day__empty">Нет тренировок</p>');
+      list.forEach(s => {
+        const b = document.createElement('button'); b.type = 'button';
+        const id = s.slice(0,3).join('|');
+        b.className = 'slot ' + (s[4] ? 'slot--busy' : 'slot--free') + (picked===id ? ' slot--picked' : '');
+        b.disabled = s[4];
+        b.innerHTML = `<b>${s[1]}</b>${s[3]}<br><small>${POOLS[s[2]]}</small>`;
+        b.setAttribute('aria-label', `${d}, ${DATES[i]}, ${s[1]}, ${s[3]}, бассейн ${POOLS[s[2]]}${s[4]?', занято':''}`);
+        if (!s[4]) b.addEventListener('click', () => pick(s));
+        box.appendChild(b);
+      });
+      week.appendChild(box);
+    });
+  }
+  function pick(s){
+    picked = s.slice(0,3).join('|');
+    renderWeek();
+    $('#pickedSlot').innerHTML = `Выбрано: <b>${DAYS[s[0]]}, ${DATES[s[0]]}, ${s[1]}</b> — ${s[3]}, бассейн ${POOLS[s[2]]}`;
+    location.hash = 'zapis';
+    $('#bName').focus({preventScroll:true});
+  }
+  document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-pressed', x===b));
+    poolFilter = b.dataset.pool; renderWeek();
+  }));
+  // ближайшие свободные окна на первом экране
+  SLOTS.filter(s => !s[4]).slice(0,3).forEach(s => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'slot-mini';
+    b.innerHTML = `<b>${DAYS[s[0]]}, ${s[1]}</b><span class="g">${s[3]}</span><span>${POOLS[s[2]]} →</span>`;
+    b.addEventListener('click', () => pick(s));
+    $('#nextSlots').appendChild(b);
+  });
+  renderWeek();
+
+  // абонемент: скидка растёт с числом занятий, срок — неделя на каждые 2 занятия плюс запас
+  const PRICE = { group:750, split:1500, solo:2200 };
+  const DISCOUNT = { 4:0, 8:.10, 12:.15 };
+  const WEEKS = { 4:3, 8:5, 12:7 };
+  let fmt = 'group', cnt = 8;
+  function calc(){
+    const full = PRICE[fmt]*cnt, d = DISCOUNT[cnt], sum = Math.round(full*(1-d)/50)*50;
+    $('#sum').textContent = fmtRub(sum);
+    $('#old').textContent = d ? fmtRub(full) : '';
+    $('#per').textContent = `${fmtRub(Math.round(sum/cnt))} за занятие${fmt==='split'?' с человека':''}${d?` · скидка ${d*100} %`:''} · действует ${WEEKS[cnt]} недель`;
+  }
+  function seg(id, set){
+    document.querySelectorAll(`#${id} button`).forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll(`#${id} button`).forEach(x => x.setAttribute('aria-pressed', x===b));
+      set(b.dataset.v); calc();
+    }));
+  }
+  seg('fmt', v => fmt = v); seg('cnt', v => cnt = +v); calc();
+  $('#calcBtn').addEventListener('click', () => {
+    const names = {group:'группа', split:'сплит', solo:'индивидуально'};
+    const sel = $('#bPlan');
+    const text = `Абонемент: ${names[fmt]}, ${cnt} занятий`;
+    if (![...sel.options].some(o => o.text===text)) sel.add(new Option(text));
+    sel.value = text;
+  });
+
+  // отзывы: опубликованные + отправленные в этой сессии (ждут проверки)
+  const REVIEWS = [
+    {n:'Марина', w:'мама Сони, 6 лет', s:5, t:'Соня боялась даже умываться. На пятом занятии сама поплыла на спине, сейчас просится в бассейн каждый день.'},
+    {n:'Дмитрий', w:'взрослый с нуля, 41 год', s:5, t:'Всю жизнь стеснялся, что не умею плавать. Восемь индивидуальных занятий — и я проплываю 100 метров кролем.'},
+    {n:'Ильдар', w:'триатлон', s:5, t:'Поставили дыхание на три гребка и выход из воды. На первом старте вышел из воды в середине группы, а не последним.'},
+    {n:'Алсу', w:'мама Тимура, 12 лет', s:5, t:'Готовились к нормативу ГТО. Сдали на золото, при этом без муштры — сын сам ездит на тренировки.'},
+    {n:'Елена', w:'взрослая, группа', s:4, t:'Хорошая маленькая группа, тренер успевает поправить каждого. Хотелось бы больше утренних слотов.'},
+    {n:'Ринат', w:'папа близнецов, 8 лет', s:5, t:'Брали сплит на двоих — выходит дешевле индивидуальных, а внимания столько же.'}
+  ];
+  const pending = [];
+  const starsTxt = n => '★'.repeat(n) + '☆'.repeat(5-n);
+  function renderReviews(){
+    const box = $('#reviews'); box.innerHTML = '';
+    [...pending, ...REVIEWS].forEach(r => {
+      const el = document.createElement('article');
+      el.className = 'review' + (r.p ? ' review--pending' : '');
+      el.innerHTML = `<div class="review__top"><div class="review__who"></div>${r.p?'<span class="badge">на проверке</span>':`<span class="stars" aria-label="${r.s} из 5">${starsTxt(r.s)}</span>`}</div><p></p>`;
+      el.querySelector('.review__who').innerHTML = '';
+      el.querySelector('.review__who').append(r.n, Object.assign(document.createElement('small'), {textContent:r.w}));
+      el.querySelector('p').textContent = r.t;
+      box.appendChild(el);
+    });
+    const avg = REVIEWS.reduce((a,r)=>a+r.s,0)/REVIEWS.length;
+    $('#avg').textContent = avg.toFixed(1).replace('.',',');
+    $('#cntRev').textContent = `по ${REVIEWS.length} отзывам`;
+  }
+  let rating = 0;
+  for (let i=1;i<=5;i++){
+    const b = document.createElement('button'); b.type='button'; b.textContent='★';
+    b.setAttribute('role','radio'); b.setAttribute('aria-label', `${i} из 5`); b.setAttribute('aria-checked','false');
+    b.addEventListener('click', () => { rating = i; [...$('#pickStars').children].forEach((x,k)=>{x.classList.toggle('on',k<i);x.setAttribute('aria-checked',k===i-1)}); });
+    $('#pickStars').appendChild(b);
+  }
+  $('#revForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = $('#rName').value.trim(), t = $('#rText').value.trim(), err = $('#rErr');
+    const msg = !n ? 'Напишите имя' : !rating ? 'Поставьте оценку' : t.length < 15 ? 'Отзыв слишком короткий — хотя бы пара предложений' : !$('#rOk').checked ? 'Нужно согласие на публикацию' : '';
+    if (msg){ err.textContent = msg; err.hidden = false; return; }
+    err.hidden = true;
+    pending.unshift({n, w:$('#rWho').value.toLowerCase(), s:rating, t, p:true});
+    renderReviews(); e.target.reset(); rating = 0; [...$('#pickStars').children].forEach(x=>x.classList.remove('on'));
+    $('#reviews').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  renderReviews();
+
+  // запись
+  $('#bForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const n = $('#bName').value.trim(), ph = $('#bPhone').value.replace(/\D/g,''), err = $('#bErr');
+    const msg = !n ? 'Напишите, как к вам обращаться' : ph.length < 10 ? 'Проверьте номер телефона' : !$('#bOk').checked ? 'Нужно согласие на обработку данных' : '';
+    if (msg){ err.textContent = msg; err.hidden = false; return; }
+    err.hidden = true;
+    const done = $('#bDone');
+    done.textContent = `Спасибо, ${n}! На настоящем сайте заявка пришла бы тренеру в Telegram, и он перезвонил бы в течение часа. Это демо — данные никуда не отправлены.`;
+    done.hidden = false;
+  });
+
+  // согласие и политика — отдельными документами, как требует 152-ФЗ
+  const DOCS = {
+    consent:['Согласие на обработку персональных данных','<p>Я даю согласие ИП Волкову А. (демо) на обработку имени и номера телефона для связи по записи на тренировку. Данные не передаются третьим лицам и хранятся до окончания занятий, но не дольше 1 года.</p><p>Согласие можно отозвать, написав тренеру в Telegram или на почту.</p>'],
+    policy:['Политика обработки персональных данных','<p>Сайт собирает только имя и телефон из формы записи, а также имя и текст отзыва — с отдельного согласия на публикацию.</p><p>Шрифты загружаются с этого же сайта, сторонние счётчики не подключены.</p>']
+  };
+  function openDoc(k){ $('#dlgTitle').textContent = DOCS[k][0]; $('#dlgBody').innerHTML = DOCS[k][1]; $('#dlg').showModal(); }
+  $('#openConsent').addEventListener('click', () => openDoc('consent'));
+  $('#openPolicy').addEventListener('click', () => openDoc('policy'));
+
+  const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }), {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

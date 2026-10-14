@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BoltBots — школа робототехники для детей 6–10 лет | Бесплатное пробное занятие</title>
+<meta name="description" content="Демо-лендинг детской школы робототехники: занятия для детей 6–10 лет в маленьких группах, запись на бесплатное пробное занятие через WhatsApp или Telegram.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BoltBots — робототехника для детей 6–10 лет. Запишитесь на бесплатное пробное занятие">
+<meta property="og:description" content="Дети собирают и программируют настоящих роботов с первого занятия. Группы до 8 человек. Запись в одно касание.">
+<link rel="alternate" hreflang="en" href="https://irenshu.github.io/portfolio/robotics/">
+<link rel="alternate" hreflang="ru" href="https://irenshu.github.io/portfolio/robotics/ru/">
+<link rel="alternate" hreflang="x-default" href="https://irenshu.github.io/portfolio/robotics/">
+<link rel="canonical" href="https://irenshu.github.io/portfolio/robotics/ru/">
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<link rel="stylesheet" href="../../plavanie/fonts/fonts.css">
+<style>
+  :root{
+    --bg:#F6F4FF;
+    --ink:#1B1640;
+    --muted:#585378;
+    --line:#E3DEF7;
+    --card:#FFFFFF;
+    --violet:#6C4BF4;
+    --violet-dark:#5333D9;
+    --violet-soft:#ECE7FF;
+    --lime:#C8F25A;
+    --sky:#DFF1FF;
+    --peach:#FFE6D6;
+    --mint:#DDF6EA;
+    --font:'Manrope',-apple-system,"Segoe UI",Roboto,sans-serif;
+    --display:'Unbounded','Manrope',sans-serif;
+    --r:24px;
+    --r-lg:34px;
+    --t:.25s cubic-bezier(.4,0,.2,1);
+    /* «пластилиновая» тень: внутренний блик + мягкая тень снаружи */
+    --clay:inset 0 -6px 0 rgba(27,22,64,.06),inset 0 2px 0 rgba(255,255,255,.9),0 18px 36px -18px rgba(76,52,190,.35);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);font-size:17px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;background:
+      radial-gradient(700px 520px at 92% -8%,rgba(108,75,244,.18),transparent 70%),
+      radial-gradient(600px 500px at -10% 60%,rgba(200,242,90,.22),transparent 70%),
+      radial-gradient(700px 500px at 60% 110%,rgba(255,170,120,.18),transparent 70%),
+      var(--bg)}
+  h1,h2,h3{margin:0;line-height:1.05;font-weight:800;letter-spacing:-.03em}
+  h1,h2{font-family:var(--display)}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:16px 26px;font:800 1rem var(--font);text-decoration:none;cursor:pointer;transition:transform var(--t),box-shadow var(--t),background var(--t)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
+  .btn--main{background:var(--violet);color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18),0 14px 28px -12px rgba(108,75,244,.8)}
+  .btn--main:hover{background:var(--violet-dark)}
+  .btn--ghost{background:#fff;color:var(--ink);box-shadow:var(--clay)}
+  .demo-note{background:var(--ink);color:#d9d4f5;font-size:.86rem;padding:9px 0}
+  .demo-note b{color:#fff}
+
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none;letter-spacing:-.02em}
+  .logo i{width:40px;height:40px;border-radius:14px;background:var(--violet);display:grid;place-items:center;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2)}
+  .logo b{color:var(--violet)}
+  .hdr-r{display:flex;align-items:center;gap:18px;font-weight:700;font-size:.95rem}
+  .hdr-r .ages{color:var(--muted)}
+  .lang{display:flex;gap:2px;background:#fff;border-radius:999px;padding:4px;box-shadow:var(--clay);font-weight:800;font-size:.85rem}
+  .lang a{padding:7px 11px;border-radius:999px;text-decoration:none;color:var(--muted)}
+  .lang a[aria-current]{background:var(--ink);color:#fff}
+
+  /* экран 1 */
+  .hero{padding:30px 0 70px}
+  .hero__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:8px 16px 8px 8px;font-weight:700;font-size:.9rem;box-shadow:var(--clay)}
+  .chip b{background:var(--lime);border-radius:999px;padding:4px 10px;font-size:.78rem}
+  h1{font-size:clamp(2rem,4.4vw,3.4rem);margin:22px 0 20px}
+  /* подчёркивание фоном, а не псевдоэлементом: переносится вместе с длинными словами */
+  h1 .hl{color:var(--violet);background:linear-gradient(transparent 68%,var(--lime) 68%,var(--lime) 92%,transparent 92%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em}
+  .lead{font-size:1.12rem;color:var(--muted);max-width:540px}
+  .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .proof{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
+  .proof div{font-size:.9rem;color:var(--muted);line-height:1.35}
+  .proof b{display:block;font-family:var(--display);font-size:1.6rem;color:var(--ink);letter-spacing:-.03em}
+
+  .stage{position:relative;aspect-ratio:1/1;max-width:520px;justify-self:center;width:100%}
+  .stage__blob{position:absolute;inset:6%;border-radius:42% 58% 55% 45%/48% 42% 58% 52%;background:linear-gradient(150deg,#8B70FF,var(--violet) 55%,#4A2DD0);box-shadow:inset 0 -18px 0 rgba(0,0,0,.12),0 40px 80px -30px rgba(76,52,190,.7);animation:morph 12s ease-in-out infinite alternate}
+  @keyframes morph{to{border-radius:56% 44% 42% 58%/55% 58% 42% 45%}}
+  .robot{position:absolute;inset:10% 12% 4%;width:76%;height:86%}
+  .robot .arm{transform-origin:222px 192px;animation:wave 2.4s ease-in-out infinite}
+  @keyframes wave{0%,100%{transform:rotate(0)}50%{transform:rotate(-22deg)}}
+  .robot .eye{animation:blink 4s infinite;transform-origin:center;transform-box:fill-box}
+  @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+  .robot .antenna{animation:glow 1.6s ease-in-out infinite alternate}
+  @keyframes glow{to{fill:#fff}}
+  .float{position:absolute;background:#fff;border-radius:18px;padding:10px 14px;font-weight:800;font-size:.88rem;box-shadow:var(--clay);display:flex;align-items:center;gap:8px;animation:bob 5s ease-in-out infinite}
+  .float small{display:block;font-weight:600;color:var(--muted);font-size:.75rem}
+  .f1{left:-2%;top:18%}.f2{right:-4%;top:60%;animation-delay:1.2s}.f3{left:6%;bottom:6%;animation-delay:2.4s}
+  @keyframes bob{50%{transform:translateY(-8px)}}
+  .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:1rem}
+
+  /* экран 2 */
+  .learn{padding:40px 0 90px}
+  .learn h2{font-size:clamp(1.9rem,3.8vw,3rem);max-width:760px}
+  .learn .lead{margin-top:14px}
+  .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:36px}
+  .cell{border-radius:var(--r-lg);padding:28px;box-shadow:var(--clay);position:relative;overflow:hidden}
+  .cell h3{font-size:1.3rem;margin:14px 0 8px}
+  .cell p{color:var(--muted);font-size:.98rem}
+  .ico{width:54px;height:54px;border-radius:18px;background:#fff;display:grid;place-items:center;box-shadow:inset 0 -4px 0 rgba(27,22,64,.06)}
+  .c1{grid-column:span 5;grid-row:span 2;background:var(--violet);color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:300px}
+  .c1 p{color:#fff}
+  .c1 .big{font-family:var(--display);font-size:clamp(3rem,6vw,4.6rem);letter-spacing:-.05em;line-height:.9}
+  .c1 .big small{display:block;font-family:var(--font);font-size:1rem;letter-spacing:0;font-weight:700;margin-top:10px;color:#fff}
+  .c2{grid-column:span 4;background:var(--sky)}
+  .c3{grid-column:span 3;background:var(--peach)}
+  .c4{grid-column:span 3;background:var(--mint)}
+  .c5{grid-column:span 4;background:#fff}
+  .ages-tabs{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .ages-tabs button{border:0;border-radius:999px;padding:9px 14px;font:800 .88rem var(--font);background:var(--violet-soft);color:var(--violet-dark);cursor:pointer}
+  .ages-tabs button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  #ageText{margin-top:12px;min-height:3.2em}
+
+  /* запись */
+  .book{margin-top:20px;border-radius:var(--r-lg);background:var(--ink);color:#fff;padding:40px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,90,.45),transparent 65%)}
+  .book h2{font-size:clamp(1.7rem,3.2vw,2.4rem);color:#fff}
+  .book p{color:#c9c2ee;margin-top:12px}
+  .steps{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;padding:0;list-style:none;counter-reset:s}
+  .steps li{counter-increment:s;background:rgba(255,255,255,.08);border-radius:16px;padding:10px 14px;font-size:.9rem;font-weight:700}
+  .steps li::before{content:counter(s);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--lime);color:var(--ink);font-size:.78rem;margin-right:8px}
+  .picker{position:relative;background:#fff;color:var(--ink);border-radius:var(--r);padding:24px;display:grid;gap:14px}
+  .picker label{font-weight:800;font-size:.88rem}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .seg button{flex:1;border:2px solid var(--line);background:#fff;border-radius:14px;padding:11px 8px;font:800 .92rem var(--font);color:var(--ink);cursor:pointer}
+  .seg button[aria-pressed="true"]{border-color:var(--violet);background:var(--violet-soft);color:var(--violet-dark)}
+  /* внутри тёмного блока: свой цвет текста, иначе наследуется светлый */
+  .book .picker p{margin-top:0}
+  .book .msg{background:#f4f2fb;border-radius:14px;padding:12px 14px;font-size:.9rem;color:#3f3a63}
+  .msg b{color:var(--ink)}
+  .mess{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .btn--wa{background:#25D366;color:#073b1d;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+  .btn--tg{background:#2AABEE;color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+  .book .fine{font-size:.78rem;color:#5f5a80;line-height:1.45}
+
+  footer{padding:0 0 40px;color:var(--muted);font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}.d4{animation-delay:.32s}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  @media (max-width:960px){
+    .hero__grid,.book{grid-template-columns:1fr}
+    .stage{max-width:420px}
+    .bento{grid-template-columns:1fr 1fr}
+    .c1,.c2,.c3,.c4,.c5{grid-column:span 1;grid-row:auto}
+    .c1{grid-column:1/-1;min-height:260px}
+    .hdr-r .ages{display:none}
+  }
+  @media (max-width:600px){
+    body{font-size:16px}
+    .bento{grid-template-columns:1fr}
+    .book{padding:26px 20px}
+    .f2{right:0}
+    .mess{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-note">
+  <div class="wrap"><b>Демонстрационная страница.</b> Школа BoltBots, цены и контакты вымышленные; кнопки мессенджеров показывают готовое сообщение, но никуда не отправляют. Пример работы Ирины Шушковой.</div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="BoltBots — наверх">
+      <i aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1"/><circle cx="9.5" cy="13" r="1.2" fill="#fff"/><circle cx="14.5" cy="13" r="1.2" fill="#fff"/></svg></i>
+      Bolt<b>Bots</b>
+    </a>
+    <div class="hdr-r">
+      <nav class="lang" aria-label="Язык"><a href="../" hreflang="en" lang="en">EN</a><a href="./" hreflang="ru" aria-current="page">RU</a></nav>
+      <span class="ages">6–10 лет · маленькие группы</span>
+      <a class="btn btn--main" href="#book" style="padding:12px 20px">Пробное занятие</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- экран 1 -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="chip rise"><b>БЕСПЛАТНО</b> Первое занятие — без покупки набора</span>
+      <h1 class="rise d1">Ваш ребёнок соберёт <span class="hl">настоящего робота</span> на первом уроке</h1>
+      <p class="lead rise d2">Робототехника и программирование для детей 6–10 лет. Дети придумывают, собирают и программируют своих роботов в группах до 8 человек, а после каждого урока вы получаете видео их проекта.</p>
+      <div class="hero__cta rise d3">
+        <a class="btn btn--main" href="#book">Записаться на пробное →</a>
+        <a class="btn btn--ghost" href="#learn">Чему научится ребёнок</a>
+      </div>
+      <div class="proof rise d4">
+        <div><b>8</b>детей максимум<br>в группе</div>
+        <div><b>60 мин</b>урок, один-два<br>раза в неделю</div>
+        <div><b>4,9★</b>оценка от 120+<br>родителей</div>
+      </div>
+    </div>
+
+    <div class="stage" aria-hidden="true">
+      <div class="stage__blob"></div>
+      <!-- робот: голова с антенной, глаза моргают, правая рука машет -->
+      <svg class="robot" viewBox="0 0 300 340">
+        <ellipse cx="150" cy="322" rx="90" ry="12" fill="rgba(0,0,0,.18)"/>
+        <rect x="104" y="268" width="26" height="46" rx="12" fill="#E8E4FF"/>
+        <rect x="170" y="268" width="26" height="46" rx="12" fill="#E8E4FF"/>
+        <rect x="84" y="170" width="132" height="112" rx="34" fill="#fff"/>
+        <rect x="84" y="250" width="132" height="32" rx="16" fill="#E8E4FF"/>
+        <circle cx="150" cy="222" r="20" fill="#C8F25A"/>
+        <path d="M141 222h18M150 213v18" stroke="#1B1640" stroke-width="5" stroke-linecap="round"/>
+        <rect x="46" y="186" width="30" height="72" rx="15" fill="#fff"/>
+        <line x1="150" y1="58" x2="150" y2="34" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+        <circle class="antenna" cx="150" cy="28" r="12" fill="#C8F25A"/>
+        <rect x="72" y="56" width="156" height="118" rx="42" fill="#fff"/>
+        <rect x="92" y="78" width="116" height="72" rx="30" fill="#1B1640"/>
+        <rect class="eye" x="114" y="98" width="20" height="28" rx="10" fill="#C8F25A"/>
+        <rect class="eye" x="166" y="98" width="20" height="28" rx="10" fill="#C8F25A"/>
+        <path d="M134 136q16 10 32 0" stroke="#C8F25A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <circle cx="66" cy="114" r="12" fill="#E8E4FF"/><circle cx="234" cy="114" r="12" fill="#E8E4FF"/>
+        <g class="arm"><rect x="214" y="122" width="30" height="80" rx="15" fill="#fff" stroke="#E8E4FF" stroke-width="3" transform="rotate(28 229 196)"/><circle cx="262" cy="132" r="17" fill="#C8F25A"/></g>
+      </svg>
+      <div class="float f1"><span class="dot" style="background:var(--sky)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B1640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><div>Собираем<small>моторы и датчики</small></div></div>
+      <div class="float f2"><span class="dot" style="background:var(--peach)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B1640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></span><div>Программируем<small>от блоков к Python</small></div></div>
+      <div class="float f3"><span class="dot" style="background:var(--mint)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B1640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg></span><div>Соревнуемся<small>кубок роботов школы</small></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- экран 2 -->
+<section class="learn" id="learn">
+  <div class="wrap">
+    <h2>Не у экрана, а руками: что происходит на уроке</h2>
+    <p class="lead">Каждый урок заканчивается работающим роботом, а не рабочей тетрадью. Дети осваивают инженерию, логику и командную работу и даже не замечают, что учатся.</p>
+
+    <div class="bento">
+      <article class="cell c1">
+        <div><span class="ico" style="background:rgba(255,255,255,.18)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 13v2M15 13v2"/></svg></span><h3>От конструктора к настоящему коду</h3><p>Начинаем с наборов-конструкторов и визуальных блоков, а по мере роста переходим к датчикам, моторам и простому Python.</p></div>
+        <div class="big">12<small>роботов за первый семестр</small></div>
+      </article>
+      <article class="cell c2">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E6FD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4v3a2 2 0 1 0 4 0V3h3v7h-3a2 2 0 1 0 0 4h3v7h-7v-3a2 2 0 1 0-4 0v3H3v-7h3a2 2 0 1 0 0-4H3V3z"/></svg></span><h3>Логика и решение задач</h3><p>Почему робот не поворачивает? Дети пробуют, ошибаются, исправляют — лучший способ научиться думать.</p>
+      </article>
+      <article class="cell c3">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D2662A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/></svg></span><h3>Работа в команде</h3><p>В паре один — инженер, другой — программист, потом меняются.</p>
+      </article>
+      <article class="cell c4">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1F8A5B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3z"/></svg></span><h3>Видео после урока</h3><p>Родители получают ролик с роботом, которого собрал ребёнок.</p>
+      </article>
+      <article class="cell c5">
+        <span class="ico" style="background:var(--violet-soft)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5333D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Программа под каждый возраст</h3>
+        <div class="ages-tabs" role="group" aria-label="Выберите возраст">
+          <button type="button" data-age="6-7" aria-pressed="true">6–7 лет</button>
+          <button type="button" data-age="8-10" aria-pressed="false">8–10 лет</button>
+        </div>
+        <p id="ageText" aria-live="polite"></p>
+      </article>
+    </div>
+
+    <div class="book" id="book">
+      <div>
+        <h2>Запись на пробное занятие в одно касание</h2>
+        <p>Без форм и звонков: выберите возраст ребёнка и удобное время, а затем отправьте готовое сообщение менеджеру в WhatsApp или Telegram. Ответим в течение часа.</p>
+        <ol class="steps"><li>Возраст и время</li><li>Нажмите мессенджер</li><li>Приходите на урок</li></ol>
+      </div>
+      <div class="picker">
+        <label id="lAge">Возраст ребёнка</label>
+        <div class="seg" role="group" aria-labelledby="lAge" id="segAge">
+          <button type="button" data-v="6–7" aria-pressed="true">6–7</button>
+          <button type="button" data-v="8–10" aria-pressed="false">8–10</button>
+        </div>
+        <label id="lTime">Удобное время</label>
+        <div class="seg" role="group" aria-labelledby="lTime" id="segTime">
+          <button type="button" data-v="будни, 16:00–19:00" aria-pressed="true">Будни 16–19</button>
+          <button type="button" data-v="выходные" aria-pressed="false">Выходные</button>
+        </div>
+        <p class="msg" id="msg"></p>
+        <div class="mess">
+          <a class="btn btn--wa" id="wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn--tg" id="tg" href="#" target="_blank" rel="noopener">Telegram</a>
+        </div>
+        <p class="fine">Отправляя сообщение, вы соглашаетесь, что мы используем ваш контакт в мессенджере только для записи на пробное занятие. В рассылки не добавляем.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Школа робототехники BoltBots · демо</span>
+    <span>Лендинг: <a href="https://irenshu.github.io/portfolio/">Ирина Шушкова</a> — чистый HTML, CSS и JS</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const AGES = {
+    '6-7':'Большие яркие наборы, визуальное программирование блоками, много движения. Дети собирают шагающих, рисующих и танцующих роботов и учатся действовать по плану.',
+    '8-10':'Моторы, датчики света и расстояния, первый настоящий код. Дети программируют роботов, которые проходят лабиринты, сортируют предметы и соревнуются на кубке школы.'
+  };
+  function setAge(a){
+    document.querySelectorAll('.ages-tabs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.age===a));
+    $('#ageText').textContent = AGES[a];
+  }
+  document.querySelectorAll('.ages-tabs button').forEach(b => b.addEventListener('click', () => setAge(b.dataset.age)));
+  setAge('6-7');
+
+  // запись через мессенджер: собираем готовое сообщение из выбора родителя
+  const state = {age:'6–7', time:'будни, 16:00–19:00'};
+  const PHONE = '10000000000';      // в демо — несуществующий номер
+  const TG = 'boltbots_demo';       // и несуществующий аккаунт
+  function render(){
+    const text = `Здравствуйте! Хочу записать ребёнка на бесплатное пробное занятие по робототехнике. Возраст: ${state.age} лет. Удобное время: ${state.time}.`;
+    $('#msg').innerHTML = '';
+    $('#msg').append(Object.assign(document.createElement('b'), {textContent:'Ваше сообщение: '}), text);
+    $('#wa').href = `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
+    $('#tg').href = `https://t.me/${TG}?text=${encodeURIComponent(text)}`;
+  }
+  function seg(id, key){
+    document.querySelectorAll(`#${id} button`).forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll(`#${id} button`).forEach(x => x.setAttribute('aria-pressed', x===b));
+      state[key] = b.dataset.v; render();
+    }));
+  }
+  seg('segAge','age'); seg('segTime','time'); render();
+  // это демо: вместо перехода в мессенджер показываем, что произошло бы
+  ['#wa','#tg'].forEach(id => $(id).addEventListener('click', e => {
+    e.preventDefault();
+    alert('Демо: на настоящем сайте откроется ' + (id==='#wa'?'WhatsApp':'Telegram') + ' с уже набранным сообщением.');
+  }));
+})();
+</script>
+</body>
+</html>

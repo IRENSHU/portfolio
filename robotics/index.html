@@ -8,6 +8,10 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="BoltBots — robotics for kids 6–10. Book a free trial lesson">
 <meta property="og:description" content="Kids build and code real robots from the very first lesson. Groups of up to 8. Book a free trial in one tap.">
+<link rel="alternate" hreflang="en" href="https://irenshu.github.io/portfolio/robotics/">
+<link rel="alternate" hreflang="ru" href="https://irenshu.github.io/portfolio/robotics/ru/">
+<link rel="alternate" hreflang="x-default" href="https://irenshu.github.io/portfolio/robotics/">
+<link rel="canonical" href="https://irenshu.github.io/portfolio/robotics/">
 <link rel="stylesheet" href="../fonts/fonts.css">
 <link rel="stylesheet" href="../plavanie/fonts/fonts.css">
 <style>
@@ -59,15 +63,18 @@
   .logo b{color:var(--violet)}
   .hdr-r{display:flex;align-items:center;gap:18px;font-weight:700;font-size:.95rem}
   .hdr-r .ages{color:var(--muted)}
+  .lang{display:flex;gap:2px;background:#fff;border-radius:999px;padding:4px;box-shadow:var(--clay);font-weight:800;font-size:.85rem}
+  .lang a{padding:7px 11px;border-radius:999px;text-decoration:none;color:var(--muted)}
+  .lang a[aria-current]{background:var(--ink);color:#fff}
 
   /* экран 1 */
   .hero{padding:30px 0 70px}
-  .hero__grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
   .chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:8px 16px 8px 8px;font-weight:700;font-size:.9rem;box-shadow:var(--clay)}
   .chip b{background:var(--lime);border-radius:999px;padding:4px 10px;font-size:.78rem}
   h1{font-size:clamp(2.3rem,5.4vw,4.2rem);margin:22px 0 20px}
-  h1 .hl{position:relative;white-space:nowrap;color:var(--violet)}
-  h1 .hl::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.04em;height:.26em;background:var(--lime);border-radius:8px;z-index:-1}
+  /* подчёркивание фоном, а не псевдоэлементом: переносится вместе с длинными словами */
+  h1 .hl{color:var(--violet);background:linear-gradient(transparent 68%,var(--lime) 68%,var(--lime) 92%,transparent 92%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em}
   .lead{font-size:1.12rem;color:var(--muted);max-width:540px}
   .hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
   .proof{display:flex;gap:26px;margin-top:34px;flex-wrap:wrap}
@@ -172,6 +179,7 @@
       Bolt<b>Bots</b>
     </a>
     <div class="hdr-r">
+      <nav class="lang" aria-label="Language"><a href="./" hreflang="en" aria-current="page">EN</a><a href="ru/" hreflang="ru" lang="ru">RU</a></nav>
       <span class="ages">Ages 6–10 · Small groups</span>
       <a class="btn btn--main" href="#book" style="padding:12px 20px">Free trial</a>
     </div>

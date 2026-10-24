@@ -181,9 +181,9 @@
         <p class="note reveal" style="--i:1"><b>Появление при прокрутке</b> по очереди; при наведении карточка приподнимается и слегка наклоняется за курсором, картинка увеличивается.</p>
       </div>
       <div class="cards">
-        <article class="card reveal" style="--i:0"><div class="pic"><div class="g1"></div></div><div class="body"><h3>Тёплый сценарий</h3><p>Карточка услуги или товара с мягкой тенью.</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
-        <article class="card reveal" style="--i:1"><div class="pic"><div class="g2"></div></div><div class="body"><h3>Холодный сценарий</h3><p>Эффекты повторяю по таймингу из прототипа Figma.</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
-        <article class="card reveal" style="--i:2"><div class="pic"><div class="g3"></div></div><div class="body"><h3>Свежий сценарий</h3><p>На телефоне всё работает от касания, без «залипания».</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
+        <article class="card reveal" style="--i:0"><div class="pic"><div class="g1"></div></div><div class="body"><h3>Тёплый сценарий</h3><p>Карточка услуги или товара с мягкой тенью.</p><a class="more" href="#cards" data-title="Тёплый сценарий" data-text="Так выглядит карточка услуги или товара: при наведении она приподнимается, тень становится глубже, а картинка плавно увеличивается. По кнопке может открываться окно с подробностями, как сейчас, или отдельная страница.">Подробнее <span>→</span></a></div></article>
+        <article class="card reveal" style="--i:1"><div class="pic"><div class="g2"></div></div><div class="body"><h3>Холодный сценарий</h3><p>Эффекты повторяю по таймингу из прототипа Figma.</p><a class="more" href="#cards" data-title="Холодный сценарий" data-text="Если в макете Figma настроен прототип с анимацией, я повторяю её: длительность, задержки и плавность переходов. Если прототипа нет — предложу сдержанные эффекты, которые не отвлекают от содержания.">Подробнее <span>→</span></a></div></article>
+        <article class="card reveal" style="--i:2"><div class="pic"><div class="g3"></div></div><div class="body"><h3>Свежий сценарий</h3><p>На телефоне всё работает от касания, без «залипания».</p><a class="more" href="#cards" data-title="Свежий сценарий" data-text="На телефоне нет наведения курсора, поэтому эффекты срабатывают от касания и не «залипают» после него. Наклон за курсором включается только для мыши, а кнопки и ссылки достаточно крупные, чтобы попадать пальцем.">Подробнее <span>→</span></a></div></article>
       </div>
     </div>
   </section>
@@ -316,8 +316,24 @@
   // окно
   const modal = document.getElementById('modal');
   const openModal = () => { modal.classList.add('open'); document.getElementById('close-modal').focus(); };
-  const closeModal = () => { modal.classList.remove('open'); document.getElementById('open-modal').focus(); };
+  const closeModal = () => {
+    modal.classList.remove('open');
+    const last = document.querySelector('.more[data-last]');
+    if (modal.dataset.back === 'card' && last) { last.removeAttribute('data-last'); last.focus({ preventScroll: true }); }
+    else document.getElementById('open-modal').focus({ preventScroll: true });
+    delete modal.dataset.back;
+  };
   document.getElementById('open-modal').addEventListener('click', openModal);
+  // «Подробнее» в карточках открывает то же окно со своим текстом
+  const mTitle = document.getElementById('m-title'), mText = modal.querySelector('p');
+  const baseTitle = mTitle.textContent, baseText = mText.textContent;
+  document.getElementById('open-modal').addEventListener('click', () => { mTitle.textContent = baseTitle; mText.textContent = baseText; });
+  document.querySelectorAll('.more').forEach((a) => a.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    mTitle.textContent = a.dataset.title; mText.textContent = a.dataset.text;
+    modal.classList.add('open'); document.getElementById('close-modal').focus();
+    modal.dataset.back = 'card'; a.dataset.last = '1';
+  }));
   document.getElementById('close-modal').addEventListener('click', closeModal);
   modal.addEventListener('click', (ev) => { if (ev.target === modal) closeModal(); });
   addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && modal.classList.contains('open')) closeModal(); });

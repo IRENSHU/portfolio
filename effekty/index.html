@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Эффекты интерфейса — демо | Ирина Шушкова</title>
+<meta name="description" content="Демо эффектов на чистом CSS и JS: появление при прокрутке, наведение, нажатие, фокус, раскрывающиеся блоки, окно, уведомление, счётчики. Без библиотек.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef; --ink: #17181c; --muted: #61646e; --card: #fff; --line: #e4e0d6;
+    --accent: #3d5afe; --accent-2: #ff7a59; --ok: #1f9d55; --err: #d93a3a;
+    --radius: 18px; --ease: cubic-bezier(.2,.8,.2,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Manrope', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- шапка ---------- */
+  header { position: sticky; top: 0; z-index: 20; background: rgba(246,244,239,.85); backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s; }
+  header.scrolled { border-color: var(--line); box-shadow: 0 6px 20px rgba(0,0,0,.05); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  nav { display: flex; gap: 22px; }
+  nav a { text-decoration: none; font-weight: 600; font-size: 15px; position: relative; padding: 4px 0; }
+  /* подчёркивание вырастает слева направо */
+  nav a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+  nav a:hover::after, nav a:focus-visible::after { transform: scaleX(1); }
+  .motion-toggle { font: inherit; font-size: 13px; font-weight: 600; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+  @media (max-width: 720px) { nav { display: none; } }
+
+  /* ---------- первый экран ---------- */
+  .hero { padding: 72px 0 56px; }
+  .tag { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: rgba(61,90,254,.1); padding: 6px 12px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1.05; letter-spacing: -.03em; margin: 18px 0 18px; max-width: 14ch; }
+  .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(.5em); animation: rise .8s var(--ease) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 56ch; }
+  .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+  /* ---------- кнопки: наведение, нажатие, фокус, волна ---------- */
+  .btn { position: relative; overflow: hidden; font: inherit; font-weight: 700; font-size: 16px; border: 0; border-radius: 14px; padding: 15px 24px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background-color .25s; }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px rgba(61,90,254,.28); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(61,90,254,.38); }
+  .btn-primary::before { /* блик пробегает по кнопке при наведении */
+    content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent); transform: skewX(-20deg); transition: left .6s var(--ease); }
+  .btn-primary:hover::before { left: 130%; }
+  .btn-ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: #fff; }
+  .btn .arrow { transition: transform .25s var(--ease); }
+  .btn:hover .arrow { transform: translateX(4px); }
+  .btn:active { transform: translateY(0) scale(.97); }
+  .btn:focus-visible, .field input:focus-visible, .field textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+  .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,.55); transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events: none; }
+  .btn-ghost .ripple { background: rgba(23,24,28,.18); }
+  @keyframes ripple { to { transform: scale(2.6); opacity: 0; } }
+
+  /* ---------- секции и подписи «что это за эффект» ---------- */
+  section { padding: 56px 0; }
+  .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 26px; flex-wrap: wrap; }
+  h2 { font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -.02em; line-height: 1.1; }
+  .note { font-size: 14px; color: var(--muted); background: var(--card); border: 1px dashed var(--line); border-radius: 12px; padding: 10px 14px; max-width: 420px; }
+  .note b { color: var(--ink); }
+
+  /* ---------- появление при прокрутке ---------- */
+  .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- карточки: подъём, наклон за курсором, увеличение картинки ---------- */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); transition: transform .35s var(--ease), box-shadow .35s var(--ease); transform-style: preserve-3d; will-change: transform; }
+  .card:hover { box-shadow: 0 22px 44px rgba(23,24,28,.12); }
+  .card .pic { aspect-ratio: 4/3; overflow: hidden; }
+  .card .pic div { width: 100%; height: 100%; transition: transform .6s var(--ease); }
+  .card:hover .pic div { transform: scale(1.08); }
+  .card .body { padding: 18px 20px 22px; }
+  .card h3 { font-size: 19px; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .card .more { display: inline-flex; gap: 6px; margin-top: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+  .card .more span { transition: transform .25s var(--ease); }
+  .card:hover .more span { transform: translateX(5px); }
+  .g1 { background: linear-gradient(135deg, #ffd3b6, #ff8a65); }
+  .g2 { background: linear-gradient(135deg, #b3c7ff, #3d5afe); }
+  .g3 { background: linear-gradient(135deg, #c8f0d8, #2bb673); }
+
+  /* ---------- счётчики ---------- */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr; } }
+  .stat { background: var(--ink); color: #fff; border-radius: var(--radius); padding: 26px; }
+  .stat .num { font-size: 46px; font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .stat p { color: #b9bcc6; }
+
+  /* ---------- раскрывающиеся вопросы ---------- */
+  .faq { display: grid; gap: 12px; max-width: 760px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  summary { list-style: none; cursor: pointer; padding: 18px 20px; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; align-items: center; transition: background-color .2s; }
+  summary::-webkit-details-marker { display: none; }
+  summary:hover { background: #faf8f3; }
+  summary .plus { width: 26px; height: 26px; flex: none; border-radius: 50%; background: var(--bg); position: relative; transition: transform .35s var(--ease), background-color .25s; }
+  summary .plus::before, summary .plus::after { content: ''; position: absolute; left: 7px; right: 7px; top: 12px; height: 2px; background: var(--ink); }
+  summary .plus::after { transform: rotate(90deg); transition: transform .35s var(--ease); }
+  details[open] summary .plus { transform: rotate(180deg); background: var(--accent); }
+  details[open] summary .plus::before, details[open] summary .plus::after { background: #fff; }
+  details[open] summary .plus::after { transform: rotate(0); }
+  .answer { overflow: hidden; transition: height .4s var(--ease); }
+  .answer p { padding: 0 20px 18px; color: var(--muted); }
+
+  /* ---------- форма: фокус, плавающие подписи, ошибка с потряхиванием ---------- */
+  .form { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; max-width: 560px; display: grid; gap: 16px; }
+  .field { position: relative; }
+  .field input, .field textarea { width: 100%; font: inherit; font-size: 16px; border: 2px solid var(--line); border-radius: 12px; padding: 22px 14px 8px; background: #fff; transition: border-color .25s, box-shadow .25s; resize: vertical; }
+  .field label { position: absolute; left: 16px; top: 16px; color: var(--muted); pointer-events: none; transition: transform .25s var(--ease), color .25s, font-size .25s; transform-origin: left; }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(61,90,254,.12); outline: none; }
+  .field input:focus + label, .field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label { transform: translateY(-10px) scale(.78); color: var(--accent); }
+  .field.err input { border-color: var(--err); animation: shake .4s; }
+  .field .msg { font-size: 13px; color: var(--err); height: 0; overflow: hidden; transition: height .25s; }
+  .field.err .msg { height: 20px; margin-top: 4px; }
+  @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); cursor: pointer; }
+  .check input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; margin-top: 2px; }
+
+  /* ---------- окно и уведомление ---------- */
+  .modal { position: fixed; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(23,24,28,.45); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 50; }
+  .modal.open { opacity: 1; pointer-events: auto; }
+  .modal .box { background: var(--card); border-radius: 22px; padding: 30px; max-width: 420px; width: 100%; transform: translateY(20px) scale(.96); transition: transform .35s var(--ease); }
+  .modal.open .box { transform: none; }
+  .modal h3 { font-size: 24px; margin-bottom: 10px; }
+  .modal p { color: var(--muted); margin-bottom: 20px; }
+  .toast { position: fixed; left: 50%; bottom: 24px; z-index: 60; background: var(--ink); color: #fff; padding: 14px 20px; border-radius: 14px; font-weight: 600; display: flex; gap: 10px; align-items: center;
+    transform: translate(-50%, calc(100% + 40px)); visibility: hidden; transition: transform .45s var(--ease), visibility 0s .45s; box-shadow: 0 16px 34px rgba(0,0,0,.25); }
+  .toast.show { transform: translate(-50%, 0); visibility: visible; transition: transform .45s var(--ease), visibility 0s; }
+  .toast i { width: 22px; height: 22px; border-radius: 50%; background: var(--ok); display: grid; place-items: center; font-style: normal; font-size: 14px; }
+
+  footer { padding: 40px 0 60px; color: var(--muted); font-size: 14px; }
+  footer a { color: var(--accent); }
+
+  /* ---------- уважение к настройке «уменьшить движение» ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    .reveal, .hero h1 .w { opacity: 1 !important; transform: none !important; }
+  }
+  .no-motion *, .no-motion *::before, .no-motion *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .no-motion .reveal, .no-motion .hero h1 .w { opacity: 1 !important; transform: none !important; }
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="wrap">
+    <a class="logo" href="#top">Эффекты<span>.</span>демо</a>
+    <nav><a href="#cards">Карточки</a><a href="#numbers">Счётчики</a><a href="#faq">Вопросы</a><a href="#form">Форма</a></nav>
+    <button class="motion-toggle" id="motion" type="button" aria-pressed="false">Выключить анимацию</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="tag">Чистый CSS и JS, без библиотек</span>
+      <h1 id="title">Живой интерфейс, который не тормозит</h1>
+      <p>Эта страница показывает эффекты, которые я делаю при вёрстке по макету: появление блоков, наведение, нажатие, фокус, раскрывающиеся блоки, окно и уведомление. Наведите курсор, покликайте, прокрутите вниз.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="open-modal" type="button">Открыть окно <span class="arrow">→</span></button>
+        <a class="btn btn-ghost" href="#cards">Смотреть эффекты <span class="arrow">↓</span></a>
+      </div>
+      <p class="note" style="margin-top:22px"><b>Кнопки:</b> подъём и блик при наведении, «вдавливание» и волна при нажатии, заметная рамка при переходе с клавиатуры (Tab).</p>
+    </div>
+  </section>
+
+  <section id="cards">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">Карточки</h2>
+        <p class="note reveal" style="--i:1"><b>Появление при прокрутке</b> по очереди; при наведении карточка приподнимается и слегка наклоняется за курсором, картинка увеличивается.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal" style="--i:0"><div class="pic"><div class="g1"></div></div><div class="body"><h3>Тёплый сценарий</h3><p>Карточка услуги или товара с мягкой тенью.</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
+        <article class="card reveal" style="--i:1"><div class="pic"><div class="g2"></div></div><div class="body"><h3>Холодный сценарий</h3><p>Эффекты повторяю по таймингу из прототипа Figma.</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
+        <article class="card reveal" style="--i:2"><div class="pic"><div class="g3"></div></div><div class="body"><h3>Свежий сценарий</h3><p>На телефоне всё работает от касания, без «залипания».</p><a class="more" href="#cards">Подробнее <span>→</span></a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="numbers">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">Счётчики</h2>
+        <p class="note reveal" style="--i:1"><b>Цифры набегают</b>, когда блок появляется на экране, — один раз, без повторов при каждой прокрутке.</p>
+      </div>
+      <div class="stats">
+        <div class="stat reveal" style="--i:0"><div class="num" data-to="98">0</div><p>баллов скорости в PageSpeed</p></div>
+        <div class="stat reveal" style="--i:1"><div class="num" data-to="0" data-suffix=" КБ">0</div><p>чужих библиотек анимации</p></div>
+        <div class="stat reveal" style="--i:2"><div class="num" data-to="60" data-suffix=" к/с">0</div><p>плавность анимации на телефоне</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">Вопросы</h2>
+        <p class="note reveal" style="--i:1"><b>Плавное раскрытие</b> по высоте, плюс превращается в минус. Работает и с клавиатуры.</p>
+      </div>
+      <div class="faq">
+        <details class="reveal" style="--i:0"><summary>Не замедлят ли эффекты сайт?<span class="plus"></span></summary><div class="answer"><p>Нет. Анимирую только то, что видеокарта обрабатывает быстро (сдвиг, масштаб, прозрачность), а появление блоков запускаю через наблюдатель прокрутки, без постоянных расчётов.</p></div></details>
+        <details class="reveal" style="--i:1"><summary>А если человеку мешает движение на экране?<span class="plus"></span></summary><div class="answer"><p>Если в системе включено «уменьшить движение», анимация автоматически отключается. Кнопка вверху страницы показывает, как это выглядит.</p></div></details>
+        <details class="reveal" style="--i:2"><summary>Можно повторить анимации из Figma?<span class="plus"></span></summary><div class="answer"><p>Да. Если в макете настроен прототип, повторяю эффекты, длительность и плавность переходов.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="form">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="reveal">Форма</h2>
+        <p class="note reveal" style="--i:1"><b>Подписи «всплывают»</b> при вводе, поле подсвечивается в фокусе, ошибка — с лёгким потряхиванием, успешная отправка — уведомлением внизу.</p>
+      </div>
+      <form class="form reveal" id="demo-form" novalidate>
+        <div class="field"><input id="f-name" placeholder=" " autocomplete="name"><label for="f-name">Ваше имя</label><div class="msg">Напишите, как к вам обращаться</div></div>
+        <div class="field"><input id="f-phone" type="tel" placeholder=" " autocomplete="tel"><label for="f-phone">Телефон</label><div class="msg">Нужен номер из 10–11 цифр</div></div>
+        <div class="field"><textarea id="f-text" rows="3" placeholder=" "></textarea><label for="f-text">Комментарий</label></div>
+        <label class="check"><input type="checkbox" checked> Это демо: данные никуда не отправляются</label>
+        <button class="btn btn-primary" type="submit">Отправить <span class="arrow">→</span></button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Демо собрала Ирина Шушкова, вёрстка на чистом HTML, CSS и JS. Другие работы — <a href="../">в портфолио</a>.</div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="box">
+    <h3 id="m-title">Окно с плавным появлением</h3>
+    <p>Фон затемняется, окно выезжает и чуть увеличивается. Закрывается кнопкой, клавишей Esc или кликом по фону.</p>
+    <button class="btn btn-primary" id="close-modal" type="button">Понятно</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><i>✓</i><span>Заявка «отправлена» — это демо</span></div>
+
+<script>
+  document.documentElement.classList.add('js');
+  // заголовок появляется по словам
+  const title = document.getElementById('title');
+  title.innerHTML = title.textContent.split(' ').map((w, i) => `<span class="w" style="animation-delay:${i * 90}ms">${w}</span>`).join(' ');
+
+  // тень у шапки после начала прокрутки
+  const header = document.querySelector('header');
+  addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), { passive: true });
+
+  // появление при прокрутке — один раз для каждого блока; счётчики набегают, когда видны
+  const pending = new Set(document.querySelectorAll('.reveal, .num'));
+  const countUp = (el) => {
+    const to = +el.dataset.to, suffix = el.dataset.suffix || '', start = performance.now(), dur = 1400;
+    const step = (t) => { const p = Math.min(1, (t - start) / dur); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + suffix; if (p < 1) requestAnimationFrame(step); };
+    el.textContent = '0' + suffix; requestAnimationFrame(step);
+    setTimeout(() => { el.textContent = to + suffix; }, dur + 200); // итог — даже если анимация не отрисовалась
+  };
+  const check = () => {
+    pending.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight * .88 && r.bottom > 0) {
+        pending.delete(el);
+        if (el.classList.contains('num')) countUp(el); else el.classList.add('in');
+      }
+    });
+  };
+  addEventListener('scroll', check, { passive: true });
+  addEventListener('resize', check);
+  check();
+
+  // волна при нажатии на кнопку
+  document.querySelectorAll('.btn').forEach((btn) => btn.addEventListener('pointerdown', (ev) => {
+    const r = btn.getBoundingClientRect(), size = Math.max(r.width, r.height), s = document.createElement('span');
+    s.className = 'ripple'; s.style.width = s.style.height = size + 'px';
+    s.style.left = ev.clientX - r.left - size / 2 + 'px'; s.style.top = ev.clientY - r.top - size / 2 + 'px';
+    btn.appendChild(s); setTimeout(() => s.remove(), 650);
+  }));
+
+  // наклон карточки за курсором (только мышь)
+  document.querySelectorAll('.card').forEach((card) => {
+    card.addEventListener('pointermove', (ev) => {
+      if (ev.pointerType !== 'mouse' || document.body.classList.contains('no-motion')) return;
+      const r = card.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
+      card.style.transform = `translateY(-6px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  // плавное раскрытие вопросов по высоте
+  document.querySelectorAll('details').forEach((d) => {
+    const s = d.querySelector('summary'), a = d.querySelector('.answer');
+    s.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      // завершаем и по окончании анимации, и по таймеру — на случай, если анимация не запустилась
+      const done = (fn) => { let ok = false; const fin = () => { if (!ok) { ok = true; fn(); } };
+        a.addEventListener('transitionend', fin, { once: true }); setTimeout(fin, 450); };
+      if (d.open) {
+        a.style.height = a.scrollHeight + 'px'; void a.offsetHeight; a.style.height = '0px';
+        done(() => { d.open = false; a.style.height = ''; });
+      } else {
+        d.open = true; const h = a.scrollHeight; a.style.height = '0px'; void a.offsetHeight; a.style.height = h + 'px';
+        done(() => { a.style.height = ''; });
+      }
+    });
+  });
+
+  // окно
+  const modal = document.getElementById('modal');
+  const openModal = () => { modal.classList.add('open'); document.getElementById('close-modal').focus(); };
+  const closeModal = () => { modal.classList.remove('open'); document.getElementById('open-modal').focus(); };
+  document.getElementById('open-modal').addEventListener('click', openModal);
+  document.getElementById('close-modal').addEventListener('click', closeModal);
+  modal.addEventListener('click', (ev) => { if (ev.target === modal) closeModal(); });
+  addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  // форма: проверка и уведомление
+  const toast = document.getElementById('toast');
+  document.getElementById('demo-form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const name = document.getElementById('f-name'), phone = document.getElementById('f-phone');
+    const bad = [];
+    if (!name.value.trim()) bad.push(name);
+    const digits = phone.value.replace(/\D/g, '');
+    if (digits.length < 10 || digits.length > 11) bad.push(phone);
+    document.querySelectorAll('.field').forEach((f) => f.classList.remove('err'));
+    if (bad.length) { void bad[0].offsetWidth; bad.forEach((el) => el.closest('.field').classList.add('err')); bad[0].focus(); return; }
+    ev.target.reset();
+    toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2800);
+  });
+
+  // переключатель «без анимации» — показывает, как сайт выглядит для тех, у кого включено «уменьшить движение»
+  const motion = document.getElementById('motion');
+  motion.addEventListener('click', () => {
+    const off = document.body.classList.toggle('no-motion');
+    motion.setAttribute('aria-pressed', off); motion.textContent = off ? 'Включить анимацию' : 'Выключить анимацию';
+  });
+</script>
+</body>
+</html>

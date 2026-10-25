@@ -115,11 +115,15 @@
   /* ---------- форма: фокус, плавающие подписи, ошибка с потряхиванием ---------- */
   .form { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; max-width: 560px; display: grid; gap: 16px; }
   .field { position: relative; }
-  .field input, .field textarea { width: 100%; font: inherit; font-size: 16px; border: 2px solid var(--line); border-radius: 12px; padding: 22px 14px 8px; background: #fff; transition: border-color .25s, box-shadow .25s; resize: vertical; }
-  .field label { position: absolute; left: 16px; top: 16px; color: var(--muted); pointer-events: none; transition: transform .25s var(--ease), color .25s, font-size .25s; transform-origin: left; }
-  .field input:focus, .field textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(61,90,254,.12); outline: none; }
+  .field input, .field textarea { width: 100%; font: inherit; font-size: 16px; border: 2px solid var(--line); border-radius: 12px; padding: 24px 44px 8px 14px; background: #fff; transition: border-color .35s, box-shadow .35s, background-color .35s, transform .35s var(--ease); resize: vertical; }
+  .field label { position: absolute; left: 16px; top: 17px; color: var(--muted); pointer-events: none; transition: transform .45s cubic-bezier(.3,1.5,.5,1), color .3s, font-weight .3s; transform-origin: left; }
+  .field input:focus, .field textarea:focus { border-color: var(--accent); background: #f6f7ff; box-shadow: 0 0 0 5px rgba(61,90,254,.2), 0 10px 24px rgba(61,90,254,.15); transform: translateY(-2px); outline: none; }
   .field input:focus + label, .field input:not(:placeholder-shown) + label,
-  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label { transform: translateY(-10px) scale(.78); color: var(--accent); }
+  .field textarea:focus + label, .field textarea:not(:placeholder-shown) + label { transform: translateY(-12px) scale(.74); color: var(--accent); font-weight: 700; }
+  /* поле заполнено правильно — зелёная галочка «впрыгивает» справа */
+  .field::after { content: '✓'; position: absolute; right: 14px; top: 16px; width: 24px; height: 24px; border-radius: 50%; background: var(--ok); color: #fff; font-size: 14px; font-weight: 800; display: grid; place-items: center; transform: scale(0); transition: transform .35s cubic-bezier(.3,1.6,.5,1); pointer-events: none; }
+  .field.ok::after { transform: scale(1); }
+  .field.ok input { border-color: var(--ok); }
   .field.err input { border-color: var(--err); animation: shake .4s; }
   .field .msg { font-size: 13px; color: var(--err); height: 0; overflow: hidden; transition: height .25s; }
   .field.err .msg { height: 20px; margin-top: 4px; }
@@ -220,7 +224,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2 class="reveal">Форма</h2>
-        <p class="note reveal" style="--i:1"><b>Подписи «всплывают»</b> при вводе, поле подсвечивается в фокусе, ошибка — с лёгким потряхиванием, успешная отправка — уведомлением внизу.</p>
+        <p class="note reveal" style="--i:1"><b>Попробуйте:</b> щёлкните в поле «Телефон» — подпись уедет вверх, поле приподнимется и подсветится. Правильно заполненное поле получает зелёную галочку, ошибка — потряхивание и подсказку, отправка — уведомление внизу.</p>
       </div>
       <form class="form reveal" id="demo-form" novalidate>
         <div class="field"><input id="f-name" placeholder=" " autocomplete="name"><label for="f-name">Ваше имя</label><div class="msg">Напишите, как к вам обращаться</div></div>
@@ -338,6 +342,14 @@
   modal.addEventListener('click', (ev) => { if (ev.target === modal) closeModal(); });
   addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
+  // форма: зелёная галочка, когда поле заполнено правильно
+  const fName = document.getElementById('f-name'), fPhone = document.getElementById('f-phone');
+  const okName = () => fName.value.trim().length >= 2;
+  const okPhone = () => { const d = fPhone.value.replace(/\D/g, '').length; return d >= 10 && d <= 11; };
+  [[fName, okName], [fPhone, okPhone]].forEach(([el, ok]) => el.addEventListener('input', () => {
+    const f = el.closest('.field'); f.classList.toggle('ok', ok()); if (ok()) f.classList.remove('err');
+  }));
+
   // форма: проверка и уведомление
   const toast = document.getElementById('toast');
   document.getElementById('demo-form').addEventListener('submit', (ev) => {
@@ -349,7 +361,7 @@
     if (digits.length < 10 || digits.length > 11) bad.push(phone);
     document.querySelectorAll('.field').forEach((f) => f.classList.remove('err'));
     if (bad.length) { void bad[0].offsetWidth; bad.forEach((el) => el.closest('.field').classList.add('err')); bad[0].focus(); return; }
-    ev.target.reset();
+    ev.target.reset(); document.querySelectorAll('.field').forEach((f) => f.classList.remove('ok'));
     toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2800);
   });
 

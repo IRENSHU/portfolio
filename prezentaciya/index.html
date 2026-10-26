@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Презентация для лекции — демо | Ирина Шушкова</title>
+<meta name="description" content="Демо-презентация для лекции «Маркетинг для малого бизнеса: 5 шагов к первым клиентам»: 9 слайдов в PowerPoint и PDF, единый стиль, иконки, диаграмма, заметки докладчика.">
+<style>
+  :root { --ink: #1c1240; --soft: #f4f1ff; --coral: #ff4f6e; --sun: #ffc531; --mint: #19c3a6; --violet: #6c4dff; --muted: #5a5478; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--soft); color: var(--ink); line-height: 1.55; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 40px 0 20px; }
+  .tag { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--violet); background: rgba(108,77,255,.1); padding: 6px 12px; border-radius: 999px; }
+  h1 { font-size: clamp(28px, 4.5vw, 44px); line-height: 1.1; margin: 14px 0 10px; letter-spacing: -.02em; }
+  .lead { color: var(--muted); max-width: 62ch; font-size: 17px; }
+  .viewer { position: relative; margin: 24px 0 14px; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 50px rgba(28,18,64,.18); background: var(--ink); aspect-ratio: 16 / 9; }
+  .viewer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .35s ease; }
+  .viewer img.on { opacity: 1; }
+  .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.2); transition: transform .2s, background-color .2s; }
+  .nav:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+  .nav:focus-visible, .dot:focus-visible, .btn:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+  .prev { left: 14px; } .next { right: 14px; }
+  .counter { position: absolute; right: 14px; bottom: 12px; background: rgba(28,18,64,.75); color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 999px; }
+  .dots { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .dot { width: 34px; height: 8px; border-radius: 999px; border: 0; background: #d6d0f5; cursor: pointer; transition: background-color .2s, width .2s; }
+  .dot.on { background: var(--violet); width: 46px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; padding: 13px 20px; border-radius: 12px; transition: transform .2s, box-shadow .2s; }
+  .btn-main { background: var(--coral); color: #fff; box-shadow: 0 8px 20px rgba(255,79,110,.3); }
+  .btn-alt { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+  .btn:hover { transform: translateY(-2px); }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 30px 0; }
+  @media (max-width: 760px) { .facts { grid-template-columns: 1fr; } .nav { width: 40px; height: 40px; font-size: 18px; } }
+  .fact { background: #fff; border-radius: 16px; padding: 20px; }
+  .fact b { display: block; font-size: 17px; margin-bottom: 6px; }
+  .fact p { color: var(--muted); font-size: 15px; }
+  footer { padding: 20px 0 50px; color: var(--muted); font-size: 14px; }
+  footer a { color: var(--violet); }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <span class="tag">Презентации для выступлений</span>
+  <h1>Маркетинг для малого бизнеса: 5&nbsp;шагов к первым клиентам</h1>
+  <p class="lead">Демо-презентация для лекции: 9 слайдов в едином ярком стиле — схема шагов, портрет клиента, формула УТП, воронка, диаграмма и чек-лист. Листайте стрелками или клавишами ← →.</p>
+</header>
+
+<main class="wrap">
+  <div class="viewer" id="viewer" tabindex="0" aria-roledescription="карусель" aria-label="Слайды презентации">
+    <img class="on" src="slides/slide-01.jpg" alt="Слайд 1: Маркетинг для малого бизнеса — 5 шагов к первым клиентам">
+    <img src="slides/slide-02.jpg" alt="Слайд 2: план из 5 шагов" loading="lazy">
+    <img src="slides/slide-03.jpg" alt="Слайд 3: портрет клиента" loading="lazy">
+    <img src="slides/slide-04.jpg" alt="Слайд 4: УТП в одну фразу" loading="lazy">
+    <img src="slides/slide-05.jpg" alt="Слайд 5: каналы привлечения" loading="lazy">
+    <img src="slides/slide-06.jpg" alt="Слайд 6: воронка продаж" loading="lazy">
+    <img src="slides/slide-07.jpg" alt="Слайд 7: диаграмма заявок по каналам" loading="lazy">
+    <img src="slides/slide-08.jpg" alt="Слайд 8: частые ошибки и как надо" loading="lazy">
+    <img src="slides/slide-09.jpg" alt="Слайд 9: с чего начать уже завтра" loading="lazy">
+    <button class="nav prev" type="button" aria-label="Предыдущий слайд">‹</button>
+    <button class="nav next" type="button" aria-label="Следующий слайд">›</button>
+    <span class="counter" aria-live="polite">1 / 9</span>
+  </div>
+  <div class="dots" role="tablist" aria-label="Выбор слайда"></div>
+
+  <div class="actions">
+    <a class="btn btn-main" href="marketing-5-shagov.pptx" download>Скачать PowerPoint</a>
+    <a class="btn btn-alt" href="marketing-5-shagov.pdf" target="_blank" rel="noopener">Открыть PDF</a>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>Можно править самому</b><p>Тема, цвета и шрифты заданы в макетах PowerPoint: заголовки и тексты меняются без поломки вёрстки.</p></div>
+    <div class="fact"><b>Живая диаграмма</b><p>График — настоящий объект PowerPoint, а не картинка: цифры легко заменить своими.</p></div>
+    <div class="fact"><b>Заметки докладчика</b><p>К каждому слайду — подсказка, что рассказать. Видна в режиме докладчика.</p></div>
+  </div>
+</main>
+
+<footer class="wrap">Демо собрала Ирина Шушкова. Другие работы — <a href="../">в портфолио</a>.</footer>
+
+<script>
+  const imgs = [...document.querySelectorAll('#viewer img')];
+  const counter = document.querySelector('.counter');
+  const dots = document.querySelector('.dots');
+  let i = 0;
+  imgs.forEach((_, n) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (n === 0 ? ' on' : ''); b.type = 'button'; b.setAttribute('aria-label', 'Слайд ' + (n + 1));
+    b.addEventListener('click', () => show(n)); dots.appendChild(b);
+  });
+  function show(n) {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+    [...dots.children].forEach((d, k) => d.classList.toggle('on', k === i));
+    counter.textContent = (i + 1) + ' / ' + imgs.length;
+  }
+  document.querySelector('.prev').addEventListener('click', () => show(i - 1));
+  document.querySelector('.next').addEventListener('click', () => show(i + 1));
+  document.getElementById('viewer').addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+  // свайп на телефоне
+  let x0 = null;
+  document.getElementById('viewer').addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  document.getElementById('viewer').addEventListener('touchend', (e) => {
+    if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null;
+  });
+</script>
+</body>
+</html>

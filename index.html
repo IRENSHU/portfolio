@@ -165,6 +165,34 @@
     .work--wide .work__shot{flex:none;aspect-ratio:16/10;border-right:0;border-bottom:1px solid var(--line)}
     .contact{flex-direction:column;align-items:flex-start}
   }
+
+  /* Эффекты: появление при загрузке и прокрутке, кнопки.
+     Прячем блоки только когда работает JS (класс fx на html) — без него всё видно сразу */
+  @keyframes fx-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes fx-pop{from{opacity:0;transform:scale(.6) rotate(-12deg)}to{opacity:1;transform:none}}
+  .avatar{animation:fx-pop .7s cubic-bezier(.34,1.56,.64,1) both}
+  .intro h1,.intro__role,.intro__text{animation:fx-up .7s cubic-bezier(.2,.7,.2,1) both}
+  .intro__role{animation-delay:.1s}
+  .intro__text{animation-delay:.2s}
+  .skill{animation:fx-up .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.3s + var(--i,0) * .05s)}
+  .skill--link{background:linear-gradient(135deg,var(--accent-2),var(--accent));color:#fff;transition:transform var(--t),box-shadow var(--t)}
+  .skill--link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(31,111,212,.3)}
+  /* скрыто только до появления: после .is-in работают собственные стили карточки, включая подъём при наведении */
+  .fx .reveal:not(.is-in){opacity:0;transform:translateY(28px)}
+  .fx .reveal.is-rising{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+  .work__link{position:relative;overflow:hidden}
+  .work__link::after{
+    content:"";position:absolute;inset:0;transform:translateX(-120%);
+    background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);
+    transition:transform .6s ease;
+  }
+  .work__link:hover::after{transform:translateX(120%)}
+  .work__link:active,.contact__links a:active,.skill--link:active{transform:scale(.96)}
+  .work__link:focus-visible,.contact__links a:focus-visible,.skill--link:focus-visible{outline:3px solid var(--accent-2);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .fx .reveal:not(.is-in){opacity:1;transform:none}
+  }
 </style>
 </head>
 <body>
@@ -181,14 +209,15 @@
         аккуратный код и полная свобода в дизайне.
       </p>
       <div class="skills">
-        <span class="skill">HTML5</span>
-        <span class="skill">CSS3</span>
-        <span class="skill">JavaScript</span>
-        <span class="skill">Адаптивная вёрстка</span>
-        <span class="skill">Figma → код</span>
-        <span class="skill">Формы и валидация</span>
-        <span class="skill">SEO-структура</span>
-        <span class="skill">Деплой и настройка сервера</span>
+        <span class="skill" style="--i:0">HTML5</span>
+        <span class="skill" style="--i:1">CSS3</span>
+        <span class="skill" style="--i:2">JavaScript</span>
+        <span class="skill" style="--i:3">Адаптивная вёрстка</span>
+        <span class="skill" style="--i:4">Figma → код</span>
+        <span class="skill" style="--i:5">Формы и валидация</span>
+        <span class="skill" style="--i:6">SEO-структура</span>
+        <span class="skill" style="--i:7">Деплой и настройка сервера</span>
+        <a class="skill skill--link" style="--i:8" href="effekty/">Анимации и эффекты →</a>
       </div>
     </div>
   </div>
@@ -836,5 +865,33 @@
 
 <footer class="wrap">© 2026 Ирина Шушкова</footer>
 
+<script>
+/* Появление карточек при прокрутке, соседи — с небольшой задержкой друг за другом */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('fx');
+  var items = [].slice.call(document.querySelectorAll('.work, .card, .extra, .section__title, .cards__lead, .cards__sub, .contact'));
+  items.forEach(function(el){ el.classList.add('reveal'); });
+  function check(){
+    var h = innerHeight, k = 0;
+    items = items.filter(function(el){
+      if (el.getBoundingClientRect().top < h * 0.9) {
+        // блоки, показавшиеся одновременно (соседи по строке), выезжают по очереди
+        el.style.setProperty('--d', (Math.min(k++, 4) * 0.09) + 's');
+        el.classList.add('is-rising', 'is-in');
+        // когда карточка встала на место, убираем задержку — иначе наведение срабатывает с опозданием
+        setTimeout(function(){ el.classList.remove('is-rising'); }, 1200);
+        return false;
+      }
+      return true;
+    });
+    if (!items.length) { removeEventListener('scroll', check); removeEventListener('resize', check); }
+  }
+  addEventListener('scroll', check, {passive:true});
+  addEventListener('resize', check);
+  addEventListener('load', check);
+  check();
+})();
+</script>
 </body>
 </html>

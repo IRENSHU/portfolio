@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор 3D-печати — демо на Vue 3</title>
+<meta name="description" content="Демо калькулятора стоимости 3D-печати на Vue 3: загрузка STL прямо в браузере, расчёт объёма, веса и времени печати, 3D-просмотр модели, материалы FDM и фотополимер, срочность и тираж.">
+<meta name="robots" content="noindex, follow">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<style>
+  :root{--bg:#F3F5F8;--card:#fff;--line:#DFE4EB;--text:#121826;--muted:#5B6576;--accent:#FF5A1F;--accent-d:#E04A12;--accent-bg:#FFF0EA;--ok:#17804A;--warn:#9A5B00;--warn-bg:#FFF4D6;--radius:16px}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+  header{padding:32px 0 8px}
+  .kicker{font-size:14px;color:var(--muted)}
+  h1{font-size:clamp(26px,4vw,38px);line-height:1.15;margin:6px 0 10px}
+  .lead{color:var(--muted);margin:0;max-width:760px}
+  .demo-note{display:inline-block;margin-top:12px;background:var(--warn-bg);color:var(--warn);font-size:14px;padding:6px 12px;border-radius:10px}
+  .grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;margin:24px 0}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card + .card{margin-top:20px}
+  h2{font-size:19px;margin:0 0 14px}
+  h3{font-size:15px;margin:18px 0 8px}
+  .tabs{display:flex;gap:6px;background:var(--bg);padding:4px;border-radius:12px;margin-bottom:16px}
+  .tabs button{flex:1;border:0;background:transparent;padding:10px;border-radius:9px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer}
+  .tabs button.on{background:#fff;color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+  .drop{border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+  .drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-bg)}
+  .drop b{display:block;margin-bottom:4px}
+  .drop small{color:var(--muted)}
+  .linkbtn{background:none;border:0;color:var(--accent-d);font:inherit;font-weight:600;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+  .viewer{position:relative;height:300px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#fff 0,#E9EDF3 75%);overflow:hidden;margin-top:14px;touch-action:none}
+  .viewer canvas{display:block;width:100%;height:100%;cursor:grab}
+  .viewer .hint{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.8);padding:3px 8px;border-radius:8px}
+  .viewer .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:20px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .fact{background:var(--bg);border-radius:10px;padding:6px 10px;font-size:14px}
+  .fact b{font-weight:700}
+  .row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  label.f{display:block;font-size:14px;color:var(--muted)}
+  input[type=number],input[type=text],input[type=tel],textarea,select{width:100%;margin-top:4px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;color:var(--text);background:#fff}
+  input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid #FFB79C;outline-offset:1px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer;transition:border-color .15s,background .15s}
+  .chip:hover{border-color:#B9C2CF}
+  .chip.on{border-color:var(--accent);background:var(--accent-bg);font-weight:600}
+  .chip small{color:var(--muted);font-weight:400}
+  .swatch{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);cursor:pointer;padding:0}
+  .swatch.on{box-shadow:0 0 0 2px var(--accent)}
+  .range{display:flex;align-items:center;gap:12px}
+  .range input{flex:1;accent-color:var(--accent)}
+  .range output{min-width:52px;font-weight:700;text-align:right}
+  .check{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}
+  .check input{margin-top:3px;accent-color:var(--accent);width:18px;height:18px}
+  .check span small{display:block;color:var(--muted)}
+  .qty{display:flex;align-items:center;gap:8px}
+  .qty button{width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:20px;cursor:pointer}
+  .qty input{width:90px;text-align:center;margin:0}
+  .sticky{position:sticky;top:16px}
+  .total{font-size:40px;font-weight:800;line-height:1.1;margin:4px 0}
+  .per{color:var(--muted);font-size:14px}
+  .lines{list-style:none;padding:0;margin:16px 0 0;border-top:1px solid var(--line)}
+  .lines li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .lines li span:last-child{white-space:nowrap;font-weight:600}
+  .lines li.disc span:last-child{color:var(--ok)}
+  .alert{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:14px;margin-top:12px}
+  .okmsg{background:#E7F6EE;color:var(--ok);border-radius:10px;padding:12px;font-size:14px;margin-top:12px;white-space:pre-line}
+  .btn{display:block;width:100%;border:0;background:var(--accent);color:#fff;font:inherit;font-weight:700;padding:14px;border-radius:12px;cursor:pointer;margin-top:14px;transition:background .15s,transform .05s}
+  .btn:hover{background:var(--accent-d)}
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{background:#C9CFD8;cursor:not-allowed}
+  .err{color:#B42318;font-size:13px;margin-top:4px}
+  .how{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .how div{background:var(--bg);border-radius:12px;padding:14px;font-size:14px}
+  .how b{display:block;margin-bottom:4px;font-size:15px}
+  footer{padding:8px 0 48px;color:var(--muted);font-size:15px}
+  footer a{color:var(--accent-d)}
+  [v-cloak]{display:none}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="kicker">Демо для интернет-магазина или сервиса 3D-печати</div>
+  <h1>Калькулятор стоимости 3D-печати</h1>
+  <p class="lead">Загрузите модель STL — калькулятор сам посчитает объём, вес и время печати, покажет модель в 3D и назовёт цену с учётом материала, качества, тиража и срочности. Файл никуда не отправляется: всё считается в браузере.</p>
+  <span class="demo-note">Демо: мастерская «Слой» вымышленная, цены и тарифы условные</span>
+</header>
+
+<main class="wrap" id="app" v-cloak>
+  <div class="grid">
+    <div>
+      <section class="card">
+        <h2>1. Модель</h2>
+        <div class="tabs" role="tablist">
+          <button role="tab" :aria-selected="mode==='file'" :class="{on:mode==='file'}" @click="mode='file'">Файл STL</button>
+          <button role="tab" :aria-selected="mode==='manual'" :class="{on:mode==='manual'}" @click="mode='manual'">Нет файла — ввести размеры</button>
+        </div>
+
+        <div v-show="mode==='file'">
+          <div class="drop" :class="{over:dragOver}" tabindex="0" role="button"
+               @click="$refs.file.click()" @keydown.enter="$refs.file.click()"
+               @dragover.prevent="dragOver=true" @dragleave="dragOver=false" @drop.prevent="onDrop">
+            <b>Перетащите файл .stl сюда или нажмите, чтобы выбрать</b>
+            <small>Двоичный и текстовый STL, размеры в миллиметрах</small>
+          </div>
+          <input ref="file" type="file" accept=".stl" hidden @change="onFile">
+          <p style="margin:10px 0 0;font-size:14px">Нет модели под рукой? <button class="linkbtn" @click="loadSample">Посчитать на примере вазы</button></p>
+          <div class="err" v-if="fileError">{{ fileError }}</div>
+        </div>
+
+        <div v-show="mode==='manual'">
+          <div class="row3">
+            <label class="f">Длина, мм<input type="number" min="1" v-model.number="manual.x"></label>
+            <label class="f">Ширина, мм<input type="number" min="1" v-model.number="manual.y"></label>
+            <label class="f">Высота, мм<input type="number" min="1" v-model.number="manual.z"></label>
+          </div>
+          <h3>Форма детали</h3>
+          <div class="chips">
+            <button class="chip" v-for="s in shapes" :key="s.id" :class="{on:manual.shape===s.id}" @click="manual.shape=s.id">{{ s.name }} <small>{{ s.hint }}</small></button>
+          </div>
+        </div>
+
+        <div class="viewer" ref="viewer">
+          <div class="empty" v-if="!model">Здесь появится модель — её можно крутить мышкой или пальцем</div>
+          <span class="hint" v-if="model && mode==='file'">Потяните, чтобы повернуть</span>
+        </div>
+
+        <div class="facts" v-if="geo">
+          <span class="fact" v-if="mode==='file' && model">Файл: <b>{{ model.name }}</b></span>
+          <span class="fact">Габариты: <b>{{ fmt1(geo.bbox[0]) }} × {{ fmt1(geo.bbox[1]) }} × {{ fmt1(geo.bbox[2]) }} мм</b></span>
+          <span class="fact">Объём: <b>{{ fmt1(geo.volume) }} см³</b></span>
+          <span class="fact" v-if="mode==='file' && model">Треугольников: <b>{{ model.tris.toLocaleString('ru-RU') }}</b></span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Технология и материал</h2>
+        <div class="tabs">
+          <button :class="{on:tech==='fdm'}" @click="setTech('fdm')">Пластик (FDM)</button>
+          <button :class="{on:tech==='resin'}" @click="setTech('resin')">Фотополимер</button>
+        </div>
+        <div class="chips">
+          <button class="chip" v-for="m in materials" :key="m.id" :class="{on:materialId===m.id}" @click="materialId=m.id">
+            {{ m.name }} <small>{{ m.note }}</small>
+          </button>
+        </div>
+
+        <h3>Качество слоя</h3>
+        <div class="chips">
+          <button class="chip" v-for="q in qualities" :key="q.id" :class="{on:qualityId===q.id}" @click="qualityId=q.id">
+            {{ q.name }} <small>{{ q.layer }} мм</small>
+          </button>
+        </div>
+
+        <template v-if="tech==='fdm'">
+          <h3>Заполнение</h3>
+          <div class="range">
+            <input type="range" min="10" max="100" step="5" v-model.number="infill" aria-label="Заполнение, процентов">
+            <output>{{ infill }} %</output>
+          </div>
+          <div class="per">20 % — для декора и макетов, 40–60 % — для деталей под нагрузкой</div>
+        </template>
+        <label class="check" v-else>
+          <input type="checkbox" v-model="hollow">
+          <span>Полая модель <small>Стенки 2 мм с дренажными отверстиями — меньше смолы и ниже цена</small></span>
+        </label>
+
+        <h3>Цвет</h3>
+        <div class="chips" style="gap:10px">
+          <button class="swatch" v-for="c in colors" :key="c.hex" :title="c.name" :aria-label="c.name"
+                  :class="{on:color===c.hex}" :style="{background:c.hex}" @click="color=c.hex"></button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. Тираж, обработка и срок</h2>
+        <h3 style="margin-top:0">Количество</h3>
+        <div class="qty">
+          <button @click="qty=Math.max(1,qty-1)" aria-label="Меньше">−</button>
+          <input type="number" min="1" max="1000" v-model.number="qty" aria-label="Количество">
+          <button @click="qty=Math.min(1000,qty+1)" aria-label="Больше">+</button>
+          <span class="per">скидка от 5 шт.</span>
+        </div>
+
+        <h3>Постобработка</h3>
+        <label class="check"><input type="checkbox" v-model="post.sand"><span>Шлифовка <small>Убираем следы слоёв и поддержек</small></span></label>
+        <label class="check"><input type="checkbox" v-model="post.paint"><span>Грунт и покраска <small>Под цвет по каталогу RAL</small></span></label>
+
+        <h3>Срок</h3>
+        <div class="chips">
+          <button class="chip" v-for="u in urgencies" :key="u.id" :class="{on:urgencyId===u.id}" @click="urgencyId=u.id">
+            {{ u.name }} <small>{{ u.note }}</small>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <aside>
+      <div class="sticky">
+        <section class="card">
+          <h2>Стоимость</h2>
+          <template v-if="calc">
+            <div class="total">{{ rub(calc.total) }}</div>
+            <div class="per">{{ qty }} шт. · {{ rub(calc.total / qty) }} за штуку · готово к {{ readyDate }}</div>
+
+            <ul class="lines">
+              <li><span>Вес одной детали</span><span>{{ fmt1(calc.mass) }} г</span></li>
+              <li><span>Время печати одной детали</span><span>{{ hours(calc.time) }}</span></li>
+              <li><span>Материал — {{ material.name }}</span><span>{{ rub(calc.matCost * qty) }}</span></li>
+              <li><span>Работа принтера</span><span>{{ rub(calc.machineCost * qty) }}</span></li>
+              <li v-if="calc.postCost"><span>Постобработка</span><span>{{ rub(calc.postCost * qty) }}</span></li>
+              <li v-if="calc.discount" class="disc"><span>Скидка за тираж {{ calc.discountPct }} %</span><span>−{{ rub(calc.discount) }}</span></li>
+              <li><span>Подготовка файла</span><span>{{ rub(calc.setup) }}</span></li>
+              <li v-if="calc.splitCost"><span>Разделение модели на части</span><span>{{ rub(calc.splitCost) }}</span></li>
+              <li v-if="calc.urgencyAdd"><span>Срочность</span><span>+{{ rub(calc.urgencyAdd) }}</span></li>
+              <li v-if="calc.minApplied"><span>Минимальный заказ</span><span>{{ rub(minOrder) }}</span></li>
+            </ul>
+            <div class="alert" v-if="!calc.fits">Модель больше рабочей области принтера ({{ printer.join(' × ') }} мм). Напечатаем частями и склеим — это уже учтено в цене.</div>
+          </template>
+          <p class="per" v-else>Загрузите модель или введите размеры — цена посчитается сразу.</p>
+        </section>
+
+        <section class="card">
+          <h2>Заказать печать</h2>
+          <form @submit.prevent="submit" novalidate>
+            <label class="f">Имя<input type="text" v-model.trim="lead.name" autocomplete="name"></label>
+            <div class="err" v-if="tried && !lead.name">Как к вам обращаться?</div>
+            <label class="f" style="margin-top:10px">Телефон или Telegram<input type="text" v-model.trim="lead.contact" placeholder="+7 900 000-00-00 или @username"></label>
+            <div class="err" v-if="tried && !contactOk">Укажите телефон или ник в Telegram</div>
+            <label class="f" style="margin-top:10px">Комментарий<textarea rows="2" v-model.trim="lead.comment" placeholder="Например: нужна точность посадочного отверстия"></textarea></label>
+            <label class="check">
+              <input type="checkbox" v-model="lead.consent">
+              <span>Даю согласие на обработку персональных данных <small>Отдельный документ по 152-ФЗ (в демо — без ссылки)</small></span>
+            </label>
+            <div class="err" v-if="tried && !lead.consent">Без согласия заявку отправить нельзя</div>
+            <button class="btn" type="submit" :disabled="!calc">Отправить заявку на {{ calc ? rub(calc.total) : '…' }}</button>
+          </form>
+          <div class="okmsg" v-if="sent">{{ sent }}</div>
+        </section>
+      </div>
+    </aside>
+  </div>
+
+  <section class="card" style="margin-bottom:24px">
+    <h2>Как это устроено</h2>
+    <div class="how">
+      <div><b>Vue 3, Composition API</b>Все параметры — реактивное состояние, цена — цепочка computed: поменяли материал, тираж или срок — пересчёт мгновенно, без кнопки «Рассчитать».</div>
+      <div><b>Разбор STL в браузере</b>Двоичный и текстовый STL читаются через FileReader. Объём считается суммой знаковых объёмов тетраэдров по каждому треугольнику сетки.</div>
+      <div><b>3D-просмотр на WebGL</b>Модель выводится через three.js в цвете выбранного пластика, крутится мышкой и пальцем.</div>
+      <div><b>Тарифы — в одном месте</b>Материалы, ставки и наценки лежат в одном объекте. В рабочей версии их можно получать по REST API из CRM или админки.</div>
+      <div><b>Заявка</b>В демо заявка показывается на странице. В рабочей версии уходит на сервер: в amoCRM, Telegram или на почту — вместе с файлом модели.</div>
+      <div><b>Чего в демо нет</b>Анализа нависаний и поддержек, как в слайсере, и онлайн-оплаты: это серверная часть, время печати здесь оценочное.</div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Ирина Шушкова — фронтенд и сайты для бизнеса. Другие работы, в том числе магазин на Vue 3: <a href="https://irenshu.github.io/portfolio/">irenshu.github.io/portfolio</a>
+</footer>
+
+<script src="https://unpkg.com/vue@3.4.38/dist/vue.global.prod.js"></script>
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script>
+// ---------- разбор STL ----------
+function parseSTL(buf) {
+  const dv = new DataView(buf);
+  let tris = [];
+  const isBinary = buf.byteLength >= 84 && 84 + dv.getUint32(80, true) * 50 === buf.byteLength;
+  if (isBinary) {
+    const n = dv.getUint32(80, true);
+    const pos = new Float32Array(n * 9);
+    for (let i = 0; i < n; i++) {
+      const o = 84 + i * 50 + 12;
+      for (let k = 0; k < 9; k++) pos[i * 9 + k] = dv.getFloat32(o + k * 4, true);
+    }
+    return pos;
+  }
+  const text = new TextDecoder().decode(buf);
+  const re = /vertex\s+([-+\d.eE]+)\s+([-+\d.eE]+)\s+([-+\d.eE]+)/g;
+  let m; while ((m = re.exec(text))) tris.push(+m[1], +m[2], +m[3]);
+  if (!tris.length || tris.length % 9) throw new Error('bad');
+  return new Float32Array(tris);
+}
+function measure(pos) {
+  let v = 0; const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
+  for (let i = 0; i < pos.length; i += 9) {
+    const ax = pos[i], ay = pos[i + 1], az = pos[i + 2], bx = pos[i + 3], by = pos[i + 4], bz = pos[i + 5], cx = pos[i + 6], cy = pos[i + 7], cz = pos[i + 8];
+    v += (ax * (by * cz - bz * cy) - ay * (bx * cz - bz * cx) + az * (bx * cy - by * cx)) / 6;
+    for (let k = 0; k < 9; k++) { const a = k % 3, p = pos[i + k]; if (p < min[a]) min[a] = p; if (p > max[a]) max[a] = p; }
+  }
+  return { volume: Math.abs(v) / 1000, bbox: max.map((x, i) => x - min[i]), tris: pos.length / 9 };
+}
+// образец: ваза — тело вращения, замкнутая сетка
+function sampleVase() {
+  const N = 64, L = 40, H = 120, out = [];
+  const r = z => 22 + 14 * Math.sin((z / H) * Math.PI * 1.25 + 0.3) - (z > H * 0.9 ? 4 : 0);
+  const ring = j => { const z = (j / L) * H, R = r(z); return Array.from({ length: N }, (_, i) => [R * Math.cos(2 * Math.PI * i / N), R * Math.sin(2 * Math.PI * i / N), z]); };
+  const rings = Array.from({ length: L + 1 }, (_, j) => ring(j));
+  const tri = (a, b, c) => out.push(...a, ...b, ...c);
+  for (let j = 0; j < L; j++) for (let i = 0; i < N; i++) {
+    const a = rings[j][i], b = rings[j][(i + 1) % N], c = rings[j + 1][(i + 1) % N], d = rings[j + 1][i];
+    tri(a, b, c); tri(a, c, d);
+  }
+  for (let i = 0; i < N; i++) { tri([0, 0, 0], rings[0][(i + 1) % N], rings[0][i]); tri([0, 0, H], rings[L][i], rings[L][(i + 1) % N]); }
+  return new Float32Array(out);
+}
+
+// ---------- 3D-просмотр (вне реактивности Vue) ----------
+const Viewer = {
+  init(el) {
+    this.el = el;
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    el.appendChild(this.renderer.domElement);
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.PerspectiveCamera(35, 1, 0.1, 5000);
+    this.scene.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, 0.9));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.8); sun.position.set(1, 2, 1.5); this.scene.add(sun);
+    this.group = new THREE.Group(); this.scene.add(this.group);
+    this.rotX = -1.1; this.rotZ = 0.6; this.auto = true;
+    let drag = null;
+    el.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY]; this.auto = false; el.setPointerCapture(e.pointerId); });
+    el.addEventListener('pointermove', e => { if (!drag) return; this.rotZ += (e.clientX - drag[0]) * 0.01; this.rotX += (e.clientY - drag[1]) * 0.01; drag = [e.clientX, e.clientY]; });
+    el.addEventListener('pointerup', () => { drag = null; });
+    new ResizeObserver(() => this.resize()).observe(el);
+    const loop = () => { if (this.auto) this.rotZ += 0.004; this.group.rotation.set(this.rotX, 0, this.rotZ); this.renderer.render(this.scene, this.camera); requestAnimationFrame(loop); };
+    this.resize(); loop();
+  },
+  resize() { const w = this.el.clientWidth, h = this.el.clientHeight; this.renderer.setSize(w, h, false); this.camera.aspect = w / h; this.camera.updateProjectionMatrix(); },
+  show(pos, color) {
+    this.group.clear();
+    if (!pos) return;
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.computeVertexNormals(); g.center(); g.computeBoundingSphere();
+    this.material = new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.05, flatShading: pos.length / 9 < 2000 });
+    this.group.add(new THREE.Mesh(g, this.material));
+    const r = g.boundingSphere.radius;
+    this.camera.position.set(0, 0, r * 4.2); this.camera.lookAt(0, 0, 0);
+    this.auto = true;
+  },
+  color(c) { if (this.material) this.material.color.set(c); }
+};
+function boxMesh(x, y, z) {
+  const g = new THREE.BoxGeometry(x, y, z).toNonIndexed();
+  return new Float32Array(g.attributes.position.array);
+}
+
+// ---------- приложение ----------
+const { createApp, ref, reactive, computed, watch, onMounted } = Vue;
+
+const TARIFF = {
+  setup: 200, minOrder: 500, split: 300,
+  machine: { fdm: 60, resin: 120 },            // ₽ за час работы принтера
+  printer: { fdm: [256, 256, 256], resin: [218, 123, 235] },
+  materials: {
+    fdm: [
+      { id: 'pla', name: 'PLA', note: 'декор, макеты', density: 1.24, price: 3.5 },
+      { id: 'petg', name: 'PETG', note: 'прочный, влагостойкий', density: 1.27, price: 4 },
+      { id: 'abs', name: 'ABS', note: 'термостойкий', density: 1.04, price: 4 },
+      { id: 'tpu', name: 'TPU', note: 'гибкий', density: 1.21, price: 7 },
+      { id: 'pa', name: 'Нейлон', note: 'износостойкий', density: 1.01, price: 9 }
+    ],
+    resin: [
+      { id: 'std', name: 'Стандартная смола', note: 'фигурки, прототипы', density: 1.15, price: 9 },
+      { id: 'tough', name: 'Инженерная', note: 'прочная', density: 1.15, price: 12 },
+      { id: 'jewel', name: 'Ювелирная', note: 'выжигаемая', density: 1.15, price: 14 }
+    ]
+  },
+  qualities: {
+    fdm: [
+      { id: 'draft', name: 'Черновое', layer: 0.28, rate: 18 },   // грамм в час
+      { id: 'std', name: 'Стандарт', layer: 0.2, rate: 12 },
+      { id: 'fine', name: 'Высокое', layer: 0.12, rate: 6 }
+    ],
+    resin: [
+      { id: 'std', name: 'Стандарт', layer: 0.05, rate: 20 },     // мм высоты в час
+      { id: 'fine', name: 'Высокое', layer: 0.025, rate: 10 }
+    ]
+  },
+  urgencies: [
+    { id: 'std', name: 'Обычно', note: '3–5 рабочих дней', k: 1, days: 5 },
+    { id: 'fast', name: 'Быстро', note: '2 дня, +25 %', k: 1.25, days: 2 },
+    { id: 'rush', name: 'Срочно', note: '24 часа, +60 %', k: 1.6, days: 1 }
+  ],
+  discounts: [[100, 25], [50, 20], [10, 12], [5, 6]]
+};
+
+createApp({
+  setup() {
+    const mode = ref('file');
+    const model = ref(null);         // { name, volume, bbox, tris } — без самой сетки
+    let mesh = null;                 // Float32Array держим вне реактивности
+    const fileError = ref(''), dragOver = ref(false);
+    const manual = reactive({ x: 80, y: 60, z: 40, shape: 'mid' });
+    const shapes = [
+      { id: 'solid', name: 'Сплошная', hint: 'брусок, втулка', k: 0.85 },
+      { id: 'mid', name: 'Обычная', hint: 'корпус, держатель', k: 0.45 },
+      { id: 'thin', name: 'Тонкая, ажурная', hint: 'фигурка, решётка', k: 0.2 }
+    ];
+    const tech = ref('fdm'), materialId = ref('pla'), qualityId = ref('std');
+    const infill = ref(20), hollow = ref(false), color = ref('#F2F2EE');
+    const colors = [
+      { hex: '#F2F2EE', name: 'Белый' }, { hex: '#2B2D31', name: 'Чёрный' }, { hex: '#9AA1AA', name: 'Серый' },
+      { hex: '#E0452B', name: 'Красный' }, { hex: '#FF8A1F', name: 'Оранжевый' }, { hex: '#2F6FDB', name: 'Синий' }, { hex: '#3E9B5B', name: 'Зелёный' }
+    ];
+    const qty = ref(1), post = reactive({ sand: false, paint: false }), urgencyId = ref('std');
+    const lead = reactive({ name: '', contact: '', comment: '', consent: false });
+    const tried = ref(false), sent = ref('');
+
+    const materials = computed(() => TARIFF.materials[tech.value]);
+    const qualities = computed(() => TARIFF.qualities[tech.value]);
+    const material = computed(() => materials.value.find(m => m.id === materialId.value));
+    const quality = computed(() => qualities.value.find(q => q.id === qualityId.value) || qualities.value[0]);
+    const urgency = computed(() => TARIFF.urgencies.find(u => u.id === urgencyId.value));
+    const printer = computed(() => TARIFF.printer[tech.value]);
+
+    function setTech(t) { tech.value = t; materialId.value = TARIFF.materials[t][0].id; qualityId.value = 'std'; }
+
+    const geo = computed(() => {
+      if (mode.value === 'file') return model.value && { volume: model.value.volume, bbox: model.value.bbox };
+      const { x, y, z } = manual; if (!(x > 0 && y > 0 && z > 0)) return null;
+      const k = shapes.find(s => s.id === manual.shape).k;
+      return { volume: x * y * z / 1000 * k, bbox: [x, y, z] };
+    });
+
+    const calc = computed(() => {
+      const g = geo.value; if (!g || !material.value || !(qty.value >= 1)) return null;
+      const q = quality.value;
+      let mass, time;
+      if (tech.value === 'fdm') {
+        // стенки и крышки ≈ 30 % объёма печатаются сплошными, остальное — с заполнением
+        mass = g.volume * material.value.density * (0.3 + 0.7 * infill.value / 100);
+        time = mass / q.rate * (1 + (infill.value - 20) / 400);
+      } else {
+        mass = g.volume * material.value.density * (hollow.value ? 0.35 : 1);
+        time = g.bbox[2] / q.rate + 0.3;
+      }
+      const matCost = mass * material.value.price;
+      const machineCost = time * TARIFF.machine[tech.value];
+      const base = matCost + machineCost;
+      let postCost = 0;
+      if (post.sand) postCost += Math.max(150, base * 0.2);
+      if (post.paint) postCost += Math.max(400, base * 0.5);
+      const subtotal = (base + postCost) * qty.value;
+      const d = TARIFF.discounts.find(([n]) => qty.value >= n);
+      const discountPct = d ? d[1] : 0, discount = subtotal * discountPct / 100;
+      const sorted = [...g.bbox].sort((a, b) => b - a), area = [...printer.value].sort((a, b) => b - a);
+      const fits = sorted.every((s, i) => s <= area[i]);
+      const splitCost = fits ? 0 : TARIFF.split * qty.value;
+      const beforeUrgency = subtotal - discount + TARIFF.setup + splitCost;
+      const urgencyAdd = beforeUrgency * (urgency.value.k - 1);
+      let total = beforeUrgency + urgencyAdd, minApplied = false;
+      if (total < TARIFF.minOrder) { total = TARIFF.minOrder; minApplied = true; }
+      return { mass, time, matCost, machineCost, postCost, discount, discountPct, setup: TARIFF.setup, splitCost, urgencyAdd, total: Math.round(total / 10) * 10, fits, minApplied };
+    });
+
+    const readyDate = computed(() => {
+      let d = new Date(), left = urgency.value.days + (calc.value && qty.value > 20 ? 2 : 0);
+      while (left > 0) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) left--; }
+      return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    });
+
+    function loadBuffer(name, buf) {
+      try {
+        const pos = parseSTL(buf); const m = measure(pos);
+        if (!m.tris || !(m.volume > 0)) throw new Error('empty');
+        mesh = pos; model.value = { name, ...m }; fileError.value = ''; mode.value = 'file';
+        Viewer.show(mesh, color.value);
+      } catch (e) { fileError.value = 'Не получилось прочитать файл. Нужен STL — двоичный или текстовый.'; }
+    }
+    function readFile(f) {
+      if (!f) return;
+      if (!/\.stl$/i.test(f.name)) { fileError.value = 'Это не STL-файл. Выгрузите модель в формате .stl'; return; }
+      if (f.size > 80 * 1024 * 1024) { fileError.value = 'Файл больше 80 МБ — пришлите его в заявке, посчитаем вручную'; return; }
+      const r = new FileReader(); r.onload = () => loadBuffer(f.name, r.result); r.readAsArrayBuffer(f);
+    }
+    const onFile = e => readFile(e.target.files[0]);
+    const onDrop = e => { dragOver.value = false; readFile(e.dataTransfer.files[0]); };
+    function loadSample() {
+      const pos = sampleVase();
+      mesh = pos; model.value = { name: 'ваза-образец.stl', ...measure(pos) }; fileError.value = '';
+      Viewer.show(mesh, color.value);
+    }
+
+    watch(color, c => Viewer.color(c));
+    watch([mode, () => manual.x, () => manual.y, () => manual.z], () => {
+      if (mode.value === 'manual') { if (geo.value) Viewer.show(boxMesh(manual.x, manual.y, manual.z), color.value); }
+      else Viewer.show(mesh, color.value);
+    });
+    onMounted(() => Viewer.init(document.querySelector('.viewer')));
+
+    const contactOk = computed(() => /^@?[a-zA-Z0-9_]{5,}$/.test(lead.contact) || lead.contact.replace(/\D/g, '').length >= 10);
+    function submit() {
+      tried.value = true; sent.value = '';
+      if (!lead.name || !contactOk.value || !lead.consent || !calc.value) return;
+      const g = geo.value, c = calc.value;
+      sent.value = 'Демо: в рабочей версии эта заявка ушла бы менеджеру.\n' +
+        `${mode.value === 'file' ? model.value.name : 'по размерам'} · ${fmt1(g.bbox[0])}×${fmt1(g.bbox[1])}×${fmt1(g.bbox[2])} мм\n` +
+        `${material.value.name}, ${quality.value.name.toLowerCase()} ${quality.value.layer} мм${tech.value === 'fdm' ? ', заполнение ' + infill.value + ' %' : ''}, ${colors.find(x => x.hex === color.value).name.toLowerCase()}\n` +
+        `${qty.value} шт. · ${urgency.value.name.toLowerCase()} · ${rub(c.total)}\n${lead.name}, ${lead.contact}`;
+    }
+
+    const rub = v => Math.round(v).toLocaleString('ru-RU') + ' ₽';
+    const fmt1 = v => (Math.round(v * 10) / 10).toLocaleString('ru-RU');
+    const hours = t => { const h = Math.floor(t), m = Math.round((t - h) * 60); return h ? `${h} ч ${m} мин` : `${Math.max(m, 5)} мин`; };
+
+    return { mode, model, fileError, dragOver, manual, shapes, tech, materials, materialId, material, qualities, qualityId, quality,
+      infill, hollow, color, colors, qty, post, urgencies: TARIFF.urgencies, urgencyId, printer, minOrder: TARIFF.minOrder,
+      geo, calc, readyDate, setTech, onFile, onDrop, loadSample, lead, tried, sent, contactOk, submit, rub, fmt1, hours };
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

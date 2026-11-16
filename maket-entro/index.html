@@ -172,6 +172,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .contacts__list a:hover{border-color:currentColor}
 @media (max-width:900px){.dealer,.contacts{grid-template-columns:1fr}}
 
+
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(4,10,12,.7);backdrop-filter:blur(6px)}
+.modal[hidden]{display:none}
+.modal__box{position:relative;width:min(440px,100%);display:grid;gap:14px;padding:34px 30px;border-radius:6px;background:#0e2329;border:1px solid var(--line)}
+.modal__box h3{font-weight:300;font-size:24px;margin-bottom:6px}
+.modal__box label{display:grid;gap:6px;font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.modal__box input:not([type=checkbox]){font:inherit;font-size:15px;letter-spacing:0;color:#fff;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.modal__box input:focus{outline:2px solid var(--mist);outline-offset:1px}
+.modal__box input.bad{border-color:#e07a6a}
+.modal__ok{display:flex!important;align-items:center;gap:10px;font-size:12px!important;letter-spacing:0!important}
+.modal__x{position:absolute;top:10px;right:14px;font-size:26px;line-height:1;color:var(--muted)}
+.modal__done{text-align:center;color:var(--mist);line-height:1.6}
+.modal__done small{color:var(--muted)}
+button.dealer__btn{border:0;cursor:pointer;justify-self:start}
+
 /* ---------- подвал макета ---------- */
 .foot{padding:44px clamp(16px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 .foot img{height:16px;width:auto;opacity:.8}
@@ -303,7 +318,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <p class="contacts__label">Партнёрам</p>
     <h2>Стать дилером ENTRO</h2>
     <p>Приглашаем салоны дверей и интерьерные студии к сотрудничеству.</p>
-    <a class="dealer__btn" href="mailto:Zakaz@entro-design.ru?subject=Сотрудничество%20с%20ENTRO">Оставить заявку</a>
+    <button class="dealer__btn" id="dealerOpen" type="button">Оставить заявку</button>
   </div>
   <div class="dealer__perks">
     <div><b>01</b>Собственное производство</div>
@@ -325,6 +340,21 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </div>
 </section>
 </main>
+
+
+<!-- окно заявки дилера (в макете не отправляется) -->
+<div class="modal" id="dealerModal" role="dialog" aria-modal="true" aria-labelledby="dmTitle" hidden>
+  <form class="modal__box" id="dealerForm" novalidate>
+    <button class="modal__x" type="button" id="dealerClose" aria-label="Закрыть">×</button>
+    <h3 id="dmTitle">Заявка на сотрудничество</h3>
+    <label>Ваше имя<input name="name" required autocomplete="name"></label>
+    <label>Телефон<input name="phone" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <label>Город и салон<input name="city"></label>
+    <label class="modal__ok"><input type="checkbox" required> Согласен на обработку персональных данных</label>
+    <button class="dealer__btn" type="submit">Отправить</button>
+    <p class="modal__done" hidden>Спасибо! Менеджер свяжется с вами.<br><small>В макете заявка никуда не отправляется.</small></p>
+  </form>
+</div>
 
 <footer class="foot" id="foot">
   <img src="assets/logo-white.png" alt="ENTRO">
@@ -469,6 +499,22 @@ if (shot) setTimeout(() => {
     if (shot === 'drum') hdr.classList.add('solid');
   }
 }, 700);
+
+/* окно заявки дилера */
+const dm = document.getElementById('dealerModal'), df = document.getElementById('dealerForm');
+document.getElementById('dealerOpen').onclick = () => { dm.hidden = false; df.querySelector('input').focus(); };
+const closeDm = () => { dm.hidden = true; };
+document.getElementById('dealerClose').onclick = closeDm;
+dm.addEventListener('click', e => { if (e.target === dm) closeDm(); });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !dm.hidden) closeDm(); });
+df.addEventListener('submit', e => {
+  e.preventDefault();
+  let ok = true;
+  df.querySelectorAll('[required]').forEach(i => { const bad = i.type === 'checkbox' ? !i.checked : !i.value.trim(); i.classList.toggle('bad', bad); if (bad) ok = false; });
+  if (!ok) return;
+  df.querySelectorAll('label, button[type=submit]').forEach(x => x.hidden = true);
+  df.querySelector('.modal__done').hidden = false;
+});
 </script>
 </body>
 </html>

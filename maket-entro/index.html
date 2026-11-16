@@ -151,6 +151,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .drum__more{display:inline-block;margin-top:14px;padding:13px 26px;border-radius:30px;background:#13201f;color:#fff;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s}
 .drum__more:hover{background:var(--teal)}
 
+
+/* ---------- 6. Контакты и дилерам ---------- */
+.contacts{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(16px,2vw,28px);padding:clamp(64px,8vw,110px) clamp(16px,4vw,56px);background:linear-gradient(180deg,#0a171b,#10303a)}
+.contacts h2{font-weight:300;font-size:clamp(28px,4vw,52px);margin-top:12px}
+.contacts__label{font-size:12px;letter-spacing:.45em;text-transform:uppercase;color:var(--mist)}
+.contacts__list{margin-top:34px;display:grid;gap:22px;font-size:clamp(16px,1.5vw,20px);font-weight:300}
+.contacts__list small{display:block;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.contacts__list a{border-bottom:1px solid transparent;transition:border-color .3s}
+.contacts__list a:hover{border-color:currentColor}
+.dealer{position:relative;overflow:hidden;border-radius:4px;padding:clamp(28px,3vw,44px);border:1px solid var(--line);background:rgba(255,255,255,.03);scroll-margin-top:90px}
+.dealer::before{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(150,215,230,.22),transparent 70%)}
+.dealer h3{font-weight:300;font-size:clamp(24px,2.6vw,34px)}
+.dealer p{margin-top:14px;color:var(--muted);line-height:1.6;font-size:15px}
+.dealer ul{margin:18px 0 0;list-style:none;display:grid;gap:8px;font-size:14px}
+.dealer li::before{content:"— ";color:var(--mist)}
+.dealer a{display:inline-block;margin-top:26px;padding:14px 26px;border-radius:30px;background:#fff;color:var(--ink);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;transition:background .3s,color .3s}
+.dealer a:hover{background:var(--mist)}
+#contacts{scroll-margin-top:60px}
+@media (max-width:900px){.contacts{grid-template-columns:1fr}}
+
 /* ---------- подвал макета ---------- */
 .foot{padding:44px clamp(16px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 .foot img{height:16px;width:auto;opacity:.8}
@@ -193,7 +213,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <!-- 1. Шапка: слева разделы, по центру логотип, справа поиск и кабинет -->
 <header class="hdr" id="hdr">
   <nav class="nav" aria-label="Главное меню">
-    <a href="#" class="on">Главная</a><a href="#drum">Каталог</a><a href="#mission">Компания</a><a href="#">Стать дилером</a><a href="#foot">Контакты</a>
+    <a href="#" class="on">Главная</a><a href="#drum">Каталог</a><a href="#mission">Компания</a><a href="#dealer">Стать дилером</a><a href="#contacts">Контакты</a>
   </nav>
   <button class="ico burger" id="burger" aria-label="Открыть меню"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
   <a class="hdr__logo" href="#" aria-label="ENTRO — на главную"><img src="assets/logo-white.png" alt="ENTRO"></a>
@@ -204,7 +224,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 </header>
 <div class="menu" id="menu">
   <button class="ico" id="menuClose" aria-label="Закрыть меню"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-  <a href="#">Главная</a><a href="#drum">Каталог</a><a href="#mission">Компания</a><a href="#">Стать дилером</a><a href="#foot">Контакты</a>
+  <a href="#">Главная</a><a href="#drum">Каталог</a><a href="#mission">Компания</a><a href="#dealer">Стать дилером</a><a href="#contacts">Контакты</a>
 </div>
 
 <main>
@@ -273,6 +293,25 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <div class="drum__info">
     <div class="drum__name" id="dname" aria-live="polite">ARIA</div>
     <a class="drum__more" href="#">Открыть коллекцию</a>
+  </div>
+</section>
+
+<!-- 6. Контакты и блок «Стать дилером» -->
+<section class="contacts" id="contacts">
+  <div>
+    <p class="contacts__label">Контакты</p>
+    <h2>Приезжайте на производство</h2>
+    <div class="contacts__list">
+      <div><small>Адрес</small>г. Новочебоксарск, ул. Промышленная, 52</div>
+      <div><small>Телефоны</small><a href="tel:+79199727942">+7 919 972-79-42</a><br><a href="tel:+79877350040">+7 987 735-00-40</a></div>
+      <div><small>Почта</small><a href="mailto:Zakaz@entro-design.ru">Zakaz@entro-design.ru</a></div>
+    </div>
+  </div>
+  <div class="dealer" id="dealer">
+    <h3>Стать дилером ENTRO</h3>
+    <p>Приглашаем салоны дверей и интерьерные студии к сотрудничеству.</p>
+    <ul><li>собственное производство</li><li>эксклюзивные коллекции</li><li>образцы и каталоги для салона</li></ul>
+    <a href="mailto:Zakaz@entro-design.ru?subject=Сотрудничество%20с%20ENTRO">Оставить заявку</a>
   </div>
 </section>
 </main>

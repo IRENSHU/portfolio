@@ -41,18 +41,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hdr{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
   padding:22px clamp(16px,4vw,56px);transition:background .4s,padding .4s,backdrop-filter .4s}
 .hdr.solid{background:rgba(7,17,20,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:14px}
-.nav{display:flex;gap:clamp(12px,1.4vw,28px);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.nav{display:flex;gap:clamp(16px,1.6vw,30px);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
 .hdr__logo{margin:0 24px}
-@media (max-width:1320px){.nav{font-size:10.5px;letter-spacing:.06em;gap:14px}}
+@media (max-width:1380px){.nav{font-size:12px;letter-spacing:.06em;gap:16px}}
+@media (max-width:1140px){.nav{font-size:11px;letter-spacing:.04em;gap:12px}.hdr__logo{margin:0 18px}}
 .nav a{position:relative;opacity:.82;transition:opacity .3s;white-space:nowrap}
 .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:currentColor;transition:right .4s var(--ease)}
 .nav a:hover,.nav a.on{opacity:1}
 .nav a:hover::after,.nav a.on::after{right:0}
-.hdr__logo img{height:22px;width:auto}
+.hdr__logo img{height:26px;width:auto}
 .hdr__icons{display:flex;justify-content:flex-end;gap:18px}
-.ico{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);transition:background .3s,border-color .3s}
+.ico{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);transition:background .3s,border-color .3s}
 .ico:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.35)}
-.ico svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
 .burger{display:none}
 
 /* ---------- 2. Первый экран ---------- */
@@ -210,7 +211,7 @@ button.drum__more{border:0;cursor:pointer}
 .foot img{height:16px;width:auto;opacity:.8}
 
 /* ---------- адаптив ---------- */
-@media (max-width:1020px){
+@media (max-width:1100px){
   .hdr{grid-template-columns:auto 1fr auto}
   .nav{display:none}
   .burger{display:grid}

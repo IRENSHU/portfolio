@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Луч · вариант 3 — Свет под дверью</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+/* Полоска света, как из-под закрытой двери, разгорается и подсвечивает логотип снизу; на «полу» — отражение */
+.stage{background:#04090b}
+.gap{position:absolute;left:50%;top:62%;height:2px;width:0;transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(220,250,255,.95) 20%,#fff 50%,rgba(220,250,255,.95) 80%,transparent);
+  box-shadow:0 0 24px 4px rgba(170,230,245,.55);animation:gapw 1.2s .3s cubic-bezier(.5,0,.2,1) forwards, flick 1.4s 1.5s steps(1) 1}
+@keyframes gapw{to{width:min(560px,80vw)}}
+@keyframes flick{0%{opacity:1}12%{opacity:.55}18%{opacity:1}30%{opacity:.8}36%{opacity:1}}
+/* свечение поднимается вверх от полоски */
+.rise{position:absolute;left:50%;top:62%;width:min(760px,96vw);height:60vh;transform:translate(-50%,-100%) scaleY(0);transform-origin:bottom;
+  background:radial-gradient(60% 100% at 50% 100%,rgba(140,215,232,.42),rgba(40,110,130,.18) 45%,transparent 75%);
+  animation:riseup 1.6s 1.1s cubic-bezier(.3,0,.2,1) forwards}
+@keyframes riseup{to{transform:translate(-50%,-100%) scaleY(1)}}
+/* пол: свет растекается вниз мягко */
+.pool{position:absolute;left:50%;top:62%;width:min(760px,96vw);height:30vh;transform:translateX(-50%);
+  background:radial-gradient(60% 60% at 50% 0%,rgba(140,215,232,.22),transparent 70%);opacity:0;animation:fadein 1.4s 1.2s ease forwards}
+.logo{top:44%;opacity:0;-webkit-mask:linear-gradient(0deg,#000 30%,transparent 70%) 0 0/100% 260% no-repeat;mask:linear-gradient(0deg,#000 30%,transparent 70%) 0 0/100% 260% no-repeat;
+  animation:litup 1.5s 1.4s cubic-bezier(.3,0,.2,1) forwards}
+@keyframes litup{from{opacity:0;-webkit-mask-position:0 0;mask-position:0 0}to{opacity:1;-webkit-mask-position:0 100%;mask-position:0 100%}}
+.refl{position:absolute;left:50%;top:calc(62% + 14px);width:min(320px,64vw);transform:translateX(-50%) scaleY(-1);opacity:0;
+  -webkit-mask:linear-gradient(0deg,rgba(0,0,0,.35),transparent 70%);mask:linear-gradient(0deg,rgba(0,0,0,.35),transparent 70%);
+  filter:blur(1.5px);animation:fadein 1.2s 2.3s ease forwards}
+.sub{bottom:auto;top:calc(62% + 22vh);animation:fadein 1s 2.6s ease forwards}
+@keyframes fadein{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important}}
+</style></head><body>
+<div class="cap">Вариант 3 · Свет под дверью</div>
+<div class="stage">
+  <div class="rise"></div>
+  <div class="pool"></div>
+  <img class="logo" src="../assets/logo-white.png" alt="ENTRO">
+  <img class="refl" src="../assets/logo-white.png" alt="" aria-hidden="true">
+  <div class="gap"></div>
+  <div class="sub">межкомнатные двери</div>
+</div>
+<script src="bar.js"></script>
+</body></html>

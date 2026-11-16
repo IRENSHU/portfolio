@@ -1,0 +1,9 @@
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#050c0e;overflow:hidden;font-family:Montserrat,system-ui,sans-serif;color:#e9f0f1}
+.stage{position:fixed;inset:0;overflow:hidden;background:linear-gradient(180deg,#060d10 0%,#0b1d23 50%,#163f4d 100%)}
+.logo{position:absolute;left:50%;top:50%;width:min(320px,64vw);transform:translate(-50%,-50%)}
+.sub{position:absolute;left:0;right:0;bottom:13vh;text-align:center;font-size:12px;letter-spacing:.42em;text-transform:uppercase;color:#9fc3cc;opacity:0}
+.bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:10;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.bar a,.bar button{font:inherit;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:10px 16px;cursor:pointer;text-decoration:none}
+.bar a.on{background:#fff;color:#071114}
+.cap{position:fixed;top:16px;left:0;right:0;z-index:10;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55)}

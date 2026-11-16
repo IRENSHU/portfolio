@@ -197,6 +197,14 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
 .acc__text{color:var(--text);line-height:1.6;font-size:15px}
 .acc__note{color:var(--muted);font-size:13px;line-height:1.5}
 
+
+button.drum__more{border:0;cursor:pointer}
+.cm{width:min(860px,100%);padding:0;overflow:hidden;gap:0}
+.cm img{width:100%;aspect-ratio:1440/514;object-fit:cover}
+.cm__body{padding:24px 28px 28px;display:grid;gap:10px}
+.cm__body h3{font-weight:300;font-size:30px;letter-spacing:.34em}
+.cm .modal__x{z-index:2;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+
 /* ---------- подвал макета ---------- */
 .foot{padding:44px clamp(16px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 .foot img{height:16px;width:auto;opacity:.8}
@@ -318,7 +326,7 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
   </div>
   <div class="drum__info">
     <div class="drum__name" id="dname" aria-live="polite">ARIA</div>
-    <a class="drum__more" href="#">Открыть коллекцию</a>
+    <button class="drum__more" id="collOpen" type="button">Открыть коллекцию</button>
   </div>
 </section>
 
@@ -383,6 +391,19 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
     <h3 id="accTitle">Личный кабинет</h3>
     <p class="acc__text">Здесь дилеры и покупатели будут видеть свои заказы, статусы производства и документы.</p>
     <p class="acc__note">В макете вход не подключён — появится в рабочей версии сайта.</p>
+  </div>
+</div>
+
+
+<!-- окно коллекции -->
+<div class="modal" id="collModal" role="dialog" aria-modal="true" aria-labelledby="cmName" hidden>
+  <div class="modal__box cm" tabindex="-1">
+    <button class="modal__x" type="button" data-close aria-label="Закрыть">×</button>
+    <img id="cmImg" src="" alt="">
+    <div class="cm__body">
+      <h3 id="cmName"></h3>
+      <p class="acc__note">В рабочей версии здесь будет страница коллекции: все модели, цвета и покрытия, размеры, фурнитура и кнопка «Узнать цену».</p>
+    </div>
   </div>
 </div>
 
@@ -573,6 +594,18 @@ document.getElementById('accOpen').onclick = () => { am.hidden = false; am.query
   m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) m.hidden = true; });
 });
 addEventListener('keydown', e => { if (e.key === 'Escape') { sm.hidden = true; am.hidden = true; } });
+
+/* окно коллекции из барабана */
+const cm = document.getElementById('collModal');
+document.getElementById('collOpen').onclick = () => {
+  const front = ((Math.round(-angle / step) % N) + N) % N, d = doors[front];
+  document.getElementById('cmImg').src = `assets/banner-${d}.jpg`;
+  document.getElementById('cmImg').alt = `Коллекция ${d.toUpperCase()}`;
+  document.getElementById('cmName').textContent = d.toUpperCase();
+  idle = -100000; cm.hidden = false; cm.querySelector('.modal__box').focus();
+};
+cm.addEventListener('click', e => { if (e.target === cm || e.target.closest('[data-close]')) { cm.hidden = true; idle = 0; } });
+addEventListener('keydown', e => { if (e.key === 'Escape' && !cm.hidden) { cm.hidden = true; idle = 0; } });
 </script>
 </body>
 </html>

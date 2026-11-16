@@ -287,6 +287,8 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* заставка: 2,6 с или по клику */
 const splash = document.getElementById('splash');
 const hideSplash = () => splash.classList.add('gone');
+const shot = new URLSearchParams(location.search).get('shot');
+if (shot) { splash.style.display = 'none'; document.documentElement.style.scrollBehavior = 'auto'; }
 setTimeout(hideSplash, reduce ? 300 : 2700);
 splash.addEventListener('click', hideSplash);
 
@@ -396,6 +398,27 @@ stage.addEventListener('pointermove', e => { if (!dragging) return; const dx = e
 stage.addEventListener('pointerup', () => { dragging = false; snap(); });
 stage.addEventListener('pointercancel', () => { dragging = false; snap(); });
 cards.forEach(c => c.addEventListener('click', () => { idle = 0; target = -c.dataset.i * step + Math.round(target / 360) * 360; }));
+
+/* для скриншотов: ?shot=mission|duo|drum */
+if (shot) setTimeout(() => {
+  document.querySelectorAll('img[loading]').forEach(i => i.loading = 'eager');
+  const el = document.getElementById(shot);
+  if (el) {
+    const st = document.createElement('style');
+    st.textContent = '*{transition:none!important} .mission__text .w.keep{opacity:1!important}';
+    document.head.appendChild(st);
+    document.querySelectorAll('main > section, .foot').forEach(s => { if (s !== el) s.style.display = 'none'; });
+    document.querySelectorAll('.coll').forEach(c => c.classList.add('in'));
+    if (shot === 'mission') {
+      el.style.height = '100vh';
+      mbox.style.setProperty('--lo', 1); mbox.style.setProperty('--so', 1);
+      words.forEach((w, i) => { if (i < words.length * .7) w.classList.add('keep'); });
+      onScroll = () => {};
+    }
+    if (shot === 'duo') { strip.parentElement.style.height = '120px'; strip.style.setProperty('--sp', 1); hdr.classList.add('solid'); }
+    if (shot === 'drum') hdr.classList.add('solid');
+  }
+}, 700);
 </script>
 </body>
 </html>

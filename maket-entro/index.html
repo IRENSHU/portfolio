@@ -175,7 +175,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(4,10,12,.7);backdrop-filter:blur(6px)}
 .modal[hidden]{display:none}
-.modal__box{position:relative;width:min(440px,100%);display:grid;gap:14px;padding:34px 30px;border-radius:6px;background:#0e2329;border:1px solid var(--line)}
+.modal__box{outline:none;position:relative;width:min(440px,100%);display:grid;gap:14px;padding:34px 30px;border-radius:6px;background:#0e2329;border:1px solid var(--line)}
 .modal__box h3{font-weight:300;font-size:24px;margin-bottom:6px}
 .modal__box label{display:grid;gap:6px;font-size:12px;letter-spacing:.08em;color:var(--muted)}
 .modal__box input:not([type=checkbox]){font:inherit;font-size:15px;letter-spacing:0;color:#fff;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
@@ -344,7 +344,7 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
 
 <!-- окно заявки дилера (в макете не отправляется) -->
 <div class="modal" id="dealerModal" role="dialog" aria-modal="true" aria-labelledby="dmTitle" hidden>
-  <form class="modal__box" id="dealerForm" novalidate>
+  <form class="modal__box" id="dealerForm" novalidate tabindex="-1">
     <button class="modal__x" type="button" id="dealerClose" aria-label="Закрыть">×</button>
     <h3 id="dmTitle">Заявка на сотрудничество</h3>
     <label>Ваше имя<input name="name" required autocomplete="name"></label>
@@ -506,7 +506,7 @@ if (shot) setTimeout(() => {
 
 /* окно заявки дилера */
 const dm = document.getElementById('dealerModal'), df = document.getElementById('dealerForm');
-document.getElementById('dealerOpen').onclick = () => { dm.hidden = false; df.querySelector('input').focus(); };
+document.getElementById('dealerOpen').onclick = () => { dm.hidden = false; df.focus(); };
 const closeDm = () => { dm.hidden = true; };
 document.getElementById('dealerClose').onclick = closeDm;
 dm.addEventListener('click', e => { if (e.target === dm) closeDm(); });

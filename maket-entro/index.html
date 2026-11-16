@@ -187,6 +187,16 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .modal__done small{color:var(--muted)}
 button.dealer__btn{border:0;cursor:pointer;justify-self:start}
 
+
+.search input{font:inherit;font-size:17px;color:#fff;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.search input:focus{outline:2px solid var(--mist);outline-offset:1px}
+.search__list{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;max-height:46vh;overflow:auto}
+.search__list button{padding:12px 10px;border:1px solid var(--line);border-radius:4px;font-size:12px;letter-spacing:.24em;text-align:left;transition:background .25s,border-color .25s}
+.search__list button:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.35)}
+.search__empty{color:var(--muted);font-size:14px}
+.acc__text{color:var(--text);line-height:1.6;font-size:15px}
+.acc__note{color:var(--muted);font-size:13px;line-height:1.5}
+
 /* ---------- подвал макета ---------- */
 .foot{padding:44px clamp(16px,4vw,56px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 .foot img{height:16px;width:auto;opacity:.8}
@@ -234,8 +244,8 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
   <button class="ico burger" id="burger" aria-label="Открыть меню"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
   <a class="hdr__logo" href="#" aria-label="ENTRO — на главную"><img src="assets/logo-white.png" alt="ENTRO"></a>
   <div class="hdr__icons">
-    <button class="ico" aria-label="Поиск"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
-    <button class="ico" aria-label="Личный кабинет"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.4 7.5-5.4s6.3 1.8 7.5 5.4"/></svg></button>
+    <button class="ico" id="searchOpen" aria-label="Поиск"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+    <button class="ico" id="accOpen" aria-label="Личный кабинет"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.4 7.5-5.4s6.3 1.8 7.5 5.4"/></svg></button>
   </div>
 </header>
 <div class="menu" id="menu">
@@ -354,6 +364,26 @@ button.dealer__btn{border:0;cursor:pointer;justify-self:start}
     <button class="dealer__btn" type="submit">Отправить</button>
     <p class="modal__done" hidden>Спасибо! Менеджер свяжется с вами.<br><small>В макете заявка никуда не отправляется.</small></p>
   </form>
+</div>
+
+
+<!-- поиск по коллекциям -->
+<div class="modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Поиск" hidden>
+  <div class="modal__box search">
+    <button class="modal__x" type="button" data-close aria-label="Закрыть">×</button>
+    <h3>Поиск по коллекциям</h3>
+    <input id="searchInput" type="search" placeholder="Например, Aria или Sky" autocomplete="off">
+    <div class="search__list" id="searchList"></div>
+  </div>
+</div>
+<!-- личный кабинет (заглушка макета) -->
+<div class="modal" id="accModal" role="dialog" aria-modal="true" aria-labelledby="accTitle" hidden>
+  <div class="modal__box" tabindex="-1">
+    <button class="modal__x" type="button" data-close aria-label="Закрыть">×</button>
+    <h3 id="accTitle">Личный кабинет</h3>
+    <p class="acc__text">Здесь дилеры и покупатели будут видеть свои заказы, статусы производства и документы.</p>
+    <p class="acc__note">В макете вход не подключён — появится в рабочей версии сайта.</p>
+  </div>
 </div>
 
 <footer class="foot" id="foot">
@@ -519,6 +549,30 @@ df.addEventListener('submit', e => {
   df.querySelectorAll('label, button[type=submit]').forEach(x => x.hidden = true);
   df.querySelector('.modal__done').hidden = false;
 });
+
+/* поиск по коллекциям и кабинет */
+const sm = document.getElementById('searchModal'), am = document.getElementById('accModal');
+const sIn = document.getElementById('searchInput'), sList = document.getElementById('searchList');
+function drawList() {
+  const q = sIn.value.trim().toLowerCase();
+  const hits = doors.filter(d => d.includes(q));
+  sList.innerHTML = hits.length ? hits.map(d => `<button type="button" data-d="${d}">${d.toUpperCase()}</button>`).join('')
+                                : '<p class="search__empty">Такой коллекции нет — попробуйте другое название.</p>';
+}
+sIn.addEventListener('input', drawList);
+sList.addEventListener('click', e => {
+  const b = e.target.closest('[data-d]'); if (!b) return;
+  sm.hidden = true;
+  const i = doors.indexOf(b.dataset.d); idle = 0;
+  target = -i * step + Math.round(target / 360) * 360;
+  document.getElementById('drum').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+});
+document.getElementById('searchOpen').onclick = () => { sIn.value = ''; drawList(); sm.hidden = false; setTimeout(() => sIn.focus(), 30); };
+document.getElementById('accOpen').onclick = () => { am.hidden = false; am.querySelector('.modal__box').focus(); };
+[sm, am].forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-close]')) m.hidden = true; });
+});
+addEventListener('keydown', e => { if (e.key === 'Escape') { sm.hidden = true; am.hidden = true; } });
 </script>
 </body>
 </html>

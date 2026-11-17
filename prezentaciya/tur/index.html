@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Шаблон презентации тура — демо | Ирина Шушкова</title>
+<meta name="description" content="Демо: фирменный шаблон презентации премиального рыболовного тура в PowerPoint — 9 макетов с местами под фото, готовая презентация тура на Сейшелы, PDF и инструкция. Открывается в Google Slides.">
+<style>
+  :root { --ink: #0d1b21; --cream: #f2ede4; --brass: #a3876a; --gold: #b89b6a; --text: #1b262b; --muted: #5e6a6e; --line: #ddd3c3; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, 'Segoe UI', Roboto, Arial, sans-serif; background: var(--cream); color: var(--text); line-height: 1.55; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  header { padding: 40px 0 20px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--brass); }
+  h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: clamp(28px, 4.5vw, 44px); line-height: 1.15; margin: 12px 0 12px; }
+  h2 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: clamp(24px, 3.4vw, 32px); margin: 46px 0 8px; }
+  .lead { color: var(--muted); max-width: 66ch; font-size: 17px; }
+  .sub { color: var(--muted); max-width: 66ch; margin-bottom: 18px; }
+  .viewer { position: relative; margin: 24px 0 14px; border-radius: 6px; overflow: hidden; box-shadow: 0 22px 50px rgba(13,27,33,.22); background: var(--ink); aspect-ratio: 16 / 9; outline: none; }
+  .viewer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .35s ease; }
+  .viewer img.on { opacity: 1; }
+  .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(242,237,228,.92); color: var(--ink); font-size: 22px; cursor: pointer; transition: transform .2s, background-color .2s; }
+  .nav:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+  .nav:focus-visible, .dot:focus-visible, .btn:focus-visible, .viewer:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+  .prev { left: 14px; } .next { right: 14px; }
+  .counter { position: absolute; right: 14px; bottom: 12px; background: rgba(13,27,33,.75); color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 999px; }
+  .dots { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .dot { width: 30px; height: 6px; border-radius: 999px; border: 0; background: var(--line); cursor: pointer; transition: background-color .2s, width .2s; }
+  .dot.on { background: var(--brass); width: 44px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin: 26px 0 8px; }
+  .btn { display: inline-flex; align-items: center; text-decoration: none; font-weight: 600; padding: 13px 20px; border-radius: 4px; transition: transform .2s, background-color .2s; }
+  .btn-main { background: var(--ink); color: #fff; }
+  .btn-alt { color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .btn:hover { transform: translateY(-2px); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .grid figure { background: #fff; border-radius: 4px; overflow: hidden; }
+  .grid img { display: block; width: 100%; height: auto; }
+  .grid figcaption { font-size: 14px; color: var(--muted); padding: 8px 12px 10px; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 30px 0; }
+  .fact { background: #fff; border-radius: 4px; padding: 20px; border-top: 2px solid var(--gold); }
+  .fact b { display: block; font-size: 17px; margin-bottom: 6px; }
+  .fact p { color: var(--muted); font-size: 15px; }
+  ol.steps { counter-reset: s; list-style: none; display: grid; gap: 12px; max-width: 760px; }
+  ol.steps li { counter-increment: s; position: relative; padding-left: 44px; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 14px; display: grid; place-items: center; }
+  .credits { font-size: 13px; color: var(--muted); margin-top: 40px; }
+  .credits a, footer a { color: var(--brass); }
+  footer { padding: 20px 0 50px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) { .grid, .facts { grid-template-columns: 1fr 1fr; } .nav { width: 38px; height: 38px; font-size: 18px; } }
+  @media (max-width: 480px) { .grid, .facts { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <span class="tag">Шаблон презентации тура</span>
+  <h1>Фирменный шаблон для премиальных туров и готовая презентация на нём</h1>
+  <p class="lead">Демо для туроператора: шаблон PowerPoint из 9 макетов (обложка, тур в цифрах, рыбы и локация, программа по дням, лодки и снасти, почему мы, цены, контакты, разделитель) и собранная на нём презентация рыболовного тура на Сейшелы. Сдержанный стиль, крупные фото, без иконок, градиентов и анимации. Компания «Глубина», цены и контакты вымышлены. Листайте стрелками или клавишами ← →.</p>
+</header>
+
+<main class="wrap">
+  <div class="viewer" id="viewer" tabindex="0" aria-roledescription="карусель" aria-label="Слайды презентации">
+    <img class="on" src="slides/slide-01.jpg" alt="Слайд 1: Обложка — Гигантский каранкс на краю атолла, Сейшелы">
+    <img src="slides/slide-02.jpg" alt="Слайд 2: Тур в цифрах — 6 дней на воде, 2 рыболова на гида, каранксы 30+ кг, час перелёта" loading="lazy">
+    <img src="slides/slide-03.jpg" alt="Слайд 3: Целевые рыбы — каранкс, парусник, тунец, альбула" loading="lazy">
+    <img src="slides/slide-04.jpg" alt="Слайд 4: Программа по дням в две колонки" loading="lazy">
+    <img src="slides/slide-05.jpg" alt="Слайд 5: Лодки и снасти, два фото" loading="lazy">
+    <img src="slides/slide-06.jpg" alt="Слайд 6: Почему с нами — три преимущества" loading="lazy">
+    <img src="slides/slide-07.jpg" alt="Слайд 7: Стоимость тура, что включено и не включено" loading="lazy">
+    <img src="slides/slide-08.jpg" alt="Слайд 8: Контакты для бронирования" loading="lazy">
+    <button class="nav prev" type="button" aria-label="Предыдущий слайд">‹</button>
+    <button class="nav next" type="button" aria-label="Следующий слайд">›</button>
+    <span class="counter" aria-live="polite">1 / 8</span>
+  </div>
+  <div class="dots" aria-label="Выбор слайда"></div>
+
+  <div class="actions">
+    <a class="btn btn-main" href="glubina-tur-seyshely.pptx" download>Скачать презентацию (PowerPoint)</a>
+    <a class="btn btn-alt" href="glubina-tur-seyshely.pdf" target="_blank" rel="noopener">Открыть PDF</a>
+    <a class="btn btn-alt" href="glubina-shablon.pptx" download>Пустой шаблон</a>
+  </div>
+
+  <div class="facts">
+    <div class="fact"><b>Настоящие мастер-слайды</b><p>Все слайды собраны из макетов шаблона. Новый тур — «Создать слайд», выбрать макет, вписать текст. Вёрстка не съезжает.</p></div>
+    <div class="fact"><b>Фото в один щелчок</b><p>Места под фото — специальные поля: щёлкнули значок, выбрали снимок, он сам обрезается по рамке. Любое фото без ручной подгонки.</p></div>
+    <div class="fact"><b>Бесплатные шрифты</b><p>Cormorant Garamond и Montserrat из Google Fonts с кириллицей — файл так же выглядит в Google Slides. Весь текст редактируется.</p></div>
+  </div>
+
+  <h2>9 макетов шаблона</h2>
+  <p class="sub">Так выглядит пустой шаблон: рамками показаны поля для текста и места под фото.</p>
+  <div class="grid">
+    <figure><img src="layouts/layout-01.jpg" alt="Макет 1: Обложка" loading="lazy"><figcaption>1. Обложка</figcaption></figure>
+    <figure><img src="layouts/layout-02.jpg" alt="Макет 2: Тур в цифрах" loading="lazy"><figcaption>2. Тур в цифрах</figcaption></figure>
+    <figure><img src="layouts/layout-03.jpg" alt="Макет 3: Фото и текст" loading="lazy"><figcaption>3. Фото и текст — локация, рыбы, проживание</figcaption></figure>
+    <figure><img src="layouts/layout-04.jpg" alt="Макет 4: Программа по дням" loading="lazy"><figcaption>4. Программа по дням</figcaption></figure>
+    <figure><img src="layouts/layout-05.jpg" alt="Макет 5: Два фото" loading="lazy"><figcaption>5. Два фото — лодки и снасти</figcaption></figure>
+    <figure><img src="layouts/layout-06.jpg" alt="Макет 6: Почему мы" loading="lazy"><figcaption>6. Почему мы</figcaption></figure>
+    <figure><img src="layouts/layout-07.jpg" alt="Макет 7: Цены и что включено" loading="lazy"><figcaption>7. Цены и что включено</figcaption></figure>
+    <figure><img src="layouts/layout-08.jpg" alt="Макет 8: Контакты" loading="lazy"><figcaption>8. Контакты</figcaption></figure>
+    <figure><img src="layouts/layout-09.jpg" alt="Макет 9: Разделитель" loading="lazy"><figcaption>9. Разделитель раздела</figcaption></figure>
+  </div>
+
+  <h2>Как собрать презентацию нового тура</h2>
+  <ol class="steps">
+    <li>Откройте шаблон и сохраните копию под названием тура.</li>
+    <li>«Главная» → «Создать слайд» → выберите нужный макет. В Google Slides: «Слайд» → «Применить макет».</li>
+    <li>Щёлкните по тексту-подсказке и впишите свой. Размер и цвет шрифта менять не нужно — они заданы в шаблоне.</li>
+    <li>Щёлкните значок в месте под фото и выберите снимок. Чтобы сдвинуть кадр — «Обрезка» и перетащите фото.</li>
+    <li>Если дней в программе больше — дублируйте слайд программы. Готово: «Файл» → «Экспорт» → PDF для отправки клиенту.</li>
+  </ol>
+
+  <p class="credits">Фото: Giles Laurent (обложка), NorbertNagel (острова, закат, марина, пляж) — CC BY-SA 4.0; Dr. Dwayne Meadows, NOAA — общественное достояние; Seabee314 — CC0. Все снимки — <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Авторы указаны и в заметках к слайдам.</p>
+</main>
+
+<footer class="wrap">Демо собрала Ирина Шушкова. Ещё примеры — <a href="../partnery/">питч для партнёров</a>, <a href="../avtoservis/">каталог из таблицы</a> и <a href="../">яркая презентация для лекции</a>, все работы — <a href="../../">в портфолио</a>.</footer>
+
+<script>
+  const imgs = [...document.querySelectorAll('#viewer img')];
+  const counter = document.querySelector('.counter');
+  const dots = document.querySelector('.dots');
+  let i = 0;
+  imgs.forEach((_, n) => {
+    const b = document.createElement('button');
+    b.className = 'dot' + (n === 0 ? ' on' : ''); b.type = 'button'; b.setAttribute('aria-label', 'Слайд ' + (n + 1));
+    b.addEventListener('click', () => show(n)); dots.appendChild(b);
+  });
+  function show(n) {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach((im, k) => im.classList.toggle('on', k === i));
+    [...dots.children].forEach((d, k) => d.classList.toggle('on', k === i));
+    counter.textContent = (i + 1) + ' / ' + imgs.length;
+  }
+  document.querySelector('.prev').addEventListener('click', () => show(i - 1));
+  document.querySelector('.next').addEventListener('click', () => show(i + 1));
+  document.getElementById('viewer').addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+  let x0 = null;
+  document.getElementById('viewer').addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  document.getElementById('viewer').addEventListener('touchend', (e) => {
+    if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null;
+  });
+</script>
+</body>
+</html>

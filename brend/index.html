@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Медуница — фермерские заготовки по семейным рецептам</title>
+<meta name="description" content="Варенья, соленья и заправки из Костромы: малые партии, без консервантов. Каталог, рецепты и где купить.">
+<meta property="og:title" content="Медуница — фермерские заготовки по семейным рецептам">
+<meta property="og:description" content="Варенья, соленья и заправки из Костромы: малые партии, без консервантов. Каталог, рецепты и где купить.">
+<meta property="og:image" content="img/pickles.jpg">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar">Демо-сайт продуктового бренда: «Медуница» вымышлена · <a href="kak-ustroeno.html">Как устроен сайт и админка →</a></div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#9e2b3a"/><path d="M20 9c3 4 3 7 0 10-3-3-3-6 0-10zM11 16c4 1 6 3 7 7-4 0-6-2-7-7zm18 0c-1 5-3 7-7 7 1-4 3-6 7-7z" fill="#f4ead9"/><path d="M20 19v12" stroke="#f4ead9" stroke-width="2" stroke-linecap="round"/></svg>Медуница</a>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav" aria-label="Главное меню"><a href="index.html" aria-current="page">Главная</a><a href="produkciya.html">Продукция</a><a href="kachestvo.html">О качестве</a><a href="recepty.html">Рецепты</a><a href="gde-kupit.html">Где купить</a><a href="kontakty.html">Контакты</a></nav>
+</div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Фермерские заготовки · Кострома</span>
+    <h1>Вкус бабушкиного погреба — в каждой банке</h1>
+    <p class="lead">Варим варенья, солим огурцы и делаем заправки малыми партиями по семейным рецептам. Без консервантов, загустителей и спешки.</p>
+    <div class="actions"><a class="btn btn-main" href="produkciya.html">Смотреть продукцию</a><a class="btn btn-line" href="gde-kupit.html">Где купить</a></div>
+  </div>
+  <div class="hero-pic"><img src="img/pickles.jpg" alt="Банки с солёными огурцами, укроп и свежие огурцы" width="1400" height="930">
+    <div class="badge"><b>до 24 часов</b>от грядки до банки</div></div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="stats">
+    <div class="stat rv"><b>0</b><span>консервантов, красителей и загустителей</span></div>
+    <div class="stat rv"><b>20 кг</b><span>максимум в одном котле — варим малыми партиями</span></div>
+    <div class="stat rv"><b>12</b><span>позиций в трёх линейках</span></div>
+    <div class="stat rv"><b>9</b><span>торговых сетей и 3 маркетплейса</span></div>
+  </div>
+</div></section>
+
+<section style="padding-top:24px"><div class="wrap">
+  <span class="eyebrow">Продукция</span>
+  <h2>Три линейки</h2>
+  <div class="lines" id="lines"></div>
+</div></section>
+
+<section style="background:var(--paper)"><div class="wrap">
+  <span class="eyebrow">Новинки сезона</span>
+  <h2>Только что сварили</h2>
+  <div class="grid" id="news" style="margin-top:24px"></div>
+</div></section>
+
+<section><div class="wrap split">
+  <img class="rv" src="img/hero.jpg" alt="Корзины с лесными ягодами и банка солений на деревянном столе" loading="lazy">
+  <div class="rv">
+    <span class="eyebrow">О качестве</span>
+    <h2>Ягоды собираем утром — к вечеру они уже в банке</h2>
+    <p class="lead">Работаем с фермами в радиусе 80 км от производства. Каждая партия проходит лабораторный контроль, а рецепты не меняются с 2011 года.</p>
+    <p style="margin-top:22px"><a class="btn btn-line" href="kachestvo.html">Как мы делаем</a></p>
+  </div>
+</div></section>
+
+<section style="background:var(--cream)"><div class="wrap">
+  <span class="eyebrow">Рецепты</span>
+  <h2>Что приготовить с нашими банками</h2>
+  <div class="recipes" id="rec" style="margin-top:24px"></div>
+  <p style="margin-top:26px"><a class="btn btn-line" href="recepty.html">Все рецепты</a></p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="b2b"><div class="b2b-grid">
+    <div><span class="eyebrow" style="color:var(--honey)">Партнёрам</span><h2>Для магазинов и корпоративных клиентов</h2>
+    <p class="muted">Поставки от одной коробки, подарочные наборы с логотипом компании, отсрочка для сетей. Оставьте заявку — пришлём прайс и условия.</p></div>
+    <form class="form" novalidate>
+  <label>Компания<input name="company" required autocomplete="organization"></label>
+  <label>Город<input name="city" required></label>
+  <label>Имя<input name="name" required autocomplete="name"></label>
+  <label>Телефон или почта<input name="contact" required></label>
+  <label class="full">Формат<select name="type"><option>Розничный магазин</option><option>Сеть магазинов</option><option>Корпоративные подарки</option><option>Кафе и рестораны</option></select></label>
+  <label class="full">Комментарий<textarea name="msg" placeholder="Какие позиции интересуют, примерный объём"></textarea></label>
+  <label class="check full"><input type="checkbox" required> Согласен на обработку персональных данных по политике конфиденциальности</label>
+  <div class="full"><button class="btn btn-main" type="submit">Отправить заявку</button> <span class="err" role="alert"></span></div>
+</form>
+  </div></div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div><a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#9e2b3a"/><path d="M20 9c3 4 3 7 0 10-3-3-3-6 0-10zM11 16c4 1 6 3 7 7-4 0-6-2-7-7zm18 0c-1 5-3 7-7 7 1-4 3-6 7-7z" fill="#f4ead9"/><path d="M20 19v12" stroke="#f4ead9" stroke-width="2" stroke-linecap="round"/></svg>Медуница</a><p style="margin-top:10px">Фермерские заготовки по семейным рецептам. Кострома, с 2011 года.</p></div>
+  <div><b>Разделы</b><br><a href="produkciya.html">Продукция</a><br><a href="kachestvo.html">О качестве</a><br><a href="recepty.html">Рецепты</a><br><a href="gde-kupit.html">Где купить</a><br><a href="kontakty.html">Контакты</a></div>
+  <div><b>Партнёрам</b><br><a href="kontakty.html#opt">Оптовым покупателям</a><br><a href="tel:+70000000000">+7 000 000-00-00</a><br><a href="mailto:opt@medunica.example">opt@medunica.example</a></div>
+  <div class="credits">Фото: WDnet (CC0), EgorovaSvetlana (CC BY-SA 4.0), Franz van Duns (CC BY-SA 4.0), Tatyana Morozyuk (CC BY-SA 3.0), Vyacheslav Argenberg (CC BY 4.0), Pannet (CC BY-SA 4.0), Asif Masimov (CC BY 4.0) — Wikimedia Commons. Банки нарисованы кодом. Демо собрала <a href="../">Ирина Шушкова</a>: бренд, продукция и контакты вымышлены.</div>
+</div></footer>
+<script src="app.js"></script>
+<script>
+(async () => {
+  const [ps, rs] = await Promise.all([loadProducts(), loadRecipes()]);
+  const L = [['Варенья','l-v','Ягоды целиком, сироп без загустителей'],['Соленья и маринады','l-s','Хрустящие огурцы, грибы и квашеная капуста'],['Соусы и заправки','l-z','Борщ за 30 минут и соусы к мясу']];
+  document.getElementById('lines').innerHTML = L.map(([n,c,t]) => {
+    const items = ps.filter(p => p['Линейка'] === n);
+    return `<a class="line-card ${c} rv" href="produkciya.html#${encodeURIComponent(n)}"><h3>${n}</h3><p>${t}</p>
+      <div class="jars">${items.slice(0,3).map(p => jar(p['Цвет'], p['Название'], n)).join('')}</div><span class="more">${items.length} позиций →</span></a>`;
+  }).join('');
+  const news = document.getElementById('news');
+  news.innerHTML = ps.filter(p => p['Новинка'] === 'да').map(productCard).join('');
+  news.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openProduct(ps.find(p => p['Артикул'] === c.dataset.id), rs); });
+  document.getElementById('rec').innerHTML = rs.slice(0,3).map(recipeCard).join('');
+  reveal();
+})();
+</script>
+</body>
+</html>

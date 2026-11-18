@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Админка рецептов — демо Медуница</title>
+<style>
+  .demo-note{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#2b2320;color:#f4ead9;font:14px system-ui,sans-serif;text-align:center;padding:9px 14px}
+  .demo-note a{color:#d9a441;font-weight:700}
+</style>
+</head>
+<body>
+<div class="demo-note">Демо-админка: нажмите «Войти» (пароль не нужен), откройте «Рецепты» и правьте — изменения не сохраняются. <a href="../kak-ustroeno.html">← Как устроен сайт</a></div>
+<script>window.CMS_MANUAL_INIT = true;</script>
+<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<script>
+(async () => {
+  const json = await (await fetch('../data/recepty.json')).text();
+  // демо-режим: файлы лежат в памяти браузера, на сервер ничего не уходит
+  window.repoFiles = { data: { 'recepty.json': { content: json } } };
+  const lines = ['Варенья', 'Соленья и маринады', 'Соусы и заправки'];
+  CMS.init({ config: {
+    load_config_file: false,
+    locale: 'ru',
+    backend: { name: 'test-repo' },
+    media_folder: 'img', public_folder: '/img',
+    collections: [{
+      name: 'recipes', label: 'Рецепты',
+      files: [{
+        name: 'recepty', label: 'Все рецепты', file: 'data/recepty.json',
+        fields: [{
+          name: 'recipes', label: 'Рецепты', widget: 'list', summary: '{{fields.title}}',
+          fields: [
+            { name: 'title', label: 'Название', widget: 'string' },
+            { name: 'id', label: 'Адрес страницы (латиницей)', widget: 'string' },
+            { name: 'image', label: 'Фото', widget: 'image' },
+            { name: 'time', label: 'Время, мин', widget: 'number' },
+            { name: 'portions', label: 'Порций', widget: 'number' },
+            { name: 'line', label: 'Линейка', widget: 'select', options: lines },
+            { name: 'products', label: 'Продукты (артикулы)', widget: 'list', field: { name: 'sku', label: 'Артикул', widget: 'string' } },
+            { name: 'intro', label: 'Вступление', widget: 'text' },
+            { name: 'ingredients', label: 'Ингредиенты', widget: 'list', field: { name: 'item', label: 'Ингредиент', widget: 'string' } },
+            { name: 'steps', label: 'Шаги', widget: 'list', field: { name: 'step', label: 'Шаг', widget: 'text' } }
+          ]
+        }]
+      }]
+    }]
+  }});
+})();
+</script>
+</body>
+</html>

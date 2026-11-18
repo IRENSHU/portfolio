@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Продукция — Медуница</title>
+<meta name="description" content="Каталог варений, солений и заправок «Медуница»: состав, вес, калорийность и где купить.">
+<meta property="og:title" content="Продукция — Медуница">
+<meta property="og:description" content="Каталог варений, солений и заправок «Медуница»: состав, вес, калорийность и где купить.">
+<meta property="og:image" content="img/pickles.jpg">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar">Демо-сайт продуктового бренда: «Медуница» вымышлена · <a href="kak-ustroeno.html">Как устроен сайт и админка →</a></div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#9e2b3a"/><path d="M20 9c3 4 3 7 0 10-3-3-3-6 0-10zM11 16c4 1 6 3 7 7-4 0-6-2-7-7zm18 0c-1 5-3 7-7 7 1-4 3-6 7-7z" fill="#f4ead9"/><path d="M20 19v12" stroke="#f4ead9" stroke-width="2" stroke-linecap="round"/></svg>Медуница</a>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav" aria-label="Главное меню"><a href="index.html">Главная</a><a href="produkciya.html" aria-current="page">Продукция</a><a href="kachestvo.html">О качестве</a><a href="recepty.html">Рецепты</a><a href="gde-kupit.html">Где купить</a><a href="kontakty.html">Контакты</a></nav>
+</div></header>
+<main>
+<section style="padding-bottom:20px"><div class="wrap">
+  <span class="eyebrow">Каталог</span><h1>Продукция</h1>
+  <p class="lead" style="margin-top:12px">Нажмите на банку — откроются состав, калорийность, срок хранения и рецепты с этим продуктом.</p>
+  <div class="tabs" id="tabs" role="group" aria-label="Линейки"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+</main>
+<footer><div class="wrap">
+  <div><a class="logo" href="index.html"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#9e2b3a"/><path d="M20 9c3 4 3 7 0 10-3-3-3-6 0-10zM11 16c4 1 6 3 7 7-4 0-6-2-7-7zm18 0c-1 5-3 7-7 7 1-4 3-6 7-7z" fill="#f4ead9"/><path d="M20 19v12" stroke="#f4ead9" stroke-width="2" stroke-linecap="round"/></svg>Медуница</a><p style="margin-top:10px">Фермерские заготовки по семейным рецептам. Кострома, с 2011 года.</p></div>
+  <div><b>Разделы</b><br><a href="produkciya.html">Продукция</a><br><a href="kachestvo.html">О качестве</a><br><a href="recepty.html">Рецепты</a><br><a href="gde-kupit.html">Где купить</a><br><a href="kontakty.html">Контакты</a></div>
+  <div><b>Партнёрам</b><br><a href="kontakty.html#opt">Оптовым покупателям</a><br><a href="tel:+70000000000">+7 000 000-00-00</a><br><a href="mailto:opt@medunica.example">opt@medunica.example</a></div>
+  <div class="credits">Фото: WDnet (CC0), EgorovaSvetlana (CC BY-SA 4.0), Franz van Duns (CC BY-SA 4.0), Tatyana Morozyuk (CC BY-SA 3.0), Vyacheslav Argenberg (CC BY 4.0), Pannet (CC BY-SA 4.0), Asif Masimov (CC BY 4.0) — Wikimedia Commons. Банки нарисованы кодом. Демо собрала <a href="../">Ирина Шушкова</a>: бренд, продукция и контакты вымышлены.</div>
+</div></footer>
+<script src="app.js"></script>
+<script>
+(async () => {
+  const [ps, rs] = await Promise.all([loadProducts(), loadRecipes()]);
+  const lines = ['Все', ...new Set(ps.map(p => p['Линейка']))];
+  const tabs = document.getElementById('tabs'), grid = document.getElementById('grid');
+  let cur = decodeURIComponent(location.hash.slice(1)) || 'Все'; if (!lines.includes(cur)) cur = 'Все';
+  function draw() {
+    tabs.innerHTML = lines.map(l => `<button class="tab" type="button" aria-pressed="${l===cur}">${l}${l==='Все'?'':' · '+ps.filter(p=>p['Линейка']===l).length}</button>`).join('');
+    grid.innerHTML = ps.filter(p => cur === 'Все' || p['Линейка'] === cur).map(productCard).join('');
+    reveal(grid);
+  }
+  tabs.addEventListener('click', e => { const b = e.target.closest('.tab'); if (!b) return; cur = lines[[...tabs.children].indexOf(b)]; history.replaceState(null, '', cur==='Все' ? location.pathname : '#'+encodeURIComponent(cur)); draw(); });
+  grid.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openProduct(ps.find(p => p['Артикул'] === c.dataset.id), rs); });
+  draw();
+})();
+</script>
+</body>
+</html>

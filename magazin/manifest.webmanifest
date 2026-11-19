@@ -1,0 +1,23 @@
+{
+  "name": "Лучина — свечи и мыло ручной работы",
+  "short_name": "Лучина",
+  "description": "Демо интернет-магазина, который ставится на телефон как приложение и работает без интернета.",
+  "id": "./",
+  "start_url": "./index.html?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FBF7F1",
+  "theme_color": "#9A4A24",
+  "lang": "ru",
+  "categories": ["shopping"],
+  "icons": [
+    { "src": "img/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/pwa/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Каталог", "url": "./index.html#katalog", "icons": [{ "src": "img/pwa/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Оформить заказ", "url": "./oformlenie.html", "icons": [{ "src": "img/pwa/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

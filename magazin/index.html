@@ -7,6 +7,11 @@
 <meta name="description" content="Демо интернет-магазина на чистом коде: товары и цены из таблицы Excel, варианты товара, корзина, оформление заказа с доставкой и согласием по 152-ФЗ.">
 <meta name="robots" content="noindex, follow">
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#9A4A24">
+<link rel="icon" type="image/png" sizes="192x192" href="img/pwa/icon-192.png">
+<link rel="apple-touch-icon" href="img/pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Лучина">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://irenshu.github.io/portfolio/magazin/">
 <meta property="og:site_name" content="Портфолио Ирины Шушковой">
@@ -55,6 +60,8 @@
     <div class="perk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>Бесплатно от 3&nbsp;000&nbsp;₽</b><span>Курьером по Казани на следующий день</span></div></div>
   </div>
 </section>
+
+<div class="wrap"><p class="pwa-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><span><b>Магазин ставится на телефон как приложение.</b> В Chrome на Android — кнопка «Установить» (стрелка) в шапке или «Добавить на главный экран» в меню, на iPhone — «Поделиться» → «На экран „Домой“». После первого открытия каталог и корзина работают даже без интернета.</span></p></div>
 
 <section class="section section--paper" id="katalog">
   <div class="wrap">
@@ -133,6 +140,7 @@
   </div>
 </footer>
 <script src="shop.js"></script>
+<script src="pwa.js"></script>
 <script src="../fx/reveal.js" data-reveal=".card, .perk, .fact, .ship, .section h2" data-hero=".hero__kicker, .hero h1, .hero__lead, .hero__actions, .hero__photo" data-press=".btn, .tab, .cart-btn"></script>
 </body>
 </html>

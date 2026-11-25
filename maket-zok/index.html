@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Проектирование ЗОК от БПЛА — проектное бюро</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f2340; --ink2:#46597a; --line:#d9e2ef; --bg:#f6f9fd; --white:#fff;
+  --blue:#1f5fd6; --blue-d:#174aa8; --grid:#d3dff0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;height:76px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand svg{flex:none}
+.brand-t{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.brand-k{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.brand-n{font-size:20px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+nav{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--ink2)}
+nav a:hover{color:var(--blue)}
+.hdr-c{display:flex;flex-direction:column;align-items:flex-end;line-height:1.25}
+.hdr-c a:first-child{font-size:18px;font-weight:700}
+.hdr-c a:last-child{font-size:13px;color:var(--ink2)}
+.hdr-c a:hover{color:var(--blue)}
+
+.hero{position:relative;overflow:hidden;background:
+  linear-gradient(var(--grid) 1px,transparent 1px) 0 0/32px 32px,
+  linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/32px 32px,
+  var(--bg);border-bottom:1px solid var(--line)}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 45% 60% at 22% 45%,rgba(246,249,253,.85) 20%,rgba(246,249,253,.35) 60%,transparent 85%);pointer-events:none}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:72px 0 64px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line);background:var(--white);border-radius:999px;font-size:13px;font-weight:600;color:var(--ink2)}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:none}
+h1{font-size:clamp(32px,4.4vw,54px);line-height:1.08;letter-spacing:-.025em;font-weight:800;margin:20px 0}
+h1 em{font-style:normal;color:var(--blue)}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--ink2);max-width:560px}
+.lead b{color:var(--ink);font-weight:700}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0}
+.btn{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 24px;border-radius:10px;font-size:16px;font-weight:700;transition:.2s}
+.btn-p{background:var(--blue);color:#fff;box-shadow:0 8px 20px -8px rgba(31,95,214,.6)}
+.btn-p:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-s{background:var(--white);border:1.5px solid var(--line)}
+.btn-s:hover{border-color:var(--blue);color:var(--blue)}
+.btn small{font-weight:500;font-size:13px;opacity:.75}
+.note{margin-top:14px;font-size:14px;color:var(--ink2)}
+
+.scheme{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px 18px 12px;box-shadow:0 30px 60px -30px rgba(15,35,64,.25)}
+.scheme-h{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--ink2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px}
+.scheme svg{width:100%;height:auto;display:block}
+
+.trust{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.trust div{padding:26px 24px;border-right:1px solid var(--line)}
+.trust div:last-child{border-right:0}
+.trust b{display:block;font-size:24px;font-weight:800;letter-spacing:-.02em}
+.trust span{font-size:14px;color:var(--ink2)}
+
+.rev{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;border-radius:12px;padding:12px 14px;font-size:13px;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:320px}
+.rev p{margin-bottom:8px;opacity:.8}
+.rev button{font:inherit;font-size:12px;font-weight:600;border:0;border-radius:6px;padding:6px 9px;margin:0 4px 4px 0;cursor:pointer;background:rgba(255,255,255,.12);color:#fff}
+.rev button.on{background:#fff;color:var(--ink)}
+
+@media (max-width:980px){
+  nav{display:none}
+  .hero-in{grid-template-columns:1fr;padding:48px 0}
+  .trust{grid-template-columns:repeat(2,1fr)}
+  .trust div:nth-child(2){border-right:0}
+  .trust div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .hdr{height:64px}
+  .brand svg{width:36px;height:36px}
+  .brand-n{font-size:16px}
+  .brand-k{font-size:9.5px}
+  .hdr-c a:last-child{display:none}
+  .hdr-c a:first-child{font-size:14px}
+  .tag{font-size:12px}
+  .btn{width:100%;justify-content:center}
+  .trust div{padding:18px 14px}
+  .trust b{font-size:19px}
+  .rev{left:16px;right:16px;max-width:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hdr">
+    <a class="brand" href="#">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <rect x="1" y="1" width="42" height="42" rx="10" fill="#1f5fd6"/>
+        <path d="M8 30 L22 12 L36 30" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M12.7 24 H31.3 M17.3 18 H26.7 M15 27 L22 12 L29 27" fill="none" stroke="#fff" stroke-width="1.3" opacity=".7"/>
+        <path d="M8 30 V35 M36 30 V35 M22 30 V35" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-t">
+        <span class="brand-k">Проектное бюро</span>
+        <span class="brand-n" data-name>«ТехПромЗащита»</span>
+      </span>
+    </a>
+    <nav>
+      <a href="#">Услуги</a><a href="#">Как работаем</a><a href="#">О бюро</a><a href="#">Контакты</a>
+    </nav>
+    <div class="hdr-c">
+      <a href="tel:+79165964862">+7 (916) 596-48-62</a>
+      <a href="mailto:inside-project@mail.ru">inside-project@mail.ru</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <span class="tag"><i></i>Проектирование по СП 542.1325800.2024 с Изменением № 1</span>
+      <h1>Проект ЗОК от БПЛА <em>без привязки к поставщику</em></h1>
+      <p class="lead">Разрабатываем проектную и рабочую документацию на защитные ограждающие конструкции. <b>Материалы и подрядчика вы выбираете сами</b> — по своему бюджету и в своём регионе.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Скачать опросный лист <small>Word</small>
+        </a>
+        <a class="btn btn-s" href="tel:+79165964862">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          Позвонить инженеру
+        </a>
+      </div>
+      <p class="note">Заполненный лист пришлите на почту — подготовим технико-коммерческое предложение бесплатно.</p>
+    </div>
+
+    <div class="scheme" aria-label="Схема защитной конструкции над трансформатором">
+      <div class="scheme-h"><span>Схема ЗОК · пример</span><span>М 1:200</span></div>
+      <svg viewBox="0 0 520 360" font-family="Manrope, Segoe UI, sans-serif">
+        <defs>
+          <pattern id="net" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <path d="M0 0H12M0 0V12" stroke="#1f5fd6" stroke-width="1" opacity=".55"/>
+          </pattern>
+          <marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 2 L5 5 L0 8" fill="none" stroke="#46597a" stroke-width="1.4"/></marker>
+        </defs>
+        <line x1="20" y1="300" x2="500" y2="300" stroke="#0f2340" stroke-width="2"/>
+        <path d="M30 300 l-10 10 M60 300 l-10 10 M90 300 l-10 10 M120 300 l-10 10 M150 300 l-10 10 M180 300 l-10 10 M210 300 l-10 10 M240 300 l-10 10 M270 300 l-10 10 M300 300 l-10 10 M330 300 l-10 10 M360 300 l-10 10 M390 300 l-10 10 M420 300 l-10 10 M450 300 l-10 10 M480 300 l-10 10" stroke="#9fb0c8" stroke-width="1"/>
+        <g fill="#fff" stroke="#0f2340" stroke-width="2">
+          <rect x="185" y="215" width="150" height="85" rx="3"/>
+          <rect x="200" y="196" width="120" height="19"/>
+          <path d="M200 230 V285 M215 230 V285 M230 230 V285 M245 230 V285 M275 230 V285 M290 230 V285 M305 230 V285 M320 230 V285" stroke-width="1.5"/>
+          <path d="M225 196 V172 M260 196 V166 M295 196 V172" stroke-width="2.5"/>
+          <circle cx="225" cy="168" r="5"/><circle cx="260" cy="162" r="5"/><circle cx="295" cy="168" r="5"/>
+        </g>
+        <g stroke="#0f2340" stroke-width="3" stroke-linecap="round">
+          <line x1="90" y1="300" x2="90" y2="96"/><line x1="430" y1="300" x2="430" y2="96"/>
+        </g>
+        <g stroke="#0f2340" stroke-width="1.4" opacity=".7">
+          <line x1="90" y1="96" x2="40" y2="300"/><line x1="430" y1="96" x2="480" y2="300"/>
+        </g>
+        <path d="M90 96 Q260 122 430 96 L430 104 Q260 130 90 104 Z" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/>
+        <rect x="93" y="110" width="8" height="190" fill="url(#net)" opacity=".7"/>
+        <rect x="419" y="110" width="8" height="190" fill="url(#net)" opacity=".7"/>
+        <g transform="translate(250 58)">
+          <line x1="-22" y1="0" x2="22" y2="0" stroke="#0f2340" stroke-width="2.5"/>
+          <rect x="-8" y="-5" width="16" height="10" rx="2" fill="#0f2340"/>
+          <ellipse cx="-24" cy="-3" rx="11" ry="2.5" fill="none" stroke="#0f2340" stroke-width="1.5"/>
+          <ellipse cx="24" cy="-3" rx="11" ry="2.5" fill="none" stroke="#0f2340" stroke-width="1.5"/>
+        </g>
+        <path d="M250 70 V100" stroke="#d64545" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#ar)"/>
+        <g stroke="#46597a" stroke-width="1" fill="#46597a" font-size="12" font-weight="600">
+          <line x1="90" y1="330" x2="430" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <line x1="90" y1="304" x2="90" y2="336"/><line x1="430" y1="304" x2="430" y2="336"/>
+          <text x="260" y="350" text-anchor="middle" stroke="none">пролёт по расчёту</text>
+          <line x1="370" y1="162" x2="370" y2="114" marker-start="url(#ar)" marker-end="url(#ar)"/>
+          <text x="364" y="136" text-anchor="end" stroke="none">отступ</text>
+          <text x="364" y="150" text-anchor="end" stroke="none">безопасности</text>
+        </g>
+        <g font-size="12" font-weight="700" fill="#0f2340">
+          <line x1="140" y1="104" x2="120" y2="60" stroke="#0f2340" stroke-width="1"/><text x="40" y="54">Защитная сетка</text>
+          <line x1="430" y1="200" x2="470" y2="226" stroke="#0f2340" stroke-width="1"/><text x="440" y="242">Опора</text>
+          <line x1="60" y1="220" x2="28" y2="196" stroke="#0f2340" stroke-width="1"/><text x="20" y="188">Растяжка</text>
+          <text x="260" y="226" text-anchor="middle" font-size="10" fill="#46597a">оборудование</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="trust">
+    <div><b>с 1999 года</b><span>проектное бюро в составе группы «ИНСАЙД-ПРОЕКТ»</span></div>
+    <div><b>с 2022 года</b><span>проектируем ЗОК от БПЛА</span></div>
+    <div><b>Член СРО</b><span>СРО-П-211-23072019</span></div>
+    <div><b>КР · КМ · КМД · КЖ</b><span>проектная и рабочая документация, сопровождение экспертизы</span></div>
+  </div>
+</section>
+
+<div class="rev">
+  <p>Для согласования: вариант названия</p>
+  <div id="revb"></div>
+</div>
+
+<script>
+const names=["«ТехПромЗащита»","«ЗОК-Проект»","«Заслон»","«ТехЗаслон»","«Барьер-Проект»"];
+const box=document.getElementById('revb'), t=document.querySelector('[data-name]');
+names.forEach((n,i)=>{const b=document.createElement('button');b.textContent=n.replace(/[«»]/g,'');if(!i)b.className='on';
+b.onclick=()=>{t.textContent=n;box.querySelectorAll('button').forEach(x=>x.className='');b.className='on'};box.appendChild(b)});
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Проектное бюро «ОпораПроект» — проектирование ЗОК от БПЛА</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#dfe4ea;font:14px/1.5 Tahoma,Verdana,Arial,sans-serif;color:#1e2a38}
+a{color:#1b4f93}
+a:hover{color:#c0392b}
+.page{max-width:1000px;margin:18px auto;background:#fff;border:1px solid #a9b5c4;box-shadow:0 0 0 4px #eef1f5}
+/* шапка */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:linear-gradient(#ffffff,#eef2f7);border-bottom:1px solid #c5cfdb}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#1e2a38}
+.logo-t b{display:block;font:bold 22px/1.1 Arial,Tahoma,sans-serif;color:#17427d;letter-spacing:.2px}
+.logo-t span{font-size:12px;color:#5a6b80}
+.tel{text-align:right;line-height:1.35}
+.tel a{text-decoration:none}
+.tel .ph{font:bold 22px Arial,sans-serif;color:#1e2a38}
+.tel .em{font-size:13px}
+.tel small{display:block;font-size:11px;color:#6b7a8d}
+/* меню */
+.menu{display:flex;flex-wrap:wrap;background:linear-gradient(#3a6db0,#21497f);border-top:1px solid #4f7fbf;border-bottom:3px solid #c9a227}
+.menu a{color:#fff;text-decoration:none;font-weight:bold;font-size:13px;padding:9px 16px;border-right:1px solid #1a3a66;box-shadow:inset -1px 0 0 #4c7cbc}
+.menu a:hover,.menu a.on{background:#17375f}
+/* колонки */
+.cols{display:grid;grid-template-columns:230px 1fr;gap:20px;padding:20px}
+.box{border:1px solid #b9c5d3;margin-bottom:16px;background:#f7f9fb}
+.box h3{margin:0;padding:6px 10px;font:bold 13px Tahoma,sans-serif;color:#fff;background:linear-gradient(#4a78b5,#2b578f)}
+.box ul{margin:0;padding:8px 10px 10px;list-style:none}
+.box li{padding:4px 0 4px 14px;border-bottom:1px dotted #c3cdd9;position:relative;font-size:13px}
+.box li:last-child{border-bottom:0}
+.box li::before{content:"";position:absolute;left:2px;top:11px;border:4px solid transparent;border-left-color:#c9a227}
+.box p{margin:0;padding:8px 10px;font-size:13px}
+.crumbs{font-size:11px;color:#6b7a8d;margin-bottom:6px}
+h1{margin:0 0 10px;font:bold 24px/1.25 Arial,Tahoma,sans-serif;color:#17427d}
+h2{margin:22px 0 8px;font:bold 17px Arial,sans-serif;color:#17427d;border-bottom:1px solid #c5cfdb;padding-bottom:4px}
+.lead{margin:0 0 12px;font-size:15px}
+.lead b{color:#9a2c1f}
+.fig{border:1px solid #b9c5d3;background:#fff;padding:8px;margin:14px 0 4px;max-width:560px}
+.fig svg{width:100%;height:auto;display:block}
+.fig .sv[hidden]{display:none}
+.cap{font-size:12px;color:#5a6b80;font-style:italic;margin:0 0 14px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 6px}
+.b{display:inline-block;padding:8px 16px;font:bold 13px Tahoma,sans-serif;text-decoration:none;color:#1e2a38;border:1px solid #8e9bab;border-radius:3px;background:linear-gradient(#ffffff,#dfe5ec);box-shadow:inset 0 1px 0 #fff}
+.b:hover{background:linear-gradient(#f3f6f9,#cfd8e2);color:#1e2a38}
+.b.main{color:#fff;border-color:#8a6d0f;background:linear-gradient(#e2bc3f,#b48d16);text-shadow:0 1px 0 #7a5f0c}
+.b.main:hover{background:linear-gradient(#d4ad2c,#9e7a10);color:#fff}
+.note{font-size:12px;color:#5a6b80;margin:0}
+table.why{width:100%;border-collapse:collapse;margin:6px 0 0;font-size:13px}
+table.why td{border:1px solid #c5cfdb;padding:7px 10px;vertical-align:top}
+table.why td:first-child{width:38%;background:#f1f4f8;font-weight:bold;color:#17427d}
+.foot{padding:10px 20px;background:#eef2f7;border-top:1px solid #c5cfdb;font-size:11px;color:#5a6b80;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* панель согласования */
+.rev{position:fixed;right:12px;bottom:12px;z-index:50;background:#1e2a38;color:#fff;padding:10px 12px;font-size:12px;border:1px solid #000;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.rev p{margin:0 0 6px}
+.rev button{font:11px Tahoma,sans-serif;border:1px solid #6b7a8d;background:#2d3c4f;color:#fff;padding:4px 7px;margin:0 3px 3px 0;cursor:pointer}
+.rev button.on{background:#fff;color:#1e2a38}
+@media (max-width:820px){
+  .page{margin:0;border:0;box-shadow:none}
+  .cols{grid-template-columns:1fr;padding:14px}
+  .side{order:2}
+  .top{flex-direction:column;align-items:flex-start;padding:12px 14px}
+  .tel{text-align:left}
+  .menu a{padding:8px 11px;font-size:12px}
+  h1{font-size:20px}
+  .b{flex:1 1 100%;text-align:center}
+  table.why td:first-child{width:45%}
+  .rev{left:12px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div style="background:#fff7d6;border-bottom:1px solid #e4cf7a;padding:5px 20px;font-size:12px;color:#6b5a14">Демо-макет для портфолио · бюро, телефон и почта вымышленные</div>
+
+  <div class="top">
+    <a class="logo" href="#">
+      <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+        <rect x="1" y="1" width="52" height="52" fill="#21497f" stroke="#17375f"/>
+        <rect x="4" y="4" width="46" height="46" fill="none" stroke="#c9a227" stroke-width="1.5"/>
+        <path d="M11 37 L27 15 L43 37" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M16 30 H38 M21 23 H33" stroke="#fff" stroke-width="1.3" opacity=".75"/>
+        <path d="M11 37 V43 M43 37 V43 M27 37 V43" stroke="#fff" stroke-width="2.6"/>
+      </svg>
+      <span class="logo-t"><b>ОпораПроект</b><span>проектное бюро · проектирование ЗОК от БПЛА</span></span>
+    </a>
+    <div class="tel">
+      <small>Консультация инженера:</small>
+      <a class="ph" href="tel:+70000000000">+7 (000) 000-00-00</a><br>
+      <a class="em" href="mailto:info@opora-proekt.example">info@opora-proekt.example</a>
+    </div>
+  </div>
+
+  <nav class="menu">
+    <a class="on" href="#">Главная</a><a href="#">Услуги</a><a href="#">Как мы работаем</a><a href="#">Опросный лист</a><a href="#">О бюро</a><a href="#">Контакты</a>
+  </nav>
+
+  <div class="cols">
+    <aside class="side">
+      <div class="box">
+        <h3>Наши услуги</h3>
+        <ul>
+          <li>Аудит уязвимости объекта от БПЛА</li>
+          <li>Проектная документация ЗОК (раздел КР)</li>
+          <li>Рабочая документация: КМ, КМД, КЖ</li>
+          <li>Спецификация материалов любого производителя</li>
+          <li>Сопровождение экспертизы</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Опросный лист</h3>
+        <p>Скачайте, заполните и пришлите на почту — подготовим ТКП бесплатно.</p>
+        <p><a href="#">Скачать опросный лист (Word)</a></p>
+      </div>
+      <div class="box">
+        <h3>Контакты</h3>
+        <p>Тел.: <a href="tel:+70000000000">+7 (000) 000-00-00</a><br>E-mail: <a href="mailto:info@opora-proekt.example">info@opora-proekt.example</a><br>Россия</p>
+      </div>
+    </aside>
+
+    <main>
+      <div class="crumbs">Главная</div>
+      <h1>Проектирование ЗОК от БПЛА без привязки к поставщику</h1>
+      <p class="lead">Разрабатываем проектную и рабочую документацию на защитные ограждающие конструкции по СП 542.1325800.2024 с Изменением № 1. <b>Материалы и подрядчика вы выбираете сами</b> — по своему бюджету и в своём регионе.</p>
+
+      <div class="btns">
+        <a class="b main" href="#">Скачать опросный лист (Word)</a>
+        <a class="b" href="tel:+70000000000">Позвонить инженеру</a>
+      </div>
+      <p class="note">Заполненный опросный лист пришлите на почту — технико-коммерческое предложение подготовим бесплатно.</p>
+
+      <div class="fig">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="net" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H10M0 0V10" stroke="#1f5fd6" stroke-width="1" opacity=".6"/></pattern>
+<marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 2 L5 5 L0 8" fill="none" stroke="#46597a" stroke-width="1.4"/></marker>
+</defs></svg><svg class="sv" data-v="1" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif"><line x1="20" y1="300" x2="500" y2="300" stroke="#0f2340" stroke-width="2"/><path d="M30 300 l-10 10 M60 300 l-10 10 M90 300 l-10 10 M120 300 l-10 10 M150 300 l-10 10 M180 300 l-10 10 M210 300 l-10 10 M240 300 l-10 10 M270 300 l-10 10 M300 300 l-10 10 M330 300 l-10 10 M360 300 l-10 10 M390 300 l-10 10 M420 300 l-10 10 M450 300 l-10 10 M480 300 l-10 10 " stroke="#9fb0c8" stroke-width="1"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
+<rect x="200" y="150" width="140" height="150"/>
+<path d="M196 150 L270 128 L344 150 Z"/>
+</g>
+<g stroke="#0f2340" stroke-width="1" opacity=".55"><path d="M200 190 H340 M200 230 H340 M200 270 H340"/></g>
+
+<text x="270" y="215" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">резервуар</text>
+<text x="270" y="229" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">с топливом</text><g stroke="#0f2340" stroke-width="3" stroke-linecap="round"><line x1="130" y1="300" x2="130" y2="92"/><line x1="410" y1="300" x2="410" y2="92"/></g>
+<g stroke="#0f2340" stroke-width="1.3" opacity=".6"><line x1="130" y1="92" x2="70" y2="300"/><line x1="410" y1="92" x2="470" y2="300"/></g>
+<path d="M130 92 Q270 112 410 92 L410 100 Q270 120 130 100 Z" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/>
+<rect x="132" y="100" width="10" height="200" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/>
+<rect x="398" y="100" width="10" height="200" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><path d="M62 106 L128 146" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(40 94) rotate(31) scale(1.15 1.15)">
+<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
+<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
+<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
+<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
+<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
+</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M131 145 L143 157 M143 145 L131 157"/></g><g stroke="#46597a" stroke-width="1" fill="#46597a" font-size="11" font-weight="600">
+<line x1="144" y1="250" x2="198" y2="250" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="171" y="243" text-anchor="middle" stroke="none">отступ</text>
+<line x1="90" y1="330" x2="450" y2="330" stroke-dasharray="0" marker-start="url(#ar)" marker-end="url(#ar)" opacity="0"/>
+<line x1="130" y1="330" x2="410" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<line x1="130" y1="304" x2="130" y2="336"/><line x1="410" y1="304" x2="410" y2="336"/>
+<text x="270" y="350" text-anchor="middle" stroke="none">пролёт по расчёту</text>
+</g><line x1="230" y1="102" x2="250" y2="74" stroke="#0f2340" stroke-width="1"/><text x="250" y="70" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Сетка сверху</text><line x1="404" y1="140" x2="420" y2="74" stroke="#0f2340" stroke-width="1"/><text x="420" y="70" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">и с боков</text><line x1="410" y1="230" x2="430" y2="254" stroke="#0f2340" stroke-width="1"/><text x="430" y="250" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опора</text></svg>
+<svg class="sv" data-v="2" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif" hidden><line x1="20" y1="300" x2="500" y2="300" stroke="#0f2340" stroke-width="2"/><path d="M30 300 l-10 10 M60 300 l-10 10 M90 300 l-10 10 M120 300 l-10 10 M150 300 l-10 10 M180 300 l-10 10 M210 300 l-10 10 M240 300 l-10 10 M270 300 l-10 10 M300 300 l-10 10 M330 300 l-10 10 M360 300 l-10 10 M390 300 l-10 10 M420 300 l-10 10 M450 300 l-10 10 M480 300 l-10 10 " stroke="#9fb0c8" stroke-width="1"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
+<path d="M118 300 L124 282 L136 282 L142 300 Z M158 300 L164 282 L176 282 L182 300 Z"/>
+<rect x="100" y="232" width="100" height="50" rx="25"/>
+</g><line x1="130" y1="232" x2="130" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="170" y1="232" x2="170" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
+<path d="M228 300 L234 282 L246 282 L252 300 Z M268 300 L274 282 L286 282 L292 300 Z"/>
+<rect x="210" y="232" width="100" height="50" rx="25"/>
+</g><line x1="240" y1="232" x2="240" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="280" y1="232" x2="280" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
+<path d="M338 300 L344 282 L356 282 L362 300 Z M378 300 L384 282 L396 282 L402 300 Z"/>
+<rect x="320" y="232" width="100" height="50" rx="25"/>
+</g><line x1="350" y1="232" x2="350" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="390" y1="232" x2="390" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><text x="260" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">резервуары с топливом</text><g stroke="#0f2340" stroke-width="3" stroke-linecap="round"><line x1="70" y1="300" x2="70" y2="128"/><line x1="260" y1="300" x2="260" y2="128"/><line x1="450" y1="300" x2="450" y2="128"/></g><g stroke="#0f2340" stroke-width="1.3" opacity=".6"><line x1="70" y1="128" x2="28" y2="300"/><line x1="450" y1="128" x2="492" y2="300"/></g><path d="M70 128 Q165 146 260 128 Q355 146 450 128 L450 136 Q355 154 260 136 Q165 154 70 136 Z" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/><rect x="72" y="136" width="10" height="164" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><rect x="438" y="136" width="10" height="164" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><path d="M452 86 L374 138" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(476 72) rotate(-33) scale(-1.15 1.15)">
+<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
+<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
+<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
+<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
+<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
+</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M363 136 L375 148 M375 136 L363 148"/></g><g stroke="#46597a" stroke-width="1" fill="#46597a" font-size="11" font-weight="600">
+<line x1="70" y1="330" x2="450" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<line x1="70" y1="304" x2="70" y2="336"/><line x1="450" y1="304" x2="450" y2="336"/><line x1="260" y1="304" x2="260" y2="336"/>
+<text x="260" y="350" text-anchor="middle" stroke="none">общая конструкция на группу резервуаров</text>
+<line x1="160" y1="150" x2="160" y2="228" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="166" y="194" stroke="none">отступ</text>
+</g><line x1="110" y1="136" x2="40" y2="104" stroke="#0f2340" stroke-width="1"/><text x="40" y="100" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Защитная сетка</text><line x1="262" y1="128" x2="270" y2="104" stroke="#0f2340" stroke-width="1"/><text x="270" y="100" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опоры</text></svg>
+<svg class="sv" data-v="3" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif" hidden><polygon points="260.0,127.5 428.9,225.0 260.0,322.5 91.1,225.0" fill="#eef3fa" stroke="#c9d6e8" stroke-width="1"/><polygon points="260.0,150.0 389.9,225.0 389.9,90.0 260.0,15.0" fill="url(#net)" opacity=".35"/><polygon points="260.0,150.0 130.1,225.0 130.1,90.0 260.0,15.0" fill="url(#net)" opacity=".35"/><line x1="260.0" y1="150.0" x2="260.0" y2="15.0" stroke="#0f2340" stroke-width="2" opacity=".45"/><path d="M201.2 135.0 V225.0 A58.8 33.9 0 0 0 318.8 225.0 V135.0" fill="#fff" stroke="#0f2340" stroke-width="2"/><ellipse cx="260.0" cy="135.0" rx="58.8" ry="33.9" fill="#fff" stroke="#0f2340" stroke-width="2"/><path d="M201.2 195.0 A58.8 33.9 0 0 0 318.8 195.0" fill="none" stroke="#0f2340" stroke-width="1" opacity=".4"/><path d="M201.2 165.0 A58.8 33.9 0 0 0 318.8 165.0" fill="none" stroke="#0f2340" stroke-width="1" opacity=".4"/><text x="260" y="139" text-anchor="middle" font-size="10.5" font-weight="600" fill="#46597a">топливо</text><polygon points="389.9,225.0 260.0,300.0 260.0,165.0 389.9,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2" opacity=".85"/><polygon points="130.1,225.0 260.0,300.0 260.0,165.0 130.1,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2" opacity=".85"/><polygon points="260.0,15.0 389.9,90.0 260.0,165.0 130.1,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/><line x1="389.9" y1="225.0" x2="389.9" y2="90.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="130.1" y1="225.0" x2="130.1" y2="90.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="260.0" y1="300.0" x2="260.0" y2="165.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="260.0" y1="15.0" x2="389.9" y2="90.0" stroke="#0f2340" stroke-width="2"/><line x1="389.9" y1="90.0" x2="260.0" y2="165.0" stroke="#0f2340" stroke-width="2"/><line x1="260.0" y1="165.0" x2="130.1" y2="90.0" stroke="#0f2340" stroke-width="2"/><line x1="130.1" y1="90.0" x2="260.0" y2="15.0" stroke="#0f2340" stroke-width="2"/><path d="M72 112 L164.1 169.5" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(50 100) rotate(27) scale(1.1 1.1)">
+<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
+<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
+<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
+<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
+<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
+</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M163.07 166.5 L175.07 178.5 M175.07 166.5 L163.07 178.5"/></g><line x1="344.95" y1="82.5" x2="330" y2="34" stroke="#0f2340" stroke-width="1"/><text x="330" y="30" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Сетка сверху и с боков</text><line x1="262.0" y1="253.0" x2="350" y2="304" stroke="#0f2340" stroke-width="1"/><text x="350" y="300" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опоры и каркас</text><text x="20" y="352" font-size="11" font-weight="600" fill="#46597a">заход БПЛА — пологий, поэтому боковая защита обязательна</text></svg>
+      </div>
+      <p class="cap" id="cap">Рис. 1. Защитная конструкция над резервуаром: сетка сверху и с боков (пример)</p>
+
+      <h2>Почему заказывают у нас</h2>
+      <table class="why">
+        <tr><td>Опыт с 2005 года</td><td>Команда проектировщиков промышленных и инженерных объектов</td></tr>
+        <tr><td>ЗОК — с 2022 года</td><td>Проектируем защиту резервуаров, подстанций, котельных и промышленных объектов</td></tr>
+        <tr><td>Член СРО</td><td>Номер в реестре — на странице «О бюро»</td></tr>
+        <tr><td>Без привязки к поставщику</td><td>Закладываем материалы любого производителя — заказчик закупает сам по своей цене</td></tr>
+      </table>
+    </main>
+  </div>
+
+  <div class="foot">
+    <span>© Проектное бюро «ОпораПроект», демо-макет, все данные вымышленные</span>
+    <span>Россия</span>
+  </div>
+</div>
+
+<div class="rev"><p>Вариант схемы:</p><div id="revs"></div></div>
+<script>
+const sch=[["1 · резервуар","Рис. 1. Защитная конструкция над резервуаром: сетка сверху и с боков (пример)"],["2 · парк","Рис. 1. Общая защитная конструкция над группой резервуаров (пример)"],["3 · объём","Рис. 1. Защитная конструкция вокруг резервуара, изометрия (пример)"]];
+const bs=document.getElementById('revs');
+sch.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v[0];if(!i)b.className='on';
+b.onclick=()=>{document.querySelectorAll('.sv').forEach(x=>x.toggleAttribute('hidden',x.dataset.v!=String(i+1)));document.getElementById('cap').textContent=v[1];bs.querySelectorAll('button').forEach(x=>x.className='');b.className='on'};bs.appendChild(b)});
+</script>
+</body>
+</html>

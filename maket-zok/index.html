@@ -53,6 +53,14 @@ table.why{width:100%;border-collapse:collapse;margin:6px 0 0;font-size:13px}
 table.why td{border:1px solid #c5cfdb;padding:7px 10px;vertical-align:top}
 table.why td:first-child{width:38%;background:#f1f4f8;font-weight:bold;color:#17427d}
 .foot{padding:10px 20px;background:#eef2f7;border-top:1px solid #c5cfdb;font-size:11px;color:#5a6b80;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.gal{margin:6px 0 18px}
+.gal-main{display:block;border:1px solid #b9c5d3;background:#fff;padding:6px}
+.gal-main img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain}
+.thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.thumbs button{border:1px solid #b9c5d3;background:#f7f9fb;padding:3px;cursor:pointer;font:11px Tahoma,sans-serif;color:#17427d}
+.thumbs button img{display:block;width:100%;height:46px;object-fit:contain;background:#fff;margin-bottom:2px}
+.thumbs button.on{border-color:#c9a227;box-shadow:0 0 0 2px #c9a227 inset;background:#fff8e1}
+@media (max-width:820px){.thumbs{grid-template-columns:repeat(3,1fr)}}
 /* панель согласования */
 .rev{position:fixed;right:12px;bottom:12px;z-index:50;background:#1e2a38;color:#fff;padding:10px 12px;font-size:12px;border:1px solid #000;box-shadow:2px 2px 0 rgba(0,0,0,.3)}
 .rev p{margin:0 0 6px}
@@ -131,66 +139,19 @@ table.why td:first-child{width:38%;background:#f1f4f8;font-weight:bold;color:#17
       </div>
       <p class="note">Заполненный опросный лист пришлите на почту — технико-коммерческое предложение подготовим бесплатно.</p>
 
-      <div class="fig">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<pattern id="net" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H10M0 0V10" stroke="#1f5fd6" stroke-width="1" opacity=".6"/></pattern>
-<marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 2 L5 5 L0 8" fill="none" stroke="#46597a" stroke-width="1.4"/></marker>
-</defs></svg><svg class="sv" data-v="1" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif"><line x1="20" y1="300" x2="500" y2="300" stroke="#0f2340" stroke-width="2"/><path d="M30 300 l-10 10 M60 300 l-10 10 M90 300 l-10 10 M120 300 l-10 10 M150 300 l-10 10 M180 300 l-10 10 M210 300 l-10 10 M240 300 l-10 10 M270 300 l-10 10 M300 300 l-10 10 M330 300 l-10 10 M360 300 l-10 10 M390 300 l-10 10 M420 300 l-10 10 M450 300 l-10 10 M480 300 l-10 10 " stroke="#9fb0c8" stroke-width="1"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
-<rect x="200" y="150" width="140" height="150"/>
-<path d="M196 150 L270 128 L344 150 Z"/>
-</g>
-<g stroke="#0f2340" stroke-width="1" opacity=".55"><path d="M200 190 H340 M200 230 H340 M200 270 H340"/></g>
-
-<text x="270" y="215" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">резервуар</text>
-<text x="270" y="229" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">с топливом</text><g stroke="#0f2340" stroke-width="3" stroke-linecap="round"><line x1="130" y1="300" x2="130" y2="92"/><line x1="410" y1="300" x2="410" y2="92"/></g>
-<g stroke="#0f2340" stroke-width="1.3" opacity=".6"><line x1="130" y1="92" x2="70" y2="300"/><line x1="410" y1="92" x2="470" y2="300"/></g>
-<path d="M130 92 Q270 112 410 92 L410 100 Q270 120 130 100 Z" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/>
-<rect x="132" y="100" width="10" height="200" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/>
-<rect x="398" y="100" width="10" height="200" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><path d="M62 106 L128 146" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(40 94) rotate(31) scale(1.15 1.15)">
-<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
-<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
-<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
-<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
-<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
-</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M131 145 L143 157 M143 145 L131 157"/></g><g stroke="#46597a" stroke-width="1" fill="#46597a" font-size="11" font-weight="600">
-<line x1="144" y1="250" x2="198" y2="250" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="171" y="243" text-anchor="middle" stroke="none">отступ</text>
-<line x1="90" y1="330" x2="450" y2="330" stroke-dasharray="0" marker-start="url(#ar)" marker-end="url(#ar)" opacity="0"/>
-<line x1="130" y1="330" x2="410" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<line x1="130" y1="304" x2="130" y2="336"/><line x1="410" y1="304" x2="410" y2="336"/>
-<text x="270" y="350" text-anchor="middle" stroke="none">пролёт по расчёту</text>
-</g><line x1="230" y1="102" x2="250" y2="74" stroke="#0f2340" stroke-width="1"/><text x="250" y="70" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Сетка сверху</text><line x1="404" y1="140" x2="420" y2="74" stroke="#0f2340" stroke-width="1"/><text x="420" y="70" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">и с боков</text><line x1="410" y1="230" x2="430" y2="254" stroke="#0f2340" stroke-width="1"/><text x="430" y="250" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опора</text></svg>
-<svg class="sv" data-v="2" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif" hidden><line x1="20" y1="300" x2="500" y2="300" stroke="#0f2340" stroke-width="2"/><path d="M30 300 l-10 10 M60 300 l-10 10 M90 300 l-10 10 M120 300 l-10 10 M150 300 l-10 10 M180 300 l-10 10 M210 300 l-10 10 M240 300 l-10 10 M270 300 l-10 10 M300 300 l-10 10 M330 300 l-10 10 M360 300 l-10 10 M390 300 l-10 10 M420 300 l-10 10 M450 300 l-10 10 M480 300 l-10 10 " stroke="#9fb0c8" stroke-width="1"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
-<path d="M118 300 L124 282 L136 282 L142 300 Z M158 300 L164 282 L176 282 L182 300 Z"/>
-<rect x="100" y="232" width="100" height="50" rx="25"/>
-</g><line x1="130" y1="232" x2="130" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="170" y1="232" x2="170" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
-<path d="M228 300 L234 282 L246 282 L252 300 Z M268 300 L274 282 L286 282 L292 300 Z"/>
-<rect x="210" y="232" width="100" height="50" rx="25"/>
-</g><line x1="240" y1="232" x2="240" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="280" y1="232" x2="280" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><g fill="#fff" stroke="#0f2340" stroke-width="2">
-<path d="M338 300 L344 282 L356 282 L362 300 Z M378 300 L384 282 L396 282 L402 300 Z"/>
-<rect x="320" y="232" width="100" height="50" rx="25"/>
-</g><line x1="350" y1="232" x2="350" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><line x1="390" y1="232" x2="390" y2="282" stroke="#0f2340" stroke-width="1" opacity=".4"/><text x="260" y="222" text-anchor="middle" font-size="11" font-weight="600" fill="#46597a">резервуары с топливом</text><g stroke="#0f2340" stroke-width="3" stroke-linecap="round"><line x1="70" y1="300" x2="70" y2="128"/><line x1="260" y1="300" x2="260" y2="128"/><line x1="450" y1="300" x2="450" y2="128"/></g><g stroke="#0f2340" stroke-width="1.3" opacity=".6"><line x1="70" y1="128" x2="28" y2="300"/><line x1="450" y1="128" x2="492" y2="300"/></g><path d="M70 128 Q165 146 260 128 Q355 146 450 128 L450 136 Q355 154 260 136 Q165 154 70 136 Z" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/><rect x="72" y="136" width="10" height="164" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><rect x="438" y="136" width="10" height="164" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2"/><path d="M452 86 L374 138" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(476 72) rotate(-33) scale(-1.15 1.15)">
-<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
-<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
-<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
-<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
-<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
-</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M363 136 L375 148 M375 136 L363 148"/></g><g stroke="#46597a" stroke-width="1" fill="#46597a" font-size="11" font-weight="600">
-<line x1="70" y1="330" x2="450" y2="330" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<line x1="70" y1="304" x2="70" y2="336"/><line x1="450" y1="304" x2="450" y2="336"/><line x1="260" y1="304" x2="260" y2="336"/>
-<text x="260" y="350" text-anchor="middle" stroke="none">общая конструкция на группу резервуаров</text>
-<line x1="160" y1="150" x2="160" y2="228" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="166" y="194" stroke="none">отступ</text>
-</g><line x1="110" y1="136" x2="40" y2="104" stroke="#0f2340" stroke-width="1"/><text x="40" y="100" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Защитная сетка</text><line x1="262" y1="128" x2="270" y2="104" stroke="#0f2340" stroke-width="1"/><text x="270" y="100" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опоры</text></svg>
-<svg class="sv" data-v="3" viewBox="0 0 520 360" font-family="Tahoma, Verdana, Arial, sans-serif" hidden><polygon points="260.0,127.5 428.9,225.0 260.0,322.5 91.1,225.0" fill="#eef3fa" stroke="#c9d6e8" stroke-width="1"/><polygon points="260.0,150.0 389.9,225.0 389.9,90.0 260.0,15.0" fill="url(#net)" opacity=".35"/><polygon points="260.0,150.0 130.1,225.0 130.1,90.0 260.0,15.0" fill="url(#net)" opacity=".35"/><line x1="260.0" y1="150.0" x2="260.0" y2="15.0" stroke="#0f2340" stroke-width="2" opacity=".45"/><path d="M201.2 135.0 V225.0 A58.8 33.9 0 0 0 318.8 225.0 V135.0" fill="#fff" stroke="#0f2340" stroke-width="2"/><ellipse cx="260.0" cy="135.0" rx="58.8" ry="33.9" fill="#fff" stroke="#0f2340" stroke-width="2"/><path d="M201.2 195.0 A58.8 33.9 0 0 0 318.8 195.0" fill="none" stroke="#0f2340" stroke-width="1" opacity=".4"/><path d="M201.2 165.0 A58.8 33.9 0 0 0 318.8 165.0" fill="none" stroke="#0f2340" stroke-width="1" opacity=".4"/><text x="260" y="139" text-anchor="middle" font-size="10.5" font-weight="600" fill="#46597a">топливо</text><polygon points="389.9,225.0 260.0,300.0 260.0,165.0 389.9,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2" opacity=".85"/><polygon points="130.1,225.0 260.0,300.0 260.0,165.0 130.1,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.2" opacity=".85"/><polygon points="260.0,15.0 389.9,90.0 260.0,165.0 130.1,90.0" fill="url(#net)" stroke="#1f5fd6" stroke-width="1.6"/><line x1="389.9" y1="225.0" x2="389.9" y2="90.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="130.1" y1="225.0" x2="130.1" y2="90.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="260.0" y1="300.0" x2="260.0" y2="165.0" stroke="#0f2340" stroke-width="3" stroke-linecap="round"/><line x1="260.0" y1="15.0" x2="389.9" y2="90.0" stroke="#0f2340" stroke-width="2"/><line x1="389.9" y1="90.0" x2="260.0" y2="165.0" stroke="#0f2340" stroke-width="2"/><line x1="260.0" y1="165.0" x2="130.1" y2="90.0" stroke="#0f2340" stroke-width="2"/><line x1="130.1" y1="90.0" x2="260.0" y2="15.0" stroke="#0f2340" stroke-width="2"/><path d="M72 112 L164.1 169.5" stroke="#d64545" stroke-width="1.6" stroke-dasharray="5 4"/><g transform="translate(50 100) rotate(27) scale(1.1 1.1)">
-<path d="M-30 -3 Q-8 -7 22 -3.5 Q31 0 22 3.5 Q-8 6 -30 3 Z" fill="#0f2340"/>
-<path d="M-27 -3 L-34 -16 L-27 -16 L-19 -3 Z" fill="#0f2340"/>
-<ellipse cx="2" cy="1.5" rx="13" ry="2.6" fill="#2c4a78"/>
-<ellipse cx="-29" cy="0.5" rx="6" ry="1.6" fill="#2c4a78"/>
-<line x1="-33" y1="-8" x2="-33" y2="8" stroke="#0f2340" stroke-width="2"/>
-</g><g stroke="#d64545" stroke-width="2.2" stroke-linecap="round"><path d="M163.07 166.5 L175.07 178.5 M175.07 166.5 L163.07 178.5"/></g><line x1="344.95" y1="82.5" x2="330" y2="34" stroke="#0f2340" stroke-width="1"/><text x="330" y="30" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Сетка сверху и с боков</text><line x1="262.0" y1="253.0" x2="350" y2="304" stroke="#0f2340" stroke-width="1"/><text x="350" y="300" text-anchor="start" font-size="12" font-weight="700" fill="#0f2340">Опоры и каркас</text><text x="20" y="352" font-size="11" font-weight="600" fill="#46597a">заход БПЛА — пологий, поэтому боковая защита обязательна</text></svg>
+      <h2>Из наших проектов</h2>
+      <div class="gal">
+        <a class="gal-main" id="galMain" href="img/razrez-1-1.png" target="_blank" rel="noopener"><img id="galImg" src="img/razrez-1-1.png" alt="Разрез 1-1: защитная конструкция над объектом" width="1287" height="643"></a>
+        <p class="cap" id="cap">Разрез 1-1. Защитная сетка на стойках с оттяжками, свайное основание. Нажмите, чтобы открыть крупно.</p>
+        <div class="thumbs">
+          <button class="on" data-src="img/razrez-1-1.png" data-cap="Разрез 1-1. Защитная сетка на стойках с оттяжками, свайное основание."><img src="img/razrez-1-1.png" alt=""><span>Разрез 1-1</span></button>
+          <button data-src="img/razrez-2-2.png" data-cap="Разрез 2-2. Прогиб силового троса и отступ сетки от оборудования."><img src="img/razrez-2-2.png" alt=""><span>Разрез 2-2</span></button>
+          <button data-src="img/raschetnaya-model.png" data-cap="Расчётная модель конструкции с учётом снеговых, гололёдных, ветровых и ударных нагрузок."><img src="img/raschetnaya-model.png" alt=""><span>Расчётная модель</span></button>
+          <button data-src="img/uzel-krepleniya-trosa.png" data-cap="Узел крепления троса к винтовой свае."><img src="img/uzel-krepleniya-trosa.png" alt=""><span>Узел крепления</span></button>
+          <button data-src="img/uzel-setki.png" data-cap="Узел А: крепление сетки к тросу."><img src="img/uzel-setki.png" alt=""><span>Узел сетки</span></button>
+          <button data-src="img/specifikaciya.png" data-cap="Спецификация: расход материала на ограждение и краткое описание решения."><img src="img/specifikaciya.png" alt=""><span>Спецификация</span></button>
+        </div>
       </div>
-      <p class="cap" id="cap">Рис. 1. Защитная конструкция над резервуаром: сетка сверху и с боков (пример)</p>
 
       <h2>Почему заказывают у нас</h2>
       <table class="why">
@@ -208,14 +169,10 @@ table.why td:first-child{width:38%;background:#f1f4f8;font-weight:bold;color:#17
   </div>
 </div>
 
-<div class="rev"><p>Для согласования — вариант схемы:</p><div id="revs"></div></div>
 <script>
 const cb=document.getElementById("callbtn");cb.addEventListener("click",e=>{if(!cb.dataset.shown){e.preventDefault();cb.dataset.shown=1;cb.textContent="+7 (916) 596-48-62";}});
 
-const sch=[["1 · резервуар","Рис. 1. Защитная конструкция над резервуаром: сетка сверху и с боков (пример)"],["2 · парк","Рис. 1. Общая защитная конструкция над группой резервуаров (пример)"],["3 · объём","Рис. 1. Защитная конструкция вокруг резервуара, изометрия (пример)"]];
-const bs=document.getElementById('revs');
-sch.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v[0];if(!i)b.className='on';
-b.onclick=()=>{document.querySelectorAll('.sv').forEach(x=>x.toggleAttribute('hidden',x.dataset.v!=String(i+1)));document.getElementById('cap').textContent=v[1];bs.querySelectorAll('button').forEach(x=>x.className='');b.className='on'};bs.appendChild(b)});
+document.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{document.getElementById('galImg').src=b.dataset.src;document.getElementById('galMain').href=b.dataset.src;document.getElementById('cap').textContent=b.dataset.cap+' Нажмите, чтобы открыть крупно.';document.querySelectorAll('.thumbs button').forEach(x=>x.classList.remove('on'));b.classList.add('on')});
 </script>
 </body>
 </html>
